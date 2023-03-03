@@ -45,7 +45,7 @@ app.use('/api/leerinventarios', LeerInventarios);                   //Leemos tod
 
 
 //Iniciamos Server
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`BackEnd escuchando por puerto ${port}....`)
 })
