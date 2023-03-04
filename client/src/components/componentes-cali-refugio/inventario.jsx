@@ -32,41 +32,42 @@ class inventario extends Component {
     render() {
         return (
             <Router>
-            <div className="container-sm">   
-
                 <br></br>
-
-                <nav className="navbar navbar-expand-lg bg-body-tertiary" >
+                <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
+                        <a className="navbar-brand" href="/">Inicio</a>
+                        <button
+                        className="navbar-toggler collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div
+                        className="navbar-collapse collapse"
+                        id="navbarSupportedContent"
+                        >
+                            
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                            <a className="navbar-brand" aria-current="page" href="/NuevoResumen">Cuadre Inventarios</a>
+                            </li>
+                        </ul>
 
-                        <div className="collapse navbar-collapse" id="navbarText">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <button type="button" className="btn btn-light">
-                                        <Link to="/">Resumen Inventarios </Link>
-                                    </button>                                    
-                                </li>
-                                <li className="nav-item">
-                                    <button type="button" className="btn btn-light">
-                                        <Link to="/NuevoResumen">Diligenciar Nuevo Inventario</Link>
-                                    </button>      
-                                </li>
-                            </ul>
+                        <button className="btn btn-outline-danger" onClick={this.salirInventarios.bind(this)}>Salir</button>
                         </div>
-                        
-
-                        <button className="navbar-brand btn btn-warning" onClick={this.salirInventarios.bind(this)}>Salir</button>
                     </div>
-                </nav>    
-
-                <hr className="border border-3 opacity-100"></hr>
+                </nav> 
 
                 <Routes>
                     <Route path="/" element={<InventarioCaliRefugioReview></InventarioCaliRefugioReview>} />
                     <Route path="/NuevoResumen" element={<InventarioCaliRefugioNuevo></InventarioCaliRefugioNuevo>} />
                 </Routes>
 
-            </div>
             </Router>
         );
     }

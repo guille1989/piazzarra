@@ -42,18 +42,23 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://100.25.138.195/api/leerinventarios/' + today, requestOptions)
+          fetch('http://localhost:3001/api/leerinventarios/' + today, requestOptions)
               .then(response => response.json())
               .then(data => {
+                console.log(data)
                 if(data.inv === undefined){
                     this.setState({
                         inve_aux: [],
-                        inve_final: []
+                        inve_final: [],
+                        inve_entradas: [],
+                        inve_entradas_costos: []
                     })
                 }else{
                     this.setState({
                         inve_aux: data.inv.resulta_aux,
-                        inve_final: data.inv.result_inventario
+                        inve_final: data.inv.result_inventario_tabla_resumen,
+                        inve_entradas: data.inv.result_inventario_entrada_tabla_resumen,
+                        inve_entradas_costos: data.inv.result_inventario_entrada_costos_tabla_resumen
                     })
                 }
               })
@@ -66,18 +71,23 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://100.25.138.195/api/leerinventarios/' + e.target.value, requestOptions)
+          fetch('http://localhost:3001/api/leerinventarios/' + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
+                console.log(data)
                 if(data.inv === undefined){
                     this.setState({
                         inve_aux: [],
-                        inve_final: []
+                        inve_final: [],
+                        inve_entradas: [],
+                        inve_entradas_costos: []
                     })
                 }else{
                     this.setState({
                         inve_aux: data.inv.resulta_aux,
-                        inve_final: data.inv.result_inventario
+                        inve_final: data.inv.result_inventario_tabla_resumen,
+                        inve_entradas: data.inv.result_inventario_entrada_tabla_resumen,
+                        inve_entradas_costos: data.inv.result_inventario_entrada_costos_tabla_resumen
                     })
                 }
               })
@@ -127,28 +137,30 @@ class inventarioCaliReview extends Component {
                             })()
                         }
 
-                <BarChart
-                    width={1200}
-                    height={500}
-                    data={this.state.inve_aux}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5
-                    }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="item_tipo" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
-                    <ReferenceLine y={0} stroke="#000" />
-                    <Brush dataKey="item_tipo" height={30} stroke="#9B9B9B" />
-                    <Bar dataKey="item_cantidad_entrada" fill="#4B70CE" />
-                    <Bar dataKey="item_cantidad" fill="#1B1B1B" />
-                </BarChart>
+                <table className="table">                
+                        <tbody>
+                            <tr>
+                            <th scope="col" className="fs-1">INSUMO</th>
+                            <th scope="col" className="fs-2">Insumo Entrada</th>
+                            <th scope="col" className="fs-2">Insumo Entrada Costo</th>
+                            <th scope="col" className="fs-2">Insumo Final</th>
+                            </tr>
 
+                            {this.state.inve_final.map((item, index) => {
+                                return(
+                                    <>
+                                        <tr key={index}>
+                                            <td><strong>{item.Item}</strong></td>
+                                            <td><strong>{this.state.inve_entradas[index].Valor}</strong></td>
+                                            <td><strong>{this.state.inve_entradas_costos[index].Valor}</strong></td>
+                                            <td><strong>{item.Valor}</strong></td>
+                                        </tr>
+                                    </>
+                                )                                
+                            })}
+
+                        </tbody>
+                </table>
             </div>
         );
     }

@@ -199,7 +199,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-        fetch('http://100.25.138.195/api/insumos', requestOptions)
+        fetch('http://localhost:3001/api/insumos', requestOptions)
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -209,7 +209,7 @@ class inventarioCaliRefugio extends Component {
             .catch(err => console.log(err))
 
 
-        fetch('http://100.25.138.195/api/revisioninventariofecha/' + today, requestOptions)
+        fetch('http://localhost:3001/api/revisioninventariofecha/' + today, requestOptions)
         .then(response => response.json())
         .then(data => {
         if(data.inv.length === 0){
@@ -244,7 +244,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://100.25.138.195/api/revisioninventariofecha/' + e.target.value, requestOptions)
+          fetch('http://localhost:3001/api/revisioninventariofecha/' + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
                 if(data.inv.length === 0){
@@ -363,7 +363,7 @@ class inventarioCaliRefugio extends Component {
                 })    
             }   
             //Envio inventario final   
-            fetch('http://100.25.138.195/api/inventarioactual/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://localhost:3001/api/inventarioactual/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -371,7 +371,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas
-            fetch('http://100.25.138.195/api/entradasinventario/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://localhost:3001/api/entradasinventario/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -379,7 +379,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas costos
-            fetch('http://100.25.138.195/api/insumocostos/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://localhost:3001/api/insumocostos/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -522,7 +522,7 @@ class inventarioCaliRefugio extends Component {
 
     render() {
         return (
-            <div className="container-sm">     
+            <div className='contenedor'>     
 
                 <br></br>
                 <br></br>
@@ -591,6 +591,7 @@ class inventarioCaliRefugio extends Component {
                                             <td>
                                                 <input 
                                                     type="number" 
+                                                    id="inputEntrada"
                                                     className="form-control" 
                                                     aria-label="Sizing example input" 
                                                     aria-describedby="inputGroup-sizing-sm" 
@@ -601,6 +602,7 @@ class inventarioCaliRefugio extends Component {
                                             <td>
                                                 <input 
                                                         type="number" 
+                                                        id="inputEntradaCosto"
                                                         className="form-control" 
                                                         aria-label="Sizing example input" 
                                                         aria-describedby="inputGroup-sizing-sm" 
@@ -611,6 +613,7 @@ class inventarioCaliRefugio extends Component {
                                             <td>
                                                 <input 
                                                         type="number" 
+                                                        id="inputInventarioFinal"
                                                         className="form-control" 
                                                         aria-label="Sizing example input" 
                                                         aria-describedby="inputGroup-sizing-sm"   
@@ -619,7 +622,6 @@ class inventarioCaliRefugio extends Component {
                                                         />
                                             </td>
                                         </tr>
-                                 
                                     </>
                                 )
                             })}

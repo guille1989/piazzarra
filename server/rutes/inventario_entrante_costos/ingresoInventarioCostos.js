@@ -28,7 +28,7 @@ async function IngresarEntradas(fechaInventario){
     
     let result = [];
 
-    result = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
+    result = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
 
     return result
 

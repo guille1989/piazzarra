@@ -34,13 +34,54 @@ async function LeerInventarios(fechaInventario){
 
     result_inventario = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
     result_inventario_entrada = await InventarioEntrada.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
-    result_inventario_entrada_costo = await InventarioEntradaCostos.find();
+    result_inventario_entrada_costo = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
+
+    let result_inventario_tabla_resumen = [];
+
+    for(let i=0;i<Object.keys(result_inventario[0]._doc).length;i++){
+        if(Object.keys(result_inventario[0]._doc)[i] === "__v" || Object.keys(result_inventario[0]._doc)[i] === "INVENTARIO_AUX" || Object.keys(result_inventario[0]._doc)[i] === "_id" || Object.keys(result_inventario[0]._doc)[i] === "FECHA_INVENTARIO_ACTUAL"){
+
+        }else{
+            if(Object.values(result_inventario[0]._doc)[i] === null){
+                Array.prototype.push.apply(result_inventario_tabla_resumen, [{'Item': Object.keys(result_inventario[0]._doc)[i], 'Valor': 0 }])
+            }else{
+                Array.prototype.push.apply(result_inventario_tabla_resumen, [{'Item': Object.keys(result_inventario[0]._doc)[i], 'Valor': Object.values(result_inventario[0]._doc)[i] }])
+            }
+        }        
+    }
+
+    let result_inventario_entrada_tabla_resumen = [];
+
+    for(let i=0;i<Object.keys(result_inventario_entrada[0]._doc).length;i++){
+        if(Object.keys(result_inventario_entrada[0]._doc)[i] === "__v" || Object.keys(result_inventario_entrada[0]._doc)[i] === "INVENTARIO_AUX" || Object.keys(result_inventario_entrada[0]._doc)[i] === "_id" || Object.keys(result_inventario_entrada[0]._doc)[i] === "FECHA_INVENTARIO_ENTRANTE"){
+
+        }else{
+            if(Object.values(result_inventario_entrada[0]._doc)[i] === null){
+                Array.prototype.push.apply(result_inventario_entrada_tabla_resumen, [{'Item': Object.keys(result_inventario_entrada[0]._doc)[i], 'Valor': 0 }])
+            }else{
+                Array.prototype.push.apply(result_inventario_entrada_tabla_resumen, [{'Item': Object.keys(result_inventario_entrada[0]._doc)[i], 'Valor': Object.values(result_inventario_entrada[0]._doc)[i] }])
+            }
+        }        
+    }
+
+    let result_inventario_entrada_costos_tabla_resumen = [];
+
+    for(let i=0;i<Object.keys(result_inventario_entrada_costo[0]._doc).length;i++){
+        if(Object.keys(result_inventario_entrada_costo[0]._doc)[i] === "__v" || Object.keys(result_inventario_entrada_costo[0]._doc)[i] === "INVENTARIO_AUX" || Object.keys(result_inventario_entrada_costo[0]._doc)[i] === "_id" || Object.keys(result_inventario_entrada_costo[0]._doc)[i] === "FECHA_INVENTARIO_ENTRANTE_COSTO"){
+
+        }else{
+            if(Object.values(result_inventario_entrada_costo[0]._doc)[i] === null){
+                Array.prototype.push.apply(result_inventario_entrada_costos_tabla_resumen, [{'Item': Object.keys(result_inventario_entrada_costo[0]._doc)[i], 'Valor': 0 }])
+            }else{
+                Array.prototype.push.apply(result_inventario_entrada_costos_tabla_resumen, [{'Item': Object.keys(result_inventario_entrada_costo[0]._doc)[i], 'Valor': Object.values(result_inventario_entrada_costo[0]._doc)[i] }])
+            }
+        }        
+    }
 
     let resulta_aux = [];
 
     //console.log(Object.keys(result_inventario[0]._doc))
     //console.log(Object.keys(result_inventario_entrada[0]._doc))
-
     //console.log(Object.values(result_inventario[0]._doc))
 
     Object.keys(result_inventario[0]._doc).forEach((element, index) => {
@@ -68,7 +109,7 @@ async function LeerInventarios(fechaInventario){
 
     //console.log(resulta_aux)
 
-    return {result_inventario, result_inventario_entrada, result_inventario_entrada_costo, resulta_aux}
+    return {result_inventario, result_inventario_entrada, result_inventario_entrada_costo, resulta_aux, result_inventario_tabla_resumen, result_inventario_entrada_tabla_resumen, result_inventario_entrada_costos_tabla_resumen}
 
 }
 
