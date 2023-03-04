@@ -29,7 +29,7 @@ class App extends Component {
       headers : {'Content-type':'application/json'},
       body: JSON.stringify({usuario: this.state.usuario, contrasenia: this.state.contrasenia})    
     }      
-    fetch('http://100.25.138.195/', requestOptions)
+    fetch('http://100.25.138.195/api/inicio', requestOptions)
         .then(response => response.json())
         .then(data => {
           if(data.usuario === 'Cali - Refugio'){
