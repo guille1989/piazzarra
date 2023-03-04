@@ -199,7 +199,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-        fetch('http://54.236.28.178:3001/api/insumos', requestOptions)
+        fetch('http://54.236.28.178:80/api/insumos', requestOptions)
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -209,7 +209,7 @@ class inventarioCaliRefugio extends Component {
             .catch(err => console.log(err))
 
 
-        fetch('http://54.236.28.178:3001/api/revisioninventariofecha/' + today, requestOptions)
+        fetch('http://54.236.28.178:80/api/revisioninventariofecha/' + today, requestOptions)
         .then(response => response.json())
         .then(data => {
         if(data.inv.length === 0){
@@ -244,7 +244,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://54.236.28.178:3001/api/revisioninventariofecha/' + e.target.value, requestOptions)
+          fetch('http://54.236.28.178:80/api/revisioninventariofecha/' + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
                 if(data.inv.length === 0){
@@ -363,7 +363,7 @@ class inventarioCaliRefugio extends Component {
                 })    
             }   
             //Envio inventario final   
-            fetch('http://54.236.28.178:3001/api/inventarioactual/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://54.236.28.178:80/api/inventarioactual/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -371,7 +371,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas
-            fetch('http://54.236.28.178:3001/api/entradasinventario/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://54.236.28.178:80/api/entradasinventario/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -379,7 +379,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas costos
-            fetch('http://54.236.28.178:3001/api/insumocostos/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch('http://54.236.28.178:80/api/insumocostos/' + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
