@@ -42,7 +42,7 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://localhost:3001/api/leerinventarios/' + today, requestOptions)
+          fetch('http://100.25.138.195/api/leerinventarios/' + today, requestOptions)
               .then(response => response.json())
               .then(data => {
                 console.log(data)
@@ -71,7 +71,7 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://localhost:3001/api/leerinventarios/' + e.target.value, requestOptions)
+          fetch('http://100.25.138.195/api/leerinventarios/' + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
                 console.log(data)
