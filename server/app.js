@@ -35,7 +35,7 @@ mongose.set('strictQuery', true);
 //*************************
 
 //Manejador de rutas
-app.use('/', Autenticacion)
+app.use('/api', Autenticacion)
 app.use('/api/inventarioactual', InventarioActual);                 //Inventario Final
 app.use('/api/insumos', Insumos);                                   //Insumos que se manejan en el negocio
 app.use('/api/entradasinventario', IngresarEntradaInventario);      //Inventario de entrada de insumos
