@@ -21,7 +21,7 @@ class adminInicio extends Component {
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
         document.getElementById("fechaHoyRInventario").value = today
-        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+        var today_ayer = year + "-" + month + "-" + day;
 
         //---
         //---
