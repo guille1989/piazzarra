@@ -29,16 +29,16 @@ class App extends Component {
       headers : {'Content-type':'application/json'},
       body: JSON.stringify({usuario: this.state.usuario, contrasenia: this.state.contrasenia})    
     }      
-    fetch('http://100.25.138.195/api/inicio', requestOptions)
+    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/inicio`, requestOptions)
         .then(response => response.json())
         .then(data => {
-          if(data.usuario === 'Cali - Refugio'){
-            this.props.loginHandlerCaliRefugio()
+          if(data.usuario !== ''){
+            this.props.loginHandlerCaliRefugio(data.usuario)
           }else{
             console.log('Error en las credenciales !')
           }
 
-          localStorage.setItem( 'usuario', data.usuario );
+          localStorage.setItem('usuario', data.usuario );
         })
         .catch(err => console.log(err))
   }
@@ -56,6 +56,7 @@ class App extends Component {
                   <option selected>Seleccione Pizzarra</option>
                   <option value="Cali - Refugio">Cali - Refugio</option>
                   <option value="Popayan - Centro">Popayan - Centro</option>
+                  <option value="Admin">Admin</option>
                 </select>
               </div>
             </div>

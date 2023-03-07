@@ -1,8 +1,8 @@
 const express = require('express');
 const rute = express();
-const InventarioActual = require('../../models/inventarios_insumos_actuales');
-const InventarioEntrada = require('../../models/inventario_insumos_entrantes');
-const InventarioEntradaCostos = require('../../models/inventario_insumos_entrantes_costo');
+const InventarioActual = require('../../../models/inventarios_insumos_actuales');
+const InventarioEntrada = require('../../../models/inventario_insumos_entrantes');
+const InventarioEntradaCostos = require('../../../models/inventario_insumos_entrantes_costo');
 
 //GET traemos informacion del inventario
 rute.get('/:fecha', (req, res) => {

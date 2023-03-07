@@ -5,14 +5,18 @@ const corse = require('cors');
 const bodyParser = require("body-parser");
 
 //Importamos rutas
-const Autenticacion = require('./rutes/autenticacion/autenticacion');
-const InventarioActual = require('./rutes/inventario_actual/inventarioActual');
-const Insumos = require('./rutes/insumos/insumos');
-const IngresarEntradaInventario = require('./rutes/inventario_entrante/ingresoInventario');
-const IngresarEntradaInventarioCosto = require('./rutes/inventario_entrante_costos/ingresoInventarioCostos');
-const ValidacionInventarioExistente = require('./rutes/validaciones/revisionInventarioExiste');
-const LeerInventarios = require('./rutes/resumen/leerinventarios');
+const Autenticacion = require('./rutes/rutes_user/autenticacion/autenticacion');
+const InventarioActual = require('./rutes/rutes_user/inventario_actual/inventarioActual');
+const Insumos = require('./rutes/rutes_user/insumos/insumos');
+const IngresarEntradaInventario = require('./rutes/rutes_user/inventario_entrante/ingresoInventario');
+const IngresarEntradaInventarioCosto = require('./rutes/rutes_user/inventario_entrante_costos/ingresoInventarioCostos');
+const ValidacionInventarioExistente = require('./rutes/rutes_user/validaciones/revisionInventarioExiste');
+const LeerInventarios = require('./rutes/rutes_user/resumen/leerinventarios');
 
+//Rutas Administrdaod
+const InventarioActualAdmin = require('./rutes/rutes_admin/seguimiento_inentarios/inventario_final/inventarioFinal');
+const InventarioEntradaAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
+const InsumosAdmin = require('./rutes/rutes_admin/seguimiento_insumos/insumosAdmins');
 
 //Middlewares*****
 app.use(express.json());
@@ -43,6 +47,10 @@ app.use('/api/insumocostos', IngresarEntradaInventarioCosto);       //Costo de l
 app.use('/api/revisioninventariofecha', ValidacionInventarioExistente);  //Revision si existe inventario ya registrado
 app.use('/api/leerinventarios', LeerInventarios);                   //Leemos todos los inventarios de la DB.
 
+//Rutas Admin
+app.use('/api/admin/inventarioactual', InventarioActualAdmin);      //Leemos inventario final
+app.use('/api/admin/inventarioentradas', InventarioEntradaAdmin);   //Leemos entradas de inventario
+app.use('/api/admin/insumos', InsumosAdmin);                        //Leemos insumos / escribimos nuevo insmo
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;

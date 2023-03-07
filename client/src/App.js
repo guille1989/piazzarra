@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import InventarioCali from './components/componentes-cali-refugio/inventario';
 import Login from './components/login';
 
+import Admin from './components/admin/adminReview';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,10 @@ class App extends Component {
       this.setState({
         usuarioLogin: 'Cali - Refugio'
       })
+    }else if(usuarioAutenticacion === 'Admin'){
+      this.setState({
+        usuarioLogin: 'Admin'
+      })
     }else{
       this.setState({
         usuarioLogin: ''
@@ -26,10 +32,17 @@ class App extends Component {
     }
   }
 
-  handleLogInCaliRefugio(){
-    this.setState({
-      usuarioLogin: 'Cali - Refugio'
-    })
+  handleLogInCaliRefugio(usuario){
+    if(usuario === 'Cali - Refugio'){
+      this.setState({
+        usuarioLogin: 'Cali - Refugio'
+      })
+    }else if(usuario === 'Admin'){
+      this.setState({
+        usuarioLogin: 'Admin'
+      })
+    }
+    
   }
 
   handleLogOut(){
@@ -44,6 +57,7 @@ class App extends Component {
       switch(this.state.usuarioLogin){
         case "": return <Login loginHandlerCaliRefugio={this.handleLogInCaliRefugio.bind(this)}/>
         case "Cali - Refugio": return <InventarioCali logoutHandler={this.handleLogOut.bind(this)}/>
+        case "Admin": return <Admin logoutHandler={this.handleLogOut.bind(this)}/>
 
         default: return <h1>Algo paso.... contacte al administrador !</h1>
       }

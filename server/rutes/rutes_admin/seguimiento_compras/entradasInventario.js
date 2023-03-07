@@ -1,6 +1,6 @@
 const express = require('express');
 const rute = express();
-const InventarioEntradaCostos = require('../../models/inventario_insumos_entrantes_costo');
+const InventarioEntrada = require('../../../models/inventario_insumos_entrantes');
 
 //GET traemos informacion del inventario
 rute.get('/:fecha', (req, res) => {
@@ -13,8 +13,7 @@ rute.get('/:fecha', (req, res) => {
     result
         .then(data => {
             res.json({
-                inv: data,
-                msj: 'Inventario ingresado OK !'
+                inv_entrada: data
             })
         })
         .catch(err => {
@@ -28,7 +27,7 @@ async function IngresarEntradas(fechaInventario){
     
     let result = [];
 
-    result = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
+    result = await InventarioEntrada.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
 
     return result
 
@@ -38,7 +37,7 @@ async function IngresarEntradas(fechaInventario){
 rute.post('/:fecha', (req, res) => {
 
     let fechaHoyAux = req.params.fecha;
-    let body = req.body.INVENTARIO_FINAL_ENTRADAS_COSTO;
+    let body = req.body.INVENTARIO_FINAL_ENTRADAS;
     let result = [];
 
     result = ingresarEntradas(body, fechaHoyAux);
@@ -60,18 +59,22 @@ async function ingresarEntradas(body, fechaHoyAux){
 
     let result = [];
 
+    //console.log(body);
+
     let inv_entrada = {};
 
     inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ENTRANTE: fechaHoyAux}
 
     for (let item in body) {
         //console.log(item, body[item]);
-        inv_entrada = {...inv_entrada, [item.replace('COSTO_','')]: body[item]}
+        inv_entrada = {...inv_entrada, [item.replace('ENTRADA_','')]: body[item]}
       }
 
-    result = await InventarioEntradaCostos.updateOne(
+    //console.log(inv_entrada);
+
+    result = await InventarioEntrada.updateOne(
         {
-            FECHA_INVENTARIO_ENTRANTE_COSTO: fechaHoyAux
+            FECHA_INVENTARIO_ENTRANTE: fechaHoyAux
         }, 
         {
             $set: inv_entrada

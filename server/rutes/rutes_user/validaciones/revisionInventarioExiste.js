@@ -1,12 +1,14 @@
 const express = require('express');
 const rute = express();
-const Insumos = require('../../models/insumos');
+const InventarioActual = require('../../../models/inventarios_insumos_actuales');
 
 //GET traemos informacion del inventario
-rute.get('/', (req, res) => {
+rute.get('/:fecha', (req, res) => {
+
+    let fechaInventario = req.params.fecha;
     let result = [];
 
-    result = leerInsumos();
+    result = leerInventario(fechaInventario);
 
     result
         .then(msj => {
@@ -21,11 +23,11 @@ rute.get('/', (req, res) => {
         })
 })
 
-async function leerInsumos(){    
+async function leerInventario(fechaInventario){    
     
     let result = [];
 
-    result = await Insumos.find();
+    result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
 
     return result
 

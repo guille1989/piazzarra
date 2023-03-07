@@ -1,6 +1,6 @@
 const express = require('express');
 const rute = express();
-const InventarioActual = require('../../models/inventarios_insumos_actuales');
+const InventarioEntradaCostos = require('../../../models/inventario_insumos_entrantes_costo');
 
 //GET traemos informacion del inventario
 rute.get('/:fecha', (req, res) => {
@@ -8,12 +8,13 @@ rute.get('/:fecha', (req, res) => {
     let fechaInventario = req.params.fecha;
     let result = [];
 
-    result = leerInventario(fechaInventario);
+    result = IngresarEntradas(fechaInventario);
 
     result
-        .then(msj => {
+        .then(data => {
             res.json({
-                inv: msj
+                inv: data,
+                msj: 'Inventario ingresado OK !'
             })
         })
         .catch(err => {
@@ -23,11 +24,11 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function leerInventario(fechaInventario){    
+async function IngresarEntradas(fechaInventario){    
     
     let result = [];
 
-    result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
+    result = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
 
     return result
 
@@ -37,10 +38,10 @@ async function leerInventario(fechaInventario){
 rute.post('/:fecha', (req, res) => {
 
     let fechaHoyAux = req.params.fecha;
-    let body = req.body.INVENTARIO_FINAL;
+    let body = req.body.INVENTARIO_FINAL_ENTRADAS_COSTO;
     let result = [];
 
-    result = ingresarInventario(body, fechaHoyAux);
+    result = ingresarEntradas(body, fechaHoyAux);
 
     result
         .then(msj => {
@@ -55,26 +56,26 @@ rute.post('/:fecha', (req, res) => {
         })
 })
 
-async function ingresarInventario(body, fechaHoyAux){
+async function ingresarEntradas(body, fechaHoyAux){
 
     let result = [];
 
     let inv_entrada = {};
 
-    inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ACTUAL: fechaHoyAux}
+    inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ENTRANTE: fechaHoyAux}
 
     for (let item in body) {
         //console.log(item, body[item]);
-        inv_entrada = {...inv_entrada, [item]: body[item]}
+        inv_entrada = {...inv_entrada, [item.replace('COSTO_','')]: body[item]}
       }
 
-    result = await InventarioActual.updateOne(
+    result = await InventarioEntradaCostos.updateOne(
         {
-            FECHA_INVENTARIO_ACTUAL: fechaHoyAux
+            FECHA_INVENTARIO_ENTRANTE_COSTO: fechaHoyAux
         }, 
         {
             $set: inv_entrada
-            
+
         }, { upsert: true });
 
     return result;

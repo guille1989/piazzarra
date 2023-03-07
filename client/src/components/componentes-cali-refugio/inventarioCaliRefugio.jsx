@@ -199,7 +199,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-        fetch('http://100.25.138.195/api/insumos', requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/insumos`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -209,7 +209,7 @@ class inventarioCaliRefugio extends Component {
             .catch(err => console.log(err))
 
 
-        fetch('http://100.25.138.195/api/revisioninventariofecha/' + today, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + today, requestOptions)
         .then(response => response.json())
         .then(data => {
         if(data.inv.length === 0){
@@ -244,7 +244,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch('http://100.25.138.195/api/revisioninventariofecha/' + e.target.value, requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
                 if(data.inv.length === 0){
@@ -363,7 +363,7 @@ class inventarioCaliRefugio extends Component {
                 })    
             }   
             //Envio inventario final   
-            fetch('http://100.25.138.195/api/inventarioactual/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/inventarioactual/` + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -371,7 +371,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas
-            fetch('http://100.25.138.195/api/entradasinventario/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/entradasinventario/` + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -379,7 +379,7 @@ class inventarioCaliRefugio extends Component {
                 .catch(err => console.log(err))
 
             //Envio inventario entradas costos
-            fetch('http://100.25.138.195/api/insumocostos/' + this.state.fechaRegistroInventario, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/insumocostos/` + this.state.fechaRegistroInventario, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
@@ -572,7 +572,7 @@ class inventarioCaliRefugio extends Component {
                 <br></br>
                 <hr className="border border-3 opacity-100"></hr>
 
-                <div>
+                <div class="table-responsive">
                     <table className="table">                
                         <tbody>
                             <tr>
