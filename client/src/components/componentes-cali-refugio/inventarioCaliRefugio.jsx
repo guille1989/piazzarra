@@ -12,172 +12,7 @@ class inventarioCaliRefugio extends Component {
             modalEnviarInventario: false,
             showAdministradorAvisoinventario: false,
             fechaRegistroInventario: '',
-            MASAS_PERSONALES: '',
-            MASAS_MEDIANAS: '',
-            PANNE_COOK: '',
-            PAN_OREGANO: '',
-            MASA_CRUDA: '',
-            FETUCHINNIS_PORCION: '',
-            SPAGUETTYS_PORCION: '',
-            PASTA_LASAÑA_PORCION: '',
-            JUGOS_NATURALES_MANGO: '',
-            JUGOS_NATURALES_LULO: '',
-            JUGOS_NATURALES_MORA: '',
-            CERVEZA_CULB: '',
-            CERVEZA_POKER: '',
-            CERVEZA_AGUILA: '',
-            COCA_COLA_350: '',
-            COCA_COLA_350_ZERO: '',
-            COCA_COLA_L4: '',
-            AGUA_NORMAL: '',
-            AGUA_GAS: '',
-            VINO_TINTO: '',
-            VINO_BLANCO: '',
-            CAFE: '',
-            QUESO: '',
-            LIMONES: '',
-            CABANOS: '',
-            JAMON: '',
-            SALAMI: '',
-            TOCINETA: '',
-            POLLO: '',
-            CARNE_MOLIDA: '',
-            PEPERONI: '',
-            CHAMPINIONES: '',
-            HIGOS: '',
-            ACEITUNAS: '',
-            PINIA_CALADA: '',
-            TOMATES_SECOS: '',
-            QUESO_PARMESANO: '',
-            MAIZ: '',
-            CEBOLLA: '',
-            PIMENTON: '',
-            AJO: '',
-            LECHUGA: '',
-            JALAPENIOS: '',
-            MADURO: '',
-            TOMATE: '',
-            SALSA_NAPOLITANA_GALON: '',
-            ACEITE_OLIVA: '',
-            MANTEQUILLA: '',
-            CREMA_LECHE: '',
-            LECHE: '',
-            HUEVOS: '',
-            CAJAS_PERSONALES: '',
-            CAJAS_PIZZA: '',
-            CAJAS_LASAGNIA: '',
-            MOLDES_LASAGNIA: '',            
-            COSTO_MASAS_PERSONALES: '',
-            COSTO_MASAS_MEDIANAS: '',
-            COSTO_PANNE_COOK: '',
-            COSTO_PAN_OREGANO: '',
-            COSTO_MASA_CRUDA: '',
-            COSTO_FETUCHINNIS_PORCION: '',
-            COSTO_SPAGUETTYS_PORCION: '',
-            COSTO_PASTA_LASAÑA_PORCION: '',
-            COSTO_JUGOS_NATURALES_MANGO: '',
-            COSTO_JUGOS_NATURALES_LULO: '',
-            COSTO_JUGOS_NATURALES_MORA: '',
-            COSTO_CERVEZA_CULB: '',
-            COSTO_CERVEZA_POKER: '',
-            COSTO_CERVEZA_AGUILA: '',
-            COSTO_COCA_COLA_350: '',
-            COSTO_COCA_COLA_350_ZERO: '',
-            COSTO_COCA_COLA_L4: '',
-            COSTO_AGUA_NORMAL: '',
-            COSTO_AGUA_GAS: '',
-            COSTO_VINO_TINTO: '',
-            COSTO_VINO_BLANCO: '',
-            COSTO_CAFE: '',
-            COSTO_QUESO: '',
-            COSTO_LIMONES: '',
-            COSTO_CABANOS: '',
-            COSTO_JAMON: '',
-            COSTO_SALAMI: '',
-            COSTO_TOCINETA: '',
-            COSTO_POLLO: '',
-            COSTO_CARNE_MOLIDA: '',
-            COSTO_PEPERONI: '',
-            COSTO_CHAMPINIONES: '',
-            COSTO_HIGOS: '',
-            COSTO_ACEITUNAS: '',
-            COSTO_PINIA_CALADA: '',
-            COSTO_TOMATES_SECOS: '',
-            COSTO_QUESO_PARMESANO: '',
-            COSTO_MAIZ: '',
-            COSTO_CEBOLLA: '',
-            COSTO_PIMENTON: '',
-            COSTO_AJO: '',
-            COSTO_LECHUGA: '',
-            COSTO_JALAPENIOS: '',
-            COSTO_MADURO: '',
-            COSTO_TOMATE: '',
-            COSTO_SALSA_NAPOLITANA_GALON: '',
-            COSTO_ACEITE_OLIVA: '',
-            COSTO_MANTEQUILLA: '',
-            COSTO_CREMA_LECHE: '',
-            COSTO_LECHE: '',
-            COSTO_HUEVOS: '',
-            COSTO_CAJAS_PERSONALES: '',
-            COSTO_CAJAS_PIZZA: '',
-            COSTO_CAJAS_LASAGNIA: '',
-            COSTO_MOLDES_LASAGNIA: '',
-            ENTRADA_MASAS_PERSONALES: '',
-            ENTRADA_MASAS_MEDIANAS: '',
-            ENTRADA_PANNE_COOK: '',
-            ENTRADA_PAN_OREGANO: '',
-            ENTRADA_MASA_CRUDA: '',
-            ENTRADA_FETUCHINNIS_PORCION: '',
-            ENTRADA_SPAGUETTYS_PORCION: '',
-            ENTRADA_PASTA_LASAÑA_PORCION: '',
-            ENTRADA_JUGOS_NATURALES_MANGO: '',
-            ENTRADA_JUGOS_NATURALES_LULO: '',
-            ENTRADA_JUGOS_NATURALES_MORA: '',
-            ENTRADA_CERVEZA_CULB: '',
-            ENTRADA_CERVEZA_POKER: '',
-            ENTRADA_CERVEZA_AGUILA: '',
-            ENTRADA_COCA_COLA_350: '',
-            ENTRADA_COCA_COLA_350_ZERO: '',
-            ENTRADA_COCA_COLA_L4: '',
-            ENTRADA_AGUA_NORMAL: '',
-            ENTRADA_AGUA_GAS: '',
-            ENTRADA_VINO_TINTO: '',
-            ENTRADA_VINO_BLANCO: '',
-            ENTRADA_CAFE: '',
-            ENTRADA_QUESO: '',
-            ENTRADA_LIMONES: '',
-            ENTRADA_CABANOS: '',
-            ENTRADA_JAMON: '',
-            ENTRADA_SALAMI: '',
-            ENTRADA_TOCINETA: '',
-            ENTRADA_POLLO: '',
-            ENTRADA_CARNE_MOLIDA: '',
-            ENTRADA_PEPERONI: '',
-            ENTRADA_CHAMPINIONES: '',
-            ENTRADA_HIGOS: '',
-            ENTRADA_ACEITUNAS: '',
-            ENTRADA_PINIA_CALADA: '',
-            ENTRADA_TOMATES_SECOS: '',
-            ENTRADA_QUESO_PARMESANO: '',
-            ENTRADA_MAIZ: '',
-            ENTRADA_CEBOLLA: '',
-            ENTRADA_PIMENTON: '',
-            ENTRADA_AJO: '',
-            ENTRADA_LECHUGA: '',
-            ENTRADA_JALAPENIOS: '',
-            ENTRADA_MADURO: '',
-            ENTRADA_TOMATE: '',
-            ENTRADA_SALSA_NAPOLITANA_GALON: '',
-            ENTRADA_ACEITE_OLIVA: '',
-            ENTRADA_MANTEQUILLA: '',
-            ENTRADA_CREMA_LECHE: '',
-            ENTRADA_LECHE: '',
-            ENTRADA_HUEVOS: '',
-            ENTRADA_CAJAS_PERSONALES: '',
-            ENTRADA_CAJAS_PIZZA: '',
-            ENTRADA_CAJAS_LASAGNIA: '',
-            ENTRADA_MOLDES_LASAGNIA: '', 
-
+            //
             INVENTARIO_FINAL_AUX: [],
             INVENTARIO_FINAL_ENTRADAS_AUX: [],
             INVENTARIO_FINAL_ENTRADAS_COSTO_AUX: []
@@ -302,9 +137,14 @@ class inventarioCaliRefugio extends Component {
         result = this.state.inventario.map((item, index) => {
             itemAux = 'ENTRADA_' + item.TIPO;
             cantidadAux = this.state['ENTRADA_' + item.TIPO]
-
-            resultAux = {...resultAux, [itemAux]: cantidadAux}
+            if(cantidadAux === undefined){
+                resultAux = {...resultAux, [itemAux]: null}
+            }else{
+                resultAux = {...resultAux, [itemAux]: cantidadAux}
+            }
         })
+
+        //console.log(resultAux)
 
         result = resultAux
 
@@ -327,7 +167,11 @@ class inventarioCaliRefugio extends Component {
             itemAux = 'COSTO_' + item.TIPO;
             cantidadAux = this.state['COSTO_' + item.TIPO]
 
-            resultAux = {...resultAux, [itemAux]: cantidadAux}
+            if(cantidadAux === undefined){
+                resultAux = {...resultAux, [itemAux]: null}
+            }else{
+                resultAux = {...resultAux, [itemAux]: cantidadAux}
+            }
         })
 
         result = resultAux
@@ -467,8 +311,16 @@ class inventarioCaliRefugio extends Component {
 
         result_entradas = this.state.inventario.map((item, index) => {
             itemAux_entrada = 'ENTRADA_' + item.TIPO;
-            cantidadAux_entrada = this.state['ENTRADA_' + item.TIPO]
-            cantidadAux_entrada_costo = this.state['COSTO_' + item.TIPO]
+            if(this.state['ENTRADA_' + item.TIPO] === undefined){
+                cantidadAux_entrada = ''
+            }else{
+                cantidadAux_entrada = this.state['ENTRADA_' + item.TIPO]
+            }
+            if(this.state['COSTO_' + item.TIPO] === undefined){
+                cantidadAux_entrada_costo = ''
+            }else{
+                cantidadAux_entrada_costo = this.state['COSTO_' + item.TIPO]
+            }            
 
             resultAux_entradas = {...resultAux_entradas, [itemAux_entrada]: cantidadAux_entrada + '-' + cantidadAux_entrada_costo}
         })
@@ -481,15 +333,25 @@ class inventarioCaliRefugio extends Component {
         let inv_actual_cant_aux_costo = []
 
         for (let item in result_entradas) {
-            //console.log(item, inv_actual[item]);
+            //console.log(result_entradas[item].split("-")[0].length);
             if(result_entradas[item] === '-'){
                 
             }else{
-                inv_actual_aux.push({TIPO: [item]})
-                inv_actual_cant_aux.push({CANTIDAD: result_entradas[item].split("-")[0]})
-                inv_actual_cant_aux_costo.push({COSTO: result_entradas[item].split("-")[1]})
+                if(result_entradas[item].split("-")[0] === 'undefined' && result_entradas[item].split("-")[1] === 'undefined'){
+
+                }else if(result_entradas[item].split("-")[0] === 'undefined'){
+                    inv_actual_aux.push({TIPO: [item]})
+                    inv_actual_cant_aux_costo.push({COSTO: result_entradas[item].split("-")[1]})
+                }else if(result_entradas[item].split("-")[1] === 'undefined'){
+                    inv_actual_aux.push({TIPO: [item]})
+                    inv_actual_cant_aux.push({CANTIDAD: result_entradas[item].split("-")[0]})
+                }else{
+                    inv_actual_aux.push({TIPO: [item]})
+                    inv_actual_cant_aux.push({CANTIDAD: result_entradas[item].split("-")[0]})
+                    inv_actual_cant_aux_costo.push({COSTO: result_entradas[item].split("-")[1]})
+                }
             }
-          }
+        }
 
         return (   
             <>   
@@ -597,6 +459,18 @@ class inventarioCaliRefugio extends Component {
                                                     aria-describedby="inputGroup-sizing-sm" 
                                                     placeholder='Insumo Entrada'
                                                     onChange={(e) => this.setState({['ENTRADA_' + item.TIPO]: e.target.value}) }
+                                                    onWheel={(e) => {
+                                                        // Prevent the input value change
+                                                        e.target.blur()
+                                                    
+                                                        // Prevent the page/container scrolling
+                                                        e.stopPropagation()
+                                                    
+                                                        // Refocus immediately, on the next tick (after the current function is done)
+                                                          setTimeout(() => {
+                                                            e.target.focus()
+                                                        }, 0)
+                                                    }}
                                                     />
                                             </td>
                                             <td>
@@ -608,6 +482,18 @@ class inventarioCaliRefugio extends Component {
                                                         aria-describedby="inputGroup-sizing-sm" 
                                                         placeholder='Costo Insumo Entrada'
                                                         onChange={(e) => this.setState({['COSTO_' + item.TIPO]: e.target.value}) }
+                                                        onWheel={(e) => {
+                                                            // Prevent the input value change
+                                                            e.target.blur()
+                                                        
+                                                            // Prevent the page/container scrolling
+                                                            e.stopPropagation()
+                                                        
+                                                            // Refocus immediately, on the next tick (after the current function is done)
+                                                              setTimeout(() => {
+                                                                e.target.focus()
+                                                            }, 0)
+                                                        }}
                                                         />
                                             </td>
                                             <td>
@@ -619,6 +505,18 @@ class inventarioCaliRefugio extends Component {
                                                         aria-describedby="inputGroup-sizing-sm"   
                                                         placeholder='Insumo inventario final'                                             
                                                         onChange={(e) => this.setState({[item.TIPO]: e.target.value}) }
+                                                        onWheel={(e) => {
+                                                            // Prevent the input value change
+                                                            e.target.blur()
+                                                        
+                                                            // Prevent the page/container scrolling
+                                                            e.stopPropagation()
+                                                        
+                                                            // Refocus immediately, on the next tick (after the current function is done)
+                                                              setTimeout(() => {
+                                                                e.target.focus()
+                                                            }, 0)
+                                                        }}
                                                         />
                                             </td>
                                         </tr>

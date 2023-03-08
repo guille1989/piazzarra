@@ -42,7 +42,7 @@ class adminInicio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioactual/` + today + `/` + today_ayer, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     inve_final_data: data.inv.result,
                     inve_final_ayer_data: data.inv.result_ayer
@@ -53,7 +53,7 @@ class adminInicio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + today, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     inve_final_compras_data: data.inv_entrada
                 })
@@ -80,7 +80,7 @@ class adminInicio extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioactual/` + e.target.value + `/` + today_ayer, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    //console.log(data)
                     this.setState({
                         inve_final_data: data.inv.result,
                         inve_final_ayer_data: data.inv.result_ayer
@@ -99,7 +99,7 @@ class adminInicio extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + e.target.value, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    //console.log(data)
                     this.setState({
                         inve_final_compras_data: data.inv_entrada
                     })

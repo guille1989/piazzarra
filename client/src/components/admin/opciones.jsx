@@ -19,7 +19,7 @@ class opciones extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     insumosOpcion: data.inv
                 })
@@ -45,7 +45,7 @@ class opciones extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    //console.log(data)
                     this.setState({
                         modalInsumo: false
                     })

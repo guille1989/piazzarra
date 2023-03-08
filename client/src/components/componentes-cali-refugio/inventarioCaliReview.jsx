@@ -45,7 +45,7 @@ class inventarioCaliReview extends Component {
           fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + today, requestOptions)
               .then(response => response.json())
               .then(data => {
-                console.log(data)
+                //console.log(data)
                 if(data.inv === undefined){
                     this.setState({
                         inve_aux: [],
@@ -74,7 +74,7 @@ class inventarioCaliReview extends Component {
           fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + e.target.value, requestOptions)
               .then(response => response.json())
               .then(data => {
-                console.log(data)
+                //console.log(data)
                 if(data.inv === undefined){
                     this.setState({
                         inve_aux: [],
@@ -151,8 +151,31 @@ class inventarioCaliReview extends Component {
                                     <>
                                         <tr key={index}>
                                             <td><strong>{item.Item}</strong></td>
-                                            <td><strong>{this.state.inve_entradas[index].Valor}</strong></td>
-                                            <td><strong>{this.state.inve_entradas_costos[index].Valor}</strong></td>
+
+                                            {(() => {
+                                                if (this.state.inve_entradas[index] === undefined) {
+                                                return (
+                                                    <td></td>
+                                                )
+                                                } else {
+                                                return (
+                                                    <td><strong>{this.state.inve_entradas[index].Valor}</strong></td>
+                                                )
+                                                }
+                                            })()}   
+
+                                            {(() => {
+                                                if (this.state.inve_entradas_costos[index] === undefined) {
+                                                return (
+                                                    <td></td>
+                                                )
+                                                } else {
+                                                return (
+                                                    <td><strong>{this.state.inve_entradas_costos[index].Valor}</strong></td>
+                                                )
+                                                }
+                                            })()}                               
+                                            
                                             <td><strong>{item.Valor}</strong></td>
                                         </tr>
                                     </>
