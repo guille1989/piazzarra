@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import InventarioCali from './components/componentes-cali-refugio/inventario';
 import Login from './components/login';
 
-import Admin from './components/admin/adminReview';
+import Admin from './components/admin/adminNavigationMenu';
 
 class App extends Component {
   constructor(props) {

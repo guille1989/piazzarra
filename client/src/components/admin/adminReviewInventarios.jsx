@@ -7,7 +7,8 @@ class adminInicio extends Component {
             inve_insumos: [],
             inve_final_data: [],
             inve_final_ayer_data: [],
-            inve_final_compras_data: []
+            inve_final_compras_data: [],
+            inve_final_ventas: [],
         }
     }
 
@@ -55,7 +56,17 @@ class adminInicio extends Component {
             .then(data => {
                 //console.log(data)
                 this.setState({
-                    inve_final_compras_data: data.inv_entrada
+                    inve_final_compras_data: data.inv_entrada.result
+                })
+            })
+        .catch(err => console.log(err))
+
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + today, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    inve_final_ventas: data.inv
                 })
             })
         .catch(err => console.log(err))
@@ -101,9 +112,19 @@ class adminInicio extends Component {
                 .then(data => {
                     //console.log(data)
                     this.setState({
-                        inve_final_compras_data: data.inv_entrada
+                        inve_final_compras_data: data.inv_entrada.result
                     })
             })
+
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + e.target.value, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data)
+                    this.setState({
+                        inve_final_ventas: data.inv
+                    })
+                })
+            .catch(err => console.log(err))
 
         this.setState({
             fechaRegistroInventario: e.target.value,
@@ -141,8 +162,8 @@ class adminInicio extends Component {
                             <tr>
                             <th scope="col" className="fs-1">Insumo</th>
                             <th scope="col" className="fs-3">Inv. Inicial</th>
-                            <th scope="col" className="fs-3">Entradas</th>
-                            <th scope="col" className="fs-3">Salidas</th>
+                            <th scope="col" className="fs-3">Compras</th>
+                            <th scope="col" className="fs-3">Ventas</th>
                             <th scope="col" className="fs-3">Inv. Final</th>
                             <th scope="col" className="fs-1">Cuadre Inv.</th>
                             </tr>
@@ -169,7 +190,7 @@ class adminInicio extends Component {
                                                     })()
                                                 }
                                             </td>
-                                            <td>
+                                            <td> {/* COMPRAS !!!! */}
                                             {(() => {
                                                 if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
                                                     return (
@@ -187,8 +208,25 @@ class adminInicio extends Component {
                                                     })()
                                                 }
                                             </td>
-                                            <td></td>                                            
-                                            <td>
+                                            <td> {/* VENTAS !!!! */}
+                                            {(() => {
+                                                if (this.state.inve_final_ventas?.[item.TIPO] === undefined) {
+                                                    return (
+                                                        <>
+                                                            0
+                                                        </>                                      
+                                                    )
+                                                    } else {
+                                                    return (                                
+                                                        <>
+                                                            {this.state.inve_final_ventas?.[item.TIPO]}
+                                                        </>
+                                                    )
+                                                    }
+                                                    })()
+                                                } 
+                                            </td>                                            
+                                            <td> {/* INVENTARIO FINAL !!!! */}
                                             {(() => {
                                                 if (this.state.inve_final_data[0]?.[item.TIPO] === undefined) {
                                                     return (
@@ -206,7 +244,54 @@ class adminInicio extends Component {
                                                     })()
                                                 }
                                             </td>
-                                            <td></td>
+                                            <td> {/* AQUI SE HACE EL CUADRE DE INVENTARIO */}
+                                                {(() => {
+                                                    if (this.state.inve_final_ayer_data[0]?.[item.TIPO] === undefined) {
+                                                        return (
+                                                            <>
+                                                                {(() => {
+                                                                    if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
+                                                                        return (
+                                                                            <>
+                                                                                0
+                                                                            </>                                      
+                                                                        )
+                                                                        } else {
+                                                                        return (                                
+                                                                            <>
+                                                                                {this.state.inve_final_compras_data[0]?.[item.TIPO]}
+                                                                            </>
+                                                                        )
+                                                                        }
+                                                                        })()
+                                                                    }
+                                                            </>                                      
+                                                        )
+                                                        } else {
+                                                            return (                                
+                                                                <>
+                                                                    {(() => {
+                                                                        if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
+                                                                            return (
+                                                                                <>
+                                                                                    {this.state.inve_final_ayer_data[0]?.[item.TIPO]}
+                                                                                </>                                      
+                                                                            )
+                                                                            } else {
+                                                                            return (                                
+                                                                                <>
+                                                                                    {this.state.inve_final_ayer_data[0]?.[item.TIPO] + this.state.inve_final_compras_data[0]?.[item.TIPO]}
+                                                                                </>
+                                                                            )
+                                                                            }
+                                                                            })()
+                                                                        }
+                                                                </>
+                                                            )
+                                                        }
+                                                    })()
+                                                }
+                                            </td>
                                         </tr>
                                     </>
                                 )

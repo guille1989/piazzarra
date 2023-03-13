@@ -235,6 +235,7 @@ class inventarioCaliRefugio extends Component {
                 modalEnviarInventario: false
             })
 
+            window.location.reload();
         }else{
             //Nada
         }
@@ -434,7 +435,7 @@ class inventarioCaliRefugio extends Component {
                 <br></br>
                 <hr className="border border-3 opacity-100"></hr>
 
-                <div class="table-responsive">
+                <div className="table-responsive">
                     <table className="table">                
                         <tbody>
                             <tr>

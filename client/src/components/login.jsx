@@ -50,9 +50,9 @@ class App extends Component {
 
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="mb-3 row">
-              <label for="staticEmail" className="col-sm-2 col-form-label">Pizzarra</label>
+              <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Pizzarra</label>
               <div className="col-sm-10">
-                <select className="form-select" aria-label="Default select example" onChange={this.usuarioChange.bind(this)}>
+                <select className="form-select" aria-label="Default select example" onChange={this.usuarioChange.bind(this)} defaultValue={'Default'}>
                   <option selected>Seleccione Pizzarra</option>
                   <option value="Cali - Refugio">Cali - Refugio</option>
                   <option value="Popayan - Centro">Popayan - Centro</option>
@@ -61,7 +61,7 @@ class App extends Component {
               </div>
             </div>
             <div className="mb-3 row">
-              <label for="inputPassword" className="col-sm-2 col-form-label">Password</label>
+              <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
               <div className="col-sm-10">
                 <input type="password" className="form-control" id="inputPassword" onChange={this.contraseniaChange.bind(this)}/>
               </div>

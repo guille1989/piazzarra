@@ -17,6 +17,10 @@ const LeerInventarios = require('./rutes/rutes_user/resumen/leerinventarios');
 const InventarioActualAdmin = require('./rutes/rutes_admin/seguimiento_inentarios/inventario_final/inventarioFinal');
 const InventarioEntradaAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
 const InsumosAdmin = require('./rutes/rutes_admin/seguimiento_insumos/insumosAdmins');
+const LeerPedidos = require('./rutes/rutes_admin/seguimiento_ventas/leerVentas');
+const LeerPedidosSalidas = require('./rutes/rutes_admin/seguimiento_ventas/leerVentasSalidas');
+const LeerComprasAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
+const LeerVentasSemanaAdmin = require('./rutes/rutes_admin/seguimiento_graficas/graficasVentasSemanal');
 
 //Middlewares*****
 app.use(express.json());
@@ -51,6 +55,10 @@ app.use('/api/leerinventarios', LeerInventarios);                   //Leemos tod
 app.use('/api/admin/inventarioactual', InventarioActualAdmin);      //Leemos inventario final
 app.use('/api/admin/inventarioentradas', InventarioEntradaAdmin);   //Leemos entradas de inventario
 app.use('/api/admin/insumos', InsumosAdmin);                        //Leemos insumos / escribimos nuevo insmo
+app.use('/api/admin/pedidos', LeerPedidos);                         //Leemos pedidos
+app.use('/api/admin/pedidossalidas', LeerPedidosSalidas)            //Leemos ventas dia
+app.use('/api/admin/compras', LeerComprasAdmin);                    //Leemos las compras del dia
+app.use('/api/admin/ventassemana', LeerVentasSemanaAdmin);          //Leemos las ventas por semana
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;
