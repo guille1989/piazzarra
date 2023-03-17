@@ -151,7 +151,6 @@ class adminInicio extends Component {
                             inve_final_compras_data: data.inv_entrada.result[0].INVENTARIO_AUX
                         })
                     }
-                    
             })
             .catch(err => {
                 console.log(err)
