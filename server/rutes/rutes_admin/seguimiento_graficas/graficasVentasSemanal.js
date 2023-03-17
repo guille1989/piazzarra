@@ -26,7 +26,7 @@ rute.get('/:fechaUno/:filtro', (req, res) => {
 
 async function leerVentasSemana(fecha_uno_aux, filtro_tipo){    
 
-    console.log(filtro_tipo)
+    //console.log(filtro_tipo)
 
     let dateAux = new Date(fecha_uno_aux)
     let date_semana = ''

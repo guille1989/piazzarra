@@ -62,8 +62,8 @@ async function LeerEntradasLeerCostos(fechaInventario){
         }        
     }
 
-    console.log(result_aux)
-    console.log(result_costos_aux)
+    //console.log(result_aux)
+    //console.log(result_costos_aux)
 
     return {result, result_costos, result_aux, result_costos_aux}
 

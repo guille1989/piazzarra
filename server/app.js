@@ -21,6 +21,7 @@ const LeerPedidos = require('./rutes/rutes_admin/seguimiento_ventas/leerVentas')
 const LeerPedidosSalidas = require('./rutes/rutes_admin/seguimiento_ventas/leerVentasSalidas');
 const LeerComprasAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
 const LeerVentasSemanaAdmin = require('./rutes/rutes_admin/seguimiento_graficas/graficasVentasSemanal');
+const ActualizarLimitesInsumos = require('./rutes/rutes_admin/seguimiento_insumos/insumosAlarmasAdmin');
 
 //Middlewares*****
 app.use(express.json());
@@ -59,6 +60,7 @@ app.use('/api/admin/pedidos', LeerPedidos);                         //Leemos ped
 app.use('/api/admin/pedidossalidas', LeerPedidosSalidas)            //Leemos ventas dia
 app.use('/api/admin/compras', LeerComprasAdmin);                    //Leemos las compras del dia
 app.use('/api/admin/ventassemana', LeerVentasSemanaAdmin);          //Leemos las ventas por semana
+app.use('/api/admin/actualizacionlimites', ActualizarLimitesInsumos)//Actualizamos limites de insumos para las alarmas
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;

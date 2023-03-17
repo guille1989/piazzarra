@@ -34,8 +34,10 @@ async function leerInventario(fechaInventario, fechaInventarioAyer){
     result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
     result_ayer = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventarioAyer});
 
+    //console.log(result[0]._doc.INVENTARIO_AUX)   
+    //console.log(result_ayer[0]._doc.INVENTARIO_AUX)   
+    
     return {result, result_ayer}
-
 }
 
 //POST llenamos inventario

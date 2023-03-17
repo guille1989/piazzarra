@@ -74,6 +74,29 @@ class opciones extends Component {
 
         }
     }
+
+    handleActualizarLimite(id, insumo){
+        //console.log(insumo)
+        //console.log(this.state[insumo])
+
+        if(window.confirm("Seguro desea agregar/actualizar valor limite del insumo: " + insumo)){
+            const requestOptions ={
+                method: 'POST',
+                headers : {'Content-type':'application/json'},
+                body: JSON.stringify({INSUMO_LIMITE: this.state[insumo], TIPO: insumo})    
+            }   
+            //Envio insumo   
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/actualizacionlimites`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data)
+                })
+                .catch(err => console.log(err))
+                                    
+        }else{
+
+        } 
+    }
     
     render() {
         return (
@@ -130,6 +153,7 @@ class opciones extends Component {
                                 <ModalHeader>Nuevo Insumo</ModalHeader>
                                 <ModalBody>
                                     <input 
+                                        id="limiteInsumo"
                                         type="text" 
                                         className="form-control" 
                                         aria-label="Sizing example input" 
@@ -160,7 +184,61 @@ class opciones extends Component {
                         </h2>
                         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
-                            
+                        <div className="row align-items-start">
+                            <div className="col">
+                            <h3>Insumos limites</h3>
+                            </div>
+                        </div>
+
+                            <br></br>
+                            <hr className="border border-3 opacity-100"></hr>
+
+                            <table className="table">                
+                                <tbody>
+                                    <tr>
+                                    <th scope="col" className="fs-3">No.</th>
+                                    <th scope="col" className="fs-1">Insumo</th>
+                                    <th scope="col" className="fs-1">Limite</th>
+                                    <th scope="col" className="fs-1">Nuevo Limite</th>
+                                    <th scope="col" className="fs-3"></th>
+                                    </tr>
+                                    {this.state.insumosOpcion.map((item, index) => {
+                                        return(
+                                            <>
+                                                <tr key={index}>
+                                                            <td>{index + 1}</td>
+                                                            <td><strong>{item.TIPO}</strong></td>
+                                                            <td><strong>{item.INSUMO_LIMITE}</strong></td>
+                                                            <td>
+                                                            <input 
+                                                                type="number" 
+                                                                id="inputEntrada"
+                                                                className="form-control" 
+                                                                aria-label="Sizing example input" 
+                                                                aria-describedby="inputGroup-sizing-sm" 
+                                                                placeholder='Insumo Entrada'
+                                                                onChange={(e) => this.setState({[item.TIPO]: e.target.value}) }
+                                                                onWheel={(e) => {
+                                                                    // Prevent the input value change
+                                                                    e.target.blur()
+                                                                
+                                                                    // Prevent the page/container scrolling
+                                                                    e.stopPropagation()
+                                                                
+                                                                    // Refocus immediately, on the next tick (after the current function is done)
+                                                                    setTimeout(() => {
+                                                                        e.target.focus()
+                                                                    }, 0)
+                                                                }}
+                                                                />
+                                                            </td>
+                                                            <td onClick={() => this.handleActualizarLimite(item._id, item.TIPO)}>Actualizar</td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
                         </div>
                     </div>

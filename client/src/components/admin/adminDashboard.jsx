@@ -31,7 +31,7 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.inv)
+                    //console.log(data.inv)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,
@@ -60,7 +60,7 @@ class adminDashboard extends Component {
         if (day < 10) day = "0" + day;
         var date_semana = year + "-" + month + "-" + day;
 
-        console.log('Semana del: ' + today + ' hasta ' + date_semana)
+        //console.log('Semana del: ' + today + ' hasta ' + date_semana)
 
         //Fetch ventas por semana
         
@@ -71,7 +71,7 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.inv)
+                    //console.log(data.inv)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,

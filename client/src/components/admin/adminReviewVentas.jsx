@@ -29,7 +29,7 @@ class adminReviewVentas extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + today , requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(data.inv[0])
+            //console.log(data.inv[0])
             if(data.inv.result_sum_ventas === 0){
                 console.log('No hay registro')
                 this.setState({
@@ -37,8 +37,8 @@ class adminReviewVentas extends Component {
                     ventas_totales: []
                 })
             }else{
-                console.log(data.inv.result[0].pedido)
-                console.log(data.inv.result_sum_ventas)
+                //console.log(data.inv.result[0].pedido)
+                //console.log(data.inv.result_sum_ventas)
                 this.setState({
                     ventas: data.inv.result,
                     ventas_totales: data.inv.result_sum_ventas
@@ -57,7 +57,7 @@ class adminReviewVentas extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + e.target.value, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.inv)
+                    //console.log(data.inv)
                     if(data.inv.result_sum_ventas === 0){
                         console.log('No hay registro')
                         this.setState({
@@ -65,8 +65,8 @@ class adminReviewVentas extends Component {
                             ventas_totales: []
                         })
                     }else{
-                        console.log(data.inv.result[0].pedido)
-                        console.log(data.inv.result_sum_ventas)
+                        //console.log(data.inv.result[0].pedido)
+                        //console.log(data.inv.result_sum_ventas)
                         this.setState({
                             ventas: data.inv.result,
                             ventas_totales: data.inv.result_sum_ventas

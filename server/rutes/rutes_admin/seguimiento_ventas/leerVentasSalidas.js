@@ -47,7 +47,7 @@ async function leerPedidos(fecha_aux){
         result = {...result, [item_aux]: 0}
     })
 
-    console.log([result])
+    //console.log([result])
 
     result_ventas.map((item, index) => {
         item.pedido.map((item, index) => {
@@ -4544,7 +4544,7 @@ async function leerPedidos(fecha_aux){
         
     })
 
-    console.log([result])
+    //console.log([result])
 
     return result
 }

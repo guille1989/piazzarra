@@ -62,19 +62,21 @@ async function ingresarEntradas(body, fechaHoyAux){
 
     let inv_entrada = {};
 
-    inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ENTRANTE: fechaHoyAux}
+    inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ENTRANTE_COSTO: fechaHoyAux}
 
     for (let item in body) {
         //console.log(item, body[item]);
         inv_entrada = {...inv_entrada, [item.replace('COSTO_','')]: body[item]}
       }
 
+    let inventario_input = {"INVENTARIO_AUX" : inv_entrada}
+
     result = await InventarioEntradaCostos.updateOne(
         {
             FECHA_INVENTARIO_ENTRANTE_COSTO: fechaHoyAux
         }, 
         {
-            $set: inv_entrada
+            $set: inventario_input
 
         }, { upsert: true });
 

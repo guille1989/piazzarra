@@ -44,10 +44,27 @@ class adminInicio extends Component {
             .then(response => response.json())
             .then(data => {
                 //console.log(data)
-                this.setState({
-                    inve_final_data: data.inv.result,
-                    inve_final_ayer_data: data.inv.result_ayer
-                })
+                if(data.inv.result.length === 0 && data.inv.result_ayer.length !== 0){
+                    this.setState({
+                        inve_final_data: [],
+                        inve_final_ayer_data: data.inv.result_ayer[0].INVENTARIO_AUX
+                    })
+                }else if(data.inv.result_ayer.length === 0 && data.inv.result.length !== 0){
+                    this.setState({
+                        inve_final_data: data.inv.result[0].INVENTARIO_AUX,
+                        inve_final_ayer_data: []
+                    })
+                }else if(data.inv.result.length === 0 && data.inv.result_ayer.length === 0){
+                    this.setState({
+                        inve_final_data: [],
+                        inve_final_ayer_data: []
+                    })
+                }else{
+                    this.setState({
+                        inve_final_data: data.inv.result[0].INVENTARIO_AUX,
+                        inve_final_ayer_data: data.inv.result_ayer[0].INVENTARIO_AUX
+                    })
+                } 
             })
         .catch(err => console.log(err))
 
@@ -55,16 +72,22 @@ class adminInicio extends Component {
             .then(response => response.json())
             .then(data => {
                 //console.log(data)
-                this.setState({
-                    inve_final_compras_data: data.inv_entrada.result
-                })
+                if(data.error !== undefined){
+                    this.setState({
+                        inve_final_compras_data: []
+                    })
+                }else{
+                    this.setState({
+                        inve_final_compras_data: data.inv_entrada.result[0].INVENTARIO_AUX
+                    })
+                }
             })
         .catch(err => console.log(err))
 
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + today, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     inve_final_ventas: data.inv
                 })
@@ -90,30 +113,51 @@ class adminInicio extends Component {
           }      
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioactual/` + e.target.value + `/` + today_ayer, requestOptions)
                 .then(response => response.json())
-                .then(data => {
-                    //console.log(data)
-                    this.setState({
-                        inve_final_data: data.inv.result,
-                        inve_final_ayer_data: data.inv.result_ayer
-                    })
+                .then(data => {                    
+                    if(data.inv.result.length === 0 && data.inv.result_ayer.length !== 0){
+                        this.setState({
+                            inve_final_data: [],
+                            inve_final_ayer_data: data.inv.result_ayer[0].INVENTARIO_AUX
+                        })
+                    }else if(data.inv.result_ayer.length === 0 && data.inv.result.length !== 0){
+                        this.setState({
+                            inve_final_data: data.inv.result[0].INVENTARIO_AUX,
+                            inve_final_ayer_data: []
+                        })
+                    }else if(data.inv.result.length === 0 && data.inv.result_ayer.length === 0){
+                        this.setState({
+                            inve_final_data: [],
+                            inve_final_ayer_data: []
+                        })
+                    }else{
+                        this.setState({
+                            inve_final_data: data.inv.result[0].INVENTARIO_AUX,
+                            inve_final_ayer_data: data.inv.result_ayer[0].INVENTARIO_AUX
+                        })
+                    } 
                 })
-                .catch(err => console.log(err))
-
-        
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + e.target.value, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data)
-                })
-                .catch(err => console.log(err))
+                .catch(err => console.log(err))       
             
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + e.target.value, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
-                    this.setState({
-                        inve_final_compras_data: data.inv_entrada.result
-                    })
+                    if(data.error !== undefined){
+                        this.setState({
+                            inve_final_compras_data: []
+                        })
+                    }else{
+                        this.setState({
+                            inve_final_compras_data: data.inv_entrada.result[0].INVENTARIO_AUX
+                        })
+                    }
+                    
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({
+                    inve_final_compras_data: []
+                })
             })
 
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + e.target.value, requestOptions)
@@ -172,7 +216,7 @@ class adminInicio extends Component {
                                     <>
                                         <tr key={index}>
                                             <td><strong>{item.TIPO}</strong></td>
-                                            <td>
+                                            <td> {/* INVENTARIO AYER !!!! */}
                                             {(() => {
                                                 if (this.state.inve_final_ayer_data[0]?.[item.TIPO] === undefined) {
                                                     return (
@@ -191,7 +235,7 @@ class adminInicio extends Component {
                                                 }
                                             </td>
                                             <td> {/* COMPRAS !!!! */}
-                                            {(() => {
+                                            {(() => {                                                
                                                 if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
                                                     return (
                                                         <>
@@ -227,7 +271,7 @@ class adminInicio extends Component {
                                                 } 
                                             </td>                                            
                                             <td> {/* INVENTARIO FINAL !!!! */}
-                                            {(() => {
+                                            {(() => {                                                
                                                 if (this.state.inve_final_data[0]?.[item.TIPO] === undefined) {
                                                     return (
                                                         <>
@@ -246,49 +290,36 @@ class adminInicio extends Component {
                                             </td>
                                             <td> {/* AQUI SE HACE EL CUADRE DE INVENTARIO */}
                                                 {(() => {
-                                                    if (this.state.inve_final_ayer_data[0]?.[item.TIPO] === undefined) {
-                                                        return (
-                                                            <>
-                                                                {(() => {
-                                                                    if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
-                                                                        return (
-                                                                            <>
-                                                                                0
-                                                                            </>                                      
-                                                                        )
-                                                                        } else {
-                                                                        return (                                
-                                                                            <>
-                                                                                {this.state.inve_final_compras_data[0]?.[item.TIPO]}
-                                                                            </>
-                                                                        )
-                                                                        }
-                                                                        })()
-                                                                    }
-                                                            </>                                      
-                                                        )
-                                                        } else {
-                                                            return (                                
-                                                                <>
-                                                                    {(() => {
-                                                                        if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
-                                                                            return (
-                                                                                <>
-                                                                                    {this.state.inve_final_ayer_data[0]?.[item.TIPO]}
-                                                                                </>                                      
-                                                                            )
-                                                                            } else {
-                                                                            return (                                
-                                                                                <>
-                                                                                    {this.state.inve_final_ayer_data[0]?.[item.TIPO] + this.state.inve_final_compras_data[0]?.[item.TIPO]}
-                                                                                </>
-                                                                            )
-                                                                            }
-                                                                            })()
-                                                                        }
-                                                                </>
-                                                            )
+                                                        let invAyer_aux = (this.state.inve_final_ayer_data[0]?.[item.TIPO])
+                                                        let invFinal_aux = (this.state.inve_final_data[0]?.[item.TIPO])
+                                                        let invEntradas_aux = (this.state.inve_final_compras_data[0]?.[item.TIPO])
+                                                        let invVetnas_aux = (this.state.inve_final_ventas?.[item.TIPO])
+
+                                                        let cuadreInv_aux = 0                                                       
+
+                                                        if(invAyer_aux === undefined || invAyer_aux === NaN){
+                                                            invAyer_aux = 0
                                                         }
+
+                                                        if(invFinal_aux === undefined || invFinal_aux === NaN){
+                                                            invFinal_aux = 0
+                                                        }
+
+                                                        if(invEntradas_aux === undefined || invEntradas_aux === NaN){
+                                                            invEntradas_aux = 0
+                                                        }
+
+                                                        if(invVetnas_aux === undefined || invVetnas_aux === NaN){
+                                                            invVetnas_aux = 0
+                                                        }
+
+                                                        cuadreInv_aux = parseInt(invFinal_aux) - ( parseInt(invAyer_aux) + invEntradas_aux + parseInt(invVetnas_aux) ) 
+
+                                                        return(
+                                                            <>
+                                                                {cuadreInv_aux}
+                                                            </>
+                                                        )
                                                     })()
                                                 }
                                             </td>
