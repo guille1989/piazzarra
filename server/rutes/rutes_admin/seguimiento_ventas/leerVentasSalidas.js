@@ -47,10 +47,9 @@ async function leerPedidos(fecha_aux){
         result = {...result, [item_aux]: 0}
     })
 
-    //console.log([result])
-
     result_ventas.map((item, index) => {
         item.pedido.map((item, index) => {
+            //console.log(item.tipo)
             //PIZZA PERSONAL COMPLETA
             if(item.tipo === "PIZZA PERSONAL COMPLETA"){
                 result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 130
@@ -4472,16 +4471,27 @@ async function leerPedidos(fecha_aux){
 
             //CAFE         
             if(item.tipo.includes("CAFÉ")){
-                result.CAFE = result.CAFE - 50
+                result.CAFE = result.CAFE - item.tipo.replace( /^\D+/g, '') * 50
             }
 
             //VINO         
             if(item.tipo.includes("VINO")){
+
+                /*
+                if(item.tipo.includes("VINO_TINTO")){
+                    result.VINO_TINTO = result.VINO_TINTO - 150
+                }
+
+                if(item.tipo.includes("VINO_BLANCO")){
+                    result.VINO_BLANCO = result.VINO_BLANCO - 150
+                }
+                */
+
                 if(item.tipo.includes("BOTELLA")){
-                    result.VINO = result.VINO - item.tipo.replace( /^\D+/g, '') * 750  
+                    result.VINO_TINTO = result.VINO_TINTO - item.tipo.replace( /^\D+/g, '') * 750  
                 }else{
-                    result.VINO = result.VINO - item.tipo.replace( /^\D+/g, '') * 150       
-                }     
+                    result.VINO_TINTO = result.VINO_TINTO - item.tipo.replace( /^\D+/g, '') * 150
+                }   
             }
 
             //JUGOS
@@ -4537,9 +4547,13 @@ async function leerPedidos(fecha_aux){
 
             //AGUA        
             if(item.tipo.includes("AGUA")){
-                result.AGUA = result.AGUA - item.tipo.replace( /^\D+/g, '')             
-            }
 
+                if(item.tipo.includes("AGUA SIN GAS")){
+                    result.AGUA_NORMAL = result.AGUA_NORMAL - item.tipo.replace( /^\D+/g, '')      
+                }else{
+                    result.AGUA_GAS = result.AGUA_GAS - item.tipo.replace( /^\D+/g, '')      
+                }         
+            }
         })  
         
     })
