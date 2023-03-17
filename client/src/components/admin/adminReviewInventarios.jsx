@@ -316,7 +316,7 @@ class adminInicio extends Component {
 
                                                         return(
                                                             <>
-                                                                {cuadreInv_aux}
+                                                                { cuadreInv_aux }
                                                             </>
                                                         )
                                                     })()
