@@ -82,7 +82,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
         if(result_entradas[0][item.TIPO] === null){
             invEntradaAux = 0
         }else{
-            invEntradaAux = result_entradas[0][item.TIPO]
+            invEntradaAux = parseInt(result_entradas[0][item.TIPO])
         }
         //console.log('INV_ENTRADAS: ' + invEntradaAux)     
         //console.log('INV_VENTAS: ' + result_ventas[item.TIPO])
@@ -90,14 +90,28 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
         //console.log('INV_CUADRE: ' + ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) ))
         //console.log('}')
 
+        let inv_estado = 'Ok'
+
+        if(parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) < 0){
+            inv_estado = 'Faltante'
+        }
+
+        if(parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) > 0){
+            inv_estado = 'Sobrante'
+        }
+
+        let inv_alarma_stock = "Suficiente"
+
         result_output.push(
         {
             'TIPO' : item.TIPO, 
-            'INV_AYER' : result_ayer[0][item.TIPO], 
+            'INV_AYER' : parseInt(result_ayer[0][item.TIPO]), 
             'INV_ENTRADAS' : invEntradaAux,
             'INV_VENTAS' : result_ventas[item.TIPO],
-            'INV_FINAL' : result[0][item.TIPO],
-            'INV_CUADRE' : ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) )
+            'INV_FINAL' : parseInt(result[0][item.TIPO]),
+            'INV_CUADRE' : ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) ),
+            'INV_ESTADO' : inv_estado,
+            'ALARMA_INVENTARIO' : inv_alarma_stock
         })
     })
     

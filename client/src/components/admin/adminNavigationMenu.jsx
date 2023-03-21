@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { SidebarComponent, ToolbarComponent, ItemsDirective, ItemDirective, Sidebar } from '@syncfusion/ej2-react-navigations';
 import { MenuComponent } from '@syncfusion/ej2-react-navigations';
+import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import "../../../node_modules/@syncfusion/ej2-icons/styles/material.css";
 
 import '../../App.css'
@@ -21,11 +22,11 @@ import VentasAdmin from './adminReviewVentas';
 import ComprasAdmin from  './adminReviewCompras';
 import Graficas from './adminDashboard';
 
-function PizzarraNavBar(){
+function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
     
     const salirInventarios = () => {
-        this.props.logoutHandler()
+        props.logoutHandler()
     }
 
     const regularBtnCreated = () => {
@@ -89,6 +90,8 @@ function PizzarraNavBar(){
     const toolbarCliked = (args) => {
         if (args.item.tooltipText == "Menu") {
             sidebarobj.toggle();
+        }else if(args.item.tooltipText == "Salir"){
+            salirInventarios()
         }
     }
    //****
@@ -107,8 +110,8 @@ function PizzarraNavBar(){
         }
    }
 
-   let folderEle = '<div class= "e-folder"><div class= "e-folder-name">Navigation Pane</div></div>';
-
+   let folderEle = '<div class= "e-folder"><div class= "e-folder-name">Pizzeria la Pizzarra</div></div>';
+   let folderOut = '<div class= "e-folder"><div class= "e-folder-name">Salir</div></div>';
         return (           
                 <>                
                 <div id="menu-wrapper" className="control-section">
@@ -117,8 +120,9 @@ function PizzarraNavBar(){
                         <div>
                             <ToolbarComponent id="menuToolbar" clicked={toolbarCliked}>
                                 <ItemsDirective>
-                                    <ItemDirective prefixIcon="icon-menu" tooltipText="Menu"></ItemDirective>
+                                    <ItemDirective prefixIcon="e-icons e-menu" tooltipText="Menu"></ItemDirective>
                                     <ItemDirective template={folderEle}></ItemDirective>
+                                    <ItemDirective template={folderOut} align='Right' tooltipText="Salir"></ItemDirective>
                                 </ItemsDirective>
                             </ToolbarComponent>
                         </div>
@@ -208,4 +212,4 @@ function PizzarraNavBar(){
         );
 }
 
-export default PizzarraNavBar;
+export default PizzarraNavBarAdmin;

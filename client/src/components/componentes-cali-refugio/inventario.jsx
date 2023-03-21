@@ -3,74 +3,114 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
+    Navigate
   } from "react-router-dom";
 
+import { SidebarComponent, ToolbarComponent, ItemsDirective, ItemDirective, Sidebar } from '@syncfusion/ej2-react-navigations';
+import { MenuComponent } from '@syncfusion/ej2-react-navigations';
+
+import { useNavigate } from "react-router-dom";
 import InventarioCaliRefugioNuevo from './inventarioCaliRefugio';
 import InventarioCaliRefugioReview from './inventarioCaliReview';
 
 import '../../App.css'
 
-class inventario extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            fechaHoy: ''
+function PizzarraNavBarUser(props){   
+    const navigate = useNavigate();
+
+    const salirInventarios = () => {
+        props.logoutHandler()
+    }
+
+    //****
+    let sidebarobj;
+    let menuItems = [
+        {
+            text: 'Seguimiento Inventarios',
+            iconCss: 'e-icons e-description',
+            
+        },
+        {
+            text: 'Ingresar datos Inventario',
+            iconCss: 'e-icons e-changes-previous',
+           
+        },
+       
+    ];
+    let enableDock = true;
+    let dockSize = '50px';
+    let width = '220px';
+    let target = '.main-menu-content';
+
+    const toolbarCliked = (args) => {
+        if (args.item.tooltipText == "Menu") {
+            sidebarobj.toggle();
+        }else if(args.item.tooltipText == "Salir"){
+            salirInventarios()
         }
     }
+   //****
+   const handleSideBarMenu = (e) => {
+        console.log(e.item.text)
+        if(e.item.text === 'Seguimiento Inventarios'){
+            navigate("/");
+        }else if(e.item.text === 'Ingresar datos Inventario'){
+            navigate("/NuevoResumen");
+        }
+   }
 
-    componentDidMount(){
-        this.setState({
-            fechaHoy: new Date().toLocaleDateString('en-US')
-        })
-    }    
-
-    salirInventarios(){
-        this.props.logoutHandler()
-    }
+    let folderEle = '<div class= "e-folder"><div class= "e-folder-name">Pizzeria la Pizzarra</div></div>';
+    let folderOut = '<div class= "e-folder"><div class= "e-folder-name">Salir</div></div>';
    
-    render() {
-        return (
-            <Router>
-                <br></br>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                    <div className="container-fluid">
-                        <a className="navbar-brand" href="/">Inicio</a>
-                        <button
-                        className="navbar-toggler collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        >
-                        <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div
-                        className="navbar-collapse collapse"
-                        id="navbarSupportedContent"
-                        >
-                            
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                            <a className="navbar-brand" aria-current="page" href="/NuevoResumen">Cuadre Inventarios</a>
-                            </li>
-                        </ul>
-
-                        <button className="btn btn-outline-danger" onClick={this.salirInventarios.bind(this)}>Salir</button>
+    return (
+        <>
+                           
+                <div id="menu-wrapper" className="control-section">
+                    <div id="sidebarmenu">
+                        {/* header-section  declaration */}
+                        <div>
+                            <ToolbarComponent id="menuToolbar" clicked={toolbarCliked}>
+                                <ItemsDirective>
+                                    <ItemDirective prefixIcon="e-icons e-menu" tooltipText="Menu"></ItemDirective>
+                                    <ItemDirective template={folderEle}></ItemDirective>
+                                    <ItemDirective template={folderOut} align='Right' tooltipText="Salir"></ItemDirective>
+                                </ItemsDirective>
+                            </ToolbarComponent>
                         </div>
+                        {/* main content declaration */}
+                        <div className="main-menu-content" id="maintext">
+                            <div className="menu-content">   
+
+                            <Routes>
+                                <Route path="/" element={<InventarioCaliRefugioReview></InventarioCaliRefugioReview>} />
+                                <Route path="/NuevoResumen" element={<InventarioCaliRefugioNuevo></InventarioCaliRefugioNuevo>} />
+                            </Routes>
+
+                            </div>
+                        </div>
+                        {/* end of main content declaration
+                        sidebar element declaration */}
+                        <SidebarComponent 
+                            id="menuSidebar" 
+                            className="sidebar-menu"                             
+                            ref={Sidebar => sidebarobj = Sidebar} 
+                            enableDock={enableDock} 
+                            dockSize={dockSize} 
+                            width={width} 
+                            target={target} 
+                            isOpen={true} 
+                            type="Auto">
+                                <div className="main-menu">
+                                    <div>
+                                        <MenuComponent id="dockMenu" items={menuItems} select={handleSideBarMenu} orientation='Vertical' cssClass='dock-menu'></MenuComponent>
+                                    </div>
+                                </div>
+                        </SidebarComponent>
                     </div>
-                </nav> 
-
-                <Routes>
-                    <Route path="/" element={<InventarioCaliRefugioReview></InventarioCaliRefugioReview>} />
-                    <Route path="/NuevoResumen" element={<InventarioCaliRefugioNuevo></InventarioCaliRefugioNuevo>} />
-                </Routes>
-
-            </Router>
-        );
-    }
+                </div>
+        </>
+    );
 }
 
-export default inventario;
+export default PizzarraNavBarUser;

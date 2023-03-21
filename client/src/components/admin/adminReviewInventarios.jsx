@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort } from '@syncfusion/ej2-react-grids';
+import FlagGreen from '../../images/flagGreen.png';
+import FlagRed from '../../images/flagRed.png';
 
 class adminInicio extends Component {
     constructor(props) {
@@ -183,11 +185,10 @@ class adminInicio extends Component {
 
 
         //Inve cuadre completo
-
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer, requestOptions)
             .then(response => response.json())
             .then(data => {
-                //console.log(data)
+                console.log(data.inv.result_output)
                 this.setState({
                     inve_cuadre: data.inv.result_output
                 })
@@ -198,6 +199,43 @@ class adminInicio extends Component {
             fechaRegistroInventario: e.target.value,
             hayFecha: true
         })
+    }
+
+    statusTemplate(props) {
+        if(props.INV_ESTADO === "Ok"){
+            return(
+                <div id="status" className="statustemp e-activecolor">
+                <span className="statustxt e-activecolor">{props.INV_ESTADO}</span>
+                </div>
+            )
+        }else if(props.INV_ESTADO === "Sobrante"){
+            return (
+                <div id="status" className="statustemp e-inactivecolor">
+                <span className="statustxt e-inactivauxecolor">{props.INV_ESTADO}</span>
+                </div>
+            )
+        }else{
+            return (
+                <div id="status" className="statustemp e-inactivecolor">
+                <span className="statustxt e-inactivecolor">{props.INV_ESTADO}</span>
+                </div>
+            )
+        }
+       
+    }
+
+    trustTemplate(props) {
+        let loc = { width: '31px', height: '24px' };
+        let flagAux = ''
+        if(props.ALARMA_INVENTARIO === 'Suficiente'){
+            flagAux = FlagGreen;
+        }else if(props.ALARMA_INVENTARIO === 'Insuficiente'){
+            flagAux = FlagRed;
+        }
+
+        //let Trustworthiness = props.ALARMA_INVENTARIO == "Suficiente" ? 'src/images/flagGreen.png' : props.ALARMA_INVENTARIO == "Insufficient" ? 'src/images/flagRed.png' : 'src/grid/images/Perfect.png';
+        return (<div> <img style={loc} src={flagAux}/>
+      <span id="Trusttext">{props.ALARMA_INVENTARIO}</span></div>);
     }
     
     render() {
@@ -227,13 +265,21 @@ class adminInicio extends Component {
 
                 <div className='control-pane'>
                     <div className='control-section'>
-                        <GridComponent dataSource={this.state.inve_cuadre} toolbar={this.toolbarOptions} allowSorting={true} allowPaging={true} height={365} pageSettings={{ pageCount: 4, pageSizes: true }}>
+                        <GridComponent 
+                            dataSource={this.state.inve_cuadre} 
+                            toolbar={this.toolbarOptions} 
+                            allowSorting={true} 
+                            allowPaging={true} 
+                            height={500} 
+                            pageSettings={{ pageCount: 4, pageSizes: true }}>
                             <ColumnsDirective>
                                 <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
                                 <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_ENTRADAS' headerText='Entradas/Compras' width='130'/>
                                 <ColumnDirective field='INV_VENTAS' headerText='Salidas/Ventas' width='130'/>
-                                <ColumnDirective field='INV_FINAL' headerText='Inventario Final' width='130'></ColumnDirective>
+                                <ColumnDirective field='INV_FINAL' headerText='Inventario Final' width='130'></ColumnDirective>   
+                                <ColumnDirective field='ALARMA_INVENTARIO' headerText='Alarma Cantidad Insumo' template={this.trustTemplate} width='130'></ColumnDirective>                             
+                                <ColumnDirective field='INV_ESTADO' headerText='Estado Cuadre Insumo' template={this.statusTemplate} width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
                             </ColumnsDirective>
                             <Inject services={[Toolbar, Page, Sort]}/>

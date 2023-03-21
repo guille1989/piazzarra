@@ -89,23 +89,23 @@ async function LeerInventarios(fechaInventario){
     //console.log(Object.keys(result_inventario_entrada[0]._doc))
     //console.log(Object.values(result_inventario[0]._doc))
 
-    Object.keys(result_inventario[0]._doc).forEach((element, index) => {
+    Object.keys(result_inventario[0]._doc.INVENTARIO_AUX[0]).forEach((element, index) => {
         //console.log({"item_": element})
         //console.log(index)
         if(element === "__v" || element === "INVENTARIO_AUX" || element === "_id" || element === "FECHA_INVENTARIO_ACTUAL"){
 
         }else{
-            if(Object.values(result_inventario[0]._doc)[index] === null){
-                if(Object.values(result_inventario_entrada[0]._doc)[index] === null){
+            if(Object.values(result_inventario[0]._doc.INVENTARIO_AUX[0])[index] === null){
+                if(Object.values(result_inventario_entrada[0]._doc.INVENTARIO_AUX[0])[index] === null){
                     Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": 0, "item_cantidad_entrada": 0 }])
                 }else{
-                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": 0, "item_cantidad_entrada": Object.values(result_inventario_entrada[0]._doc)[index] }])
+                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": 0, "item_cantidad_entrada": Object.values(result_inventario_entrada[0]._doc.INVENTARIO_AUX[0])[index] }])
                 }               
             }else{
                 if(Object.values(result_inventario_entrada[0]._doc)[index] === null){
-                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": Object.values(result_inventario[0]._doc)[index], "item_cantidad_entrada": 0 }])
+                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": Object.values(result_inventario[0]._doc.INVENTARIO_AUX[0])[index], "item_cantidad_entrada": 0 }])
                 }else{
-                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": Object.values(result_inventario[0]._doc)[index], "item_cantidad_entrada": Object.values(result_inventario_entrada[0]._doc)[index] }])
+                    Array.prototype.push.apply(resulta_aux, [{"item_tipo": element, "item_cantidad": Object.values(result_inventario[0]._doc.INVENTARIO_AUX[0])[index], "item_cantidad_entrada": Object.values(result_inventario_entrada[0]._doc.INVENTARIO_AUX[0])[index] }])
                 }                
             }            
         }
