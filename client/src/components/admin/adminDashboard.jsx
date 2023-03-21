@@ -138,12 +138,14 @@ class adminDashboard extends Component {
                         majorTickLines : {width:0} 
                     }}  
                     primaryYAxis={{ 
-                        title: '$ Ventas', 
+                        title: 'Ventas', 
                         majorTickLines: { width: 0 },
                         lineStyle: {width: 0}, 
                         maximum : 1500000 , 
                         interval: 150000,
+                        labelFormat: '${value}'
                     }} 
+                    useGroupingSeparator={true}
                     chartArea={{ border: { width: 0 } }} 
                     load={this.load.bind(this)} 
                     tooltip={{ enable: true }} 
@@ -152,7 +154,13 @@ class adminDashboard extends Component {
 
                         <Inject services={[ColumnSeries, LineSeries, Legend, Tooltip, Category, DataLabel, Highlight]} />
                         <SeriesCollectionDirective >
-                            <SeriesDirective dataSource={this.state.filter_ventas} tooltipMappingName='r' xName='Fecha' columnSpacing={0.1} yName='Dato' name='Ventas periodo' type='Column'>
+                            <SeriesDirective dataSource={this.state.filter_ventas} tooltipMappingName='r' xName='Fecha' columnSpacing={0.1} yName='Dato' name='Ventas periodo' type='Column' marker={{
+                                dataLabel: {
+                                    visible: true,
+                                    position: 'Middle',
+                                    font: { fontWeight: '2W00', color: '#000000' },
+                                },
+                            }}>
                             </SeriesDirective>
                             <SeriesDirective dataSource={this.state.filter_ventas} xName="Fecha" yName="Limite" name="Target Ventas" width={2} marker={{ visible: true, width: 6, height: 6, shape: 'Triangle', isFilled: true }} type="Line">
                             </SeriesDirective>

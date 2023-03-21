@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort } from '@syncfusion/ej2-react-grids';
 
 class adminInicio extends Component {
     constructor(props) {
         super(props);
         this.state={
+            inve_cuadre: [],
             inve_insumos: [],
             inve_final_data: [],
             inve_final_ayer_data: [],
             inve_final_compras_data: [],
             inve_final_ventas: [],
         }
+        this.toolbarOptions = ['Search'];
     }
 
     componentDidMount(){
@@ -22,10 +25,7 @@ class adminInicio extends Component {
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
         document.getElementById("fechaHoyRInventario").value = today
-        var today_ayer = year + "-" + month + "-" + "0" + (date.getDate() -1);
-
-        //---
-        //---
+        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
 
         const requestOptions ={
             method: 'GET',
@@ -90,6 +90,18 @@ class adminInicio extends Component {
                 //console.log(data)
                 this.setState({
                     inve_final_ventas: data.inv
+                })
+            })
+        .catch(err => console.log(err))
+
+        //Inve cuadre completo
+
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.inv.result_output)
+                this.setState({
+                    inve_cuadre: data.inv.result_output
                 })
             })
         .catch(err => console.log(err))
@@ -169,6 +181,19 @@ class adminInicio extends Component {
                 })
             .catch(err => console.log(err))
 
+
+        //Inve cuadre completo
+
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data)
+                this.setState({
+                    inve_cuadre: data.inv.result_output
+                })
+            })
+        .catch(err => console.log(err))
+
         this.setState({
             fechaRegistroInventario: e.target.value,
             hayFecha: true
@@ -200,134 +225,21 @@ class adminInicio extends Component {
 
                 <br></br>
 
-                <table className="table">                
-                        <tbody>
-                            <tr>
-                            <th scope="col" className="fs-1">Insumo</th>
-                            <th scope="col" className="fs-3">Inv. Inicial</th>
-                            <th scope="col" className="fs-3">Compras</th>
-                            <th scope="col" className="fs-3">Ventas</th>
-                            <th scope="col" className="fs-3">Inv. Final</th>
-                            <th scope="col" className="fs-1">Cuadre Inv.</th>
-                            </tr>
-                            {this.state.inve_insumos.map((item, index) => {
-                                return(
-                                    <>
-                                        <tr key={index}>
-                                            <td><strong>{item.TIPO}</strong></td>
-                                            <td> {/* INVENTARIO AYER !!!! */}
-                                            {(() => {
-                                                if (this.state.inve_final_ayer_data[0]?.[item.TIPO] === undefined) {
-                                                    return (
-                                                        <>
-                                                            0
-                                                        </>                                      
-                                                    )
-                                                    } else {
-                                                    return (                                
-                                                        <>
-                                                            {this.state.inve_final_ayer_data[0]?.[item.TIPO]}
-                                                        </>
-                                                    )
-                                                    }
-                                                    })()
-                                                }
-                                            </td>
-                                            <td> {/* COMPRAS !!!! */}
-                                            {(() => {                                                
-                                                if (this.state.inve_final_compras_data[0]?.[item.TIPO] === undefined) {
-                                                    return (
-                                                        <>
-                                                            0
-                                                        </>                                      
-                                                    )
-                                                    } else {
-                                                    return (                                
-                                                        <>
-                                                            {this.state.inve_final_compras_data[0]?.[item.TIPO]}
-                                                        </>
-                                                    )
-                                                    }
-                                                    })()
-                                                }
-                                            </td>
-                                            <td> {/* VENTAS !!!! */}
-                                            {(() => {
-                                                if (this.state.inve_final_ventas?.[item.TIPO] === undefined) {
-                                                    return (
-                                                        <>
-                                                            0
-                                                        </>                                      
-                                                    )
-                                                    } else {
-                                                    return (                                
-                                                        <>
-                                                            {this.state.inve_final_ventas?.[item.TIPO]}
-                                                        </>
-                                                    )
-                                                    }
-                                                    })()
-                                                } 
-                                            </td>                                            
-                                            <td> {/* INVENTARIO FINAL !!!! */}
-                                            {(() => {                                                
-                                                if (this.state.inve_final_data[0]?.[item.TIPO] === undefined) {
-                                                    return (
-                                                        <>
-                                                            0
-                                                        </>                                      
-                                                    )
-                                                    } else {
-                                                    return (                                
-                                                        <>
-                                                            {this.state.inve_final_data[0]?.[item.TIPO]}
-                                                        </>
-                                                    )
-                                                    }
-                                                    })()
-                                                }
-                                            </td>
-                                            <td> {/* AQUI SE HACE EL CUADRE DE INVENTARIO */}
-                                                {(() => {
-                                                        let invAyer_aux = (this.state.inve_final_ayer_data[0]?.[item.TIPO])
-                                                        let invFinal_aux = (this.state.inve_final_data[0]?.[item.TIPO])
-                                                        let invEntradas_aux = (this.state.inve_final_compras_data[0]?.[item.TIPO])
-                                                        let invVetnas_aux = (this.state.inve_final_ventas?.[item.TIPO])
-
-                                                        let cuadreInv_aux = 0                                                       
-
-                                                        if(invAyer_aux === undefined || invAyer_aux === NaN){
-                                                            invAyer_aux = 0
-                                                        }
-
-                                                        if(invFinal_aux === undefined || invFinal_aux === NaN){
-                                                            invFinal_aux = 0
-                                                        }
-
-                                                        if(invEntradas_aux === undefined || invEntradas_aux === NaN){
-                                                            invEntradas_aux = 0
-                                                        }
-
-                                                        if(invVetnas_aux === undefined || invVetnas_aux === NaN){
-                                                            invVetnas_aux = 0
-                                                        }
-
-                                                        cuadreInv_aux = parseInt(invFinal_aux) - ( parseInt(invAyer_aux) + invEntradas_aux + parseInt(invVetnas_aux) ) 
-
-                                                        return(
-                                                            <>
-                                                                { cuadreInv_aux }
-                                                            </>
-                                                        )
-                                                    })()
-                                                }
-                                            </td>
-                                        </tr>
-                                    </>
-                                )
-                            })}
-                    </tbody>
-                </table>
+                <div className='control-pane'>
+                    <div className='control-section'>
+                        <GridComponent dataSource={this.state.inve_cuadre} toolbar={this.toolbarOptions} allowSorting={true} allowPaging={true} height={365} pageSettings={{ pageCount: 4, pageSizes: true }}>
+                            <ColumnsDirective>
+                                <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
+                                <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>
+                                <ColumnDirective field='INV_ENTRADAS' headerText='Entradas/Compras' width='130'/>
+                                <ColumnDirective field='INV_VENTAS' headerText='Salidas/Ventas' width='130'/>
+                                <ColumnDirective field='INV_FINAL' headerText='Inventario Final' width='130'></ColumnDirective>
+                                <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
+                            </ColumnsDirective>
+                            <Inject services={[Toolbar, Page, Sort]}/>
+                        </GridComponent>
+                    </div>
+                </div>
             </div>
         );
     }

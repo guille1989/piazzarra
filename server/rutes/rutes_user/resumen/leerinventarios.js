@@ -36,9 +36,9 @@ async function LeerInventarios(fechaInventario){
     result_inventario_entrada = await InventarioEntrada.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
     result_inventario_entrada_costo = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
 
-    //console.log(result_inventario[0]._doc)
-    //console.log(result_inventario[0]._doc.INVENTARIO_AUX[0])
-
+    //console.log(result_inventario_entrada_costo)
+    //console.log(result_inventario_entrada_costo[0]._doc.INVENTARIO_AUX[0])
+    
     let result_inventario_tabla_resumen = [];
 
     for(let i=0;i<Object.keys(result_inventario[0]._doc.INVENTARIO_AUX[0]).length;i++){
@@ -81,7 +81,7 @@ async function LeerInventarios(fechaInventario){
         }        
     }
 
-    console.log(result_inventario_entrada_costos_tabla_resumen)
+    //console.log(result_inventario_entrada_costos_tabla_resumen)
 
     let resulta_aux = [];
 
