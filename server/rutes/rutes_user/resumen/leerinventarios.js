@@ -5,12 +5,13 @@ const InventarioEntrada = require('../../../models/inventario_insumos_entrantes'
 const InventarioEntradaCostos = require('../../../models/inventario_insumos_entrantes_costo');
 
 //GET traemos informacion del inventario
-rute.get('/:fecha', (req, res) => {
+rute.get('/:fecha/:pizzeriaid', (req, res) => {
 
     let fechaInventario = req.params.fecha;
+    let inv_id = req.params.pizzeriaid;
     let result_inventario = [];
 
-    result_inventario = LeerInventarios(fechaInventario);
+    result_inventario = LeerInventarios(fechaInventario, inv_id);
 
 
     result_inventario
@@ -26,15 +27,21 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function LeerInventarios(fechaInventario){    
+async function LeerInventarios(fechaInventario, inv_id){    
     
     let result_inventario = [];
     let result_inventario_entrada = [];
     let result_inventario_entrada_costo = [];
 
-    result_inventario = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
-    result_inventario_entrada = await InventarioEntrada.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
-    result_inventario_entrada_costo = await InventarioEntradaCostos.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
+    result_inventario = await InventarioActual.find({
+                                                        $and:[{"FECHA_INVENTARIO_ACTUAL": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+                                                    });
+    result_inventario_entrada = await InventarioEntrada.find({
+                                                        $and:[{"FECHA_INVENTARIO_ENTRANTE": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+                                                    });
+    result_inventario_entrada_costo = await InventarioEntradaCostos.find({
+                                                        $and:[{"FECHA_INVENTARIO_ENTRANTE_COSTO": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+                                                    });
 
     //console.log(result_inventario_entrada_costo)
     //console.log(result_inventario_entrada_costo[0]._doc.INVENTARIO_AUX[0])

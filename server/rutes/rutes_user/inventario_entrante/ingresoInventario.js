@@ -39,9 +39,10 @@ rute.post('/:fecha', (req, res) => {
 
     let fechaHoyAux = req.params.fecha;
     let body = req.body.INVENTARIO_FINAL_ENTRADAS;
+    let inv_id = req.body.INVENTARIO_ID;
     let result = [];
 
-    result = ingresarEntradas(body, fechaHoyAux);
+    result = ingresarEntradas(body, fechaHoyAux, inv_id);
 
     result
         .then(msj => {
@@ -56,7 +57,7 @@ rute.post('/:fecha', (req, res) => {
         })
 })
 
-async function ingresarEntradas(body, fechaHoyAux){
+async function ingresarEntradas(body, fechaHoyAux, inv_id){
 
     let result = [];
 
@@ -66,12 +67,13 @@ async function ingresarEntradas(body, fechaHoyAux){
 
     inv_entrada = {...inv_entrada, FECHA_INVENTARIO_ENTRANTE: fechaHoyAux}
 
+    inv_entrada = {...inv_entrada, "INVENTARIO_ID": inv_id}
+
+
     for (let item in body) {
         //console.log(item, body[item]);
         inv_entrada = {...inv_entrada, [item.replace('ENTRADA_','')]: body[item]}
       }
-
-    //console.log(inv_entrada);
 
     let inventario_input = {"INVENTARIO_AUX" : inv_entrada}
 

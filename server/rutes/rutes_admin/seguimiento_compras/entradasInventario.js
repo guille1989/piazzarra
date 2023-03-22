@@ -4,12 +4,13 @@ const InventarioEntrada = require('../../../models/inventario_insumos_entrantes'
 const InventarioEntradaCosto = require('../../../models/inventario_insumos_entrantes_costo');
 
 //GET traemos informacion del inventario
-rute.get('/:fecha', (req, res) => {
+rute.get('/:fecha/:pizzarraid', (req, res) => {
 
     let fechaInventario = req.params.fecha;
+    let inv_id = req.params.pizzarraid;
     let result = [];
 
-    result = LeerEntradasLeerCostos(fechaInventario);
+    result = LeerEntradasLeerCostos(fechaInventario, inv_id);
 
     result
         .then(data => {
@@ -24,40 +25,48 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function LeerEntradasLeerCostos(fechaInventario){    
+async function LeerEntradasLeerCostos(fechaInventario, inv_id){    
     
     let result = [];
 
-    result = await InventarioEntrada.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario});
+    result = await InventarioEntrada.find({
+        $and:[{"FECHA_INVENTARIO_ENTRANTE": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+    });   
+
+    //console.log(result)
 
     let result_aux = [];
 
-    for(let i=0;i<Object.keys(result[0]._doc).length;i++){
-        if(Object.keys(result[0]._doc)[i] === "__v" || Object.keys(result[0]._doc)[i] === "INVENTARIO_AUX" || Object.keys(result[0]._doc)[i] === "_id" || Object.keys(result[0]._doc)[i] === "FECHA_INVENTARIO_ENTRANTE"){
+    for(let i=0;i<Object.keys(result[0]._doc.INVENTARIO_AUX[0]).length;i++){
+        if(Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i] === "__v" || Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_AUX" || Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i] === "_id" || Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i] === "FECHA_INVENTARIO_ENTRANTE" || Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_ID"){
 
         }else{
-            if(Object.values(result[0]._doc)[i] === null){
+            if(Object.values(result[0]._doc.INVENTARIO_AUX[0])[i] === null){
                 // Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc)[i], 'Valor': 0 }])
+            }else if(Object.values(result[0]._doc.INVENTARIO_AUX[0])[i] === 0){ 
+
             }else{
-                Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc)[i], 'Cantidad': Object.values(result[0]._doc)[i] }])
+                Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc.INVENTARIO_AUX[0])[i], 'Cantidad': Object.values(result[0]._doc.INVENTARIO_AUX[0])[i] }])
             }
         }        
     }
 
     let result_costos = [];
 
-    result_costos = await InventarioEntradaCosto.find({FECHA_INVENTARIO_ENTRANTE_COSTO: fechaInventario});
+    result_costos = await InventarioEntradaCosto.find( {
+                                                            $and:[{"FECHA_INVENTARIO_ENTRANTE_COSTO": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+                                                        });
 
     let result_costos_aux = [];
 
-    for(let i=0;i<Object.keys(result_costos[0]._doc).length;i++){
-        if(Object.keys(result_costos[0]._doc)[i] === "__v" || Object.keys(result_costos[0]._doc)[i] === "INVENTARIO_AUX" || Object.keys(result_costos[0]._doc)[i] === "_id" || Object.keys(result_costos[0]._doc)[i] === "FECHA_INVENTARIO_ENTRANTE_COSTO"){
+    for(let i=0;i<Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0]).length;i++){
+        if(Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "__v" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_AUX" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "_id" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "FECHA_INVENTARIO_ENTRANTE_COSTO" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_ID"){
 
         }else{
-            if(Object.values(result_costos[0]._doc)[i] === null){
+            if(Object.values(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === null){
                 // Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc)[i], 'Valor': 0 }])
             }else{
-                Array.prototype.push.apply(result_costos_aux, [{'Item': Object.keys(result_costos[0]._doc)[i], 'Valor': Object.values(result_costos[0]._doc)[i] }])
+                Array.prototype.push.apply(result_costos_aux, [{'Item': Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i], 'Valor': Object.values(result_costos[0]._doc.INVENTARIO_AUX[0])[i] }])
             }
         }        
     }

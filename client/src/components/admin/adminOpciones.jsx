@@ -90,6 +90,20 @@ class opciones extends Component {
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data)
+                    const requestOptions2 ={
+                        method: 'GET',
+                        headers : {'Content-type':'application/json'},   
+                        }      
+                    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions2)
+                        .then(response => response.json())
+                        .then(data => {
+                            //console.log(data)
+                            this.setState({
+                                insumosOpcion: data.inv
+                            })
+                        })
+                        .catch(err => console.log(err))
+
                 })
                 .catch(err => console.log(err))
                                     
@@ -217,7 +231,7 @@ class opciones extends Component {
                                                                 aria-label="Sizing example input" 
                                                                 aria-describedby="inputGroup-sizing-sm" 
                                                                 placeholder='Insumo Entrada'
-                                                                onChange={(e) => this.setState({[item.TIPO]: e.target.value}) }
+                                                                onChange={(e) => this.setState({[item.TIPO]: e.target.value})}
                                                                 onWheel={(e) => {
                                                                     // Prevent the input value change
                                                                     e.target.blur()

@@ -3,13 +3,14 @@ const rute = Express();
 const PedidoPizzarra = require('../../../models/pizzarra_ventas');
 
 //GET
-rute.get('/:fechaUno/:filtro', (req, res) => {
+rute.get('/:fechaUno/:filtro/:pedidos_aux', (req, res) => {
 
     let fecha_uno_aux = req.params.fechaUno
     let filtro_tipo = req.params.filtro
+    let pedidos_aux = req.params.pedidos_aux
 
     let result = [];
-    result = leerVentasSemana(fecha_uno_aux, filtro_tipo);
+    result = leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux);
 
     result
         .then(msj => {
@@ -24,7 +25,7 @@ rute.get('/:fechaUno/:filtro', (req, res) => {
         })
 })
 
-async function leerVentasSemana(fecha_uno_aux, filtro_tipo){    
+async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){    
 
     //console.log(filtro_tipo)
 
@@ -48,7 +49,9 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo){
         }
 
         for(let i =0; i<date_semana_search.length; i++){
-            result = await PedidoPizzarra.find({"aux.fecha_pedido": date_semana_search[i]});
+            result = await PedidoPizzarra.find({
+                $and:[{"aux.fecha_pedido": date_semana_search[i]}, {"aux.local": pedidos_aux}] 
+            });           
 
             result_aux.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": result, "Limite": 1000000})
             result_limite.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": 1000000})
@@ -79,7 +82,9 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo){
         }
         
         for(let i =0; i<date_semana_search.length; i++){
-            result = await PedidoPizzarra.find({"aux.fecha_pedido": date_semana_search[i]});
+            result = await PedidoPizzarra.find({
+                $and:[{"aux.fecha_pedido": date_semana_search[i]}, {"aux.local": pedidos_aux}] 
+            });
 
             result_aux.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": result, "Limite": 1000000})
             result_limite.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": 1000000})

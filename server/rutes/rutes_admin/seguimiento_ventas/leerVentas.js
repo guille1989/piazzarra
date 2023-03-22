@@ -3,11 +3,12 @@ const rute = Express();
 const PedidoPizzarra = require('../../../models/pizzarra_ventas');
 
 //GET
-rute.get('/:fecha', (req, res) => {
+rute.get('/:fecha/:pizzarraid', (req, res) => {
 
     let fecha_aux = req.params.fecha
+    let pedidos_aux = req.params.pizzarraid
     let result = [];
-    result = leerPedidos(fecha_aux);
+    result = leerPedidos(fecha_aux, pedidos_aux);
 
     result
         .then(msj => {
@@ -22,7 +23,7 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function leerPedidos(fecha_aux){    
+async function leerPedidos(fecha_aux, pedidos_aux){    
 
     //console.log(fecha_aux)
 
@@ -30,7 +31,9 @@ async function leerPedidos(fecha_aux){
 
     let result = [];
 
-    result = await PedidoPizzarra.find({"aux.fecha_pedido": fecha_aux});
+    result = await PedidoPizzarra.find({
+        $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
+    });
 
     let result_sum_ventas = 0;
 

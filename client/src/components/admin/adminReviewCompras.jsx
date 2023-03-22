@@ -26,7 +26,7 @@ class adminReviewCompras extends Component {
                 'Content-type':'application/json'
             }),    
         }      
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/compras/` + today , requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/compras/` + today + `/Pizzarra-Cali-Refugio`, requestOptions)
         .then(response => response.json())
         .then(data => {            
             if(data.inv_entrada === undefined){
@@ -52,10 +52,10 @@ class adminReviewCompras extends Component {
                 'Content-type':'application/json'
             }),    
         }      
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/compras/` + e.target.value , requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/compras/` + e.target.value + `/Pizzarra-Cali-Refugio`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            //console.log(data)
+            console.log(data)
             if(data.inv_entrada === undefined){
                 this.setState({
                     data_entradas: [],

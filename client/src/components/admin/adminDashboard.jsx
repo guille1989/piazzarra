@@ -28,7 +28,7 @@ class adminDashboard extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data.inv)
@@ -68,7 +68,7 @@ class adminDashboard extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data.inv)

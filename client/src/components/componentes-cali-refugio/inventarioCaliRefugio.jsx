@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { DialogComponent } from '@syncfusion/ej2-react-popups';
 import '../../App.css'
 
 class inventarioCaliRefugio extends Component {
@@ -15,9 +16,39 @@ class inventarioCaliRefugio extends Component {
             //
             INVENTARIO_FINAL_AUX: [],
             INVENTARIO_FINAL_ENTRADAS_AUX: [],
-            INVENTARIO_FINAL_ENTRADAS_COSTO_AUX: []
+            INVENTARIO_FINAL_ENTRADAS_COSTO_AUX: [],
+
+            hideDialog: true
         }
+
+        this.buttonRef = element => {
+            this.buttonEle = element;
+        };
+        this.buttons = [{
+                click: this.dlgButtonClick,
+                buttonModel: {
+                    content: 'Learn More',
+                    isPrimary: true
+                }
+            }];
+        this.animationSettings = { effect: 'None' };
     }
+
+    buttonClick() {
+        this.setState({ hideDialog: true });
+    }
+    dlgButtonClick() {
+        window.open('https://www.syncfusion.com/company/about-us');
+    }
+    dialogClose() {
+        this.setState({ hideDialog: false });
+        this.buttonEle.style.display = "block";
+    }
+    dialogOpen() {
+        this.buttonEle.style.display = "none";
+    }
+
+    //********
 
     componentDidMount(){
         //Fecha
@@ -37,6 +68,7 @@ class inventarioCaliRefugio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/insumos`, requestOptions)
             .then(response => response.json())
             .then(data => {
+                console.log(data.inv)
                 this.setState({
                     inventario: data.inv
                 })
@@ -44,7 +76,7 @@ class inventarioCaliRefugio extends Component {
             .catch(err => console.log(err))
 
 
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + today, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + today + `/Pizzarra-Cali-Refugio`, requestOptions)
         .then(response => response.json())
         .then(data => {
         if(data.inv.length === 0){
@@ -79,7 +111,7 @@ class inventarioCaliRefugio extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + e.target.value, requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/revisioninventariofecha/` + e.target.value + `/Pizzarra-Cali-Refugio`, requestOptions)
               .then(response => response.json())
               .then(data => {
                 if(data.inv.length === 0){
@@ -185,15 +217,15 @@ class inventarioCaliRefugio extends Component {
 
     //Aqui guardamos los inventarios: Entrada, Costo y el inventario Final
     handleIngresarInventario(){
-
         if(window.confirm("Seguro desea enviar inventario ??")){
             //Construimos los bodys:
             let INVENTARIO_FINAL = this.inventarioFinalGenerate();
             let INVENTARIO_FINAL_ENTRADAS = this.inventarioFinalEntradasGenerate();
             let INVENTARIO_FINAL_ENTRADAS_COSTO = this.inventarioFinalEntradasCostoGenerate();
+            let INVENTARIO_ID = 'Pizzarra-Cali-Refugio'
 
             this.setState({
-                modalEnviarInventario: true
+                modalEnviarInventario: false
             })
             //***********************
             //***********************
@@ -203,7 +235,8 @@ class inventarioCaliRefugio extends Component {
                 body: JSON.stringify({
                     INVENTARIO_FINAL,
                     INVENTARIO_FINAL_ENTRADAS,
-                    INVENTARIO_FINAL_ENTRADAS_COSTO
+                    INVENTARIO_FINAL_ENTRADAS_COSTO,
+                    INVENTARIO_ID
                 })    
             }   
             //Envio inventario final   
@@ -242,7 +275,6 @@ class inventarioCaliRefugio extends Component {
     }
 
     handleResumenInventarioActual(){
-
         //Traemos inventario final actual
         let result = [];
         let resultAux = [];
@@ -301,7 +333,6 @@ class inventarioCaliRefugio extends Component {
     }
 
     handleResumenInventarioEntracas(){
-
         //Traemos inventario entradas
         let result_entradas = [];
         let resultAux_entradas = [];
@@ -532,6 +563,7 @@ class inventarioCaliRefugio extends Component {
                 <button type="button" 
                         className="w-100 p-3 btn btn-success" 
                         onClick={() => {
+
                             if(this.state.showAdministradorAvisoinventario === true){
                                 alert('No se puede agregar inventario !! ya se encuentra uno registrado !!')
                             }else{
@@ -539,10 +571,18 @@ class inventarioCaliRefugio extends Component {
                                     alert('Por favor seleccione fecha de cuadre de inventario !!!!')
                                 }else{                                
                                     let itemInventarioTieneNullValue = this.state.inventario.some((element, index) => {
-                                        return this.state[element.TIPO] === ''
+
+                                        if(this.state[element.TIPO] === ''){
+                                            return this.state[element.TIPO] === ''
+                                        }else if(this.state[element.TIPO] === undefined){
+                                            return this.state[element.TIPO] === undefined
+                                        }else if(this.state[element.TIPO] === null){
+                                            return this.state[element.TIPO] === null
+                                        }
                                     })
+
                                     if(itemInventarioTieneNullValue === false){
-                                        this.setState({modalEnviarInventario: true})
+                                        this.handleIngresarInventario()
                                     }else{
                                         alert('Por favor diligenciar todos los campos del Insumo Final !!!!')
                                     }                                
@@ -555,8 +595,8 @@ class inventarioCaliRefugio extends Component {
                 <br></br>   
 
                 {/*MODAL PARA EL RESUMEN DE INGRESO DE INVENTARIO:*/}
-                <div>
-                <Modal isOpen={this.state.modalEnviarInventario} fullscreen={true}>
+              
+                <Modal isOpen={this.state.modalEnviarInventario}>
                     <ModalHeader>Resumen antes de envio de Inventario</ModalHeader>
                     <ModalBody>
                         <> 
@@ -585,9 +625,7 @@ class inventarioCaliRefugio extends Component {
                         Cancelar
                     </Button>
                     </ModalFooter>
-                </Modal>
-                </div>  
-   
+                </Modal>   
             </div>
         );
     }

@@ -26,7 +26,7 @@ class adminReviewVentas extends Component {
                 'Content-type':'application/json'
             }),    
         }      
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + today , requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + today + `/Cali-Refugio`, requestOptions)
         .then(response => response.json())
         .then(data => {
             //console.log(data.inv[0])
@@ -54,7 +54,7 @@ class adminReviewVentas extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + e.target.value, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + e.target.value + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data.inv)

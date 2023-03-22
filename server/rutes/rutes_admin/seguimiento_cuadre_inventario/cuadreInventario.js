@@ -7,13 +7,15 @@ const InventarioVentas = require('../../../models/pizzarra_ventas');
 const PedidoPizzarra = require('../../../models/pizzarra_ventas');
 
 //GET traemos informacion del inventario
-rute.get('/:fecha/:fechaayer', (req, res) => {
+rute.get('/:fecha/:fechaayer/:inv_id', (req, res) => {
 
     let fechaInventario = req.params.fecha;
     let fechaInventarioAyer = req.params.fechaayer;
+    let inv_id= req.params.inv_id;
+
     let result = [];
 
-    result = cuadreInventario(fechaInventario, fechaInventarioAyer);
+    result = cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id);
 
     result
         .then(msj => {
@@ -28,7 +30,7 @@ rute.get('/:fecha/:fechaayer', (req, res) => {
         })
 })
 
-async function cuadreInventario(fechaInventario, fechaInventarioAyer){  
+async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id){  
     
     let result_output = [];
     
@@ -39,9 +41,15 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
     let result_ventas_aux = [];
 
     result_insumos = await Insumos.find({});
-    result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
-    result_ayer = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventarioAyer});
-    result_entradas = await InventarioEntradas.find({FECHA_INVENTARIO_ENTRANTE: fechaInventario})    
+    result = await InventarioActual.find({
+        $and:[{"FECHA_INVENTARIO_ACTUAL": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+    });
+    result_ayer = await InventarioActual.find({
+        $and:[{"FECHA_INVENTARIO_ACTUAL": fechaInventarioAyer}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+    });
+    result_entradas = await InventarioEntradas.find({
+        $and:[{"FECHA_INVENTARIO_ENTRANTE": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+    })    
   
 
     //Creamos un inv en 0 por si no se encuentra en db informacion
@@ -49,7 +57,8 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
 
     result_insumos.map((item, index) => {
         let item_aux = item.TIPO
-        inv_ceros_aux = {...inv_ceros_aux, [item_aux]: 0}
+        let item_limite_aux = item.INSUMO_LIMITE
+        inv_ceros_aux = {...inv_ceros_aux, [item_aux]: 0, [item_limite_aux]:0 }
     })
 
     if(result.length === 0){
@@ -74,8 +83,15 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
 
+    let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
+
     result_insumos.map((item, index) => {
+        if(parseInt(item.INSUMO_LIMITE) > parseInt(result[0][item.TIPO])){
+            inv_alarma_stock = "Insuficiente"
+        }else{
+            inv_alarma_stock = "Suficiente"
+        }
         //console.log('{')
         //console.log('TIPO: ' + item.TIPO)
         //console.log('INV_AYER: ' + result_ayer[0][item.TIPO])
@@ -100,7 +116,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer){
             inv_estado = 'Sobrante'
         }
 
-        let inv_alarma_stock = "Suficiente"
+        
 
         result_output.push(
         {

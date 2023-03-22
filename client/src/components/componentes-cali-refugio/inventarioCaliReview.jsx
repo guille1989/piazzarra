@@ -48,7 +48,7 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + today, requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + today + `/Pizzarra-Cali-Refugio`, requestOptions)
               .then(response => response.json())
               .then(data => {
                 //console.log(data.inv)
@@ -71,7 +71,7 @@ class inventarioCaliReview extends Component {
               .catch(err => console.log(err))
 
             //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 //console.log(data.inv.result_output)
@@ -98,7 +98,7 @@ class inventarioCaliReview extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},   
           }      
-          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + e.target.value, requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leerinventarios/` + e.target.value + `/Pizzarra-Cali-Refugio`, requestOptions)
               .then(response => response.json())
               .then(data => {
                 //console.log(data.inv)
@@ -125,7 +125,7 @@ class inventarioCaliReview extends Component {
         })
 
         //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 //console.log(data.inv.result_output)

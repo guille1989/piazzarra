@@ -97,8 +97,7 @@ class adminInicio extends Component {
         .catch(err => console.log(err))
 
         //Inve cuadre completo
-
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.inv.result_output)
@@ -185,7 +184,7 @@ class adminInicio extends Component {
 
 
         //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.inv.result_output)

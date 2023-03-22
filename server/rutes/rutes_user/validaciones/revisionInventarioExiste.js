@@ -3,12 +3,13 @@ const rute = express();
 const InventarioActual = require('../../../models/inventarios_insumos_actuales');
 
 //GET traemos informacion del inventario
-rute.get('/:fecha', (req, res) => {
+rute.get('/:fecha/:pizzeriaid', (req, res) => {
 
     let fechaInventario = req.params.fecha;
+    let inv_id = req.params.pizzeriaid;
     let result = [];
 
-    result = leerInventario(fechaInventario);
+    result = leerInventario(fechaInventario, inv_id);
 
     result
         .then(msj => {
@@ -23,11 +24,14 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function leerInventario(fechaInventario){    
+async function leerInventario(fechaInventario, inv_id){    
     
     let result = [];
 
-    result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fechaInventario});
+    result = await InventarioActual.find(
+        {
+            $and:[{"FECHA_INVENTARIO_ACTUAL": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
+        });
 
     return result
 

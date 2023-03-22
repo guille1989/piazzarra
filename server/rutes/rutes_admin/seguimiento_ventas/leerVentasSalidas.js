@@ -5,9 +5,10 @@ const InventarioActual = require('../../../models/inventarios_insumos_actuales')
 const InsumosPizzarra = require('../../../models/insumos');
 
 //GET
-rute.get('/:fecha', (req, res) => {
+rute.get('/:fecha/:pizzarraid', (req, res) => {
 
     let fecha_aux = req.params.fecha
+    let pedidos_aux = req.params.pizzarraid
     let result = [];
     result = leerPedidos(fecha_aux);
 
@@ -24,7 +25,7 @@ rute.get('/:fecha', (req, res) => {
         })
 })
 
-async function leerPedidos(fecha_aux){    
+async function leerPedidos(fecha_aux, pedidos_aux){    
 
     //console.log(fecha_aux)
 
@@ -38,7 +39,9 @@ async function leerPedidos(fecha_aux){
     
     //result = await InventarioActual.find({FECHA_INVENTARIO_ACTUAL: fecha_aux})
 
-    result_ventas = await PedidoPizzarra.find({"aux.fecha_pedido": fecha_aux});
+    result_ventas = await PedidoPizzarra.find({
+                                                    $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
+                                                });
 
     result_insumo = await InsumosPizzarra.find();
 
