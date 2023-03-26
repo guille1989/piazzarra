@@ -9,7 +9,10 @@ class adminDashboard extends Component {
         this.state = {
             filtro_seleccion: 'semana',
             filter_ventas: [],
-            filet_limits: []
+            filter_ventas_popayan: [],
+            filet_limits: [],
+            ventas_promedio_cali: '',
+            ventas_promedio_popayan: ''
         }
     }
 
@@ -27,14 +30,26 @@ class adminDashboard extends Component {
         const requestOptions ={
             method: 'GET',
             headers : {'Content-type':'application/json'},   
-          }      
+            }      
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.inv)
+                    this.setState({
+                        filter_ventas: data.inv.result_aux,
+                        filet_limits: data.inv.result_limite,
+                        ventas_promedio_cali: data.inv.result_sum_ventas_acum
+                    })
+                })
+                .catch(err => console.log(err))
+
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data.inv)
                     this.setState({
-                        filter_ventas: data.inv.result_aux,
-                        filet_limits: data.inv.result_limite,
+                        filter_ventas_popayan: data.inv.result_aux,
+                        ventas_promedio_popayan: data.inv.result_sum_ventas_acum
                     })
                 })
                 .catch(err => console.log(err))
@@ -48,7 +63,7 @@ class adminDashboard extends Component {
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        var today = year + "-" + month + "-" + day;
+        //var today = year + "-" + month + "-" + day;
 
         //Mas 7 dias
         let dateAux = new Date(e.target.value);
@@ -58,7 +73,7 @@ class adminDashboard extends Component {
         year = dateAux.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        var date_semana = year + "-" + month + "-" + day;
+        //var date_semana = year + "-" + month + "-" + day;
 
         //console.log('Semana del: ' + today + ' hasta ' + date_semana)
 
@@ -71,10 +86,22 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    //console.log(data.inv)
+                    console.log(data.inv)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,
+                        ventas_promedio_cali: data.inv.result_sum_ventas_acum
+                    })
+                })
+                .catch(err => console.log(err))
+
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data.inv)
+                    this.setState({
+                        filter_ventas_popayan: data.inv.result_aux,
+                        ventas_promedio_popayan: data.inv.result_sum_ventas_acum
                     })
                 })
                 .catch(err => console.log(err))
@@ -116,6 +143,23 @@ class adminDashboard extends Component {
                         aria-describedby="inputGroup-sizing-sm" 
                     />
 
+                <br></br>
+
+                <hr className="border border-3 opacity-100"></hr>
+
+                <h3>Ventas Promedio Periodo Cali - Refugio: {parseInt(this.state.ventas_promedio_cali).toLocaleString('en-US', {
+                                                                                                                    style: 'currency',
+                                                                                                                    currency: 'USD',
+                                                                                                                    minimumFractionDigits: 0,
+                                                                                                                    maximumFractionDigits: 0,
+                                                                                                                    })}</h3>
+
+                <h3>Ventas Promedio Periodo Popayan - Centro: {parseInt(this.state.ventas_promedio_popayan).toLocaleString('en-US', {
+                                                                                                                    style: 'currency',
+                                                                                                                    currency: 'USD',
+                                                                                                                    minimumFractionDigits: 0,
+                                                                                                                    maximumFractionDigits: 0,
+                                                                                                                    })}</h3>
 
                 {/* GRAFICA */}
                 <br></br>
@@ -154,15 +198,48 @@ class adminDashboard extends Component {
 
                         <Inject services={[ColumnSeries, LineSeries, Legend, Tooltip, Category, DataLabel, Highlight]} />
                         <SeriesCollectionDirective >
-                            <SeriesDirective dataSource={this.state.filter_ventas} tooltipMappingName='r' xName='Fecha' columnSpacing={0.1} yName='Dato' name='Ventas periodo' type='Column' marker={{
-                                dataLabel: {
-                                    visible: true,
-                                    position: 'Middle',
-                                    font: { fontWeight: '2W00', color: '#000000' },
-                                },
-                            }}>
+                            <SeriesDirective 
+                                dataSource={this.state.filter_ventas} 
+                                tooltipMappingName='r' 
+                                xName='Fecha' 
+                                columnSpacing={0.1} 
+                                yName='Dato' 
+                                name='Ventas Cali' 
+                                type='Column' 
+                                marker={{
+                                    dataLabel: {
+                                        visible: true,
+                                        position: 'Middle',
+                                        font: { fontWeight: '2W00', color: '#000000' },
+                                    },
+                                }}>
                             </SeriesDirective>
-                            <SeriesDirective dataSource={this.state.filter_ventas} xName="Fecha" yName="Limite" name="Target Ventas" width={2} marker={{ visible: true, width: 6, height: 6, shape: 'Triangle', isFilled: true }} type="Line">
+
+                            <SeriesDirective 
+                                dataSource={this.state.filter_ventas_popayan} 
+                                tooltipMappingName='r' 
+                                xName='Fecha' 
+                                columnSpacing={0.1} 
+                                yName='Dato' 
+                                name='Ventas Popayan' 
+                                type='Column' 
+                                marker={{
+                                    dataLabel: {
+                                        visible: true,
+                                        position: 'Middle',
+                                        font: { fontWeight: '2W00', color: '#000000' },
+                                    },
+                                }}>
+                            </SeriesDirective>
+
+                            <SeriesDirective 
+                                dataSource={this.state.filter_ventas} 
+                                xName="Fecha" 
+                                yName="Limite" 
+                                name="Target Ventas" 
+                                width={2} 
+                                marker={{ visible: true, width: 6, height: 6, shape: 'Triangle', isFilled: true }} 
+                                type="Line">
                             </SeriesDirective>
                         </SeriesCollectionDirective>
                     </ChartComponent>

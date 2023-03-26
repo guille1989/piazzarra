@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort, Freeze } from '@syncfusion/ej2-react-grids';
 import FlagGreen from '../../images/flagGreen.png';
 import FlagRed from '../../images/flagRed.png';
 
@@ -97,7 +97,7 @@ class adminInicio extends Component {
         .catch(err => console.log(err))
 
         //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.inv.result_output)
@@ -184,7 +184,7 @@ class adminInicio extends Component {
 
 
         //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio`, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.inv.result_output)
@@ -244,7 +244,7 @@ class adminInicio extends Component {
                 <br></br>
                 <br></br>
 
-                <h1>Cuadre inventario: </h1>
+                <h1>Cuadre inventario Cali - Refugio: </h1>
 
                 <h3>Paso No. 1: Seleccione fecha</h3>
 
@@ -270,7 +270,8 @@ class adminInicio extends Component {
                             allowSorting={true} 
                             allowPaging={true} 
                             height={500} 
-                            pageSettings={{ pageCount: 4, pageSizes: true }}>
+                            pageSettings={{ pageCount: 4, pageSizes: true }}
+                            frozenColumns={1}>
                             <ColumnsDirective>
                                 <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
                                 <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>
@@ -281,7 +282,7 @@ class adminInicio extends Component {
                                 <ColumnDirective field='INV_ESTADO' headerText='Estado Cuadre Insumo' template={this.statusTemplate} width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
                             </ColumnsDirective>
-                            <Inject services={[Toolbar, Page, Sort]}/>
+                            <Inject services={[Freeze, Toolbar, Page, Sort]}/>
                         </GridComponent>
                     </div>
                 </div>

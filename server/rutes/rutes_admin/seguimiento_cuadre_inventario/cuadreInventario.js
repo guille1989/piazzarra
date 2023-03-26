@@ -7,15 +7,17 @@ const InventarioVentas = require('../../../models/pizzarra_ventas');
 const PedidoPizzarra = require('../../../models/pizzarra_ventas');
 
 //GET traemos informacion del inventario
-rute.get('/:fecha/:fechaayer/:inv_id', (req, res) => {
+rute.get('/:fecha/:fechaayer/:inv_id/:pedidos_id', (req, res) => {
 
     let fechaInventario = req.params.fecha;
     let fechaInventarioAyer = req.params.fechaayer;
+
     let inv_id= req.params.inv_id;
+    let pedidos_id = req.params.pedidos_id;
 
     let result = [];
 
-    result = cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id);
+    result = cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pedidos_id);
 
     result
         .then(msj => {
@@ -30,7 +32,7 @@ rute.get('/:fecha/:fechaayer/:inv_id', (req, res) => {
         })
 })
 
-async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id){  
+async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pedidos_id){  
     
     let result_output = [];
     
@@ -79,7 +81,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id){
         result_entradas = result_entradas[0].INVENTARIO_AUX
     }
 
-    result_ventas_aux = await PedidoPizzarra.find({"aux.fecha_pedido": fechaInventario});
+    result_ventas_aux = await PedidoPizzarra.find({$and:[{"aux.fecha_pedido": fechaInventario}, {"aux.local": pedidos_id}]});
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
 
@@ -96,6 +98,8 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id){
         //console.log('TIPO: ' + item.TIPO)
         //console.log('INV_AYER: ' + result_ayer[0][item.TIPO])
         if(result_entradas[0][item.TIPO] === null){
+            invEntradaAux = 0
+        }else if(result_entradas[0][item.TIPO] === ""){
             invEntradaAux = 0
         }else{
             invEntradaAux = parseInt(result_entradas[0][item.TIPO])

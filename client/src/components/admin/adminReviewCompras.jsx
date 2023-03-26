@@ -78,7 +78,7 @@ class adminReviewCompras extends Component {
                 <br></br>
                 <br></br>
 
-                <h1>Revision compras: </h1>
+                <h1>Revision compras Cali - Refugio: </h1>
 
                 <h3>Paso No. 1: Seleccione fecha</h3>
 

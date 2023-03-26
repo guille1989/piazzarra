@@ -22,6 +22,11 @@ import VentasAdmin from './adminReviewVentas';
 import ComprasAdmin from  './adminReviewCompras';
 import Graficas from './adminDashboard';
 
+import InicioAdminPopayan from './popayan-centro/adminReviewInventarioPC';
+import ComprasAdminPopayan from './popayan-centro/adminReviewComprasPC';
+import VentasAdminPopayan from './popayan-centro/adminReviewVentasPC';
+import GraficasAdminPopayan from './popayan-centro/adminDashboardPC';
+
 function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
     
@@ -67,7 +72,7 @@ function PizzarraNavBarAdmin(props){
             text: 'Tablero de datos',
             iconCss: 'e-icons e-chart',
             items: [
-                { text: 'Dashboard - Cali - Refugio' },
+                { text: 'Dashboard' },
                 { text: 'Dashboard - Popayan - Centro' },
                 { text: 'Dashboard - TODOS' }
             ]
@@ -97,17 +102,38 @@ function PizzarraNavBarAdmin(props){
    //****
    const handleSideBarMenu = (e) => {
         console.log(e.item.text)
-        if(e.item.text === 'Inventario - Cali - Refugio'){
-            navigate("/");
-        }else if(e.item.text === 'Compras - Cali - Refugio'){
-            navigate("/ComprasResumen");
-        }else if(e.item.text === 'Ventas - Cali - Refugio'){
-            navigate("/VentasResumen");
-        }else if(e.item.text === 'Dashboard - Cali - Refugio'){
-            navigate("/Dashboard");
-        }else if(e.item.text === 'Configuracion - Cali - Refugio'){
-            navigate("/Opciones");
-        }
+
+        switch(e.item.text) {
+            case 'Inventario - Cali - Refugio':
+                navigate("/");
+                break;
+            case 'Compras - Cali - Refugio':
+                navigate("/ComprasResumen");
+                break;
+            case 'Ventas - Cali - Refugio':
+                navigate("/VentasResumen");
+                break;
+            case 'Dashboard':
+                navigate("/Dashboard");
+                break;
+            case 'Configuracion - Cali - Refugio':
+                navigate("/Opciones");
+                break;
+            case 'Inventario - Popayan - Centro':
+                navigate("/AdminPopayan");
+                break;
+            case 'Compras - Popayan - Centro':
+                navigate("/ComprasResumenPopayan");
+                break;
+            case 'Ventas - Popayan - Centro':
+                navigate("/VentasResumenPopayan");
+                break;
+            case 'Dashboard - Popayan - Centro':
+                //navigate("/DashboardPopayan");
+                break;
+            default:
+              // code block
+          }
    }
 
    let folderEle = '<div class= "e-folder"><div class= "e-folder-name">Pizzeria la Pizzarra</div></div>';
@@ -136,6 +162,12 @@ function PizzarraNavBarAdmin(props){
                                 <Route path="/VentasResumen" element={<VentasAdmin></VentasAdmin>}/>
                                 <Route path='/ComprasResumen' element={<ComprasAdmin></ComprasAdmin>}/>
                                 <Route path='/Dashboard' element={<Graficas></Graficas>}/>
+
+                                <Route path='/AdminPopayan' element={<InicioAdminPopayan></InicioAdminPopayan>}/>
+                                <Route path='/ComprasResumenPopayan' element={<ComprasAdminPopayan></ComprasAdminPopayan>}/>
+                                <Route path='/VentasResumenPopayan' element={<VentasAdminPopayan></VentasAdminPopayan>}/>
+                                <Route path='/DashboardPopayan' element={<GraficasAdminPopayan></GraficasAdminPopayan>}/>
+
                             </Routes>
 
                             </div>
