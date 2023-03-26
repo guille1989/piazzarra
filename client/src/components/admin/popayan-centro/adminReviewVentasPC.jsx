@@ -273,6 +273,61 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         </>                                                    
                                                     )
+                                                }else if (item.tipo.includes("PAN 10")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_panaderia} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("PAN 20")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_panaderia} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("PAN COOK 2")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_panaderia} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("PAN UNIDAD")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_panaderia} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("MASAS")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_panaderia} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
                                                 }else if (item.tipo.includes("CAFÉ")) {
                                                     return (
                                                         <>

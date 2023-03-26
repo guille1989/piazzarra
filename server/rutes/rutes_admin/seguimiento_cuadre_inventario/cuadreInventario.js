@@ -3909,6 +3909,12 @@ function resumenVentas(result_ventas_auxn, insumos){
                 let dosIng = 75;
                 let tresIng = 50;
                 let queso = 100;
+
+                if(item.tipo.includes("NAPOLITANA")){
+                    result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 200
+                }else if(item.tipo.includes("QUESO")){
+                    result.CREMA_LECHE = result.CREMA_LECHE - 95
+                }
     
                 if(item.sabor_lasagna === "MIXTA"){
     
@@ -4230,6 +4236,12 @@ function resumenVentas(result_ventas_auxn, insumos){
                     result.FETUCHINNIS_PORCION = result.FETUCHINNIS_PORCION - 1
                 }
 
+                if(item.tipo.includes("NAPOLITANA")){
+                    result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 200
+                }else if(item.tipo.includes("SALSA BLANCA") && item.sabor_pasta !== "CARBONARA"){
+                    result.CREMA_LECHE = result.CREMA_LECHE - 95
+                }
+
                 let dosIng = 75;
                 let tresIng = 50;
                 let queso = 0;
@@ -4306,7 +4318,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     result.QUESO = result.QUESO - queso
                 }else if(item.sabor_pasta === "CARBONARA"){ 
                     result.TOCINETA = result.TOCINETA - 100
-                    result.HUEVOS = result.HUEVOS - 1                    
+                    result.HUEVOS = result.HUEVOS - 1
+                    result.CREMA_LECHE = result.CREMA_LECHE - 95                    
                     
                 }else if(item.sabor_pasta.includes("Combinada 2 Ingredientes")){
                     result.QUESO = result.QUESO - queso
@@ -4551,9 +4564,42 @@ function resumenVentas(result_ventas_auxn, insumos){
                 result.PANNE_COOK = result.PANNE_COOK - item.tipo.replace( /^\D+/g, '')             
             }
 
+            //PANADERIA
+
+            
+            if(item.tipo.includes("PAN 10")){
+                let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                result.PAN_OREGANO = result.PAN_OREGANO - 10 * parseInt(countAux[1])
+            }
+
+            if(item.tipo.includes("PAN 20")){
+                let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                result.PAN_OREGANO = result.PAN_OREGANO - 20 * parseInt(countAux[1])            
+            }
+
+            if(item.tipo.includes("PAN COOK 2")){
+                let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                result.PANNE_COOK = result.PANNE_COOK - 2 * countAux[1]               
+            }
+
+            if(item.tipo.includes("PAN UNIDAD")){
+                result.PAN_OREGANO = result.PAN_OREGANO - item.tipo.replace( /^\D+/g, '')              
+            }
+
+            if(item.tipo.includes("MASAS PER. 5")){
+                let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                result.MASAS_PERSONALES = result.MASAS_PERSONALES - 5 * countAux[1]       
+            }
+
+            if(item.tipo.includes("MASAS MEDIANAS UNI")){
+                let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                result.MASAS_MEDIANAS = result.MASAS_MEDIANAS - countAux               
+            }
+
             //SOPA         
             if(item.tipo.includes("SOPA")){
                 if(item.sabor_sopa === "POLLO"){
+
                     result.PAN_OREGANO = result.PAN_OREGANO - 1
                     result.POLLO = result.POLLO - 20
                 }else if(item.sabor_sopa === "TOMATE"){
