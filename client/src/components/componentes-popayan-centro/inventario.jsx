@@ -52,7 +52,7 @@ function PizzarraNavBarUserP(props){
     }
    //****
    const handleSideBarMenu = (e) => {
-        console.log(e.item.text)
+        //console.log(e.item.text)
         if(e.item.text === 'Seguimiento Inventarios'){
             navigate("/");
         }else if(e.item.text === 'Ingresar datos Inventario'){

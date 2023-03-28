@@ -130,10 +130,22 @@ class opciones extends Component {
 
                             <div className="col">
                             <h3>Lista de insumos cocina activos: # {this.state.insumosOpcion.length}</h3>
-                            </div>
+                            </div>    
 
                             <div className="col">
-                                <button type="button" className="btn btn-success btn-lg" onClick={this.handleNuevoI.bind(this)}>Agregar-Insumo</button>
+                            <input 
+                                    id="insumoNuevo"
+                                    type="text" 
+                                    className="form-control" 
+                                    aria-label="Sizing example input" 
+                                    aria-describedby="inputGroup-sizing-sm"   
+                                    placeholder='Digite nuevo insumo'                                             
+                                    onChange={(e) => this.setState({NuevoInsumo: e.target.value})}
+                                    /> 
+                            </div>    
+
+                            <div className="col">
+                                <button type="button" className="btn btn-success btn-lg" onClick={this.handleNuevoInsumo.bind(this)}>Agregar-Insumo</button>
                             </div>
 
                             </div>

@@ -34,7 +34,7 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.inv)
+                    //console.log(data.inv)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,
@@ -86,7 +86,7 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.inv)
+                    //console.log(data.inv)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,

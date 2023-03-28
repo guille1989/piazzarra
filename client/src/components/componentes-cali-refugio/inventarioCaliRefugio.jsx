@@ -68,7 +68,7 @@ class inventarioCaliRefugio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/insumos`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data.inv)
+                //console.log(data.inv)
                 this.setState({
                     inventario: data.inv
                 })

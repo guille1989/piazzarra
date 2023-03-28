@@ -317,6 +317,32 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         </>                                                    
                                                     )
+                                                }else if (item.tipo.includes("AMERICANO")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.desayuno_tipo_bebida}  <br />        
+                                                            {item.desayuno_tipo_huevos} 
+                                                            {item.mod_sabor_desayuno}                             
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_desayuno_americano + item.costo_adiciones_americano} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("HUESPED")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.desayuno_tipo_bebida} <br />       
+                                                            {item.desayuno_tipo_huevos}     
+                                                            {item.mod_sabor_desayuno}                          
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_desayuno_huesped + item.costo_adiciones_huesped} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
                                                 }else if (item.tipo.includes("MASAS")) {
                                                     return (
                                                         <>
@@ -412,9 +438,9 @@ class adminReviewVentasPC extends Component {
                                                         </>                                                    
                                                     )
                                                 } else {
-                                                return (
-                                                    <div>Sin datos</div>
-                                                )
+                                                    return (
+                                                        <div>Sin datos</div>
+                                                    )
                                                 }
                                             })()}                      
                                             </tr>                                           

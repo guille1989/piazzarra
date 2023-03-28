@@ -101,7 +101,7 @@ function PizzarraNavBarAdmin(props){
     }
    //****
    const handleSideBarMenu = (e) => {
-        console.log(e.item.text)
+        //console.log(e.item.text)
 
         switch(e.item.text) {
             case 'Inventario - Cali - Refugio':
