@@ -366,6 +366,18 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         </>                                                    
                                                     )
+                                                }else if (item.tipo.includes("CHOCOLATE")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo} 
+                                                            {item.mod_sabor_chocolate}                              
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_chocolate} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
                                                 }else if (item.tipo.includes("VINO")) {
                                                     return (
                                                         <>

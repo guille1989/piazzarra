@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort, Freeze } from '@syncfusion/ej2-react-grids';
 import FlagGreen from '../../../images/flagGreen.png';
 import FlagRed from '../../../images/flagRed.png';
 
@@ -270,7 +270,8 @@ class adminReviewInventarioPC extends Component {
                             allowSorting={true} 
                             allowPaging={true} 
                             height={500} 
-                            pageSettings={{ pageCount: 4, pageSizes: true }}>
+                            pageSettings={{ pageCount: 4, pageSizes: true }}
+                            frozenColumns={1}>
                             <ColumnsDirective>
                                 <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
                                 <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>
@@ -281,7 +282,7 @@ class adminReviewInventarioPC extends Component {
                                 <ColumnDirective field='INV_ESTADO' headerText='Estado Cuadre Insumo' template={this.statusTemplate} width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
                             </ColumnsDirective>
-                            <Inject services={[Toolbar, Page, Sort]}/>
+                            <Inject services={[Freeze, Toolbar, Page, Sort]}/>
                         </GridComponent>
                     </div>
                 </div>

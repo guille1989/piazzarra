@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
         <div className="container-sm">
-          <h2>Pizzarra inventario Cali</h2>
+          <h2>PIZZERIA LA PIZZARRA</h2>
 
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="mb-3 row">
