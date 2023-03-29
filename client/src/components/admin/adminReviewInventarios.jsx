@@ -270,8 +270,7 @@ class adminInicio extends Component {
                             allowSorting={true} 
                             allowPaging={true} 
                             height={500} 
-                            pageSettings={{ pageCount: 4, pageSizes: true }}
-                            frozenColumns={1}>
+                            pageSettings={{ pageCount: 4, pageSizes: true }}>
                             <ColumnsDirective>
                                 <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
                                 <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>
