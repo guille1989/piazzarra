@@ -152,7 +152,7 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
         result_sum_ventas_acum = result_sum_ventas_acum / 30
     }
 
-    console.log(result_tipo_aux)
+    //console.log(result_tipo_aux)
 
     return {result_aux, result_limite, result_sum_ventas_acum, result_tipo_aux, result_sum_ventas_acum_totales}
 }
