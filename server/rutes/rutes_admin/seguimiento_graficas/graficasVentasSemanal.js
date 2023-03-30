@@ -34,10 +34,16 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
     let date_semana_search = [fecha_uno_aux];
     let result = [];
     let result_aux = [];
+    let result_tipo_aux = [];
     let result_limite = [];
     let result_sum_ventas_acum = 0;
+    let result_sum_ventas_acum_totales = 0;
+    let count_domicilios = 0;
+    let count_mesa = 0;
+    let count_recogen = 0;
 
     if(filtro_tipo === 'semana'){       
+
         for(let i=1; i<7; i++){
             dateAux.setDate(dateAux.getDate() + 1);
             day = dateAux.getDate() + 1;
@@ -49,20 +55,34 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
             date_semana_search.push(date_semana)
         }
 
+        //console.log(date_semana_search)
+
         for(let i =0; i<date_semana_search.length; i++){
+
             result = await PedidoPizzarra.find({
                 $and:[{"aux.fecha_pedido": date_semana_search[i]}, {"aux.local": pedidos_aux}] 
             });           
 
             result.map((item, index) => {
                 item.aux.map((item2, index2) => {
+                    //console.log(item2)
                     result_sum_ventas_acum = result_sum_ventas_acum + item2.costo_pedido
+
+                    if(item2.tipo_pedido === "MESA"){
+                        count_mesa = count_mesa + 1
+                    }else if(item2.tipo_pedido === "DOMICILIO"){
+                        count_domicilios = count_domicilios + 1
+                    }else if(item2.tipo_pedido === "RECOGEN"){
+                        count_recogen = count_recogen + 1
+                    }
                 })
             })
 
             result_aux.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": result, "Limite": 1000000})
             result_limite.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": 1000000})
         }
+
+        result_tipo_aux.push({"x": "Mesa", "y": count_mesa, "text": "Pedidos Mesa: " + count_mesa},{"x": "Domicilios", "y": count_domicilios, "text": "Pedidos Domicilios: " + count_domicilios},{"x":"Recogen", "y": count_recogen, "text": "Pedidos Recogen: " + count_recogen})
 
         let result_sum_ventas = 0;
 
@@ -76,6 +96,7 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
             result_aux[index].Dato = result_sum_ventas
         })
 
+        result_sum_ventas_acum_totales = result_sum_ventas_acum
         result_sum_ventas_acum = result_sum_ventas_acum / 7
 
     }else if(filtro_tipo === 'mes'){
@@ -98,12 +119,22 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
             result.map((item, index) => {
                 item.aux.map((item2, index2) => {
                     result_sum_ventas_acum = result_sum_ventas_acum + item2.costo_pedido
+
+                    if(item2.tipo_pedido === "MESA"){
+                        count_mesa = count_mesa + 1
+                    }else if(item2.tipo_pedido === "DOMICILIO"){
+                        count_domicilios = count_domicilios + 1
+                    }else if(item2.tipo_pedido === "RECOGEN"){
+                        count_recogen = count_recogen + 1
+                    }
                 })
             })
 
             result_aux.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": result, "Limite": 1000000})
-            result_limite.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": 1000000})
+            result_limite.push({"Fecha": date_semana_search[i].split('-')[1] + '-' + date_semana_search[i].split('-')[2], "Dato": 1000000}) 
         }
+
+        result_tipo_aux.push({"x": "Mesa", "y": count_mesa, "text": "Pedidos Mesa: " + count_mesa},{"x": "Domicilios", "y": count_domicilios, "text": "Pedidos Domicilios: " + count_domicilios},{"x":"Recogen", "y": count_recogen, "text": "Pedidos Recogen: " + count_recogen})
 
         let result_sum_ventas = 0;
 
@@ -117,10 +148,13 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
             result_aux[index].Dato = result_sum_ventas
         })
 
+        result_sum_ventas_acum_totales = result_sum_ventas_acum
         result_sum_ventas_acum = result_sum_ventas_acum / 30
     }
 
-    return {result_aux, result_limite, result_sum_ventas_acum}
+    console.log(result_tipo_aux)
+
+    return {result_aux, result_limite, result_sum_ventas_acum, result_tipo_aux, result_sum_ventas_acum_totales}
 }
 
 module.exports = rute;

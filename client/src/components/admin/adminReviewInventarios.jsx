@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort, Freeze } from '@syncfusion/ej2-react-grids';
+import { DashboardLayoutComponent, PanelsDirective, PanelDirective } from "@syncfusion/ej2-react-layouts";
 import FlagGreen from '../../images/flagGreen.png';
 import FlagRed from '../../images/flagRed.png';
 
