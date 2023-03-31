@@ -47,7 +47,6 @@ function PizzarraNavBarAdmin(props){
             items: [
                 { text: 'Inventario - Cali - Refugio' },
                 { text: 'Inventario - Popayan - Centro' },
-                { text: 'Inventario - TODOS' }
             ]
         },
         {
@@ -55,8 +54,7 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-changes-previous',
             items: [
                 { text: 'Compras - Cali - Refugio' },
-                { text: 'Compras - Popayan - Centro' },
-                { text: 'Compras - TODOS' }
+                { text: 'Compras - Popayan - Centro' }
             ]
         },
         {
@@ -64,8 +62,7 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-changes-next',
             items: [
                 { text: 'Ventas - Cali - Refugio' },
-                { text: 'Ventas - Popayan - Centro' },
-                { text: 'Ventas - TODOS' }
+                { text: 'Ventas - Popayan - Centro' }
             ]
         },
         {
@@ -74,7 +71,6 @@ function PizzarraNavBarAdmin(props){
             items: [
                 { text: 'Dashboard - Ventas' },
                 { text: 'Dashboard - Produccion' },
-                { text: 'Dashboard - TODOS' }
             ]
         },
         {
@@ -83,7 +79,6 @@ function PizzarraNavBarAdmin(props){
             items: [
                 { text: 'Configuracion - Cali - Refugio' },
                 { text: 'Configuracion - Popayan - Centro' },
-                { text: 'Configuracion - TODOS' }
             ]
         }
     ];

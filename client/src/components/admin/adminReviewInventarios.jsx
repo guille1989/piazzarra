@@ -11,9 +11,7 @@ class adminInicio extends Component {
             inve_cuadre: [],
             inve_insumos: [],
             inve_final_data: [],
-            inve_final_ayer_data: [],
-            inve_final_compras_data: [],
-            inve_final_ventas: [],
+            inve_final_ayer_data: []
         }
         this.toolbarOptions = ['Search'];
     }
@@ -37,7 +35,8 @@ class adminInicio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/insumos`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                //console.log(data)
+                //console.log(data.inv.sort((a, b) => a.TIPO.toLowerCase().localeCompare(b.TIPO.toLowerCase())))
+                //data.inv.sort((a,b) => a.TIPO.localeCompare(b.TIPO));
                 this.setState({
                     inve_insumos: data.inv
                 })
@@ -68,32 +67,6 @@ class adminInicio extends Component {
                         inve_final_ayer_data: data.inv.result_ayer[0].INVENTARIO_AUX
                     })
                 } 
-            })
-        .catch(err => console.log(err))
-
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + today, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data)
-                if(data.error !== undefined){
-                    this.setState({
-                        inve_final_compras_data: []
-                    })
-                }else{
-                    this.setState({
-                        inve_final_compras_data: data.inv_entrada.result[0].INVENTARIO_AUX
-                    })
-                }
-            })
-        .catch(err => console.log(err))
-
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + today, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data)
-                this.setState({
-                    inve_final_ventas: data.inv
-                })
             })
         .catch(err => console.log(err))
 
@@ -151,38 +124,6 @@ class adminInicio extends Component {
                     } 
                 })
                 .catch(err => console.log(err))       
-            
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/inventarioentradas/` + e.target.value, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data)
-                    if(data.error !== undefined){
-                        this.setState({
-                            inve_final_compras_data: []
-                        })
-                    }else{
-                        this.setState({
-                            inve_final_compras_data: data.inv_entrada.result[0].INVENTARIO_AUX
-                        })
-                    }
-            })
-            .catch(err => {
-                console.log(err)
-                this.setState({
-                    inve_final_compras_data: []
-                })
-            })
-
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidossalidas/` + e.target.value, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data)
-                    this.setState({
-                        inve_final_ventas: data.inv
-                    })
-                })
-            .catch(err => console.log(err))
-
 
         //Inve cuadre completo
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)

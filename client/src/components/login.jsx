@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-        <div className="container-sm">
+        <div className="loginPage">
           <h2>PIZZERIA LA PIZZARRA</h2>
 
           <form onSubmit={this.handleSubmit.bind(this)}>

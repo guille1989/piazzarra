@@ -59,20 +59,21 @@ class adminDashboard extends Component {
                         filter_ventas_tipo: data.inv.result_tipo_aux,
                         ventas_totales_cali: data.inv.result_sum_ventas_acum_totales
                     })
-                })
-                .catch(err => console.log(err))
 
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data.inv)
-                    this.setState({
-                        filter_ventas_popayan: data.inv.result_aux,
-                        ventas_promedio_popayan: data.inv.result_sum_ventas_acum,
-                        filter_ventas_tipo_popayan: data.inv.result_tipo_aux,
-                        ventas_totales_popayan: data.inv.result_sum_ventas_acum_totales
-                    })
-                })
+                    //Popayan
+                    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
+                        .then(response => response.json())
+                        .then(data => {
+                            //console.log(data.inv)
+                            this.setState({
+                                filter_ventas_popayan: data.inv.result_aux,
+                                ventas_promedio_popayan: data.inv.result_sum_ventas_acum,
+                                filter_ventas_tipo_popayan: data.inv.result_tipo_aux,
+                                ventas_totales_popayan: data.inv.result_sum_ventas_acum_totales
+                            })
+                        })
+                        .catch(err => console.log(err))
+                        })
                 .catch(err => console.log(err))
     }
 
@@ -115,20 +116,21 @@ class adminDashboard extends Component {
                         filter_ventas_tipo: data.inv.result_tipo_aux,
                         ventas_totales_cali: data.inv.result_sum_ventas_acum_totales
                     })
-                })
-                .catch(err => console.log(err))
 
-            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data.inv)
-                    this.setState({
-                        filter_ventas_popayan: data.inv.result_aux,
-                        ventas_promedio_popayan: data.inv.result_sum_ventas_acum,
-                        filter_ventas_tipo_popayan: data.inv.result_tipo_aux,
-                        ventas_totales_popayan: data.inv.result_sum_ventas_acum_totales
-                    })
-                })
+                    //Para popayan
+                    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + e.target.value + `/` + this.state.filtro_seleccion + `/Popayan-Centro`, requestOptions)
+                        .then(response => response.json())
+                        .then(data => {
+                            //console.log(data.inv)
+                            this.setState({
+                                filter_ventas_popayan: data.inv.result_aux,
+                                ventas_promedio_popayan: data.inv.result_sum_ventas_acum,
+                                filter_ventas_tipo_popayan: data.inv.result_tipo_aux,
+                                ventas_totales_popayan: data.inv.result_sum_ventas_acum_totales
+                            })
+                        })
+                        .catch(err => console.log(err))
+                        })
                 .catch(err => console.log(err))
         }
 
@@ -151,8 +153,7 @@ class adminDashboard extends Component {
 
     pieUno(){
         return (
-            <div className='control-pane'>
-                <div className='control-section'>
+            <div style={{ height: "100%", width: "100%" }}>
                     <AccumulationChartComponent 
                         id="pie-chart" 
                         title='Tipo pedidos Pizzarra Cali' 
@@ -186,14 +187,12 @@ class adminDashboard extends Component {
                             </AccumulationSeriesCollectionDirective>
                     </AccumulationChartComponent>
                 </div>
-            </div>
         );
     }
 
     pieDos(){
         return(
-            <div className='control-pane'>
-                <div className='control-section'>
+            <div style={{ height: "100%", width: "100%" }}>
                     <AccumulationChartComponent 
                         id="pie-chart02" 
                         title='Tipo pedidos Pizzarra Popayan' 
@@ -227,14 +226,12 @@ class adminDashboard extends Component {
                             </AccumulationSeriesCollectionDirective>
                     </AccumulationChartComponent>
                 </div>
-            </div>
         );
     }
 
     graficaVentas(){
         return(
-                <div className='control-pane'>
-                <div className='control-section'>
+            <div style={{ height: "100%", width: "100%" }}>
                     <br></br>
                     <ChartComponent id='charts' 
                     style={{ textAlign: "center" }}    
@@ -308,7 +305,6 @@ class adminDashboard extends Component {
                         </SeriesCollectionDirective>
                     </ChartComponent>
                 </div>
-                </div>
         );
     }
 
@@ -370,6 +366,7 @@ class adminDashboard extends Component {
                 <h4>1. Tipo periodo: </h4>
                     <select className="form-select" aria-label="Default select example" onChange={this.filtroChange.bind(this)}>
                         <option selected>Seleccione tipo periodo</option>
+                        <option value="dia">Dia</option>
                         <option value="semana">Semanal</option>
                         <option value="mes">Mensual</option>
                         <option value="semestre">Semestral</option>
@@ -398,7 +395,9 @@ class adminDashboard extends Component {
                         <DashboardLayoutComponent
                         id="dashboard"
                         columns={6}
-                        cellSpacing={[10, 10]}
+                        cellAspectRatio={100 / 85}
+                        cellSpacing={[5, 5]}
+                        allowDragging={false}
                         ref={(scope) => {
                             this.dashboardObj = scope;
                         }}

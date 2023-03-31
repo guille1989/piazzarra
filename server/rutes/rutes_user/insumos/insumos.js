@@ -25,7 +25,8 @@ async function leerInsumos(){
     
     let result = [];
 
-    result = await Insumos.find();
+    result = await Insumos.find().sort({TIPO: 1});
+    console.log(result)
 
     return result
 
