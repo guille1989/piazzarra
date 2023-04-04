@@ -97,8 +97,6 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
             date_semana_search.push(date_semana)
         }
 
-        //console.log(date_semana_search)
-
         for(let i =0; i<date_semana_search.length; i++){
 
             //console.log(date_semana_search[i])

@@ -1,5 +1,5 @@
 import React, { Component, ReactElement } from 'react';
-import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, Tooltip, ColumnSeries, DataLabel, Highlight, LineSeries } from '@syncfusion/ej2-react-charts';
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, Tooltip, ColumnSeries, DataLabel, Highlight, LineSeries, TrendlineDirective, TrendlinesDirective, Trendlines } from '@syncfusion/ej2-react-charts';
 import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, PieSeries, AccumulationDataLabel } from '@syncfusion/ej2-react-charts';
 import {
     DashboardLayoutComponent,
@@ -37,6 +37,27 @@ class adminDashboard extends Component {
         //Fecha
         var date = new Date();
         var day = date.getDate() - 7;
+        if(day <= 0){
+            day = date.getDate() - 6;
+            if(day <= 0){
+                day = date.getDate() - 5;
+                if(day <= 0){
+                    day = date.getDate() - 4;
+                    if(day <= 0){
+                        day = date.getDate() - 3;
+                        if(day <= 0){
+                            day = date.getDate() - 2;
+                            if(day <= 0){
+                                day = date.getDate() -1;
+                                if(day <= 0){
+                                    day = date.getDate()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
@@ -257,7 +278,7 @@ class adminDashboard extends Component {
                     width={Browser.isDevice ? '100%' : '100%'}                     
                     loaded={this.onChartLoad.bind(this)}>
 
-                        <Inject services={[ColumnSeries, LineSeries, Legend, Tooltip, Category, DataLabel, Highlight]} />
+                        <Inject services={[ColumnSeries, LineSeries, Legend, Tooltip, Category, DataLabel, Highlight, Trendlines]} />
                         <SeriesCollectionDirective >
                             <SeriesDirective 
                                 dataSource={this.state.filter_ventas} 
@@ -274,6 +295,17 @@ class adminDashboard extends Component {
                                         font: { fontWeight: '2W00', color: '#000000' },
                                     },
                                 }}>
+
+                                    <TrendlinesDirective>
+                                        <TrendlineDirective 
+                                            type='Linear' 
+                                            width={3} 
+                                            marker={{ visible: false }} 
+                                            name='Trends' 
+                                            fill='#C64A75'>
+                                        </TrendlineDirective>
+                                    </TrendlinesDirective>
+
                             </SeriesDirective>
 
                             <SeriesDirective 
@@ -312,7 +344,7 @@ class adminDashboard extends Component {
         return(
             <div className='cuadroventas'>                
                     
-                <h3>Ventas Total Periodo Cali - Refugio: </h3> 
+                <h3 className='letrasencuadro'>Ventas Total Periodo Cali - Refugio: </h3> 
 
                 <ButtonComponent cssClass='e-info'>{parseInt(this.state.ventas_totales_cali).toLocaleString('en-US', {
                                                                                         style: 'currency',

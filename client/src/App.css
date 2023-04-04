@@ -1,8 +1,9 @@
 
 .cuadroventas {
-  text-align: center;
-  height: "100%"; 
-  width: "100%";
+}
+
+.letrasencuadr{
+  font-size: 2em
 }
 
 .avisoFechaNoHay {

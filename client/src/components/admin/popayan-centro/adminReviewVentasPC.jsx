@@ -82,7 +82,7 @@ class adminReviewVentasPC extends Component {
                 <br></br>
                 <br></br>
 
-                <h1>Revision ventas: </h1>
+                <h1>Revision ventas Popayan - Centro: </h1>
 
                 <h3>Paso No. 1: Seleccione fecha</h3>
 

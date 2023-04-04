@@ -25,7 +25,7 @@ import Graficas from './adminDashboard';
 import InicioAdminPopayan from './popayan-centro/adminReviewInventarioPC';
 import ComprasAdminPopayan from './popayan-centro/adminReviewComprasPC';
 import VentasAdminPopayan from './popayan-centro/adminReviewVentasPC';
-import GraficasAdminPopayan from './popayan-centro/adminDashboardPC';
+import GraficasAdminProduccion from './adminDashboardProduccion';
 
 function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
@@ -123,8 +123,8 @@ function PizzarraNavBarAdmin(props){
             case 'Ventas - Popayan - Centro':
                 navigate("/VentasResumenPopayan");
                 break;
-            case 'Dashboard - Popayan - Centro':
-                //navigate("/DashboardPopayan");
+            case 'Dashboard - Produccion':
+                navigate("/DashboardProduccion");
                 break;
             default:
               // code block
@@ -157,11 +157,12 @@ function PizzarraNavBarAdmin(props){
                                 <Route path="/VentasResumen" element={<VentasAdmin></VentasAdmin>}/>
                                 <Route path='/ComprasResumen' element={<ComprasAdmin></ComprasAdmin>}/>
                                 <Route path='/Dashboard' element={<Graficas></Graficas>}/>
+                                <Route path='/DashboardProduccion' element={<GraficasAdminProduccion></GraficasAdminProduccion>}/>
 
                                 <Route path='/AdminPopayan' element={<InicioAdminPopayan></InicioAdminPopayan>}/>
                                 <Route path='/ComprasResumenPopayan' element={<ComprasAdminPopayan></ComprasAdminPopayan>}/>
                                 <Route path='/VentasResumenPopayan' element={<VentasAdminPopayan></VentasAdminPopayan>}/>
-                                <Route path='/DashboardPopayan' element={<GraficasAdminPopayan></GraficasAdminPopayan>}/>
+                                
 
                             </Routes>
 

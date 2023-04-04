@@ -79,7 +79,10 @@ async function ingresarEntradas(body, fechaHoyAux, inv_id){
 
     result = await InventarioEntrada.updateOne(
         {
-            FECHA_INVENTARIO_ENTRANTE: fechaHoyAux
+            $and: [
+                {"FECHA_INVENTARIO_ENTRANTE": fechaHoyAux},
+                {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}
+            ]
         }, 
         {
             $set: inventario_input

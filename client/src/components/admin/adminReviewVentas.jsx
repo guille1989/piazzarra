@@ -82,7 +82,7 @@ class adminReviewVentas extends Component {
                 <br></br>
                 <br></br>
 
-                <h1>Revision ventas: </h1>
+                <h1>Revision ventas Cali - Refugio: </h1>
 
                 <h3>Paso No. 1: Seleccione fecha</h3>
 

@@ -21,6 +21,7 @@ const LeerPedidos = require('./rutes/rutes_admin/seguimiento_ventas/leerVentas')
 const LeerPedidosSalidas = require('./rutes/rutes_admin/seguimiento_ventas/leerVentasSalidas');
 const LeerComprasAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
 const LeerVentasSemanaAdmin = require('./rutes/rutes_admin/seguimiento_graficas/graficasVentasSemanal');
+const LeerProduccionSemanaAdmin = require('./rutes/rutes_admin/seguimiento_graficas/graficasProduccionSemana');
 const ActualizarLimitesInsumos = require('./rutes/rutes_admin/seguimiento_insumos/insumosAlarmasAdmin');
 const CuadreGeneralInventarioAdmin = require('./rutes/rutes_admin/seguimiento_cuadre_inventario/cuadreInventario');
 
@@ -63,6 +64,7 @@ app.use('/api/admin/compras', LeerComprasAdmin);                    //Leemos las
 app.use('/api/admin/ventassemana', LeerVentasSemanaAdmin);          //Leemos las ventas por semana
 app.use('/api/admin/actualizacionlimites', ActualizarLimitesInsumos)//Actualizamos limites de insumos para las alarmas
 app.use('/api/admin/cuadre', CuadreGeneralInventarioAdmin)          //Cuadre de inventario en backend
+app.use('/api/admin/graficaproduccion', LeerProduccionSemanaAdmin)  //Leemos grafica produccion
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;
