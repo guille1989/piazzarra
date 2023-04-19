@@ -3476,63 +3476,63 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.JAMON = result.JAMON - tresIng
                         result.CABANOS = result.CABANOS - tresIng
                         result.SALAMI = result.SALAMI - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "HAWAIANA"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.PINIA_CALADA = result.PINIA_CALADA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "HIGOSTOCINETA"){
         
                         result.HIGOS = result.HIGOS - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "POLLOCHAMPI"){
         
                         result.POLLO = result.POLLO - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "JAMONCHAMPI"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "SAMBA"){
         
                         result.MADURO = result.MADURO - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "PETETE"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.TOCINETA = result.TOCINETA - tresIng
                         result.TOMATE = result.TOMATE - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "CAMPESINA"){
         
                         result.MAIZ = result.MAIZ - dosIng
                         result.CABANOS = result.CABANOS - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "NAPOLITANA"){
         
                         result.QUESO = result.QUESO - queso * 2
                     }else if(item.sabor_pantalon === "MARGARITA"){
         
                         result.TOMATE = result.TOMATE - dosIng
-                        result.QUESO = result.QUESO - queso * 2
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_pantalon === "GOURMET"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
                         result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "PADRISIMA"){
         
                         result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3
                         result.JALAPENIOS = result.JALAPENIOS - 20
                         result.LECHUGA = result.LECHUGA - 20
                         result.TOMATE = result.TOMATE - 20
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "VEGETARIANA"){ 
         
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
@@ -3540,9 +3540,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CHAMPINIONES = result.CHAMPINIONES - tresIng
                         result.CEBOLLA = result.CEBOLLA - tresIng
                         result.PIMENTON = result.PIMENTON - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon.includes("Combinada 2 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_pantalon.split("+", 3)[1].replace(" " ,"");
                         let ing02 = item.sabor_pantalon.split("+", 3)[2].replace(" " ,"");
@@ -3580,7 +3580,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3616,11 +3616,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                     }else if(item.sabor_pantalon.includes("Combinada 3 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_pantalon.split("+", 4)[1].replace(" " ,"");
                         let ing02 = item.sabor_pantalon.split("+", 4)[2].replace(" " ,"");
@@ -3659,7 +3659,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3695,7 +3695,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -3731,7 +3731,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing03.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
                     }
 
@@ -3774,7 +3774,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(Adiciones[i].includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
-                            result.QUESO = result.QUESO - adicionGramos
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
                         }
                     }
                 }
@@ -3797,63 +3797,63 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.JAMON = result.JAMON - tresIng
                         result.CABANOS = result.CABANOS - tresIng
                         result.SALAMI = result.SALAMI - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "HAWAIANA"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.PINIA_CALADA = result.PINIA_CALADA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "HIGOSTOCINETA"){
         
                         result.HIGOS = result.HIGOS - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "POLLOCHAMPI"){
         
                         result.POLLO = result.POLLO - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "JAMONCHAMPI"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "SAMBA"){
         
                         result.MADURO = result.MADURO - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "PETETE"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.TOCINETA = result.TOCINETA - tresIng
                         result.TOMATE = result.TOMATE - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "CAMPESINA"){
         
                         result.MAIZ = result.MAIZ - dosIng
                         result.CABANOS = result.CABANOS - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "NAPOLITANA"){
         
-                        result.QUESO = result.QUESO - queso * 2
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_pancook === "MARGARITA"){
         
                         result.TOMATE = result.TOMATE - dosIng
-                        result.QUESO = result.QUESO - queso * 2
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_pancook === "GOURMET"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
                         result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "PADRISIMA"){
         
                         result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3
                         result.JALAPENIOS = result.JALAPENIOS - 20
                         result.LECHUGA = result.LECHUGA - 20
                         result.TOMATE = result.TOMATE - 20
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "VEGETARIANA"){ 
         
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
@@ -3861,9 +3861,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CHAMPINIONES = result.CHAMPINIONES - tresIng
                         result.CEBOLLA = result.CEBOLLA - tresIng
                         result.PIMENTON = result.PIMENTON - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook.includes("Combinada 2 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_pancook.split("+", 3)[1].replace(" " ,"");
                         let ing02 = item.sabor_pancook.split("+", 3)[2].replace(" " ,"");
@@ -3901,7 +3901,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3937,11 +3937,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                     }else if(item.sabor_pancook.includes("Combinada 3 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_pancook.split("+", 4)[1].replace(" " ,"");
                         let ing02 = item.sabor_pancook.split("+", 4)[2].replace(" " ,"");
@@ -3980,7 +3980,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4016,7 +4016,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -4052,7 +4052,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing03.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
                     }
 
@@ -4095,7 +4095,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(Adiciones[i].includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
-                            result.QUESO = result.QUESO - adicionGramos
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
                         }
                     }
                 }
@@ -4126,63 +4126,63 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.JAMON = result.JAMON - tresIng
                         result.CABANOS = result.CABANOS - tresIng
                         result.SALAMI = result.SALAMI - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "HAWAIANA"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.PINIA_CALADA = result.PINIA_CALADA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "HIGOSTOCINETA"){
         
                         result.HIGOS = result.HIGOS - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "POLLOCHAMPI"){
         
                         result.POLLO = result.POLLO - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "JAMONCHAMPI"){
         
                         result.JAMON = result.JAMON - dosIng
                         result.CHAMPINIONES = result.CHAMPINIONES - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "SAMBA"){
         
                         result.MADURO = result.MADURO - dosIng
                         result.TOCINETA = result.TOCINETA - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "PETETE"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.TOCINETA = result.TOCINETA - tresIng
                         result.TOMATE = result.TOMATE - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "CAMPESINA"){
         
                         result.MAIZ = result.MAIZ - dosIng
                         result.CABANOS = result.CABANOS - dosIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "NAPOLITANA"){
         
-                        result.QUESO = result.QUESO - queso * 2
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_lasagna === "MARGARITA"){
         
                         result.TOMATE = result.TOMATE - dosIng
-                        result.QUESO = result.QUESO - queso * 2
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_lasagna === "GOURMET"){
         
                         result.POLLO = result.POLLO - tresIng
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
                         result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "PADRISIMA"){
         
                         result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3
                         result.JALAPENIOS = result.JALAPENIOS - 20
                         result.LECHUGA = result.LECHUGA - 20
                         result.TOMATE = result.TOMATE - 20
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "VEGETARIANA"){ 
         
                         result.ACEITUNAS = result.ACEITUNAS - tresIng
@@ -4190,9 +4190,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CHAMPINIONES = result.CHAMPINIONES - tresIng
                         result.CEBOLLA = result.CEBOLLA - tresIng
                         result.PIMENTON = result.PIMENTON - tresIng
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna.includes("Combinada 2 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_lasagna.split("+", 3)[1].replace(" " ,"");
                         let ing02 = item.sabor_lasagna.split("+", 3)[2].replace(" " ,"");
@@ -4230,7 +4230,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4266,11 +4266,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - dosIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
                         }
 
                     }else if(item.sabor_lasagna.includes("Combinada 3 Ingredientes")){
-                        result.QUESO = result.QUESO - queso
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
                         let ing01 = item.sabor_lasagna.split("+", 4)[1].replace(" " ,"");
                         let ing02 = item.sabor_lasagna.split("+", 4)[2].replace(" " ,"");
@@ -4309,7 +4309,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing01.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4345,7 +4345,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing02.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -4381,7 +4381,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(ing03.includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
-                            result.QUESO = result.QUESO - tresIng
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
                         }
                     }
                     
@@ -4424,7 +4424,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(Adiciones[i].includes("Pina")){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
-                            result.QUESO = result.QUESO - adicionGramos
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
                         }
                     }
 
