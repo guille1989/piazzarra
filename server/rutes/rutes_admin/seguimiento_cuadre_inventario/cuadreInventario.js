@@ -4873,7 +4873,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                 if(item.tipo.includes("CERVEZA")){
                     result.CERVEZA = result.CERVEZA - item.tipo.replace( /^\D+/g, '')             
                 }
-                if(item.tipo.includes("CULB")){
+                if(item.tipo.includes("CLUB")){
                     result.CERVEZA_CULB = result.CERVEZA_CULB - item.tipo.replace( /^\D+/g, '')             
                 }
                 if(item.tipo.includes("POKER")){
