@@ -197,6 +197,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
                     result.LECHE = result.LECHE - desAux * 100
+                    result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
+                    result.PROMASA = result.PROMASA - desAux * 25 
                     
                     //Ingrediente adicional
                     let adicionGramos = 30 * desAux
@@ -248,6 +250,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
                     result.LECHE = result.LECHE - desAux * 100
+                    result.PAN_OREGANO = result.PAN_OREGANO - desAux * 25
+                    result.PROMASA = result.PROMASA - desAux * 25 
 
                     if(item.desayuno_tipo_huevos === "Pericos"){
                         result.CEBOLLA_LARGA = result.CEBOLLA_LARGA - desAux * 30
@@ -4788,6 +4792,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                 if(item.tipo.includes("PAN COOK 2")){
                     let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
                     result.PANNE_COOK = result.PANNE_COOK - 2 * countAux[1]               
+                }
+
+                if(item.tipo.includes("PAN COOK UNIDAD")){
+                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                    result.PANNE_COOK = result.PANNE_COOK - 1 * countAux[1]               
                 }
 
                 if(item.tipo.includes("PAN UNIDAD")){
