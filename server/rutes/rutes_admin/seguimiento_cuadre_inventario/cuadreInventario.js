@@ -199,6 +199,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                     result.LECHE = result.LECHE - desAux * 100
                     result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
+                    result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
                     
                     //Ingrediente adicional
                     let adicionGramos = 30 * desAux
@@ -250,8 +251,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
                     result.LECHE = result.LECHE - desAux * 100
-                    result.PAN_OREGANO = result.PAN_OREGANO - desAux * 25
+                    result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
+                    result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
+                    
 
                     if(item.desayuno_tipo_huevos === "Pericos"){
                         result.CEBOLLA_LARGA = result.CEBOLLA_LARGA - desAux * 30
