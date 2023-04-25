@@ -462,6 +462,17 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         </>                                                    
                                                     )
+                                                }else if (item.tipo.includes("SALSA 16 ONZAS")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.tipo}                            
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_otros} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
                                                 } else {
                                                     return (
                                                         <div>Sin datos</div>
