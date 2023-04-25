@@ -5205,7 +5205,7 @@ function resumenVentas(result_ventas_auxn, insumos){
 
                 //AROMATICAS
                 if(item.tipo.includes("BEBIDA AROMATICA")){
-                    let cantidad = item.tipo.replace( /^\D+/g, '').split(' X ')
+                    let cantidad = item.tipo.split(' X ')
                     if(item.tipo.includes("FRUTOS ROJOS")){
                         result.AGUA_AROMATICA = result.AGUA_AROMATICA - cantidad[1]        
                     }else if(item.tipo.includes("MANSANILLA")){
