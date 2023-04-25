@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Sort, Inject  } from '@syncfusion/ej2-react-grids';
 
 class adminReviewVentasPC extends Component {
     constructor(props) {
@@ -486,14 +486,15 @@ class adminReviewVentasPC extends Component {
 
                 <div className='control-pane'>
                 <div className='control-section'>
-                <GridComponent dataSource={this.state.ventas_review} height='350'>
+                <GridComponent dataSource={this.state.ventas_review} height='350' allowSorting={true} >
                     <ColumnsDirective>
                     <ColumnDirective field='tipo_pedido' headerText='Tipo Pedido' width='120' textAlign='left'></ColumnDirective>
                     <ColumnDirective field='No' headerText='Numero' width='150'></ColumnDirective>                   
                     </ColumnsDirective>
+                    <Inject services={[Sort]}/>
                 </GridComponent>
                 </div>
-            </div>
+            </div> 
 
             </div>
         );

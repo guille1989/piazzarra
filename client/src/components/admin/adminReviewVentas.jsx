@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GridComponent, ColumnsDirective, ColumnDirective, Sort, Inject  } from '@syncfusion/ej2-react-grids';
 
 class adminReviewVentas extends Component {
     constructor(props) {
@@ -6,6 +7,7 @@ class adminReviewVentas extends Component {
         this.state = {
             ventas: [],
             ventas_totales: [],
+            ventas_review: []
         }
     }
 
@@ -35,7 +37,8 @@ class adminReviewVentas extends Component {
                 console.log('No hay registro')
                 this.setState({
                     ventas: [],
-                    ventas_totales: []
+                    ventas_totales: [],
+                    ventas_review: []
                 })
             }else{
                 console.log('Si hay registro')
@@ -43,7 +46,8 @@ class adminReviewVentas extends Component {
                 //console.log(data.inv.result_sum_ventas)
                 this.setState({
                     ventas: data.inv.result,
-                    ventas_totales: data.inv.result_sum_ventas
+                    ventas_totales: data.inv.result_sum_ventas,
+                    ventas_review: data.inv.result_sum_tipo
                 })
             }
         })
@@ -64,14 +68,16 @@ class adminReviewVentas extends Component {
                         console.log('No hay registro')
                         this.setState({
                             ventas: [],
-                            ventas_totales: []
+                            ventas_totales: [],
+                            ventas_review: []
                         })
                     }else{
                         //console.log(data.inv.result[0].pedido)
                         //console.log(data.inv.result_sum_ventas)
                         this.setState({
                             ventas: data.inv.result,
-                            ventas_totales: data.inv.result_sum_ventas
+                            ventas_totales: data.inv.result_sum_ventas,
+                            ventas_review: data.inv.result_sum_tipo
                         })
                     }
                 })
@@ -428,6 +434,18 @@ class adminReviewVentas extends Component {
                         })}
                     </tbody>
                 </table>
+
+                <div className='control-pane'>
+                <div className='control-section'>
+                <GridComponent dataSource={this.state.ventas_review} height='350' allowSorting={true} >
+                    <ColumnsDirective>
+                    <ColumnDirective field='tipo_pedido' headerText='Tipo Pedido' width='120' textAlign='left'></ColumnDirective>
+                    <ColumnDirective field='No' headerText='Numero' width='150'></ColumnDirective>                   
+                    </ColumnsDirective>
+                    <Inject services={[Sort]}/>
+                </GridComponent>
+                </div>
+                </div>             
             </div>
         );
     }

@@ -241,6 +241,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -317,6 +321,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -457,6 +465,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -493,6 +505,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_personal.includes("Combinada 3 Ingredientes")){
@@ -537,6 +553,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -573,6 +593,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -609,6 +633,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -652,6 +680,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -794,6 +826,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -830,6 +866,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.mitad_uno.includes("Combinada 3 Ingredientes")){
@@ -874,6 +914,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -910,6 +954,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -946,6 +994,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
                 
@@ -1073,6 +1125,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1109,6 +1165,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.mitad_dos.includes("Combinada 3 Ingredientes")){
@@ -1153,6 +1213,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1189,6 +1253,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -1225,6 +1293,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -1272,6 +1344,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesm1[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesm1[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesm1[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -1311,6 +1387,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesm2[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesm2[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesm2[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -1427,6 +1507,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1463,6 +1547,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_grande.includes("Combinada 3 Ingredientes")){
@@ -1507,6 +1595,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1543,6 +1635,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -1579,6 +1675,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -1622,6 +1722,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -1736,6 +1840,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1772,6 +1880,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.mitad_uno.includes("Combinada 3 Ingredientes")){
@@ -1815,6 +1927,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -1851,6 +1967,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -1887,6 +2007,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
                 
@@ -1987,6 +2111,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2023,6 +2151,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.mitad_dos.includes("Combinada 3 Ingredientes")){
@@ -2066,6 +2198,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2102,6 +2238,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -2138,6 +2278,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -2185,6 +2329,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesm1[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesm1[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesm1[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -2224,6 +2372,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesm2[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesm2[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesm2[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -2350,6 +2502,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2386,6 +2542,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.cuarto_uno.includes("Combinada 3 Ingredientes")){
@@ -2429,6 +2589,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2465,6 +2629,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -2501,6 +2669,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
                 
@@ -2614,6 +2786,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2650,6 +2826,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.cuarto_dos.includes("Combinada 3 Ingredientes")){
@@ -2693,6 +2873,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2729,6 +2913,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -2765,6 +2953,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -2878,6 +3070,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2914,6 +3110,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.cuarto_tres.includes("Combinada 3 Ingredientes")){
@@ -2957,6 +3157,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -2993,6 +3197,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -3029,6 +3237,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -3142,6 +3354,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3178,6 +3394,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.cuarto_cuatro.includes("Combinada 3 Ingredientes")){
@@ -3221,6 +3441,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3257,6 +3481,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -3293,6 +3521,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -3344,6 +3576,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesc1[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesc1[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesc1[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -3383,6 +3619,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesc2[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesc2[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesc2[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -3422,6 +3662,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesc3[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesc3[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesc3[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -3461,6 +3705,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adicionesc4[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adicionesc4[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adicionesc4[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -3588,6 +3836,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3624,6 +3876,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_pantalon.includes("Combinada 3 Ingredientes")){
@@ -3667,6 +3923,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3703,6 +3963,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -3739,6 +4003,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -3782,6 +4050,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -3909,6 +4181,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -3945,6 +4221,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_pancook.includes("Combinada 3 Ingredientes")){
@@ -3988,6 +4268,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4024,6 +4308,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -4060,6 +4348,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -4103,6 +4395,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
@@ -4238,6 +4534,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4274,6 +4574,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_lasagna.includes("Combinada 3 Ingredientes")){
@@ -4317,6 +4621,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4353,6 +4661,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -4389,6 +4701,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
                     
@@ -4432,6 +4748,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
 
@@ -4578,6 +4898,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4614,6 +4938,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - dosIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - dosIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - dosIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - dosIng
                         }
 
                     }else if(item.sabor_pasta.includes("Combinada 3 Ingredientes")){
@@ -4657,6 +4985,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing01.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing01.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing01.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing02.includes("Jamon")){                        
@@ -4693,6 +5025,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing02.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing02.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing02.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
 
                         if(ing03.includes("Jamon")){                        
@@ -4729,6 +5065,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - tresIng
                         }else if(ing03.includes("Queso")){
                             result.QUESO = result.QUESO - tresIng
+                        }else if(ing03.includes("Maiz")){
+                            result.MAIZ = result.MAIZ - tresIng
+                        }else if(ing03.includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
                         }
                     }
 
@@ -4772,6 +5112,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                             result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
                         }else if(Adiciones[i].includes("Queso")){
                             result.QUESO = result.QUESO - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
                     }
                 }
