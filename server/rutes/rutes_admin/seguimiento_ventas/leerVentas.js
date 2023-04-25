@@ -77,6 +77,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     let salsa_16_onzas = 0
 
+    let agua_con_gas = 0
+    let agua_sin_gas = 0
+
 
     result = await PedidoPizzarra.find({
         $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
@@ -185,6 +188,13 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if(item2.tipo.includes("SALSA 16 ONZAS")){
                 salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X ')[1])
                              
+            }else if(item.tipo.includes("AGUA")){
+
+                if(item.tipo.includes("AGUA SIN GAS")){
+                    agua_sin_gas = agua_sin_gas + parseInt(item.tipo.replace( /^\D+/g, ''))      
+                }else{
+                    agua_con_gas = agua_con_gas + parseInt(item.tipo.replace( /^\D+/g, ''))     
+                }         
             }
 
         })
@@ -231,7 +241,10 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'masa_personal_cinco', 'No': masa_personal_cinco},
                         {'tipo_pedido': 'masa_mediana_unidad', 'No': masa_mediana_unidad},
                         
-                        {'tipo_pedido': 'salsa_16_onzas', 'No': salsa_16_onzas})
+                        {'tipo_pedido': 'salsa_16_onzas', 'No': salsa_16_onzas},
+                        
+                        {'tipo_pedido': 'agua_con_gas', 'No': agua_con_gas},
+                        {'tipo_pedido': 'agua_sin_gas', 'No': agua_sin_gas},)
 
 
     result_sum_tipo.map((item, index) => {
