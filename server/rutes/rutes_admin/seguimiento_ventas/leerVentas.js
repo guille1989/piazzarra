@@ -188,12 +188,12 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if(item2.tipo.includes("SALSA 16 ONZAS")){
                 salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X ')[1])
                              
-            }else if(item.tipo.includes("AGUA")){
+            }else if(item2.tipo.includes("AGUA")){
 
-                if(item.tipo.includes("AGUA SIN GAS")){
-                    agua_sin_gas = agua_sin_gas + parseInt(item.tipo.replace( /^\D+/g, ''))      
+                if(item2.tipo.includes("AGUA SIN GAS")){
+                    agua_sin_gas = agua_sin_gas + parseInt(item2.tipo.replace( /^\D+/g, ''))      
                 }else{
-                    agua_con_gas = agua_con_gas + parseInt(item.tipo.replace( /^\D+/g, ''))     
+                    agua_con_gas = agua_con_gas + parseInt(item2.tipo.replace( /^\D+/g, ''))     
                 }         
             }
 
