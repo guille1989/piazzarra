@@ -435,6 +435,12 @@ class adminReviewVentas extends Component {
                     </tbody>
                 </table>
 
+                <br></br>
+
+                <h1>Resumen Ventas:</h1>
+
+                <br></br>
+
                 <div className='control-pane'>
                 <div className='control-section'>
                 <GridComponent dataSource={this.state.ventas_review} height='350' allowSorting={true} >
