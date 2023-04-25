@@ -75,6 +75,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let masa_personal_cinco = 0
     let masa_mediana_unidad = 0
 
+    let salsa_16_onzas = 0
+
 
     result = await PedidoPizzarra.find({
         $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
@@ -180,6 +182,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if(item2.tipo.includes("MASAS MEDIANAS UNI")){
                 masa_mediana_unidad = masa_mediana_unidad + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
                              
+            }else if(item2.tipo.includes("SALSA 16 ONZAS")){
+                salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                             
             }
 
         })
@@ -224,7 +229,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'pancook_unidad', 'No': pancook_unidad},
                         {'tipo_pedido': 'pan_unidad', 'No': pan_unidad},
                         {'tipo_pedido': 'masa_personal_cinco', 'No': masa_personal_cinco},
-                        {'tipo_pedido': 'masa_mediana_unidad', 'No': masa_mediana_unidad})
+                        {'tipo_pedido': 'masa_mediana_unidad', 'No': masa_mediana_unidad},
+                        
+                        {'tipo_pedido': 'salsa_16_onzas', 'No': salsa_16_onzas})
 
 
     result_sum_tipo.map((item, index) => {
