@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GridComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-grids';
 
 class adminReviewVentasPC extends Component {
     constructor(props) {
@@ -6,6 +7,7 @@ class adminReviewVentasPC extends Component {
         this.state = {
             ventas: [],
             ventas_totales: [],
+            ventas_review: []
         }
     }
 
@@ -34,14 +36,16 @@ class adminReviewVentasPC extends Component {
                 console.log('No hay registro')
                 this.setState({
                     ventas: [],
-                    ventas_totales: []
+                    ventas_totales: [],
+                    ventas_review: []
                 })
             }else{
-                //console.log(data.inv.result[0].pedido)
+                console.log(data)
                 //console.log(data.inv.result_sum_ventas)
                 this.setState({
                     ventas: data.inv.result,
-                    ventas_totales: data.inv.result_sum_ventas
+                    ventas_totales: data.inv.result_sum_ventas,
+                    ventas_review: data.inv.result_sum_tipo
                 })
             }
         })
@@ -62,14 +66,17 @@ class adminReviewVentasPC extends Component {
                         console.log('No hay registro')
                         this.setState({
                             ventas: [],
-                            ventas_totales: []
+                            ventas_totales: [],
+                            ventas_review: []
                         })
                     }else{
                         //console.log(data.inv.result[0].pedido)
                         //console.log(data.inv.result_sum_ventas)
+                        console.log(data)
                         this.setState({
                             ventas: data.inv.result,
-                            ventas_totales: data.inv.result_sum_ventas
+                            ventas_totales: data.inv.result_sum_ventas,
+                            ventas_review: data.inv.result_sum_tipo
                         })
                     }
                 })
@@ -112,6 +119,9 @@ class adminReviewVentasPC extends Component {
                                 ITEM
                             </th>
                             <th>
+                                TIPO PEDIDO
+                            </th>
+                            <th>
                                 SABORES
                             </th>
                             <th>
@@ -121,7 +131,7 @@ class adminReviewVentasPC extends Component {
                         {this.state.ventas.map((item, index) => {
                             return(
                                 <>
-                                {item.pedido.map((item, index) => {
+                                {item.pedido.map((item, index2) => {
                                     return(
                                         <>                                            
                                             <tr>
@@ -130,6 +140,9 @@ class adminReviewVentasPC extends Component {
                                             </th>
                                             <th>
                                                 {item.tipo}
+                                            </th>
+                                            <th>                                                
+                                                {this.state.ventas[index].aux[0].observacion_pedido ? ( <>{this.state.ventas[index].aux[0].tipo_pedido + ' - Cortesia'}</> ) : ( <>{this.state.ventas[index].aux[0].tipo_pedido}</> )}
                                             </th>
                                             {(() => {
                                                 if (item.tipo === "PIZZA GRANDE COMPLETA") {
@@ -464,6 +477,24 @@ class adminReviewVentasPC extends Component {
                         })}
                     </tbody>
                 </table>
+
+                <br></br>
+
+                <h1>Resumen Ventas:</h1>
+
+                <br></br>
+
+                <div className='control-pane'>
+                <div className='control-section'>
+                <GridComponent dataSource={this.state.ventas_review} height='350'>
+                    <ColumnsDirective>
+                    <ColumnDirective field='tipo_pedido' headerText='Tipo Pedido' width='120' textAlign='left'></ColumnDirective>
+                    <ColumnDirective field='No' headerText='Numero' width='150'></ColumnDirective>                   
+                    </ColumnsDirective>
+                </GridComponent>
+                </div>
+            </div>
+
             </div>
         );
     }
