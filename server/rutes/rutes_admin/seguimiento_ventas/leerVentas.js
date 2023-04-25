@@ -183,7 +183,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 masa_mediana_unidad = masa_mediana_unidad + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
                              
             }else if(item2.tipo.includes("SALSA 16 ONZAS")){
-                salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X ')[1])
                              
             }
 
