@@ -226,6 +226,12 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'masa_personal_cinco', 'No': masa_personal_cinco},
                         {'tipo_pedido': 'masa_mediana_unidad', 'No': masa_mediana_unidad})
 
+    result_sum_tipo.map((item, index) => {
+        if(item.No === 0){
+            result_sum_tipo.splice(index, 1) 
+        }
+    })
+
     return {result, result_sum_ventas, result_sum_tipo}
 }
 
