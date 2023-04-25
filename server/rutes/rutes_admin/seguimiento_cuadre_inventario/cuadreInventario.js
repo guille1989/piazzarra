@@ -5263,6 +5263,13 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.AGUA_GAS = result.AGUA_GAS - item.tipo.replace( /^\D+/g, '')      
                     }         
                 }
+
+
+                //SALSA 16 ONZAS        
+                if(item.tipo.includes("SALSA 16 ONZAS")){
+                    let cantidad = item.tipo.replace( /^\D+/g, '').split(' X ')
+                    result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - item.tipo.replace( /^\D+/g, '').split(' X ') * 472
+                }
             })  
 
         })
