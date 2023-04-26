@@ -380,9 +380,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.sabor_personal === "PETETE"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
         
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.TOMATE = result.TOMATE - tresIng
+                        result.POLLO = result.POLLO - 50
+                        result.TOCINETA = result.TOCINETA - 50
+                        result.TOMATE = result.TOMATE - 0
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_personal === "CAMPESINA"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
@@ -402,9 +402,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.sabor_personal === "GOURMET"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
         
-                        result.POLLO = result.POLLO - tresIng
-                        result.ACEITUNAS = result.ACEITUNAS - tresIng
-                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
+                        result.POLLO = result.POLLO - 50
+                        result.ACEITUNAS = result.ACEITUNAS - 25
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - 25
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_personal === "PADRISIMA"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
@@ -418,11 +418,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.sabor_personal === "VEGETARIANA"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
         
-                        result.ACEITUNAS = result.ACEITUNAS - tresIng
-                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
-                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng
-                        result.CEBOLLA = result.CEBOLLA - tresIng
-                        result.PIMENTON = result.PIMENTON - tresIng
+                        result.ACEITUNAS = result.ACEITUNAS - 20
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - 20
+                        result.CHAMPINIONES = result.CHAMPINIONES - 20
+                        result.CEBOLLA = result.CEBOLLA - 20
+                        result.PIMENTON = result.PIMENTON - 20
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_personal.includes("Combinada 2 Ingredientes")){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
@@ -4432,8 +4432,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "HAWAIANA"){
         
-                        result.JAMON = result.JAMON - dosIng
-                        result.PINIA_CALADA = result.PINIA_CALADA - dosIng
+                        result.JAMON = result.JAMON - 100
+                        result.PINIA_CALADA = result.PINIA_CALADA - 50
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "HIGOSTOCINETA"){
         
@@ -4442,8 +4442,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "POLLOCHAMPI"){
         
-                        result.POLLO = result.POLLO - dosIng
-                        result.CHAMPINIONES = result.CHAMPINIONES - dosIng
+                        result.POLLO = result.POLLO - 100
+                        result.CHAMPINIONES = result.CHAMPINIONES - 50
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "JAMONCHAMPI"){
         
@@ -4453,13 +4453,13 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.sabor_lasagna === "SAMBA"){
         
                         result.MADURO = result.MADURO - dosIng
-                        result.TOCINETA = result.TOCINETA - dosIng
+                        result.TOCINETA = result.TOCINETA - 50
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "PETETE"){
         
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.TOMATE = result.TOMATE - tresIng
+                        result.POLLO = result.POLLO - 100
+                        result.TOCINETA = result.TOCINETA - 50
+                        result.TOMATE = result.TOMATE - 0
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "CAMPESINA"){
         
@@ -4475,24 +4475,24 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso * 2
                     }else if(item.sabor_lasagna === "GOURMET"){
         
-                        result.POLLO = result.POLLO - tresIng
-                        result.ACEITUNAS = result.ACEITUNAS - tresIng
-                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
+                        result.POLLO = result.POLLO - 100
+                        result.ACEITUNAS = result.ACEITUNAS - 25
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - 25
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "PADRISIMA"){
         
                         result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3
                         result.JALAPENIOS = result.JALAPENIOS - 20
-                        result.LECHUGA = result.LECHUGA - 20
+                        
                         result.TOMATE = result.TOMATE - 20
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "VEGETARIANA"){ 
         
-                        result.ACEITUNAS = result.ACEITUNAS - tresIng
-                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
-                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng
-                        result.CEBOLLA = result.CEBOLLA - tresIng
-                        result.PIMENTON = result.PIMENTON - tresIng
+                        result.ACEITUNAS = result.ACEITUNAS - 30
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - 30
+                        result.CHAMPINIONES = result.CHAMPINIONES - 30
+                        result.CEBOLLA = result.CEBOLLA - 30
+                        result.PIMENTON = result.PIMENTON - 30
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna.includes("Combinada 2 Ingredientes")){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
@@ -5217,13 +5217,26 @@ function resumenVentas(result_ventas_auxn, insumos){
 
                 //JUGOS
                 if(item.tipo.includes("JUGO")){
+                    
+                    
                     if(item.tipo.includes("LIMONADA")){
                         if(item.tipo.includes("JARRA")){
+                            if(item.mod_sabor_jugo.includes("Con Azucar")){
+                                result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 100
+                            }
                             result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 200
                         }else{
+                            if(item.mod_sabor_jugo.includes("Con Azucar")){
+                                result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 50
+                            }
                             result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
                         }
                     }else{
+
+                        if(item.mod_sabor_jugo.includes("Con Azucar")){
+                            result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 50
+                        }
+
                         result.JUGOS_NATURALES = result.JUGOS_NATURALES - item.tipo.replace( /^\D+/g, '')
                         if(item.tipo.includes("MANGO")){
                             result.JUGOS_NATURALES_MANGO = result.JUGOS_NATURALES_MANGO - item.tipo.replace( /^\D+/g, '')

@@ -31,7 +31,7 @@ class adminReviewVentas extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + today + `/Cali-Refugio`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            //console.log(data)
             //console.log(data.inv[0])
             if(data.inv.result_sum_ventas === 0){
                 console.log('No hay registro')

@@ -74,7 +74,7 @@ class adminInicio extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + today + `/` + today_ayer + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data.inv.result_output)
+                //console.log(data.inv.result_output)
                 this.setState({
                     inve_cuadre: data.inv.result_output
                 })

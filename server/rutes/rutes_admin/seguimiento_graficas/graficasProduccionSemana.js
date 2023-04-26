@@ -84,7 +84,7 @@ async function leerVentasSemana(fecha_uno_aux, filtro_tipo, pedidos_aux){
         }
 
         for(let i =0; i<date_semana_search.length; i++){
-            console.log(date_semana_search[i])
+            //console.log(date_semana_search[i])
 
             result = await PedidoPizzarra.find({
                 $and:[{"aux.fecha_pedido": date_semana_search[i]}, {"aux.local": pedidos_aux}] 

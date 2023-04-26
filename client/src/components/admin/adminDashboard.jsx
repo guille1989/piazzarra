@@ -12,6 +12,7 @@ CheckBoxComponent,
 FabComponent,
 ChipDirective, ChipListComponent, ChipsDirective
 } from '@syncfusion/ej2-react-buttons';
+import { ProgressButtonComponent } from '@syncfusion/ej2-react-splitbuttons';
 import { NumericTextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import { Browser } from '@syncfusion/ej2-base';
 
@@ -36,7 +37,8 @@ class adminDashboard extends Component {
     componentDidMount(){
         //Fecha
         var date = new Date();
-        var day = date.getDate() - 7;
+        var day = date.getDate();
+        /*
         if(day <= 0){
             day = date.getDate() - 6;
             if(day <= 0){
@@ -58,12 +60,21 @@ class adminDashboard extends Component {
                 }
             }
         }
+        */
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
-        document.getElementById("fechaHoyRInventario").value = today
+        document.getElementById("fechaHoyRInventario").value = today        
+        document.getElementById("fechaHoyRInventarioFinal").value = today
+
+        this.setState({
+            fecha_final_busqueda: today,
+            fecha_inicio_busqueda: today
+        })
+
+        /*
 
         const requestOptions ={
             method: 'GET',
@@ -72,7 +83,7 @@ class adminDashboard extends Component {
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventassemana/` + today + `/` + this.state.filtro_seleccion + `/Cali-Refugio`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    //console.log(data.inv)
+                    console.log(data)
                     this.setState({
                         filter_ventas: data.inv.result_aux,
                         filet_limits: data.inv.result_limite,
@@ -96,6 +107,7 @@ class adminDashboard extends Component {
                         .catch(err => console.log(err))
                         })
                 .catch(err => console.log(err))
+        */
     }
 
     handleFechaHoy(e){
@@ -121,7 +133,9 @@ class adminDashboard extends Component {
         //console.log('Semana del: ' + today + ' hasta ' + date_semana)
 
         //Fetch ventas por semana
+
         
+        /*
         const requestOptions ={
             method: 'GET',
             headers : {'Content-type':'application/json'},   
@@ -153,7 +167,21 @@ class adminDashboard extends Component {
                         .catch(err => console.log(err))
                         })
                 .catch(err => console.log(err))
-        }
+
+        */
+
+        this.setState({
+            fecha_inicio_busqueda: e.target.value
+        })
+    }
+
+    handleFechaFinal(e){
+        //Configuramos hoy
+        //console.log(e.target.value)
+        this.setState({
+            fecha_final_busqueda: e.target.value
+        })
+    }
 
     filtroChange(event){
         this.setState({
@@ -283,9 +311,9 @@ class adminDashboard extends Component {
                             <SeriesDirective 
                                 dataSource={this.state.filter_ventas} 
                                 tooltipMappingName='r' 
-                                xName='Fecha' 
+                                xName='_id' 
                                 columnSpacing={0.1} 
-                                yName='Dato' 
+                                yName='suma_ventas' 
                                 name='Ventas Cali' 
                                 type='Column' 
                                 marker={{
@@ -301,7 +329,7 @@ class adminDashboard extends Component {
                                             type='Linear' 
                                             width={3} 
                                             marker={{ visible: false }} 
-                                            name='Trends' 
+                                            name='Tendencia - Cali' 
                                             fill='#C64A75'>
                                         </TrendlineDirective>
                                     </TrendlinesDirective>
@@ -311,9 +339,9 @@ class adminDashboard extends Component {
                             <SeriesDirective 
                                 dataSource={this.state.filter_ventas_popayan} 
                                 tooltipMappingName='r' 
-                                xName='Fecha' 
+                                xName='_id' 
                                 columnSpacing={0.1} 
-                                yName='Dato' 
+                                yName='suma_ventas' 
                                 name='Ventas Popayan' 
                                 type='Column' 
                                 marker={{
@@ -323,16 +351,17 @@ class adminDashboard extends Component {
                                         font: { fontWeight: '2W00', color: '#000000' },
                                     },
                                 }}>
-                            </SeriesDirective>
 
-                            <SeriesDirective 
-                                dataSource={this.state.filter_ventas} 
-                                xName="Fecha" 
-                                yName="Limite" 
-                                name="Target Ventas" 
-                                width={2} 
-                                marker={{ visible: true, width: 6, height: 6, shape: 'Triangle', isFilled: true }} 
-                                type="Line">
+                                    <TrendlinesDirective>
+                                        <TrendlineDirective 
+                                            type='Linear' 
+                                            width={3} 
+                                            marker={{ visible: false }} 
+                                            name='Tendencia - Popayan' 
+                                            fill='#C64A10'>
+                                        </TrendlineDirective>
+                                    </TrendlinesDirective>
+
                             </SeriesDirective>
                         </SeriesCollectionDirective>
                     </ChartComponent>
@@ -384,6 +413,42 @@ class adminDashboard extends Component {
         );
     }
 
+    contractBtn;
+
+    contractBegin() {
+        this.contractBtn.element.classList.add('e-round');
+    }
+    contractEnd() {
+        this.contractBtn.element.classList.remove('e-round');
+    }
+
+    handleBusquedaFechas(){
+        //console.log(this.state.fecha_inicio_busqueda)
+        //console.log(this.state.fecha_final_busqueda)
+
+        const requestOptions ={
+            method: 'GET',
+            headers : {'Content-type':'application/json'},   
+          }      
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/graficasventas/` + this.state.fecha_inicio_busqueda + `/` + this.state.fecha_final_busqueda, requestOptions)
+                .then(response => response.json())
+                .then(data => { 
+                    //console.log(data) 
+                    this.setState({
+                        filter_ventas_tipo: data.inv.tipo_pedido_cali,
+                        filter_ventas_tipo_popayan: data.inv.tipo_pedido_popayan,
+                        filter_ventas: data.inv.result05,
+                        filter_ventas_popayan: data.inv.result04,
+                        ventas_totales_popayan: data.inv.resut_ventas_totales01[0].suma_ventas_totales,
+                        ventas_totales_cali:data.inv.resut_ventas_totales02[0].suma_ventas_totales,
+                        ventas_promedio_popayan: data.inv.resut_ventas_totales01[0].suma_ventas_totales/data.inv.result04.length,
+                        ventas_promedio_cali: data.inv.resut_ventas_totales02[0].suma_ventas_totales/data.inv.result05.length
+                    })
+                    this.contractEnd()
+                })
+        
+    }
+
     render() {
         return (
             <div className='contenedor'>
@@ -395,6 +460,7 @@ class adminDashboard extends Component {
                 <hr className="border border-3 opacity-100"></hr>
 
                 <h3>Filtros: </h3>
+                {/* 
                 <h4>1. Tipo periodo: </h4>
                     <select className="form-select" aria-label="Default select example" onChange={this.filtroChange.bind(this)}>
                         <option selected>Seleccione tipo periodo</option>
@@ -404,7 +470,9 @@ class adminDashboard extends Component {
                         <option value="semestre">Semestral</option>
                         <option value="anual">anual</option>
                     </select>
-                <h4>2. Periodos: </h4>
+                    <br></br>
+                */}
+                <h4>1. Seleccione Periodos Inicial: </h4>
                     <input 
                         type="date" 
                         id="fechaHoyRInventario"
@@ -414,7 +482,28 @@ class adminDashboard extends Component {
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-sm" 
                     />
+                <br></br>
 
+                <h4>2. Seleccione Periodos Final: </h4>
+                    <input 
+                        type="date" 
+                        id="fechaHoyRInventarioFinal"
+                        onChange={this.handleFechaFinal.bind(this)}
+
+                        className="form-control p-3 g-col-6 ls" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-sm" 
+                    />
+
+                <br></br>
+
+                <h4>4. Buscar: </h4>
+                
+                <div className="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                    <ProgressButtonComponent id="contract" content="CONSULTAR FECHAS" ref={(scope) => { this.contractBtn = scope; }} onClick={() => this.handleBusquedaFechas()} className='lg' isPrimary begin={this.contractBegin.bind(this)} end={this.contractEnd.bind(this)}></ProgressButtonComponent>
+                </div>
+
+                <br></br>
                 <br></br>
 
                 <hr className="border border-3 opacity-100"></hr>

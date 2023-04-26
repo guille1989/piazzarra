@@ -200,7 +200,7 @@ class inventarioPopayanReview extends Component {
                 <p>Inventario correspondiente a fecha: </p>
 
                 {(() => {
-                        console.log(this.state.inve_aux.length)
+                        //console.log(this.state.inve_aux.length)
                         if (this.state.inve_aux.length > 0) {
                             return (
                                 <h2 className="avisoFechaSiHay"><strong> Inventario correspondiente a fecha: {this.state.fecha_aux_01}</strong></h2>                                                                                                            

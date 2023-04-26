@@ -70,7 +70,7 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-chart',
             items: [
                 { text: 'Dashboard - Ventas' },
-                { text: 'Dashboard - Produccion' },
+                
             ]
         },
         {

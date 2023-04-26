@@ -40,7 +40,7 @@ class adminReviewVentasPC extends Component {
                     ventas_review: []
                 })
             }else{
-                console.log(data)
+                //console.log(data)
                 //console.log(data.inv.result_sum_ventas)
                 this.setState({
                     ventas: data.inv.result,
@@ -72,7 +72,7 @@ class adminReviewVentasPC extends Component {
                     }else{
                         //console.log(data.inv.result[0].pedido)
                         //console.log(data.inv.result_sum_ventas)
-                        console.log(data)
+                        //console.log(data)
                         this.setState({
                             ventas: data.inv.result,
                             ventas_totales: data.inv.result_sum_ventas,
