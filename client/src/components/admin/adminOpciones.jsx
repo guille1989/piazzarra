@@ -111,6 +111,40 @@ class opciones extends Component {
 
         } 
     }
+
+    handleActualizarCosto(id, insumo){
+        if(window.confirm("Seguro desea agregar/actualizar valor costo del insumo: " + insumo)){
+            const requestOptions ={
+                method: 'POST',
+                headers : {'Content-type':'application/json'},
+                body: JSON.stringify({INSUMO_COSTO: this.state[insumo], TIPO: insumo})    
+            }   
+            //Envio insumo   
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/seguimienticostos`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data)
+                    const requestOptions2 ={
+                        method: 'GET',
+                        headers : {'Content-type':'application/json'},   
+                        }      
+                    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions2)
+                        .then(response => response.json())
+                        .then(data => {
+                            //console.log(data)
+                            this.setState({
+                                insumosOpcion: data.inv
+                            })
+                        })
+                        .catch(err => console.log(err))
+
+                })
+                .catch(err => console.log(err))
+                                    
+        }else{
+
+        } 
+    }
     
     render() {
         return (
@@ -259,6 +293,74 @@ class opciones extends Component {
                                                                 />
                                                             </td>
                                                             <td onClick={() => this.handleActualizarLimite(item._id, item.TIPO)}>Actualizar</td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingThree-dos">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree-dos" aria-expanded="false" aria-controls="collapseThree-dos">
+                            INSUMOS - COSTOS
+                        </button>
+                        </h2>
+                        <div id="collapseThree-dos" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div className="accordion-body">
+                        <div className="row align-items-start">
+                            <div className="col">
+                            <h3>Insumos Costos por Gramo/Unidad</h3>
+                            </div>
+                        </div>
+
+                            <br></br>
+                            <hr className="border border-3 opacity-100"></hr>
+
+                            <table className="table">                
+                                <tbody>
+                                    <tr>
+                                    <th scope="col" className="fs-3">No.</th>
+                                    <th scope="col" className="fs-1">Insumo</th>
+                                    <th scope="col" className="fs-1">Costo</th>
+                                    <th scope="col" className="fs-1">Nuevo Costo</th>
+                                    <th scope="col" className="fs-3"></th>
+                                    </tr>
+                                    {this.state.insumosOpcion.map((item, index) => {
+                                        return(
+                                            <>
+                                                <tr key={index}>
+                                                            <td>{index + 1}</td>
+                                                            <td><strong>{item.TIPO}</strong></td>
+                                                            <td><strong>{item.INSUMO_COSTO}</strong></td>
+                                                            <td>
+                                                            <input 
+                                                                type="number" 
+                                                                id="inputEntrada"
+                                                                className="form-control" 
+                                                                aria-label="Sizing example input" 
+                                                                aria-describedby="inputGroup-sizing-sm" 
+                                                                placeholder='Insumo Entrada'
+                                                                onChange={(e) => this.setState({[item.TIPO]: e.target.value})}
+                                                                onWheel={(e) => {
+                                                                    // Prevent the input value change
+                                                                    e.target.blur()
+                                                                
+                                                                    // Prevent the page/container scrolling
+                                                                    e.stopPropagation()
+                                                                
+                                                                    // Refocus immediately, on the next tick (after the current function is done)
+                                                                    setTimeout(() => {
+                                                                        e.target.focus()
+                                                                    }, 0)
+                                                                }}
+                                                                />
+                                                            </td>
+                                                            <td onClick={() => this.handleActualizarCosto(item._id, item.TIPO)}>Actualizar</td>
                                                 </tr>
                                             </>
                                         )

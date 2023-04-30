@@ -295,7 +295,7 @@ class adminDashboard extends Component {
                         title: 'Ventas', 
                         majorTickLines: { width: 0 },
                         lineStyle: {width: 0}, 
-                        maximum : 1500000 , 
+                        maximum : 2000000 , 
                         interval: 150000,
                         labelFormat: '${value}'
                     }} 

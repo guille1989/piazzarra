@@ -196,7 +196,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
-                    result.LECHE = result.LECHE - desAux * 100
+                    result.LECHE = result.LECHE - desAux * 50
                     result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
                     result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
@@ -254,7 +254,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                     let huevosAux = 2
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
-                    result.LECHE = result.LECHE - desAux * 100
+                    result.LECHE = result.LECHE - desAux * 50
                     result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
                     result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
@@ -382,7 +382,7 @@ function resumenVentas(result_ventas_auxn, insumos){
         
                         result.POLLO = result.POLLO - 50
                         result.TOCINETA = result.TOCINETA - 50
-                        result.TOMATE = result.TOMATE - 0
+                        result.TOMATE = result.TOMATE - 50
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_personal === "CAMPESINA"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 

@@ -80,24 +80,33 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let agua_con_gas = 0
     let agua_sin_gas = 0
 
+    let desayuno_huesped = 0
+    let desayuno_americano = 0
+
 
     result = await PedidoPizzarra.find({
         $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
     });
 
+    //console.log(result)
+
     let result_sum_ventas = 0;
 
     result.map((item, index) => {
         item.aux.map((item2, index2) => {
+            //console.log(item2.costo_pedido)
             result_sum_ventas = result_sum_ventas + item2.costo_pedido
         })
     })
+
+    //console.log('Res: ' + result_sum_ventas)
 
     //Suma por tipo
 
     result.map((item, index) => {
         item.pedido.map((item2, index2) => {
-            //console.log(item2)
+
+            console.log(item2.tipo)
             if( item2.tipo.includes('PIZZA PERSONAL') ){
                 pizza_personal = pizza_personal + 1
             }else if( item2.tipo.includes('PIZZA GRANDE') ){
@@ -166,27 +175,30 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if(item2.tipo.includes("PAN AJO")){
                 pan_ajo = pan_ajo + parseInt(item2.tipo.replace( /^\D+/g, ''))          
             }else if(item2.tipo.includes("PAN 10")){
-                pan_10_unidades = pan_10_unidades + paseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                //console.log('Aqui', item2.tipo, item2.tipo.split(' X '))
+                let panCantidadAux = item2.tipo.split('X', 2)[1]
+                //console.log(paseInt(panCantidadAux))
+                pan_10_unidades = pan_10_unidades + parseInt(panCantidadAux)
                
             }else if(item2.tipo.includes("PAN 20")){
                 pan_20_unidades = pan_20_unidades +  parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
                     
             }else if(item2.tipo.includes("PAN COOK 2")){
-                pancook_2_unidades = pancook_2_unidades + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                pancook_2_unidades = pancook_2_unidades + parseInt(item2.tipo.split(' X ')[1])
                            
             }else if(item2.tipo.includes("PAN COOK UNIDAD")){
-                pancook_unidad = pancook_unidad + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                pancook_unidad = pancook_unidad + parseInt(item2.tipo.split(' X ')[1])
                       
             }else if(item2.tipo.includes("PAN UNIDAD")){
                 pan_unidad = pan_unidad + parseInt( result.PAN_OREGANO - item2.tipo.replace( /^\D+/g, '') )             
             }else if(item2.tipo.includes("MASAS PER. 5")){
-                masa_personal_cinco = masa_personal_cinco + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                masa_personal_cinco = masa_personal_cinco + parseInt(item2.tipo.split(' X ')[1])
                       
             }else if(item2.tipo.includes("MASAS MEDIANAS UNI")){
-                masa_mediana_unidad = masa_mediana_unidad + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X '))
+                masa_mediana_unidad = masa_mediana_unidad + parseInt(item2.tipo.split(' X ')[1])
                              
             }else if(item2.tipo.includes("SALSA 16 ONZAS")){
-                salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.replace( /^\D+/g, '').split(' X ')[1])
+                salsa_16_onzas = salsa_16_onzas + parseInt(item2.tipo.split(' X ')[1])
                              
             }else if(item2.tipo.includes("AGUA")){
 
@@ -195,8 +207,11 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 }else{
                     agua_con_gas = agua_con_gas + parseInt(item2.tipo.replace( /^\D+/g, ''))     
                 }         
+            }else if(item2.tipo.includes("HUESPED")){
+                desayuno_huesped = desayuno_huesped + parseInt(item2.tipo.replace( /^\D+/g, ''))  
+            }else if(item2.tipo.includes("AMERICANO")){
+                desayuno_americano = desayuno_americano + parseInt(item2.tipo.replace( /^\D+/g, ''))
             }
-
         })
     })
 
@@ -244,15 +259,13 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'salsa_16_onzas', 'No': salsa_16_onzas},
                         
                         {'tipo_pedido': 'agua_con_gas', 'No': agua_con_gas},
-                        {'tipo_pedido': 'agua_sin_gas', 'No': agua_sin_gas},)
+                        {'tipo_pedido': 'agua_sin_gas', 'No': agua_sin_gas},
+
+                        {'tipo_pedido': 'desayuno_huesped', 'No': desayuno_huesped},
+                        {'tipo_pedido': 'desayuno_americano', 'No': desayuno_americano},)
 
 
-    result_sum_tipo.map((item, index) => {
-        if(item.No === 0){
-            //console.log('0', item.tipo_pedido)
-            result_sum_tipo.splice(index, 1)
-        }
-    })
+    //console.log(result_sum_tipo)
 
     return {result, result_sum_ventas, result_sum_tipo}
 }

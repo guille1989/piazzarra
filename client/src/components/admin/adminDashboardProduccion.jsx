@@ -444,6 +444,9 @@ class adminDashboardProduccion extends Component {
                             row={2}
                             col={0}
                             ></PanelDirective>
+
+                            
+                            
                             
                         </PanelsDirective>
                         </DashboardLayoutComponent>

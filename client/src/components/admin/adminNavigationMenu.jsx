@@ -26,6 +26,7 @@ import InicioAdminPopayan from './popayan-centro/adminReviewInventarioPC';
 import ComprasAdminPopayan from './popayan-centro/adminReviewComprasPC';
 import VentasAdminPopayan from './popayan-centro/adminReviewVentasPC';
 import GraficasAdminProduccion from './adminDashboardProduccion';
+import SeguimientoCostos from './adminSeguimientoCostos';
 
 function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
@@ -66,10 +67,25 @@ function PizzarraNavBarAdmin(props){
             ]
         },
         {
+            text: 'Seguimiento Costos',
+            iconCss: 'e-icons e-search',
+            items: [
+                { text: 'Costos - Productos' }
+            ]
+        },
+        {
             text: 'Tablero de datos',
             iconCss: 'e-icons e-chart',
             items: [
                 { text: 'Dashboard - Ventas' },
+                
+            ]
+        },
+        {
+            text: 'Resportes',
+            iconCss: 'e-icons e-rename',
+            items: [
+                { text: 'Reporte - Pizzarra Popayan' },
                 
             ]
         },
@@ -126,6 +142,9 @@ function PizzarraNavBarAdmin(props){
             case 'Dashboard - Produccion':
                 navigate("/DashboardProduccion");
                 break;
+            case 'Costos - Productos':
+                navigate("/SeguimientoCostos")
+                break;
             default:
               // code block
           }
@@ -162,7 +181,7 @@ function PizzarraNavBarAdmin(props){
                                 <Route path='/AdminPopayan' element={<InicioAdminPopayan></InicioAdminPopayan>}/>
                                 <Route path='/ComprasResumenPopayan' element={<ComprasAdminPopayan></ComprasAdminPopayan>}/>
                                 <Route path='/VentasResumenPopayan' element={<VentasAdminPopayan></VentasAdminPopayan>}/>
-                                
+                                <Route path='SeguimientoCostos' element={<SeguimientoCostos></SeguimientoCostos>} />                               
 
                             </Routes>
 
