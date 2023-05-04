@@ -31,7 +31,7 @@ class adminReviewVentasPC extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/pedidos/` + today + `/Popayan-Centro`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            //console.log(data)
             if(data.inv.result_sum_ventas === 0){
                 console.log('No hay registro')
                 this.setState({
@@ -40,7 +40,7 @@ class adminReviewVentasPC extends Component {
                     ventas_review: []
                 })
             }else{
-                console.log(data)
+                //console.log(data)
                 //console.log(data.inv.result_sum_ventas)
                 this.setState({
                     ventas: data.inv.result,

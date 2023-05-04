@@ -27,6 +27,8 @@ import ComprasAdminPopayan from './popayan-centro/adminReviewComprasPC';
 import VentasAdminPopayan from './popayan-centro/adminReviewVentasPC';
 import GraficasAdminProduccion from './adminDashboardProduccion';
 import SeguimientoCostos from './adminSeguimientoCostos';
+import ResultadoPopayan from './popayan-centro/adminResultados';
+import AjusteCostos from './adminAjusteCostos';
 
 function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
@@ -70,7 +72,8 @@ function PizzarraNavBarAdmin(props){
             text: 'Seguimiento Costos',
             iconCss: 'e-icons e-search',
             items: [
-                { text: 'Costos - Productos' }
+                { text: 'Costos - Productos' },
+                { text: 'Ajuste - Costos - Productos'}
             ]
         },
         {
@@ -82,10 +85,10 @@ function PizzarraNavBarAdmin(props){
             ]
         },
         {
-            text: 'Resportes',
+            text: 'Resportes Operaciones',
             iconCss: 'e-icons e-rename',
             items: [
-                { text: 'Reporte - Pizzarra Popayan' },
+                { text: 'Reporte Operacion - Popayan' },
                 
             ]
         },
@@ -93,7 +96,7 @@ function PizzarraNavBarAdmin(props){
             text: 'Configuracion',
             iconCss: 'e-icons e-settings',
             items: [
-                { text: 'Configuracion - Cali - Refugio' },
+                { text: 'Configuracion - Globales' },
                 { text: 'Configuracion - Popayan - Centro' },
             ]
         }
@@ -127,7 +130,7 @@ function PizzarraNavBarAdmin(props){
             case 'Dashboard - Ventas':
                 navigate("/Dashboard");
                 break;
-            case 'Configuracion - Cali - Refugio':
+            case 'Configuracion - Globales':
                 navigate("/Opciones");
                 break;
             case 'Inventario - Popayan - Centro':
@@ -144,6 +147,12 @@ function PizzarraNavBarAdmin(props){
                 break;
             case 'Costos - Productos':
                 navigate("/SeguimientoCostos")
+                break;
+            case 'Reporte Operacion - Popayan':
+                navigate("/ResultadoOperacionPopayan")
+                break;
+            case 'Ajuste - Costos - Productos':
+                navigate("/AjusteCostosProductos")
                 break;
             default:
               // code block
@@ -181,7 +190,10 @@ function PizzarraNavBarAdmin(props){
                                 <Route path='/AdminPopayan' element={<InicioAdminPopayan></InicioAdminPopayan>}/>
                                 <Route path='/ComprasResumenPopayan' element={<ComprasAdminPopayan></ComprasAdminPopayan>}/>
                                 <Route path='/VentasResumenPopayan' element={<VentasAdminPopayan></VentasAdminPopayan>}/>
-                                <Route path='SeguimientoCostos' element={<SeguimientoCostos></SeguimientoCostos>} />                               
+                                <Route path='/SeguimientoCostos' element={<SeguimientoCostos></SeguimientoCostos>} />  
+
+                                <Route path='/ResultadoOperacionPopayan' element={<ResultadoPopayan></ResultadoPopayan>}/>   
+                                <Route path='/AjusteCostosProductos' element={<AjusteCostos></AjusteCostos>}/>                          
 
                             </Routes>
 

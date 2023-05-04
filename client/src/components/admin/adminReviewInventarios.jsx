@@ -11,9 +11,10 @@ class adminInicio extends Component {
             inve_cuadre: [],
             inve_insumos: [],
             inve_final_data: [],
-            inve_final_ayer_data: []
+            inve_final_ayer_data: [],
+            fechaRegistroInventario: ''
         }
-        this.toolbarOptions = ['Search'];
+        this.toolbarOptions = ['Update', 'Cancel', 'Search'];
     }
 
     componentDidMount(){
@@ -26,7 +27,7 @@ class adminInicio extends Component {
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
         document.getElementById("fechaHoyRInventario").value = today
-        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+        var today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
 
         const requestOptions ={
             method: 'GET',
@@ -178,6 +179,62 @@ class adminInicio extends Component {
         return (<div> <img style={loc} src={flagAux}/>
       <span id="Trusttext">{props.ALARMA_INVENTARIO}</span></div>);
     }
+
+    editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' };
+
+    batchSave(e){
+        //console.log(e.batchChanges.changedRecords[0].TIPO)
+
+        //Inventario Compras
+        //console.log('Fecha compras: ' + this.state.fechaRegistroInventario + ' :  ' + e.batchChanges.changedRecords[0].INV_ENTRADAS)
+
+        //Inventario Final
+        //console.log('Fecha Inventario Final: ' + this.state.fechaRegistroInventario + ' :  ' +e.batchChanges.changedRecords[0].INV_FINAL)
+
+        const fetchOptions = {
+            method: 'PUT',
+            headers: {'Content-type':'application/json'},  
+            body: JSON.stringify({'TIPO': e.batchChanges.changedRecords[0].TIPO, 'fecha': this.state.fechaRegistroInventario, 'invFinal': e.batchChanges.changedRecords[0].INV_FINAL, 'invCompras': e.batchChanges.changedRecords[0].INV_ENTRADAS, 'id': 'Pizzarra-Cali-Refugio'})
+        }
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/actualizarinventarios`, fetchOptions)
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data)
+        })
+
+        //Actualizar campos del inventario
+
+        var date = new Date(this.state.fechaRegistroInventario);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+        //document.getElementById("fechaHoyRInventario").value = this.state.fechaRegistroInventario
+        var today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+
+        //console.log(this.state.fechaRegistroInventario)
+        //console.log(today)
+        //console.log(today_ayer)
+
+        const requestOptions ={
+            method: 'GET',
+            headers : {'Content-type':'application/json'},   
+          }     
+
+        //Inve cuadre completo
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + this.state.fechaRegistroInventario + `/` + today + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data.inv)
+                this.setState({
+                    inve_cuadre: data.inv.result_output
+                })
+            })
+        .catch(err => console.log(err))
+
+    }
     
     render() {
         return (
@@ -212,7 +269,9 @@ class adminInicio extends Component {
                             allowSorting={true} 
                             allowPaging={true} 
                             height={500} 
-                            pageSettings={{ pageCount: 4, pageSizes: true }}>
+                            pageSettings={{ pageCount: 4, pageSizes: true }}
+                            editSettings={this.editSettings}     
+                            beforeBatchSave={(e) =>this.batchSave(e)}>
                             <ColumnsDirective>
                                 <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
                                 <ColumnDirective field='INV_AYER' headerText='Inventario Inicial' width='130'></ColumnDirective>

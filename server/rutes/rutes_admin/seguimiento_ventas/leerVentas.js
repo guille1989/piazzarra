@@ -106,7 +106,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     result.map((item, index) => {
         item.pedido.map((item2, index2) => {
 
-            console.log(item2.tipo)
+            //console.log(item2.tipo)
             if( item2.tipo.includes('PIZZA PERSONAL') ){
                 pizza_personal = pizza_personal + 1
             }else if( item2.tipo.includes('PIZZA GRANDE') ){
@@ -190,7 +190,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 pancook_unidad = pancook_unidad + parseInt(item2.tipo.split(' X ')[1])
                       
             }else if(item2.tipo.includes("PAN UNIDAD")){
-                pan_unidad = pan_unidad + parseInt( result.PAN_OREGANO - item2.tipo.replace( /^\D+/g, '') )             
+                //console.log(item2.tipo.replace( /^\D+/g, ''))
+                pan_unidad = pan_unidad +  parseInt(item2.tipo.replace( /^\D+/g, ''))           
             }else if(item2.tipo.includes("MASAS PER. 5")){
                 masa_personal_cinco = masa_personal_cinco + parseInt(item2.tipo.split(' X ')[1])
                       

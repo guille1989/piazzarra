@@ -7,6 +7,7 @@ import {
     PanelDirective,
   } from '@syncfusion/ej2-react-layouts';
 import { GridComponent, ColumnsDirective, ColumnDirective, Page, Toolbar, Sort } from '@syncfusion/ej2-react-grids';
+import '../../App.css'
 
 class adminSeguimientoCostos extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class adminSeguimientoCostos extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/costoproductos`, fetchOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     data_costos_personal: data.info.costoPizzaPersonalAux,
                     data_costos_mediana: data.info.costoPizzaGrandeAux,
@@ -76,8 +77,8 @@ class adminSeguimientoCostos extends Component {
             format: "Costo : <b>${point.y}</b><br/>% Costo Insumos : <b>${point.size}%</b>"
         };
         return(
-                <div className="control-pane">
-                <div className="control-section">
+                
+                <div>
                 <ChartComponent 
                     id='charts' 
                     style={{ textAlign: "center" }} 
@@ -91,18 +92,18 @@ class adminSeguimientoCostos extends Component {
                     tooltip={tooltip}> 
                     <Inject services={[LineSeries, Category, Legend, Tooltip, Highlight, Crosshair]}/>
                     <SeriesCollectionDirective>
-                        <SeriesDirective dataSource={this.state.data_costos_personal} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Personal' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costos_personal} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Personal' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costos_mediana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Grande' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costos_mediana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Grande' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_pantalon} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Pantalon' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_pantalon} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Pantalon' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_pancook} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Pancook' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_pancook} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Pizza Pancook' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
                     </SeriesCollectionDirective>
                 </ChartComponent>
                 </div>
-                </div>
+                
         )
     }
 
@@ -112,8 +113,7 @@ class adminSeguimientoCostos extends Component {
             format: "Costo : <b>${point.y}</b><br/>% Costo Insumos : <b>${point.size}%</b>"
         }
         return(
-                <div className="control-pane">
-                <div className="control-section">
+            <div>
                 <ChartComponent 
                     id='charts2' 
                     style={{ textAlign: "center" }} 
@@ -127,24 +127,24 @@ class adminSeguimientoCostos extends Component {
                     tooltip={tooltip2}> 
                     <Inject services={[LineSeries, Category, Legend, Tooltip, Highlight, Crosshair]}/>
                     <SeriesCollectionDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_lasagna_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Lasagna S-Napolitana' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_lasagna_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Lasagna S-Napolitana' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_lasagna_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Lasagna S-Queso' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
-                        </SeriesDirective>
-
-                        <SeriesDirective dataSource={this.state.data_costo_sapguetti_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Spaguetti S-Napolitana' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
-                        </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_fetuccini_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Fetuccini S-Napolitana' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_lasagna_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Lasagna S-Queso' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
 
-                        <SeriesDirective dataSource={this.state.data_costo_sapguetti_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Spaguetti S-Queso' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_sapguetti_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Spaguetti S-Napolitana' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_fetuccini_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Fetuccini S-Queso' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_fetuccini_napolitana} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Fetuccini S-Napolitana' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        </SeriesDirective>
+
+                        <SeriesDirective dataSource={this.state.data_costo_sapguetti_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Spaguetti S-Queso' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        </SeriesDirective>
+                        <SeriesDirective dataSource={this.state.data_costo_fetuccini_queso} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Fetuccini S-Queso' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
                     </SeriesCollectionDirective>
                 </ChartComponent>
                 </div>
-                </div>
+                
         )
     }
 
@@ -154,8 +154,7 @@ class adminSeguimientoCostos extends Component {
             format: "Costo : <b>${point.y}</b><br/>% Costo Insumos : <b>${point.size}%</b>"
         }
         return(
-                <div className="control-pane">
-                <div className="control-section">
+            <div>
                 <ChartComponent 
                     id='charts3' 
                     style={{ textAlign: "center" }} 
@@ -169,21 +168,21 @@ class adminSeguimientoCostos extends Component {
                     tooltip={tooltip3}> 
                     <Inject services={[LineSeries, Category, Legend, Tooltip, Highlight, Crosshair]}/>
                     <SeriesCollectionDirective>
-                        <SeriesDirective dataSource={this.state.data_costo_desayuno_cafe} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Cafe' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_desayuno_cafe} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Cafe' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
 
-                        <SeriesDirective dataSource={this.state.data_costo_desayuno_chocolate} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Chocolate' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_desayuno_chocolate} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Chocolate' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
 
-                        <SeriesDirective dataSource={this.state.data_costo_desayuno_aromatica} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Aromatica' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_desayuno_aromatica} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Aromatica' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
 
-                        <SeriesDirective dataSource={this.state.data_costo_desayuno_te} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Te' size='% DE INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
+                        <SeriesDirective dataSource={this.state.data_costo_desayuno_te} xName='SABOR_PRODUCTO' yName='COSTO_PRODUCTO' name='Desayuno-Te' size='PORCENTAJE_DE_INSUMOS' width={2} type='Line' marker={{ isFilled: true, visible: true, shape: 'Circle', width: 7, height: 7 }}>
                         </SeriesDirective>
                     </SeriesCollectionDirective>
                 </ChartComponent>
                 </div>
-                </div>
+               
         )
     }
 
@@ -196,7 +195,7 @@ class adminSeguimientoCostos extends Component {
                             <ColumnDirective field='SABOR_PRODUCTO' headerText='Sabor' width='150'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO' headerText='Costo Insumos' width='90'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO_VENTA' headerText='Costo Venta' width='90' textAlign='Right'/>
-                            <ColumnDirective field='% DE INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
+                            <ColumnDirective field='PORCENTAJE_DE_INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
                         </ColumnsDirective>
                         <Inject services={[Toolbar, Page, Sort]}/>
                     </GridComponent>
@@ -252,7 +251,7 @@ class adminSeguimientoCostos extends Component {
                             <ColumnDirective field='SABOR_PRODUCTO' headerText='Sabor' width='150'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO' headerText='Costo Insumos' width='90'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO_VENTA' headerText='Costo Venta' width='90' textAlign='Right'/>
-                            <ColumnDirective field='% DE INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
+                            <ColumnDirective field='PORCENTAJE_DE_INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
                         </ColumnsDirective>
                         <Inject services={[Toolbar, Page, Sort]}/>
                     </GridComponent>
@@ -270,7 +269,7 @@ class adminSeguimientoCostos extends Component {
                             <ColumnDirective field='SABOR_PRODUCTO' headerText='Sabor' width='150'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO' headerText='Costo Insumos' width='90'></ColumnDirective>
                             <ColumnDirective field='COSTO_PRODUCTO_VENTA' headerText='Costo Venta' width='90' textAlign='Right'/>
-                            <ColumnDirective field='% DE INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
+                            <ColumnDirective field='PORCENTAJE_DE_INSUMOS' headerText='% Costo Venta' width='90' textAlign='Right'/>
                         </ColumnsDirective>
                         <Inject services={[Toolbar, Page, Sort]}/>
                     </GridComponent>
@@ -395,11 +394,13 @@ class adminSeguimientoCostos extends Component {
                             <PanelDirective
                             header="Grafica de Costos de Productos - PIZZAS, PANTALON y PANCOOK"
                             content={this.graficaCostos.bind(this)}
-                            sizeX={4}
+                            sizeX={6}
                             sizeY={2}
                             row={0}
                             col={0}
                             ></PanelDirective>
+
+                            {/* 
                             <PanelDirective
                             header={this.headerPrimeraTable.bind(this)}
                             content={this.tablaCostosPPP.bind(this)}
@@ -408,15 +409,18 @@ class adminSeguimientoCostos extends Component {
                             row={0}
                             col={5}
                             ></PanelDirective>
+                            */}
 
                             <PanelDirective
                             header="Grafica de Costos de Productos - LASAGNAS y PASTAS"
                             content={this.graficaCostosLP.bind(this)}
-                            sizeX={4}
+                            sizeX={6}
                             sizeY={2}
                             row={2}
                             col={0}
                             ></PanelDirective>
+
+                            {/* 
                             <PanelDirective
                             header={this.headerSegundaTable.bind(this)}
                             content={this.tablaCostosLP.bind(this)}
@@ -425,15 +429,18 @@ class adminSeguimientoCostos extends Component {
                             row={2}
                             col={5}
                             ></PanelDirective>
+                            */}
 
                             <PanelDirective
-                            header="Grafica de Costos de Productos - LASAGNAS y PASTAS"
+                            header="Grafica de Costos de Productos - DESAYUNOS"
                             content={this.graficaCostosD.bind(this)}
-                            sizeX={4}
+                            sizeX={6}
                             sizeY={2}
                             row={4}
                             col={0}
                             ></PanelDirective>
+
+                            {/* 
                             <PanelDirective
                             header={this.headerTerceraTable.bind(this)}
                             content={this.tablaCostosD.bind(this)}
@@ -442,7 +449,7 @@ class adminSeguimientoCostos extends Component {
                             row={4}
                             col={5}
                             ></PanelDirective>
-
+                            */}
 
                         </PanelsDirective>
                         </DashboardLayoutComponent>

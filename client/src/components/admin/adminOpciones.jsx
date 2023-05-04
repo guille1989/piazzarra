@@ -371,6 +371,30 @@ class opciones extends Component {
                         </div>
                     </div>
 
+
+
+                    <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingThree-receteas">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree-recetas" aria-expanded="false" aria-controls="collapseThree-recetas">
+                            RECETAS - PIZZARRA
+                        </button>
+                        </h2>
+                        <div id="collapseThree-recetas" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div className="accordion-body">
+                        <div className="row align-items-start">
+                            <div className="col">
+                            <h3>Recetas Productos Pizzarra</h3>
+                            </div>
+                        </div>
+
+                            <br></br>
+                            <hr className="border border-3 opacity-100"></hr>
+
+                            
+                        </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>      
         );

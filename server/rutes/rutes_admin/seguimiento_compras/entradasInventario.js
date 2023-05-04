@@ -51,6 +51,8 @@ async function LeerEntradasLeerCostos(fechaInventario, inv_id){
         }        
     }
 
+    //console.log(result_aux)
+
     let result_costos = [];
 
     result_costos = await InventarioEntradaCosto.find( {
@@ -58,6 +60,8 @@ async function LeerEntradasLeerCostos(fechaInventario, inv_id){
                                                         });
 
     let result_costos_aux = [];
+
+    
 
     for(let i=0;i<Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0]).length;i++){
         if(Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "__v" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_AUX" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "_id" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "FECHA_INVENTARIO_ENTRANTE_COSTO" || Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === "INVENTARIO_ID"){
@@ -70,6 +74,8 @@ async function LeerEntradasLeerCostos(fechaInventario, inv_id){
             }
         }        
     }
+
+    //console.log(result_costos_aux)
 
     //console.log(result_aux)
     //console.log(result_costos_aux)

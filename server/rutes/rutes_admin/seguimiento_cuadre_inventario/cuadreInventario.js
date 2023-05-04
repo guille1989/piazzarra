@@ -4494,6 +4494,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CEBOLLA = result.CEBOLLA - 30
                         result.PIMENTON = result.PIMENTON - 30
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
+                    }else if(item.sabor_lasagna === "BOLOGNESA"){ 
+        
+                        result.CARNE_MOLIDA = result.CARNE_MOLIDA - 150
+                        result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna.includes("Combinada 2 Ingredientes")){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
 
@@ -4852,6 +4856,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CHAMPINIONES = result.CHAMPINIONES - tresIng
                         result.CEBOLLA = result.CEBOLLA - tresIng
                         result.PIMENTON = result.PIMENTON - tresIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "BOLOGNESA"){ 
+        
+                        result.CARNE_MOLIDA = result.CARNE_MOLIDA - 150
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_pasta === "CARBONARA"){ 
                         result.TOCINETA = result.TOCINETA - 100
@@ -5222,14 +5230,14 @@ function resumenVentas(result_ventas_auxn, insumos){
                     if(item.tipo.includes("LIMONADA")){
                         if(item.tipo.includes("JARRA")){
                             if(item.mod_sabor_jugo.includes("Con Azucar")){
-                                result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 100
+                                result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 120
                             }
-                            result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 200
+                            result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 240
                         }else{
                             if(item.mod_sabor_jugo.includes("Con Azucar")){
                                 result.AZUCAR = result.AZUCAR - item.tipo.replace( /^\D+/g, '') * 50
                             }
-                            result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
+                            result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 120
                         }
                     }else{
 
@@ -5251,17 +5259,42 @@ function resumenVentas(result_ventas_auxn, insumos){
                 }
 
                 //CERVEZA        
+                /*
                 if(item.tipo.includes("CERVEZA")){
-                    result.CERVEZA = result.CERVEZA - item.tipo.replace( /^\D+/g, '')             
+                    if(item.mod_sabor_cerveza === "Sin Michelar"){
+                        result.CERVEZA = result.CERVEZA - item.tipo.replace( /^\D+/g, '')  
+                    }else{
+                        result.CERVEZA = result.CERVEZA - item.tipo.replace( /^\D+/g, '') 
+                        result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
+                    }                               
                 }
+                */
                 if(item.tipo.includes("CLUB")){
-                    result.CERVEZA_CULB = result.CERVEZA_CULB - item.tipo.replace( /^\D+/g, '')             
+                    if(item.mod_sabor_cerveza === "Sin Michelar"){
+                        result.CERVEZA_CULB = result.CERVEZA_CULB - item.tipo.replace( /^\D+/g, '') 
+                    }else{
+                        result.CERVEZA_CULB = result.CERVEZA_CULB - item.tipo.replace( /^\D+/g, '') 
+                        result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
+                    }
+                                
                 }
                 if(item.tipo.includes("POKER")){
-                    result.CERVEZA_POKER = result.CERVEZA_POKER - item.tipo.replace( /^\D+/g, '')             
+                    if(item.mod_sabor_cerveza === "Sin Michelar"){
+                        result.CERVEZA_POKER = result.CERVEZA_POKER - item.tipo.replace( /^\D+/g, '') 
+                    }else{
+                        result.CERVEZA_POKER = result.CERVEZA_POKER - item.tipo.replace( /^\D+/g, '') 
+                        result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
+                    }
+                                
                 }
                 if(item.tipo.includes("AGUILA")){
-                    result.CERVEZA_AGUILA = result.CERVEZA_AGUILA - item.tipo.replace( /^\D+/g, '')             
+                    if(item.mod_sabor_cerveza === "Sin Michelar"){
+                        result.CERVEZA_AGUILA = result.CERVEZA_AGUILA - item.tipo.replace( /^\D+/g, '')  
+                    }else{
+                        result.CERVEZA_AGUILA = result.CERVEZA_AGUILA - item.tipo.replace( /^\D+/g, '')  
+                        result.LIMONES = result.LIMONES - item.tipo.replace( /^\D+/g, '') * 100
+                    }
+                               
                 }
 
                 //GASEOSA        

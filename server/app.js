@@ -27,6 +27,8 @@ const CuadreGeneralInventarioAdmin = require('./rutes/rutes_admin/seguimiento_cu
 const GraficaVentas = require('./rutes/rutes_admin/seguimiento_graficas/graficasVentas');
 const SeguimientoCostoInsumo = require('./rutes/rutes_admin/seguimiento_insumos/insumosSeguimientoCostos');
 const LeerCostoProductos = require('./rutes/rutes_admin/seguimiento_costos_productos/costos_productos_crude');
+const ActualizarCostoProducto = require('./rutes/rutes_admin/seguimiento_costos_productos/costo_productos_pizzarra_crude');
+const ActualizarInventariosAdmin = require('./rutes/rutes_admin/actualizacion_inventario_final/actualizacionInvetarioFinalCompras');
 
 //Middlewares*****
 app.use(express.json());
@@ -71,6 +73,8 @@ app.use('/api/admin/graficaproduccion', LeerProduccionSemanaAdmin)  //Leemos gra
 app.use('/api/admin/graficasventas', GraficaVentas)
 app.use('/api/admin/seguimienticostos', SeguimientoCostoInsumo)
 app.use('/api/admin/costoproductos', LeerCostoProductos)
+app.use('/api/admin/actualizarcostoproductos', ActualizarCostoProducto)
+app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
 
 
 //Iniciamos Server

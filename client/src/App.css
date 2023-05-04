@@ -1,3 +1,40 @@
+.graficaCostos{
+  margin-top: 100px;
+}
+
+.ContenedorCostos{
+  display: flex;
+}
+
+.CostosProductos{
+  
+  width: 200px;
+}
+
+.verticalline{
+  
+  margin-left: 10px;
+  margin-right: 10px;
+  border-left: 5px solid rgb(85, 81, 81);
+  height: auto;
+}
+
+.saboresPizzaPersonal{
+
+  display: flex;
+  flex-direction: row;
+}
+
+.saboresPizzaGrande{
+  display: flex;
+  flex-direction: row;
+}
+
+.centrarCostosProductos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .cuadroventas {
 }
@@ -660,3 +697,7 @@ margin-left: -4px;
 .fab-icon-people:before {
   content: "\e70a";
 }
+
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-inputs/styles/material.css";
