@@ -58,13 +58,16 @@ class adminReviewInventarioPC extends Component {
     handleFechaHoy(e){
         //Cuadramos ayer
         var date = new Date(e.target.value);
-        var day = date.getDate();
+        var day = date.getDate() - 1;
 
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
         var today_ayer = year + "-" + month + "-" + day;
+
+        console.log(today_ayer)
+        console.log(e.target.value)
 
         //Revisar primero si hay inventario ya con la fecha !
         const requestOptions ={

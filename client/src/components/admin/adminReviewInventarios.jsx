@@ -86,7 +86,7 @@ class adminInicio extends Component {
     handleFechaHoy(e){
         //Cuadramos ayer
         var date = new Date(e.target.value);
-        var day = date.getDate();
+        var day = date.getDate() - 1;
 
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
