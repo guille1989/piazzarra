@@ -87,6 +87,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
 
     let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
+    let invVentasAux = 0
 
     result_insumos.map((item, index) => {
         if(parseInt(item.INSUMO_LIMITE) > parseInt(result[0][item.TIPO])){
@@ -99,6 +100,8 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
         //console.log('INV_AYER: ' + result_ayer[0][item.TIPO])
         if(result_entradas[0][item.TIPO] === null){
             invEntradaAux = 0
+        }else if(result_entradas[0][item.TIPO] === NaN){
+            invEntradaAux = 0
         }else if(result_entradas[0][item.TIPO] === ""){
             invEntradaAux = 0
         }else{
@@ -109,6 +112,16 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
         //console.log('INV_FINAL: ' + result[0][item.TIPO])
         //console.log('INV_CUADRE: ' + ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) ))
         //console.log('}')
+
+        if(result_ventas[item.TIPO] === null){
+            invVentasAux = 0
+        }else if(isNaN(result_ventas[item.TIPO])){
+            invVentasAux = 0
+        }else if(result_ventas[item.TIPO] === ""){
+            invVentasAux = 0
+        }else{
+            invVentasAux = parseInt(result_ventas[item.TIPO])
+        }
 
         let inv_estado = 'Ok'
 
@@ -127,9 +140,9 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
             'TIPO' : item.TIPO, 
             'INV_AYER' : parseInt(result_ayer[0][item.TIPO]), 
             'INV_ENTRADAS' : invEntradaAux,
-            'INV_VENTAS' : result_ventas[item.TIPO],
+            'INV_VENTAS' : invVentasAux,
             'INV_FINAL' : parseInt(result[0][item.TIPO]),
-            'INV_CUADRE' : ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) ),
+            'INV_CUADRE' : ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(invVentasAux) ),
             'INV_ESTADO' : inv_estado,
             'ALARMA_INVENTARIO' : inv_alarma_stock
         })
@@ -4067,6 +4080,7 @@ function resumenVentas(result_ventas_auxn, insumos){
 
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 130
                     result.PANNE_COOK = result.PANNE_COOK - 1
+
                     let dosIng = 50;
                     let tresIng = 33.33;
                     let queso = 100;

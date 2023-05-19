@@ -78,7 +78,7 @@ class adminReviewInventarioPC extends Component {
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Popayan-Centro` + `/Popayan-Centro`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                //console.log(data.inv.result_output)
+                console.log(data.inv.result_output)
                 this.setState({
                     inve_cuadre: data.inv.result_output
                 })
