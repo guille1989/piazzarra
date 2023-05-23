@@ -162,7 +162,15 @@ class adminReviewInventarioPC extends Component {
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
         //document.getElementById("fechaHoyRInventario").value = this.state.fechaRegistroInventario
-        var today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+
+        var today_ayer = ""
+
+        if (day < 10) {
+            today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+        }else {
+            today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+        }
+        
 
         //console.log(this.state.fechaRegistroInventario)
         //console.log(today)
@@ -174,7 +182,7 @@ class adminReviewInventarioPC extends Component {
           }     
 
         //Inve cuadre completo
-        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + this.state.fechaRegistroInventario + `/` + today + `/Pizzarra-Popayan-Centro` + `/Popayan-Centro`, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + this.state.fechaRegistroInventario + `/` + today_ayer + `/Pizzarra-Popayan-Centro` + `/Popayan-Centro`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 //console.log(data.inv)
