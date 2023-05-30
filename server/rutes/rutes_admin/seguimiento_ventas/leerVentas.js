@@ -65,6 +65,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let sopa_pollo = 0
     let sopa_tomate = 0
     let sopa_cebolla = 0
+    let sopa_verduras = 0
 
     let pan_ajo = 0
     let pan_10_unidades = 0
@@ -171,6 +172,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                     sopa_tomate = sopa_tomate + 1
                 }else if(item2.sabor_sopa === "CEBOLLA"){
                     sopa_cebolla = sopa_cebolla + 1
+                }else if(item2.sabor_sopa === "VERDURAS"){
+                    sopa_verduras = sopa_verduras + 1
                 }
             }else if(item2.tipo.includes("PAN AJO")){
                 pan_ajo = pan_ajo + parseInt(item2.tipo.replace( /^\D+/g, ''))          
@@ -247,6 +250,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'sopa_pollo', 'No': sopa_pollo},
                         {'tipo_pedido': 'sopa_tomate', 'No': sopa_tomate},
                         {'tipo_pedido': 'sopa_cebolla', 'No': sopa_cebolla},
+                        {'tipo_pedido': 'sopa_verduras', 'No': sopa_verduras},
                         
                         {'tipo_pedido': 'pan_ajo', 'No': pan_ajo }, 
                         {'tipo_pedido': 'pan_10_unidades', 'No': pan_10_unidades}, 

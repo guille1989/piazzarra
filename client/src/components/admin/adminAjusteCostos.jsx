@@ -569,177 +569,184 @@ class adminAjusteCostos extends Component {
                 <div className='ContenedorCostos'>
                 
                 <div className='CostosProductos'>               
-                        <div style={{marginTop:'15px', width: '200px'}}>
+                        <div style={{marginTop:'15px'}}>                                                                                    
                             <h4>Pizza Personal: </h4>
-                            <NumericTextBoxComponent step={100} value={this.state.costo_pizza_personal} change={(e) => this.handleCostoPizzaPersonal('PIZZA_PERSONAL_COMPLETA', e)}>
-                            </NumericTextBoxComponent>
+                            
+                            <div className='saboresPizzaPersonal'>
+
+                                <div style={{paddingRight: '5%'}}>
+                                    <NumericTextBoxComponent width={'100px'} step={100} value={this.state.costo_pizza_personal} change={(e) => this.handleCostoPizzaPersonal('PIZZA_PERSONAL_COMPLETA', e)}>
+                                    </NumericTextBoxComponent>
+                                </div>
+                                
+                                {this.state.sabores_pizza_personal.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                                
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}> 
                             <h4>Pizza Grande: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_pizza_grande} change={(e) => this.handleCostoPizzaGrande('PIZZA_GRANDE_COMPLETA', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_pizza_grande.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Pizza Pantalon: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_pizza_pantalon} change={(e) => this.handleCostoPizzaPantalon('PIZZA_PANTALON', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_pizza_pantalon.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Pizza Pancook: </h4> 
                             <NumericTextBoxComponent step={100} value={this.state.costo_pizza_pancook} change={(e) => this.handleCostoPizzaPancook('PIZZA_PANCOOK', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_pizza_pancook.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
 
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Lasagna Salsa Napolitana: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_lasagna_napolitana} change={(e) => this.handleCostoLasagnaNapolitana('PIZZA_LASAGNA_NAPOLITANA', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_lasagna_napolitana.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Lasagna Salsa Queso: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_lasagna_queso} change={(e) => this.handleCostoLasagnaQueso('PIZZA_LASAGNA_QUESO', e)}>
                             </NumericTextBoxComponent>  
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_lasagna_queso.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                     
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Spaguetti Napolitana: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_spaguetti_napolitana} change={(e) => this.handleCostoSpaguettiNapolitana('PIZZA_PASTA_SPAGUETTI_NAPOLITANA', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_spaguetti_napolitana.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Spaguetti Queso: </h4>  
                             <NumericTextBoxComponent step={100} value={this.state.costo_spaguetti_queso} change={(e) => this.handleCostoSpaguettiQueso('PIZZA_PASTA_SPAGUETTI_QUESO', e)}>
                             </NumericTextBoxComponent>  
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_spaguetti_queso.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
 
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Fetuccini Napolitana: </h4>
                             <NumericTextBoxComponent step={100} value={this.state.costo_fetuccini_napolitana} change={(e) => this.handleCostoFetucciniNapolitana('PIZZA_PASTA_FETUCCINI_NAPOLITANA', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_fetuccini_napolitana.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Fetuccini Queso: </h4>   
                             <NumericTextBoxComponent step={100} value={this.state.costo_fetuccini_queso} change={(e) => this.handleCostoFetucciniQueso('PIZZA_PASTA_FETUCCINI_QUESO', e)}>
                             </NumericTextBoxComponent>
+
+                            <div className='saboresPizzaGrande'>
+                                {this.state.sabores_fetuccini_queso.map((item, index) => {
+                                    return(
+                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                            <h4>{item.SABOR_PRODUCTO}</h4>
+                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                        </div>                            
+                                    )
+                                })}
+                            </div>
+
                         </div>                    
-                </div>
-
-                <div className="verticalline">
-                </div>
-
-
-                <div>
-                
-                <div className='saboresPizzaPersonal'>
-                    {this.state.sabores_pizza_personal.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_pizza_grande.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_pizza_pantalon.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_pizza_pancook.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_lasagna_napolitana.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_lasagna_queso.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_spaguetti_napolitana.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_spaguetti_queso.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_fetuccini_napolitana.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
-                <div className='saboresPizzaGrande'>
-                    {this.state.sabores_fetuccini_queso.map((item, index) => {
-                        return(
-                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                <h4>{item.SABOR_PRODUCTO}</h4>
-                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                            </div>                            
-                        )
-                    })}
-                </div>
-
                 </div>
 
                 </div>
