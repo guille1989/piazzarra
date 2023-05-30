@@ -92,7 +92,7 @@ class inventarioCaliReview extends Component {
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        var today_ayer = year + "-" + month + "-" + day;
+        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
 
         const requestOptions ={
             method: 'GET',
@@ -123,6 +123,9 @@ class inventarioCaliReview extends Component {
         this.setState({
             fecha_aux_01: e.target.value
         })
+
+        //console.log(e.target.value)
+        //console.log(today_ayer)
 
         //Inve cuadre completo
         fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/cuadre/` + e.target.value + `/` + today_ayer + `/Pizzarra-Cali-Refugio` + `/Cali-Refugio`, requestOptions)

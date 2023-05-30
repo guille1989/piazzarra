@@ -92,7 +92,7 @@ class inventarioPopayanReview extends Component {
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        var today_ayer = year + "-" + month + "-" + day;
+        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
 
         const requestOptions ={
             method: 'GET',
