@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort, Freeze } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Page, Inject, Toolbar, Sort, Freeze, Edit } from '@syncfusion/ej2-react-grids';
 import { DashboardLayoutComponent, PanelsDirective, PanelDirective } from "@syncfusion/ej2-react-layouts";
 import FlagGreen from '../../images/flagGreen.png';
 import FlagRed from '../../images/flagRed.png';
@@ -289,7 +289,7 @@ class adminInicio extends Component {
                                 <ColumnDirective field='INV_ESTADO' headerText='Estado Cuadre Insumo' template={this.statusTemplate} width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
                             </ColumnsDirective>
-                            <Inject services={[Freeze, Toolbar, Page, Sort]}/>
+                            <Inject services={[Freeze, Toolbar, Page, Sort, Edit]}/>
                         </GridComponent>
                     </div>
                 </div>
