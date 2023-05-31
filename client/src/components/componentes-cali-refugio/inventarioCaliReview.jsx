@@ -38,7 +38,7 @@ class inventarioCaliReview extends Component {
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
         document.getElementById("fechaHoyRInventario").value = today
-        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+        var today_ayer = year + "-" + month + "-" + day;
 
         this.setState({
             fecha_aux_01: today
@@ -92,7 +92,7 @@ class inventarioCaliReview extends Component {
         var year = date.getFullYear();
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        var today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+        var today_ayer = year + "-" + month + "-" + day;
 
         const requestOptions ={
             method: 'GET',
