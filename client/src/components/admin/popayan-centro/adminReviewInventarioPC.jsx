@@ -58,7 +58,7 @@ class adminReviewInventarioPC extends Component {
     handleFechaHoy(e){
         //Cuadramos ayer
         var date = new Date(e.target.value);
-        var day = date.getDate() - 1;
+        var day = date.getDate();
 
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
@@ -166,9 +166,9 @@ class adminReviewInventarioPC extends Component {
         var today_ayer = ""
 
         if (day < 10) {
-            today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+            today_ayer = year + "-" + month + "-0" + (date.getDate());
         }else {
-            today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+            today_ayer = year + "-" + month + "-" + (date.getDate());
         }
         
 

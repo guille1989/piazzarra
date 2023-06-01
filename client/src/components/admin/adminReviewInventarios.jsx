@@ -216,9 +216,9 @@ class adminInicio extends Component {
         var today_ayer = ""
 
         if (day < 10) {
-            today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+            today_ayer = year + "-" + month + "-0" + (date.getDate());
         }else {
-            today_ayer = year + "-" + month + "-" + (date.getDate() -1);
+            today_ayer = year + "-" + month + "-" + (date.getDate());
         }
 
         //console.log(this.state.fechaRegistroInventario)
