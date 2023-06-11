@@ -500,7 +500,8 @@ class adminReviewVentasPC extends Component {
                 <GridComponent dataSource={this.state.ventas_review} height='350' allowSorting={true} >
                     <ColumnsDirective>
                     <ColumnDirective field='tipo_pedido' headerText='Tipo Pedido' width='120' textAlign='left'></ColumnDirective>
-                    <ColumnDirective field='No' headerText='Numero' width='150'></ColumnDirective>                   
+                    <ColumnDirective field='No' headerText='Numero' width='150'></ColumnDirective>     
+                    <ColumnDirective field='Costo' headerText='Costo' width='150' format='C0'></ColumnDirective>                   
                     </ColumnsDirective>
                     <Inject services={[Sort]}/>
                 </GridComponent>
