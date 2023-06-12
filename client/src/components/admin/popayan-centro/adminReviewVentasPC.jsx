@@ -157,7 +157,19 @@ class adminReviewVentasPC extends Component {
                                                     </td>
                                                     </>
                                                 )
-                                                } else if (item.tipo === "PIZZA PERSONAL COMPLETA") {
+                                                }else if (item.tipo === "PIZZA GRANDE COMPLETA PROMOCION") {
+                                                    return (
+                                                        <>
+                                                            <td>                                    
+                                                                {item.sabor_personal} 
+                                                                {item.mod_sabor_personal} 
+                                                            </td>
+                                                            <td>                                    
+                                                                {item.costo_personal + item.costo_adiciones} 
+                                                            </td>
+                                                        </>                                                
+                                                    )
+                                                    } else if (item.tipo === "PIZZA PERSONAL COMPLETA") {
                                                 return (
                                                     <>
                                                         <td>                                    
@@ -169,7 +181,19 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                     </>                                                
                                                 )
-                                                } else if (item.tipo === "PIZZA PERSONAL MITAD") {
+                                                } else if (item.tipo === "PIZZA PERSONAL COMPLETA PROMOCION") {
+                                                    return (
+                                                        <>
+                                                            <td>                                    
+                                                                {item.sabor_personal} 
+                                                                {item.mod_sabor_personal} 
+                                                            </td>
+                                                            <td>                                    
+                                                                {item.costo_personal + item.costo_adiciones} 
+                                                            </td>
+                                                        </>                                                
+                                                    )
+                                                    }else if (item.tipo === "PIZZA PERSONAL MITAD") {
                                                     return (
                                                         <>
                                                         <td>                                    
@@ -201,7 +225,39 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         </>
                                                     )
+                                                }else if (item.tipo === "PIZZA GRANDE CUARTO PROMOCION") {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.cuarto_uno} 
+                                                            {item.mod_cuarto_uno} <br></br>
+                                                            {item.cuarto_dos} 
+                                                            {item.mod_cuarto_dos} <br></br>
+                                                            {item.cuarto_tres} 
+                                                            {item.mod_cuarto_tres} <br></br>
+                                                            {item.cuarto_cuatro}                            
+                                                            {item.mod_cuarto_cuatro} 
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_grande + item.costo_adiciones_grande} 
+                                                        </td>
+                                                        </>
+                                                    )
                                                 } else if (item.tipo === "PIZZA GRANDE MITAD") {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.mitad_uno} 
+                                                            {item.mod_mitad_uno} <br></br>
+                                                            {item.mitad_dos} 
+                                                            {item.mod_mitad_dos} <br></br>                                
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_grande + item.costo_adiciones_grande} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                } else if (item.tipo === "PIZZA GRANDE MITAD PROMOCION") {
                                                     return (
                                                         <>
                                                         <td>   

@@ -54,6 +54,7 @@ mongose.set('strictQuery', true);
 app.use('/api/inicio', Autenticacion)
 app.use('/api/inventarioactual', InventarioActual);                 //Inventario Final
 app.use('/api/insumos', Insumos);                                   //Insumos que se manejan en el negocio
+console.log("Insumos cargados");
 app.use('/api/entradasinventario', IngresarEntradaInventario);      //Inventario de entrada de insumos
 app.use('/api/insumocostos', IngresarEntradaInventarioCosto);       //Costo de los insumos de entradas
 app.use('/api/revisioninventariofecha', ValidacionInventarioExistente);  //Revision si existe inventario ya registrado

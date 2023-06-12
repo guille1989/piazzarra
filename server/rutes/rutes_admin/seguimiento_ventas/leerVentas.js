@@ -36,8 +36,14 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let pizza_personal = 0
     let pizza_costo_personal = 0
 
+    let pizza_personal_promo = 0
+    let pizza_costo_personal_promo = 0
+
     let pizza_grande = 0
     let pizza_costo_grande = 0
+
+    let pizza_grande_promo = 0
+    let pizza_costo_grande_promo = 0
 
     let pizza_pantalon = 0
     let pizza_pantalon_costo = 0
@@ -157,14 +163,32 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     //Suma por tipo
 
     result.map((item, index) => {
+       
+        if(item.aux[0].costo_pedido === 1){
+            item.pedido.map((item2, index2) => {
+                //find key in json object with key word 'costo'
+                let key = Object.keys(item2).find(key => key.includes('costo'))
+                //console.log(key, item2[key])
+                //replace all values of keys with 0
+                item2[key] = 0
+                //console.log(key, item2[key])
+            })     
+        }
+
         item.pedido.map((item2, index2) => {
             
-            if( item2.tipo.includes('PIZZA PERSONAL') ){
+            if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION') ){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
                 pizza_personal = pizza_personal + 1
-            }else if( item2.tipo.includes('PIZZA GRANDE') ){
+            }else if(item2.tipo.includes('PIZZA PERSONAL') && item2.tipo.includes('PROMOCION')){
+                pizza_personal_promo = pizza_personal_promo + 1
+                pizza_costo_personal_promo = pizza_costo_personal_promo + item2.costo_personal + item2.costo_adiciones
+            }else if( item2.tipo.includes('PIZZA GRANDE') && !item2.tipo.includes('PROMOCION') ){
                 pizza_costo_grande = pizza_costo_grande + item2.costo_grande + item2.costo_adiciones_grande
                 pizza_grande = pizza_grande + 1
+            }else if( item2.tipo.includes('PIZZA GRANDE') && item2.tipo.includes('PROMOCION') ){
+                pizza_grande_promo = pizza_grande_promo + 1
+                pizza_costo_grande_promo = pizza_costo_grande_promo + item2.costo_grande + item2.costo_adiciones_grande
             }else if( item2.tipo.includes('PANTALON') ){
                 pizza_pantalon_costo = pizza_pantalon_costo + item2.costo_pantalon + item2.costo_adiciones_pantalon
                 pizza_pantalon = pizza_pantalon + 1
@@ -301,6 +325,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     result_sum_tipo.push({'tipo_pedido': 'pizza_personal', 'No': pizza_personal, 'Costo': pizza_costo_personal}, 
                         {'tipo_pedido': 'pizza_grande', 'No': pizza_grande, 'Costo': pizza_costo_grande }, 
+                        {'tipo_pedido': 'pizza_personal_promocion', 'No': pizza_personal_promo , 'Costo': pizza_costo_personal_promo },
+                        {'tipo_pedido': 'pizza_grande_promocion', 'No': pizza_grande_promo, 'Costo': pizza_costo_grande_promo },
                         {'tipo_pedido':'pizza_pantalon', 'No': pizza_pantalon,  'Costo': pizza_pantalon_costo }, 
                         {'tipo_pedido': 'pizza_pancook', 'No': pizza_pancook, 'Costo': pizza_pancook_costo },
                         {'tipo_pedido': 'pizza_lasagna', 'No': pizza_lasagna, 'Costo': pizza_lasagna_costo },
