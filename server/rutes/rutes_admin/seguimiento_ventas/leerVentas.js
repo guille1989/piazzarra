@@ -96,6 +96,15 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let jugo_lulada = 0
     let jugo_lulada_costo = 0
 
+    let aromatica_mansanilla = 0
+    let aromatica_mansanilla_costo = 0
+
+    let aromatica_frutos_rojos = 0
+    let aromatica_frutos_rojos_costo = 0
+
+    let aromatica_yerba_buena = 0
+    let aromatica_yerba_buena_costo = 0
+
     let vino_botella_tinto = 0
     let vino_botella_tinto_costo = 0    
 
@@ -104,6 +113,24 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     let cafe_bebida = 0
     let cafe_bebida_costo = 0
+
+    let cafe_expreso_pequeno = 0
+    let cafe_expreso_pequeno_costo = 0
+
+    let cafe_expreso_grande = 0
+    let cafe_expreso_grande_costo = 0
+
+    let cafe_americano_grande = 0
+    let cafe_americano_grande_costo = 0
+
+    let cafe_americano_pequeno = 0
+    let cafe_americano_pequeno_costo = 0
+
+    let cafe_capuchino_grande = 0
+    let cafe_capuchino_grande_costo = 0
+
+    let cafe_capuchino_pequeno = 0
+    let cafe_capuchino_pequeno_costo = 0
 
     let sopa_pollo = 0
     let sopa_pollo_costo = 0
@@ -154,29 +181,28 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let result_sum_ventas = 0;
 
     result.map((item, index) => {
+
+        if(item.aux[0].costo_pedido === 1){
+            item.pedido.map((item2, index2) => {                
+                let key = Object.keys(item2).find(key => key.includes('costo'))                
+                item2[key] = 0                
+            })     
+        }
+
+
         item.aux.map((item2, index2) => {
-            //console.log(item2.costo_pedido)
-            result_sum_ventas = result_sum_ventas + item2.costo_pedido
+            //console.log(item2)
+            if(item2.costo_pedido === 1){
+            }else{
+                result_sum_ventas = result_sum_ventas + item2.costo_pedido
+            }            
         })
     })
 
     //Suma por tipo
-
-    result.map((item, index) => {
-       
-        if(item.aux[0].costo_pedido === 1){
-            item.pedido.map((item2, index2) => {
-                //find key in json object with key word 'costo'
-                let key = Object.keys(item2).find(key => key.includes('costo'))
-                //console.log(key, item2[key])
-                //replace all values of keys with 0
-                item2[key] = 0
-                //console.log(key, item2[key])
-            })     
-        }
-
+    result.map((item, index) => {   
         item.pedido.map((item2, index2) => {
-            
+            //console.log(item2.tipo)            
             if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION') ){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
                 pizza_personal = pizza_personal + 1
@@ -214,6 +240,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 cerveza_aguila_costo = cerveza_aguila_costo + item2.costo_cerveza
                 cerveza_aguila = cerveza_aguila + 1        
             }else if(item2.tipo.includes("LITRO/4")){
+                //console.log(item2)
                 glitrocuarto_costo = glitrocuarto_costo + item2.costo_gaseosa
                 let glt4 = item2.tipo.split("X", 2)
                 glitrocuarto = glitrocuarto + parseInt(glt4[1])
@@ -225,6 +252,18 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 gcocacolanormal_costo = gcocacolanormal_costo + item2.costo_gaseosa
                 let g350 = item2.tipo.split("X", 2)
                 gcocacolanormal = gcocacolanormal + parseInt(g350[1])
+            }else if(item2.tipo.includes("AROMATICA MANSANILLA")){
+                aromatica_mansanilla_costo = aromatica_mansanilla_costo + item2.costo_bebida
+                let a_mansanilla = item2.tipo.split("X", 2)
+                aromatica_mansanilla = aromatica_mansanilla + parseInt(a_mansanilla[1])
+            }else if(item2.tipo.includes("AROMATICA FRUTOS ROJOS")){
+                aromatica_frutos_rojos_costo = aromatica_frutos_rojos_costo + item2.costo_bebida
+                let a_frutos_rojos = item2.tipo.split("X", 2)
+                aromatica_frutos_rojos = aromatica_frutos_rojos + parseInt(a_frutos_rojos[1])
+            }else if(item2.tipo.includes("AROMATICA YERBE BUENA")){
+                aromatica_yerba_buena_costo = aromatica_yerba_buena_costo + item2.costo_bebida
+                let a_yerbe_buena = item2.tipo.split("X", 2)
+                aromatica_yerba_buena = aromatica_yerba_buena + parseInt(a_yerbe_buena[1])
             }else if(item2.tipo.includes("JUGO")){
                 if(item2.tipo.includes("LIMONADA")){
                     if(item2.tipo.includes("JARRA")){
@@ -260,8 +299,35 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                     vino_copa_tinto = vino_copa_tinto + parseInt(item2.tipo.replace( /^\D+/g, ''))
                 }   
             }else if(item2.tipo.includes("CAFÉ")){
-                cafe_bebida_costo = cafe_bebida_costo + item2.costo_tinto
-                cafe_bebida = cafe_bebida + parseInt(item2.tipo.replace( /^\D+/g, ''))
+
+                if(item2.tipo.includes("Expreso")){
+                    if(item2.tipo.includes("Grande")){
+                        cafe_expreso_grande_costo = cafe_expreso_grande_costo + item2.costo_tinto
+                        cafe_expreso_grande = cafe_expreso_grande + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }else{
+                        cafe_expreso_pequeno_costo = cafe_expreso_pequeno_costo + item2.costo_tinto
+                        cafe_expreso_pequeno = cafe_expreso_pequeno + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }
+                }else if(item2.tipo.includes("Tinto")){
+                    cafe_bebida_costo = cafe_bebida_costo + item2.costo_tinto
+                    cafe_bebida = cafe_bebida + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                }else if(item2.tipo.includes("Capuccino")){
+                    if(item2.tipo.includes("Grande")){
+                        cafe_capuchino_grande_costo = cafe_capuchino_grande_costo + item2.costo_tinto
+                        cafe_capuchino_grande = cafe_capuchino_grande + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }else{
+                        cafe_capuchino_pequeno_costo = cafe_capuchino_pequeno_costo + item2.costo_tinto
+                        cafe_capuchino_pequeno = cafe_capuchino_pequeno + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }
+                }else if(item2.tipo.includes("Americano")){
+                    if(item2.tipo.includes("Grande")){
+                        cafe_americano_grande_costo = cafe_americano_grande_costo + item2.costo_tinto
+                        cafe_americano_grande = cafe_americano_grande + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }else{
+                        cafe_americano_pequeno_costo = cafe_americano_pequeno_costo + item2.costo_tinto
+                        cafe_americano_pequeno = cafe_americano_pequeno + parseInt(item2.tipo.replace( /^\D+/g, ''))
+                    }
+                }
             }else if(item2.tipo.includes("SOPA")){
                 if(item2.sabor_sopa === "POLLO"){
                     sopa_pollo_costo = sopa_pollo_costo + item2.costo_sopa + item2.costo_adiciones_sopa
@@ -347,11 +413,20 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'jugo_lulo', 'No': jugo_lulo, 'Costo': jugo_lulo_costo },
                         {'tipo_pedido': 'jugo_lulada', 'No': jugo_lulada, 'Costo': jugo_lulada_costo },
                         {'tipo_pedido': 'jugo_mora', 'No': jugo_mora, 'Costo': jugo_mora_costo },
+                        {'tipo_pedido': 'aromatica_mansanilla', 'No': aromatica_mansanilla, 'Costo': aromatica_mansanilla_costo },
+                        {'tipo_pedido': 'aromatica_frutos_rojos', 'No': aromatica_frutos_rojos, 'Costo': aromatica_frutos_rojos_costo },
+                        {'tipo_pedido': 'aromatica_yerba_buena', 'No': aromatica_yerba_buena, 'Costo': aromatica_yerba_buena_costo },
                         
                         {'tipo_pedido': 'vino_botella_tinto', 'No': vino_botella_tinto, 'Costo': vino_botella_tinto_costo },
                         {'tipo_pedido': 'vino_copa_tinto', 'No': vino_copa_tinto, 'Costo': vino_copa_tinto_costo },
                         
-                        {'tipo_pedido': 'cafe_bebida', 'No': cafe_bebida, 'Costo': cafe_bebida_costo },
+                        {'tipo_pedido': 'cafe_tinto', 'No': cafe_bebida, 'Costo': cafe_bebida_costo },
+                        {'tipo_pedido': 'cafe_americano_pequeno', 'No': cafe_americano_pequeno, 'Costo': cafe_americano_pequeno_costo },
+                        {'tipo_pedido': 'cafe_americano_grande', 'No': cafe_americano_grande, 'Costo': cafe_americano_grande_costo },
+                        {'tipo_pedido': 'cafe_capuchino_pequeno', 'No': cafe_capuchino_pequeno, 'Costo': cafe_capuchino_pequeno_costo },
+                        {'tipo_pedido': 'cafe_capuchino_grande', 'No': cafe_capuchino_grande, 'Costo': cafe_capuchino_grande_costo },
+                        {'tipo_pedido': 'cafe_expreso_pequeno', 'No': cafe_expreso_pequeno, 'Costo': cafe_expreso_pequeno_costo },
+                        {'tipo_pedido': 'cafe_expreso_grande', 'No': cafe_expreso_grande, 'Costo': cafe_expreso_grande_costo },
                         
                         {'tipo_pedido': 'sopa_pollo', 'No': sopa_pollo, 'Costo': sopa_pollo_costo },
                         {'tipo_pedido': 'sopa_tomate', 'No': sopa_tomate, 'Costo': sopa_tomate_costo },
