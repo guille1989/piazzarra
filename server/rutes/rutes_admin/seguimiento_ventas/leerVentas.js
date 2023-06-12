@@ -179,6 +179,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     });
 
     let result_sum_ventas = 0;
+    let result_sum_ventas_domis = 0;
+    let count_domicilios = 0;
 
     result.map((item, index) => {
 
@@ -194,10 +196,18 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             //console.log(item2)
             if(item2.costo_pedido === 1){
             }else{
+                //find if key exists
+                if(item2.hasOwnProperty('domi_costo')){
+                    result_sum_ventas_domis = result_sum_ventas_domis + parseInt(item2.domi_costo)
+                    count_domicilios = count_domicilios + 1
+                }
+
                 result_sum_ventas = result_sum_ventas + item2.costo_pedido
             }            
         })
     })
+
+    result_sum_ventas = result_sum_ventas + result_sum_ventas_domis
 
     //Suma por tipo
     result.map((item, index) => {   
@@ -448,7 +458,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'agua_sin_gas', 'No': agua_sin_gas, 'Costo': agua_sin_gas_costo },
 
                         {'tipo_pedido': 'desayuno_huesped', 'No': desayuno_huesped, 'Costo': desayuno_huesped_costo },
-                        {'tipo_pedido': 'desayuno_americano', 'No': desayuno_americano, 'Costo': desayuno_americano_costo},)
+                        {'tipo_pedido': 'desayuno_americano', 'No': desayuno_americano, 'Costo': desayuno_americano_costo},
+                        {'tipo_pedido': 'domicilios', 'No': count_domicilios, 'Costo': result_sum_ventas_domis})
 
 
     result_sum_tipo = result_sum_tipo.filter(function (el) {
