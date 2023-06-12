@@ -180,6 +180,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     let result_sum_ventas = 0;
     let result_sum_ventas_domis = 0;
+    let result_sum_room_service = 0;
+    let count_room_service = 0;
     let count_domicilios = 0;
 
     result.map((item, index) => {
@@ -202,6 +204,10 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                     count_domicilios = count_domicilios + 1
                 }
 
+                if(item2.tipo_pedido === "ROOM SERVICE"){
+                    result_sum_room_service = result_sum_room_service + 10000
+                    count_room_service = count_room_service + 1
+                }
                 result_sum_ventas = result_sum_ventas + item2.costo_pedido
             }            
         })
@@ -459,7 +465,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
                         {'tipo_pedido': 'desayuno_huesped', 'No': desayuno_huesped, 'Costo': desayuno_huesped_costo },
                         {'tipo_pedido': 'desayuno_americano', 'No': desayuno_americano, 'Costo': desayuno_americano_costo},
-                        {'tipo_pedido': 'domicilios', 'No': count_domicilios, 'Costo': result_sum_ventas_domis})
+                        {'tipo_pedido': 'domicilios', 'No': count_domicilios, 'Costo': result_sum_ventas_domis},
+                        {'tipo_pedido': 'room_service', 'No': count_room_service, 'Costo': result_sum_room_service})
 
 
     result_sum_tipo = result_sum_tipo.filter(function (el) {
