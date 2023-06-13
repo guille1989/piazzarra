@@ -32,8 +32,8 @@ rute.get('/:fecha/:fechaayer/:inv_id/:pedidos_id', (req, res) => {
         })
 })
 
-async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pedidos_id){  
-    
+async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pedidos_id){ 
+
     let result_output = [];
     
     let result_insumos = [];
@@ -53,7 +53,6 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
         $and:[{"FECHA_INVENTARIO_ENTRANTE": fechaInventario}, {"INVENTARIO_AUX.INVENTARIO_ID": inv_id}] 
     })    
   
-
     //Creamos un inv en 0 por si no se encuentra en db informacion
     let inv_ceros_aux = []
 
@@ -95,9 +94,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
         }else{
             inv_alarma_stock = "Suficiente"
         }
-        //console.log('{')
-        //console.log('TIPO: ' + item.TIPO)
-        //console.log('INV_AYER: ' + result_ayer[0][item.TIPO])
+
         if(result_entradas[0][item.TIPO] === null){
             invEntradaAux = 0
         }else if(result_entradas[0][item.TIPO] === NaN){
@@ -106,12 +103,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
             invEntradaAux = 0
         }else{
             invEntradaAux = parseInt(result_entradas[0][item.TIPO])
-        }
-        //console.log('INV_ENTRADAS: ' + invEntradaAux)     
-        //console.log('INV_VENTAS: ' + result_ventas[item.TIPO])
-        //console.log('INV_FINAL: ' + result[0][item.TIPO])
-        //console.log('INV_CUADRE: ' + ( parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) ))
-        //console.log('}')
+        }     
 
         if(result_ventas[item.TIPO] === null){
             invVentasAux = 0
@@ -132,8 +124,6 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
         if(parseInt(result[0][item.TIPO]) - parseInt(result_ayer[0][item.TIPO]) - parseInt(invEntradaAux) - parseInt(result_ventas[item.TIPO]) > 0){
             inv_estado = 'Sobrante'
         }
-
-        
 
         result_output.push(
         {
@@ -180,7 +170,7 @@ function resumenVentas(result_ventas_auxn, insumos){
 
             item.pedido.map((item, index) => { 
 
-                //console.log(item)
+                //console.log(item.tipo)
                 //console.log(index) 
 
                 if(item.tipo.includes("DESAYUNO AMERICANO")){
@@ -342,12 +332,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
-                if(item.tipo === "PIZZA PERSONAL COMPLETA"){                    
-
+                if(item.tipo.includes("PIZZA PERSONAL COMPLETA")){                   
+                    
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
                     }
-
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60
 
                     let dosIng = 50;
@@ -701,8 +690,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
+                // find PIZZA GRANDE in item
+
                 //PIZZA PERSONAL POR MITADES
-                if(item.tipo === "PIZZA PERSONAL MITAD"){
+                if(item.tipo.includes("PIZZA PERSONAL MITAD")){
 
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
@@ -1408,14 +1399,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
-                //PIZZA MEDIANA COMPLETA
-                if(item.tipo === "PIZZA GRANDE COMPLETA"){
-
+                //PIZZA MEDIANA COMPLETA 
+                if(item.tipo.includes("PIZZA GRANDE COMPLETA")){
                     if(cajasPizzaGrandes === 1){
                         result.CAJAS_PIZZA = result.CAJAS_PIZZA - 1
                     }
-
-
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 180
                     result.MASAS_MEDIANAS = result.MASAS_MEDIANAS - 1
                     let dosIng = 150;
@@ -1744,7 +1732,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                 }
 
                 //PIZZA MEDIANA MITAD
-                if(item.tipo === "PIZZA GRANDE MITAD"){
+                if(item.tipo.includes("PIZZA GRANDE MITAD")){
 
                     if(cajasPizzaGrandes === 1){
                         result.CAJAS_PIZZA = result.CAJAS_PIZZA - 1
@@ -2394,7 +2382,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                 }
 
                 //PIZZA MEDIANA CUARTOS
-                if(item.tipo === "PIZZA GRANDE CUARTO"){
+                if(item.tipo.includes("PIZZA GRANDE CUARTO")){
 
                     if(cajasPizzaGrandes === 1){
                         result.CAJAS_PIZZA = result.CAJAS_PIZZA - 1
