@@ -247,14 +247,18 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 pizza_lasagna_costo = pizza_lasagna_costo + item2.costo_lasagna + item2.costo_adiciones_lasagna
                 pizza_lasagna = pizza_lasagna + 1
             }else if(item2.tipo.includes("CLUB")){
+                let cvz = item2.tipo.split("X", 2)
                 cerveza_club_costo = cerveza_club_costo + item2.costo_cerveza
-                cerveza_club = cerveza_club + 1     
+                cerveza_club = cerveza_club + + parseInt(cvz[1])     
             }else if(item2.tipo.includes("POKER")){
+                console.log(item2.tipo)
+                let cvz = item2.tipo.split("X", 2)
                 cerveza_poker_costo = cerveza_poker_costo + item2.costo_cerveza
-                cerveza_poker = cerveza_poker + 1
+                cerveza_poker = cerveza_poker + parseInt(cvz[1])
             }else if(item2.tipo.includes("AGUILA")){
+                let cvz = item2.tipo.split("X", 2)
                 cerveza_aguila_costo = cerveza_aguila_costo + item2.costo_cerveza
-                cerveza_aguila = cerveza_aguila + 1        
+                cerveza_aguila = cerveza_aguila + parseInt(cvz[1])        
             }else if(item2.tipo.includes("LITRO/4")){
                 //console.log(item2)
                 glitrocuarto_costo = glitrocuarto_costo + item2.costo_gaseosa
