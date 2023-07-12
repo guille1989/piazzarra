@@ -5135,6 +5135,21 @@ function resumenVentas(result_ventas_auxn, insumos){
                     result.PANNE_COOK = result.PANNE_COOK - item.tipo.replace( /^\D+/g, '')             
                 }
 
+                if(item.tipo.includes("PIZZA FESTIVAL")){
+                    if(cajasPizzaPersonales === 1){
+                        result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
+                    }
+
+                    result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60  
+                    result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1     
+                    result.POLLO = result.POLLO - 50
+                    result.TOCINETA = result.TOCINETA - 40
+                    result.MAIZ = result.MAIZ - 30
+                    result.TOMATE = result.TOMATE - 30      
+                    result.QUESO = result.QUESO - 100
+                    
+                }
+
                 //PANADERIA            
                 if(item.tipo.includes("PAN 10")){
                     let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')

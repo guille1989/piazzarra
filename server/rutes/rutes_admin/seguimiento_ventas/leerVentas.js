@@ -173,6 +173,11 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     let total_acum_costo = 0
 
+    //Pizza festival
+
+    let pizza_festival = 0
+    let costo_pizza_festival = 0
+
 
     result = await PedidoPizzarra.find({
         $and:[{"aux.fecha_pedido": fecha_aux}, {"aux.local": pedidos_aux}] 
@@ -365,6 +370,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if(item2.tipo.includes("PAN AJO")){
                 pan_ajo_costo = pan_ajo_costo + item2.costo_pan_ajo
                 pan_ajo = pan_ajo + parseInt(item2.tipo.replace( /^\D+/g, ''))          
+            }else if(item2.tipo.includes("PIZZA FESTIVAL")){
+                costo_pizza_festival = costo_pizza_festival + item2.costo_pizza_festival
+                pizza_festival = pizza_festival + parseInt(item2.tipo.replace( /^\D+/g, ''))          
             }else if(item2.tipo.includes("PAN 10")){ 
                 pan_10_unidades_costo = pan_10_unidades_costo + item2.costo_panaderia              
                 let panCantidadAux = item2.tipo.split('X', 2)[1]               
@@ -454,6 +462,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'sopa_verduras', 'No': sopa_verduras, 'Costo': sopa_verduras_costo },
                         
                         {'tipo_pedido': 'pan_ajo', 'No': pan_ajo, 'Costo': pan_ajo_costo}, 
+                        {'tipo_pedido': 'pizza_festival', 'No': pizza_festival, 'Costo': costo_pizza_festival}, 
                         {'tipo_pedido': 'pan_10_unidades', 'No': pan_10_unidades, 'Costo': pan_10_unidades_costo }, 
                         {'tipo_pedido': 'pan_20_unidades', 'No': pan_20_unidades, 'Costo': pan_20_unidades_costo }, 
                         {'tipo_pedido': 'pancook_2_unidades', 'No': pancook_2_unidades, 'Costo': pancook_2_unidades_costo },
