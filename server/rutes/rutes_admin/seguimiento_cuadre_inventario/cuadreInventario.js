@@ -5136,12 +5136,15 @@ function resumenVentas(result_ventas_auxn, insumos){
                 }
 
                 if(item.tipo.includes("PIZZA FESTIVAL")){
+
+                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
                     }
 
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60  
-                    result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1     
+                    result.MASAS_PERSONALES = result.MASAS_PERSONALES - countAux     
                     result.POLLO = result.POLLO - 50
                     result.TOCINETA = result.TOCINETA - 40
                     result.MAIZ = result.MAIZ - 30
