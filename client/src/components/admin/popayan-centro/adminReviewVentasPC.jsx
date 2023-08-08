@@ -161,11 +161,11 @@ class adminReviewVentasPC extends Component {
                                                     return (
                                                         <>
                                                             <td>                                    
-                                                                {item.sabor_personal} 
-                                                                {item.mod_sabor_personal} 
+                                                                {item.sabor_grande} 
+                                                                {item.mod_sabor_grande} 
                                                             </td>
                                                             <td>                                    
-                                                                {item.costo_personal + item.costo_adiciones} 
+                                                                {item.costo_grande + item.costo_adiciones_grande} 
                                                             </td>
                                                         </>                                                
                                                     )
