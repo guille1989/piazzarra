@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 
 import InventarioCali from './components/componentes-cali-refugio/inventario';
-import InventarioPopayan from './components/componentes-popayan-centro/inventario';
 import Login from './components/login';
 
 import Admin from './components/admin/adminNavigationMenu';
@@ -22,13 +21,9 @@ class App extends Component {
       this.setState({
         usuarioLogin: 'Cali - Refugio'
       })
-    }else if(usuarioAutenticacion === 'Popayan - Centro'){
-      this.setState({
-        usuarioLogin: 'Popayan - Centro'
-      })
     }else if(usuarioAutenticacion === 'Admin'){
       this.setState({
-        usuarioLogin: 'Admin'
+        usuarioLogin: 'Admin - Cali'
       })
     }else{
       this.setState({
@@ -42,13 +37,9 @@ class App extends Component {
       this.setState({
         usuarioLogin: 'Cali - Refugio'
       })
-    } else if (usuario === 'Popayan - Centro') {
+    } else if (usuario === 'Admin - Cali'){
       this.setState({
-        usuarioLogin: 'Popayan - Centro'
-      })
-    } else if (usuario === 'Admin'){
-      this.setState({
-        usuarioLogin: 'Admin'
+        usuarioLogin: 'Admin - Cali'
       })
     }
   }
@@ -65,8 +56,7 @@ class App extends Component {
       switch(this.state.usuarioLogin){
         case "": return <Login loginHandlerCaliRefugio={this.handleLogInCaliRefugio.bind(this)}/>
         case "Cali - Refugio": return <InventarioCali logoutHandler={this.handleLogOut.bind(this)}/>
-        case "Popayan - Centro": return <InventarioPopayan logoutHandler={this.handleLogOut.bind(this)}/>
-        case "Admin": return <Admin logoutHandler={this.handleLogOut.bind(this)}/>
+        case "Admin - Cali": return <Admin logoutHandler={this.handleLogOut.bind(this)}/>
 
         default: return <h1>Algo paso.... contacte al administrador !</h1>
       }

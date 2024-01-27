@@ -114,6 +114,8 @@ class adminReviewVentas extends Component {
 
                 <h1>Ventas del dia: {this.state.ventas_totales}</h1>
 
+               {/* 
+
                 <table className="table">
                     <tbody>
                         <tr>
@@ -450,9 +452,7 @@ class adminReviewVentas extends Component {
                     </tbody>
                 </table>
 
-                <br></br>
-
-                <h1>Resumen Ventas:</h1>
+                */}
 
                 <br></br>
 

@@ -55,8 +55,7 @@ class App extends Component {
                 <select className="form-select" aria-label="Default select example" onChange={this.usuarioChange.bind(this)} defaultValue={'Default'}>
                   <option selected>Seleccione Pizzarra</option>
                   <option value="Cali - Refugio">Cali - Refugio</option>
-                  <option value="Popayan - Centro">Popayan - Centro</option>
-                  <option value="Admin">Admin</option>
+                  <option value="Admin - Cali">Admin - Cali</option>
                 </select>
               </div>
             </div>

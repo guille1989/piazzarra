@@ -21,13 +21,8 @@ import OpcionesAdmin from './adminOpciones';
 import VentasAdmin from './adminReviewVentas';
 import ComprasAdmin from  './adminReviewCompras';
 import Graficas from './adminDashboard';
-
-import InicioAdminPopayan from './popayan-centro/adminReviewInventarioPC';
-import ComprasAdminPopayan from './popayan-centro/adminReviewComprasPC';
-import VentasAdminPopayan from './popayan-centro/adminReviewVentasPC';
 import GraficasAdminProduccion from './adminDashboardProduccion';
 import SeguimientoCostos from './adminSeguimientoCostos';
-import ResultadoPopayan from './popayan-centro/adminResultados';
 import AjusteCostos from './adminAjusteCostos';
 
 function PizzarraNavBarAdmin(props){
@@ -49,7 +44,6 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-description',
             items: [
                 { text: 'Inventario - Cali - Refugio' },
-                { text: 'Inventario - Popayan - Centro' },
             ]
         },
         {
@@ -57,7 +51,6 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-changes-previous',
             items: [
                 { text: 'Compras - Cali - Refugio' },
-                { text: 'Compras - Popayan - Centro' }
             ]
         },
         {
@@ -65,7 +58,6 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-changes-next',
             items: [
                 { text: 'Ventas - Cali - Refugio' },
-                { text: 'Ventas - Popayan - Centro' }
             ]
         },
         {
@@ -97,7 +89,6 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-settings',
             items: [
                 { text: 'Configuracion - Globales' },
-                { text: 'Configuracion - Popayan - Centro' },
             ]
         }
     ];
@@ -185,16 +176,9 @@ function PizzarraNavBarAdmin(props){
                                 <Route path="/VentasResumen" element={<VentasAdmin></VentasAdmin>}/>
                                 <Route path='/ComprasResumen' element={<ComprasAdmin></ComprasAdmin>}/>
                                 <Route path='/Dashboard' element={<Graficas></Graficas>}/>
-                                <Route path='/DashboardProduccion' element={<GraficasAdminProduccion></GraficasAdminProduccion>}/>
-
-                                <Route path='/AdminPopayan' element={<InicioAdminPopayan></InicioAdminPopayan>}/>
-                                <Route path='/ComprasResumenPopayan' element={<ComprasAdminPopayan></ComprasAdminPopayan>}/>
-                                <Route path='/VentasResumenPopayan' element={<VentasAdminPopayan></VentasAdminPopayan>}/>
+                                <Route path='/DashboardProduccion' element={<GraficasAdminProduccion></GraficasAdminProduccion>}/>                               
                                 <Route path='/SeguimientoCostos' element={<SeguimientoCostos></SeguimientoCostos>} />  
-
-                                <Route path='/ResultadoOperacionPopayan' element={<ResultadoPopayan></ResultadoPopayan>}/>   
                                 <Route path='/AjusteCostosProductos' element={<AjusteCostos></AjusteCostos>}/>                          
-
                             </Routes>
 
                             </div>

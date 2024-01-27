@@ -189,17 +189,6 @@ class adminDashboard extends Component {
         })
         }
 
-    //---------*    
-    ventasPopayan() {
-        const element = (
-            <div>
-            <h1>Hello, world!</h1>
-            <h2>It is {new Date().toLocaleTimeString()}.</h2>
-            </div>);
-        
-        return element
-    }
-
     pieUno(){
         return (
             <div style={{ height: "100%", width: "100%" }}>
@@ -335,34 +324,6 @@ class adminDashboard extends Component {
                                     </TrendlinesDirective>
 
                             </SeriesDirective>
-
-                            <SeriesDirective 
-                                dataSource={this.state.filter_ventas_popayan} 
-                                tooltipMappingName='r' 
-                                xName='_id' 
-                                columnSpacing={0.1} 
-                                yName='suma_ventas' 
-                                name='Ventas Popayan' 
-                                type='Column' 
-                                marker={{
-                                    dataLabel: {
-                                        visible: true,
-                                        position: 'Middle',
-                                        font: { fontWeight: '2W00', color: '#000000' },
-                                    },
-                                }}>
-
-                                    <TrendlinesDirective>
-                                        <TrendlineDirective 
-                                            type='Linear' 
-                                            width={3} 
-                                            marker={{ visible: false }} 
-                                            name='Tendencia - Popayan' 
-                                            fill='#C64A10'>
-                                        </TrendlineDirective>
-                                    </TrendlinesDirective>
-
-                            </SeriesDirective>
                         </SeriesCollectionDirective>
                     </ChartComponent>
                 </div>
@@ -391,24 +352,6 @@ class adminDashboard extends Component {
                                                                                         minimumFractionDigits: 0,
                                                                                         maximumFractionDigits: 0,
                                                                                         })}</ButtonComponent>
-
-                <h3>Ventas Total Periodo Popayan - Centro: </h3> 
-
-                <ButtonComponent cssClass='e-info'>{parseInt(this.state.ventas_totales_popayan).toLocaleString('en-US', {
-                                                                                        style: 'currency',
-                                                                                        currency: 'USD',
-                                                                                        minimumFractionDigits: 0,
-                                                                                        maximumFractionDigits: 0,
-                                                                                        })}</ButtonComponent>
-
-                <h3>Ventas Promedio Periodo Popayan - Centro: </h3> 
-
-                <ButtonComponent cssClass='e-info'>{parseInt(this.state.ventas_promedio_popayan).toLocaleString('en-US', {
-                                                                                            style: 'currency',
-                                                                                            currency: 'USD',
-                                                                                            minimumFractionDigits: 0,
-                                                                                            maximumFractionDigits: 0,
-                                                                                            })}</ButtonComponent>
             </div>
         );
     }
@@ -541,14 +484,7 @@ class adminDashboard extends Component {
                             row={0}
                             col={2}
                             ></PanelDirective>
-                            <PanelDirective
-                            header="Tipo pedidos Pizzarra Popayan"
-                            content={this.pieDos.bind(this)}
-                            sizeX={2}
-                            sizeY={2}
-                            row={0}
-                            col={4}
-                            ></PanelDirective>
+                           
                             <PanelDirective
                             header="Ventas vs Target - Periodos"
                             content={this.graficaVentas.bind(this)}
