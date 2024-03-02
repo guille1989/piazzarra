@@ -250,6 +250,18 @@ class adminReviewVentas extends Component {
                                                         </td>
                                                         </>                                                    
                                                     )
+                                                }else if (item.tipo.includes("RAVIOLI SALSA")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.sabor_ravioli + item.tipo} 
+                                                            {item.mod_sabor_ravioli}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_ravioli + item.costo_adiciones_ravioli} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
                                                 }else if (item.tipo.includes("PASTA")) {
                                                     return (
                                                         <>

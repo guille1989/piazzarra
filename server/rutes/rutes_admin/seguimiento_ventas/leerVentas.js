@@ -54,6 +54,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let pizza_lasagna = 0
     let pizza_lasagna_costo = 0
 
+    let raviolis = 0
+    let raviolis_costo = 0
+
     let pizza_pasta_spagetti = 0
     let pizza_pasta_spagetti_costo = 0
 
@@ -251,6 +254,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
             }else if( item2.tipo.includes('LASAGNA SALSA') ){
                 pizza_lasagna_costo = pizza_lasagna_costo + item2.costo_lasagna + item2.costo_adiciones_lasagna
                 pizza_lasagna = pizza_lasagna + 1
+            }else if( item2.tipo.includes('RAVIOLI SALSA') ){
+                raviolis_costo = raviolis_costo + item2.costo_ravioli + item2.costo_adiciones_ravioli
+                raviolis = raviolis + 1
             }else if(item2.tipo.includes("CLUB")){
                 let cvz = item2.tipo.split("X", 2)
                 cerveza_club_costo = cerveza_club_costo + item2.costo_cerveza
@@ -424,6 +430,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido':'pizza_pantalon', 'No': pizza_pantalon,  'Costo': pizza_pantalon_costo }, 
                         {'tipo_pedido': 'pizza_pancook', 'No': pizza_pancook, 'Costo': pizza_pancook_costo },
                         {'tipo_pedido': 'pizza_lasagna', 'No': pizza_lasagna, 'Costo': pizza_lasagna_costo },
+                        {'tipo_pedido': 'raviolis', 'No': raviolis, 'Costo': raviolis_costo },
                         {'tipo_pedido': 'pizza_pasta_spagetti', 'No': pizza_pasta_spagetti, 'Costo': pizza_pasta_spagetti_costo },
                         {'tipo_pedido': 'pizza_pasta_fetuchini', 'No': pizza_pasta_fetuchini,  'Costo': pizza_pasta_fetuchini_costo },
                         

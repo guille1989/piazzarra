@@ -42,6 +42,7 @@ class adminReviewVentasPC extends Component {
             }else{
                 //console.log(data)
                 //console.log(data.inv.result_sum_ventas)
+                console.log('Si hay registro')
                 this.setState({
                     ventas: data.inv.result,
                     ventas_totales: data.inv.result_sum_ventas,
@@ -304,6 +305,18 @@ class adminReviewVentasPC extends Component {
                                                         </td>
                                                         <td>                                    
                                                             {item.costo_lasagna + item.costo_adiciones_lasagna} 
+                                                        </td>
+                                                        </>                                                    
+                                                    )
+                                                }else if (item.tipo.includes("RAVIOLI SALSA")) {
+                                                    return (
+                                                        <>
+                                                        <td>   
+                                                            {item.sabor_ravioli + item.tipo} 
+                                                            {item.mod_sabor_ravioli}                               
+                                                        </td>
+                                                        <td>                                    
+                                                            {item.costo_ravioli + item.costo_adiciones_ravioli} 
                                                         </td>
                                                         </>                                                    
                                                     )

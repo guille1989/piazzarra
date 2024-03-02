@@ -4505,6 +4505,78 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
+                //RAVIOLIS
+                if(item.tipo.includes("RAVIOLI SALSA")){
+                    
+                    if(cajasPizzaPersonales === 1){
+                        //Empaque raviolis en caso de ser domicilios
+                    }
+
+                    result.PAN_OREGANO = result.PAN_OREGANO - 2
+
+                    //Restamos al tipo de salsa
+                    if(item.tipo.includes("NAPOLITANA")){
+                        result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 180
+                    }else if(item.tipo.includes("QUESO")){
+                        result.CREMA_LECHE = result.CREMA_LECHE - 95
+                    }
+
+                    //Dos tipos de raviolis
+                    if(item.sabor_ravioli === "CARNE"){
+                        result.RAVIOLIS_CARNE = result.RAVIOLIS_CARNE - 1
+                    }else if(item.sabor_ravioli === "ESPINACA"){
+                        result.RAVIOLIS_ESPINACA = result.RAVIOLIS_ESPINACA - 1
+                    }
+
+                    //Ingrediente adicional
+                    let adicionGramos = 30
+                    let numAdiciones = item.mod_sabor_ravioli.split("+").length - 1
+                    let Adiciones = item.mod_sabor_ravioli.replace(/Adicion /g, "").split("+")
+
+                    for(let i = 1; i <= numAdiciones; i++){
+                        if(Adiciones[i].includes("Jamon")){                        
+                            result.JAMON = result.JAMON - adicionGramos
+                        }else if(Adiciones[i].includes("Pollo")){
+                            result.POLLO = result.POLLO - adicionGramos
+                        }else if(Adiciones[i].includes("Champinones")){
+                            result.CHAMPINIONES = result.CHAMPINIONES - adicionGramos
+                        }else if(Adiciones[i].includes("CarneMolida")){
+                            result.CARNE_MOLIDA = result.CARNE_MOLIDA - adicionGramos
+                        }else if(Adiciones[i].includes("Cabanos")){
+                            result.CABANOS = result.CABANOS - adicionGramos
+                        }else if(Adiciones[i].includes("Lechuga")){
+                            result.LECHUGA = result.LECHUGA - adicionGramos
+                        }else if(Adiciones[i].includes("Salami")){
+                            result.SALAMI = result.SALAMI - adicionGramos
+                        }else if(Adiciones[i].includes("Tocineta")){
+                            result.TOCINETA = result.TOCINETA - adicionGramos
+                        }else if(Adiciones[i].includes("Cebolla")){
+                            result.CEBOLLA = result.CEBOLLA - adicionGramos
+                        }else if(Adiciones[i].includes("Tomate")){
+                            result.TOMATE = result.TOMATE - adicionGramos
+                        }else if(Adiciones[i].includes("Pimenton")){
+                            result.PIMENTON = result.PIMENTON - adicionGramos
+                        }else if(Adiciones[i].includes("Jalapeños")){
+                            result.JALAPENIOS = result.JALAPENIOS - adicionGramos
+                        }else if(Adiciones[i].includes("Aceitunas")){
+                            result.ACEITUNAS = result.ACEITUNAS - adicionGramos
+                        }else if(Adiciones[i].includes("Maduro")){
+                            result.MADURO = result.MADURO - adicionGramos
+                        }else if(Adiciones[i].includes("Peperoni")){
+                            result.PEPERONI = result.PEPERONI - adicionGramos
+                        }else if(Adiciones[i].includes("Pina")){
+                            result.PINIA_CALADA = result.PINIA_CALADA - adicionGramos
+                        }else if(Adiciones[i].includes("Queso")){
+                            result.QUESO_LASANIA = result.QUESO_LASANIA - adicionGramos
+                        }else if(Adiciones[i].includes("Maiz")){
+                            result.MAIZ = result.MAIZ - adicionGramos
+                        }else if(Adiciones[i].includes("TomatesSecos")){
+                            result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
+                        }
+                    }
+
+                }
+
                 //LASAGNA
                 if(item.tipo.includes("LASAGNA SALSA")){
 
