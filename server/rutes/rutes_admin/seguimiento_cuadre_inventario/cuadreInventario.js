@@ -4513,12 +4513,17 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
 
                     result.PAN_OREGANO = result.PAN_OREGANO - 2
+                    result.QUESO_PARMESANO = result.QUESO_PARMESANO - 10
 
                     //Restamos al tipo de salsa
                     if(item.tipo.includes("NAPOLITANA")){
-                        result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 180
-                    }else if(item.tipo.includes("QUESO")){
-                        result.CREMA_LECHE = result.CREMA_LECHE - 95
+                        result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 200
+                    }else if(item.tipo.includes("PESTO")){
+                       
+                    }else if(item.tipo.includes("ALFREDO")){
+                        result.MANTEQUILLA = result.MANTEQUILLA - 30
+                        result.LECHE = result.LECHE - 100
+                        result.CREMA_LECHE = result.CREMA_LECHE - 100
                     }
 
                     //Dos tipos de raviolis
