@@ -570,33 +570,33 @@ class adminAjusteCostos extends Component {
                 
                 <div className='CostosProductos'>               
                         <div style={{marginTop:'15px'}}>                                                                                    
-                            <h4>Pizza Personal: </h4>
-                            
+                            <h4>Pizza Personal: </h4>                            
                             <div className='saboresPizzaPersonal'>
-
                                 <div style={{paddingRight: '5%'}}>
                                     <NumericTextBoxComponent width={'100px'} step={100} value={this.state.costo_pizza_personal} change={(e) => this.handleCostoPizzaPersonal('PIZZA_PERSONAL_COMPLETA', e)}>
                                     </NumericTextBoxComponent>
-                                </div>
-                                
-                                {this.state.sabores_pizza_personal.map((item, index) => {
-                                    return(
-                                        <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
-                                            <h4>{item.SABOR_PRODUCTO}</h4>
-                                            <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
-                                        </div>                            
-                                    )
-                                })}
-                                
+                                </div>     
+                                <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>                      
+                                    {this.state.sabores_pizza_personal.map((item, index) => {
+                                        return(
+                                            <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
+                                                <h4>{item.SABOR_PRODUCTO}</h4>
+                                                <h2>{item.PORCENTAJE_DE_INSUMOS}</h2>
+                                            </div>                            
+                                        )
+                                    })}  
+                                </div>                                   
                             </div>
-
                         </div>
+
+
                         <div style={{marginTop:'15px', width: '200px'}}> 
                             <h4>Pizza Grande: </h4>
-                            <NumericTextBoxComponent step={100} value={this.state.costo_pizza_grande} change={(e) => this.handleCostoPizzaGrande('PIZZA_GRANDE_COMPLETA', e)}>
-                            </NumericTextBoxComponent>
-
                             <div className='saboresPizzaGrande'>
+                                <NumericTextBoxComponent step={100} value={this.state.costo_pizza_grande} change={(e) => this.handleCostoPizzaGrande('PIZZA_GRANDE_COMPLETA', e)}>
+                                </NumericTextBoxComponent>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>        
                                 {this.state.sabores_pizza_grande.map((item, index) => {
                                     return(
                                         <div style={{display: 'inline', marginRight: '20px', marginTop: '15px'}}>
@@ -605,8 +605,7 @@ class adminAjusteCostos extends Component {
                                         </div>                            
                                     )
                                 })}
-                            </div>
-
+                            </div>      
                         </div>
                         <div style={{marginTop:'15px', width: '200px'}}>
                             <h4>Pizza Pantalon: </h4>

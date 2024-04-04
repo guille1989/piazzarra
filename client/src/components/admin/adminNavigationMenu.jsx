@@ -29,6 +29,8 @@ import GraficasAdminProduccion from './adminDashboardProduccion';
 import SeguimientoCostos from './adminSeguimientoCostos';
 import ResultadoPopayan from './popayan-centro/adminResultados';
 import AjusteCostos from './adminAjusteCostos';
+import DashboardInsumos from './adminDashboardInsumos';
+
 
 function PizzarraNavBarAdmin(props){
     const navigate = useNavigate();
@@ -81,6 +83,7 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-chart',
             items: [
                 { text: 'Dashboard - Ventas' },
+                { text: 'Dashboard - Insumos' },
                 
             ]
         },
@@ -145,6 +148,9 @@ function PizzarraNavBarAdmin(props){
             case 'Dashboard - Produccion':
                 navigate("/DashboardProduccion");
                 break;
+            case 'Dashboard - Insumos':
+                navigate("/DashboardInsumos");
+                break;
             case 'Costos - Productos':
                 navigate("/SeguimientoCostos")
                 break;
@@ -163,8 +169,8 @@ function PizzarraNavBarAdmin(props){
    let folderOut = '<div class= "e-folder"><div class= "e-folder-name">Salir</div></div>';
         return (           
                 <>                
-                <div id="menu-wrapper" className="control-section">
-                    <div id="sidebarmenu">
+                <div id="menu-wrapper" style={{height: "100vh"}} className="control-section">
+                    <div style={{height: "100vh"}} id="sidebarmenu">
                         {/* header-section  declaration */}
                         <div>
                             <ToolbarComponent id="menuToolbar" clicked={toolbarCliked}>
@@ -176,7 +182,7 @@ function PizzarraNavBarAdmin(props){
                             </ToolbarComponent>
                         </div>
                         {/* main content declaration */}
-                        <div className="main-menu-content" id="maintext">
+                        <div className="main-menu-content">
                             <div className="menu-content">   
 
                             <Routes>
@@ -193,7 +199,9 @@ function PizzarraNavBarAdmin(props){
                                 <Route path='/SeguimientoCostos' element={<SeguimientoCostos></SeguimientoCostos>} />  
 
                                 <Route path='/ResultadoOperacionPopayan' element={<ResultadoPopayan></ResultadoPopayan>}/>   
-                                <Route path='/AjusteCostosProductos' element={<AjusteCostos></AjusteCostos>}/>                          
+                                <Route path='/AjusteCostosProductos' element={<AjusteCostos></AjusteCostos>}/>     
+
+                                <Route path='/DashboardInsumos' element={<DashboardInsumos></DashboardInsumos>}/>                     
 
                             </Routes>
 
@@ -208,10 +216,11 @@ function PizzarraNavBarAdmin(props){
                             enableDock={enableDock} 
                             dockSize={dockSize} 
                             width={width} 
+                            height={"100vh"}
                             target={target} 
                             isOpen={true} 
                             type="Auto">
-                                <div className="main-menu">
+                                <div style={{height: "100vh"}} className="main-menu">
                                     <div>
                                         <MenuComponent id="dockMenu" items={menuItems} select={handleSideBarMenu} orientation='Vertical' cssClass='dock-menu'></MenuComponent>
                                     </div>
@@ -219,54 +228,6 @@ function PizzarraNavBarAdmin(props){
                         </SidebarComponent>
                     </div>
                 </div>
-                {/* 
-                <br></br>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                    <div className="container-fluid">
-                        
-                    
-                        <a className="navbar-brand" href="/">Seguimiento Inventarios</a>
-                    
-
-                        <button
-                        className="navbar-toggler collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        >
-                        <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div
-                        className="navbar-collapse collapse"
-                        id="navbarSupportedContent"
-                        >
-
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                            <a className="navbar-brand" aria-current="page" href="/ComprasResumen">Seguimiento Compras</a>
-                            </li>
-                        
-                            <li className="nav-item">
-                            <a className="navbar-brand" aria-current="page" href="/VentasResumen">Seguimiento Ventas</a>
-                            </li>
-
-                            <li className="nav-item">
-                            <a className="navbar-brand" aria-current="page" href="/Dashboard">Dashboard</a>
-                            </li>
-
-                            <li className="nav-item">
-                            <a className="navbar-brand" aria-current="page" href="/Opciones">Opciones</a>
-                            </li>
-                        </ul>
-
-                        <button className="btn btn-outline-danger" onClick={salirInventarios}>Salir</button>
-                        </div>
-                    </div>
-                </nav> 
-                */}
                 </>
         );
 }

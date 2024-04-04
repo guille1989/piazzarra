@@ -194,7 +194,7 @@ class adminReviewVentasPC extends Component {
                                                             </td>
                                                         </>                                                
                                                     )
-                                                    }else if (item.tipo === "PIZZA PERSONAL MITAD") {
+                                                    }else if (item.tipo.includes("PIZZA PERSONAL MITAD")) {
                                                     return (
                                                         <>
                                                         <td>                                    
