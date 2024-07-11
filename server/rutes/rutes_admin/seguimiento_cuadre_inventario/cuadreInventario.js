@@ -430,11 +430,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1
 
                         result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60  
-                        result.POLLO = result.POLLO - 50
-                        result.TOCINETA = result.TOCINETA - 40
-                        result.MAIZ = result.MAIZ - 30
-                        result.TOMATE = result.TOMATE - 30      
-                        result.QUESO = result.QUESO - 100
+                        result.CHAMPINIONES = result.CHAMPINIONES - 75  
+                        result.JAMON = result.JAMON - 75
+                        result.SALAMI = result.SALAMI - 75   
+                        result.QUESO = result.QUESO - 75
 
                     }else if(item.sabor_personal.includes("Combinada 2 Ingredientes")){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 
@@ -802,11 +801,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.mitad_uno === "FESTIVAL"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1/2
  
-                        result.POLLO = result.POLLO - 50/2
-                        result.TOCINETA = result.TOCINETA - 40/2
-                        result.MAIZ = result.MAIZ - 30/2
-                        result.TOMATE = result.TOMATE - 30/2    
-                        result.QUESO = result.QUESO - quesoM
+                        result.CHAMPINIONES = result.CHAMPINIONES - 75/2  
+                        result.JAMON = result.JAMON - 75/2
+                        result.SALAMI = result.SALAMI - 75/2   
+                        result.QUESO = result.QUESO - 75/2
 
                     }else if(item.mitad_uno.includes("Combinada 2 Ingredientes")){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1/2 
@@ -1110,11 +1108,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }else if(item.mitad_dos === "FESTIVAL"){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1/2
  
-                        result.POLLO = result.POLLO - 50/2
-                        result.TOCINETA = result.TOCINETA - 40/2
-                        result.MAIZ = result.MAIZ - 30/2
-                        result.TOMATE = result.TOMATE - 30/2    
-                        result.QUESO = result.QUESO - quesoM
+                        result.CHAMPINIONES = result.CHAMPINIONES - 75/2  
+                        result.JAMON = result.JAMON - 75/2
+                        result.SALAMI = result.SALAMI - 75/2   
+                        result.QUESO = result.QUESO - 75/2
 
                     }else if(item.mitad_dos.includes("Combinada 2 Ingredientes")){
                         result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1/2 
@@ -1497,10 +1494,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_grande === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - queso
 
                     }else if(item.sabor_grande.includes("Combinada 2 Ingredientes")){
@@ -1838,11 +1834,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.PIMENTON = result.PIMENTON - tresIng
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.mitad_uno === "FESTIVAL"){
- 
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.mitad_uno.includes("Combinada 2 Ingredientes")){
@@ -2118,10 +2113,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.mitad_dos === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.mitad_dos.includes("Combinada 2 Ingredientes")){
@@ -2517,10 +2511,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.cuarto_uno === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.cuarto_uno.includes("Combinada 2 Ingredientes")){
@@ -2809,10 +2802,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.cuarto_dos === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.cuarto_dos.includes("Combinada 2 Ingredientes")){
@@ -3101,10 +3093,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.cuarto_tres === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.cuarto_tres.includes("Combinada 2 Ingredientes")){
@@ -3393,10 +3384,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - quesoM
                     }else if(item.cuarto_cuatro === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng   
                         result.QUESO = result.QUESO - quesoM
 
                     }else if(item.cuarto_cuatro.includes("Combinada 2 Ingredientes")){
@@ -3883,10 +3873,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pantalon === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - queso
 
                     }else if(item.sabor_pantalon.includes("Combinada 2 Ingredientes")){
@@ -4237,10 +4226,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_pancook === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - queso
 
                     }else if(item.sabor_pancook.includes("Combinada 2 Ingredientes")){
@@ -4675,10 +4663,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO_LASANIA = result.QUESO_LASANIA - queso
                     }else if(item.sabor_lasagna === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng  
                         result.QUESO = result.QUESO - queso
 
                     }else if(item.sabor_lasagna === "BOLOGNESA"){ 
@@ -5046,10 +5033,9 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.QUESO = result.QUESO - queso
                     }else if(item.sabor_pasta === "FESTIVAL"){
  
-                        result.POLLO = result.POLLO - tresIng
-                        result.TOCINETA = result.TOCINETA - tresIng
-                        result.MAIZ = result.MAIZ - tresIng
-                        result.TOMATE = result.TOMATE - tresIng   
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng   
                         result.QUESO = result.QUESO - queso
 
                     }else if(item.sabor_pasta === "BOLOGNESA"){ 
@@ -5337,12 +5323,11 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
 
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60  
-                    result.MASAS_PERSONALES = result.MASAS_PERSONALES - countAux     
-                    result.POLLO = result.POLLO - 50
-                    result.TOCINETA = result.TOCINETA - 40
-                    result.MAIZ = result.MAIZ - 30
-                    result.TOMATE = result.TOMATE - 30      
-                    result.QUESO = result.QUESO - 100
+                    result.MASAS_PERSONALES = result.MASAS_PERSONALES - countAux   
+                    result.CHAMPINIONES = result.CHAMPINIONES - 75  
+                    result.JAMON = result.JAMON - 75
+                    result.SALAMI = result.SALAMI - 75   
+                    result.QUESO = result.QUESO - 75
                     
                 }
 
