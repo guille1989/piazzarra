@@ -5381,6 +5381,10 @@ function resumenVentas(result_ventas_auxn, insumos){
                         result.CEBOLLA = result.CEBOLLA - 50
                         result.MANTEQUILLA = result.MANTEQUILLA - 20
                         result.QUESO = result.QUESO -20
+                    }else if(item.sabor_sopa === "VERDURAS"){
+                        result.SOPA_VERDURAS = result.SOPA_VERDURAS - 1
+                    }else if(item.sabor_sopa === "VERDURAS"){
+                        result.SOPA_VERDURAS = result.SOPA_VERDURAS - 1
                     }
                 }
 

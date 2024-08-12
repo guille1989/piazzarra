@@ -20,19 +20,24 @@ class adminReviewInventarioPC extends Component {
     }
 
     componentDidMount(){
-        //Fecha
         var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-        if (month < 10) month = "0" + month;
-        if (day < 10) day = "0" + day;
-        var today = year + "-" + month + "-" + day;
-        document.getElementById("fechaHoyRInventario").value = today
-        var today_ayer = year + "-" + month + "-0" + (date.getDate() -1);
+        var options = { timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit' };
 
-        //console.log(today)
-        //console.log(today_ayer)
+        // Formatear la fecha de hoy
+        var formatter = new Intl.DateTimeFormat('en-US', options);
+        var [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
+        var today = `${year}-${month}-${day}`;
+
+        // Establecer la fecha de hoy en el elemento con id "fechaHoyRInventario"
+        document.getElementById("fechaHoyRInventario").value = today;
+
+        // Obtener la fecha de ayer
+        date.setDate(date.getDate() - 1);
+        var [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
+        var today_ayer = `${year}-${month}-${day}`;
+
+        console.log(today);
+        console.log(today_ayer);
 
         this.setState({
             fechaRegistroInventario: today
@@ -57,14 +62,12 @@ class adminReviewInventarioPC extends Component {
 
     handleFechaHoy(e){
         //Cuadramos ayer
-        var date = new Date(e.target.value);
-        var day = date.getDate();
-
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-        if (month < 10) month = "0" + month;
-        if (day < 10) day = "0" + day;
-        var today_ayer = year + "-" + month + "-" + day;
+        // Cuadramos ayer
+        const date = new Date(e.target.value);
+        const options = { timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit' };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        const [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
+        const today_ayer = `${year}-${month}-${day}`;
 
         console.log(today_ayer)
         console.log(e.target.value)
