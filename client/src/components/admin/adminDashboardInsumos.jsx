@@ -3,7 +3,6 @@ import React, { Component } from "react";
 //Componentes
 import { ProgressButtonComponent } from "@syncfusion/ej2-react-splitbuttons";
 import GraficaBarrasInsumos from "../componentsaux/graficaBarrasResumenInsumos";
-import Default from "../componentsaux/graficaResumenConsumoInsumos";
 import {
   GridComponent,
   ColumnsDirective,
