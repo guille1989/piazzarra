@@ -30,6 +30,9 @@ const LeerCostoProductos = require('./rutes/rutes_admin/seguimiento_costos_produ
 const ActualizarCostoProducto = require('./rutes/rutes_admin/seguimiento_costos_productos/costo_productos_pizzarra_crude');
 const ActualizarInventariosAdmin = require('./rutes/rutes_admin/actualizacion_inventario_final/actualizacionInvetarioFinalCompras');
 
+//
+const SeguimientoControlInsumos = require('./rutes/rutes_admin/seguimiento_control_admin_insumos/seguimientoInsumos');
+
 //Middlewares*****
 app.use(express.json());
 app.use(corse());
@@ -76,6 +79,8 @@ app.use('/api/admin/seguimienticostos', SeguimientoCostoInsumo)
 app.use('/api/admin/costoproductos', LeerCostoProductos)
 app.use('/api/admin/actualizarcostoproductos', ActualizarCostoProducto)
 app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
+
+app.use('/api/admin/seguimientocontrolinsumos', SeguimientoControlInsumos)
 
 
 //Iniciamos Server
