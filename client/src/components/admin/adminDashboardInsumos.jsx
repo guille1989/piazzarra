@@ -153,7 +153,7 @@ class adminDashboardInsumos extends Component {
                     </select>
                     <br></br>
                 */}
-        <h4>1. Seleccione Periodos Inicial: </h4>
+        <h4>1. Seleccion Periodos Inicial: </h4>
         <input
           type="date"
           id="fechaHoyRInventario"
