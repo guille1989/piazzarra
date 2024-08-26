@@ -229,7 +229,7 @@ class adminReviewInventarioPC extends Component {
                             toolbar={this.toolbarOptions} 
                             allowSorting={true} 
                             allowPaging={true} 
-                            height={500} 
+                            height={650} 
                             pageSettings={{ pageCount: 4, pageSizes: true }}     
                             editSettings={this.editSettings}     
                             beforeBatchSave={(e) =>this.batchSave(e)}             

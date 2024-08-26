@@ -169,8 +169,8 @@ function PizzarraNavBarAdmin(props){
    let folderOut = '<div class= "e-folder"><div class= "e-folder-name">Salir</div></div>';
         return (           
                 <>                
-                <div id="menu-wrapper" style={{height: "100vh"}} className="control-section">
-                    <div style={{height: "100vh"}} id="sidebarmenu">
+                <div id="menu-wrapper" className="control-section">
+                    <div style={{ height:'100%' }} id="sidebarmenu">
                         {/* header-section  declaration */}
                         <div>
                             <ToolbarComponent id="menuToolbar" clicked={toolbarCliked}>
@@ -182,7 +182,7 @@ function PizzarraNavBarAdmin(props){
                             </ToolbarComponent>
                         </div>
                         {/* main content declaration */}
-                        <div className="main-menu-content">
+                        <div className="main-menu-content" style={{ height:'100%' }}>
                             <div className="menu-content">   
 
                             <Routes>

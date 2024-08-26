@@ -67,7 +67,7 @@ function PizzarraNavBarUser(props){
         <>
                            
                 <div id="menu-wrapper" className="control-section">
-                    <div id="sidebarmenu">
+                    <div id="sidebarmenu" style={{ height:'100%' }}>
                         {/* header-section  declaration */}
                         <div>
                             <ToolbarComponent id="menuToolbar" clicked={toolbarCliked}>
@@ -79,7 +79,7 @@ function PizzarraNavBarUser(props){
                             </ToolbarComponent>
                         </div>
                         {/* main content declaration */}
-                        <div className="main-menu-content" id="maintext">
+                        <div className="main-menu-content" id="maintext" style={{ height:'100%' }}>
                             <div className="menu-content">   
 
                             <Routes>

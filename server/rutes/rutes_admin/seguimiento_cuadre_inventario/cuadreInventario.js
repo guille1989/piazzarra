@@ -83,6 +83,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
     result_ventas_aux = await PedidoPizzarra.find({$and:[{"aux.fecha_pedido": fechaInventario}, {"aux.local": pedidos_id}]});
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
+    console.log("result_ventas: ", result_ventas)
 
     let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
@@ -151,6 +152,8 @@ function resumenVentas(result_ventas_auxn, insumos){
         let item_aux = item.TIPO
         result = {...result, [item_aux]: 0}
     })
+
+    console.log("Inicio: ", result)
 
     result_ventas_auxn.map((item, index) => {
 
@@ -5309,11 +5312,6 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
-                //PAN AJO         
-                if(item.tipo.includes("PAN AJO")){
-                    result.PANNE_COOK = result.PANNE_COOK - item.tipo.replace( /^\D+/g, '')             
-                }
-
                 if(item.tipo.includes("PIZZA FESTIVAL")){
 
                     let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
@@ -5331,25 +5329,31 @@ function resumenVentas(result_ventas_auxn, insumos){
                     
                 }
 
+                //PAN AJO         
+                if(item.tipo.includes("PAN AJO")){
+                    let countAux = item.tipo.replace( /^\D+/g, '')
+                    result.PANNE_COOK = result.PANNE_COOK - parseInt(countAux);          
+                }
+
                 //PANADERIA            
                 if(item.tipo.includes("PAN 10")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
-                    result.PAN_OREGANO = result.PAN_OREGANO - 10 * parseInt(countAux[1])
+                    let countAux = item.tipo.split(' X ')
+                    result.PAN_OREGANO = result.PAN_OREGANO - 10 * parseInt(countAux[1]);
                 }
 
                 if(item.tipo.includes("PAN 20")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
-                    result.PAN_OREGANO = result.PAN_OREGANO - 20 * parseInt(countAux[1])            
+                    let countAux = item.tipo.split(' X ')
+                    result.PAN_OREGANO = result.PAN_OREGANO - 20 * parseInt(countAux[1]);          
                 }
 
                 if(item.tipo.includes("PAN COOK 2")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
-                    result.PANNE_COOK = result.PANNE_COOK - 2 * countAux[1]               
+                    let countAux = item.tipo.split(' X ')
+                    result.PANNE_COOK = result.PANNE_COOK - 2 * parseInt(countAux[1]);             
                 }
 
                 if(item.tipo.includes("PAN COOK UNIDAD")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
-                    result.PANNE_COOK = result.PANNE_COOK - 1 * countAux[1]               
+                    let countAux = item.tipo.replace( /^\D+/g, '')
+                    result.PANNE_COOK = result.PANNE_COOK - 1 * parseInt(countAux);               
                 }
 
                 if(item.tipo.includes("PAN UNIDAD")){
@@ -5357,12 +5361,12 @@ function resumenVentas(result_ventas_auxn, insumos){
                 }
 
                 if(item.tipo.includes("MASAS PER. 5")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                    let countAux = item.tipo.split(' X ')
                     result.MASAS_PERSONALES = result.MASAS_PERSONALES - 5 * countAux[1]       
                 }
 
                 if(item.tipo.includes("MASAS MEDIANAS UNI")){
-                    let countAux = item.tipo.replace( /^\D+/g, '').split(' X ')
+                    let countAux = item.tipo.replace( /^\D+/g, '')
                     result.MASAS_MEDIANAS = result.MASAS_MEDIANAS - countAux               
                 }
 

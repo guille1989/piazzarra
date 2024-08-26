@@ -33,6 +33,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     let result_sum_tipo = [];
 
+    let result_ventas_review_table = [];
+
     let pizza_personal = 0
     let pizza_costo_personal = 0
 
@@ -430,9 +432,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido':'pizza_pantalon', 'No': pizza_pantalon,  'Costo': pizza_pantalon_costo }, 
                         {'tipo_pedido': 'pizza_pancook', 'No': pizza_pancook, 'Costo': pizza_pancook_costo },
                         {'tipo_pedido': 'pizza_lasagna', 'No': pizza_lasagna, 'Costo': pizza_lasagna_costo },
-                        {'tipo_pedido': 'raviolis', 'No': raviolis, 'Costo': raviolis_costo },
-                        {'tipo_pedido': 'pizza_pasta_spagetti', 'No': pizza_pasta_spagetti, 'Costo': pizza_pasta_spagetti_costo },
-                        {'tipo_pedido': 'pizza_pasta_fetuchini', 'No': pizza_pasta_fetuchini,  'Costo': pizza_pasta_fetuchini_costo },
+                        {'tipo_pedido': 'pizza_ravioli', 'No': raviolis, 'Costo': raviolis_costo },
+                        {'tipo_pedido': 'pizza_pasta_spaghetti', 'No': pizza_pasta_spagetti, 'Costo': pizza_pasta_spagetti_costo },
+                        {'tipo_pedido': 'pizza_pasta_fetuccini', 'No': pizza_pasta_fetuchini,  'Costo': pizza_pasta_fetuchini_costo },
                         
                         {'tipo_pedido': 'cerveza_club', 'No': cerveza_club, 'Costo': cerveza_club_costo },
                         {'tipo_pedido': 'cerveza_aguila', 'No': cerveza_aguila, 'Costo': cerveza_aguila_costo },
@@ -453,7 +455,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'aromatica_yerba_buena', 'No': aromatica_yerba_buena, 'Costo': aromatica_yerba_buena_costo },
                         
                         {'tipo_pedido': 'vino_botella_tinto', 'No': vino_botella_tinto, 'Costo': vino_botella_tinto_costo },
-                        {'tipo_pedido': 'vino_copa_tinto', 'No': vino_copa_tinto, 'Costo': vino_copa_tinto_costo },
+                        {'tipo_pedido': 'copa_vino_tinto', 'No': vino_copa_tinto, 'Costo': vino_copa_tinto_costo },
                         
                         {'tipo_pedido': 'cafe_tinto', 'No': cafe_bebida, 'Costo': cafe_bebida_costo },
                         {'tipo_pedido': 'cafe_americano_pequeno', 'No': cafe_americano_pequeno, 'Costo': cafe_americano_pequeno_costo },
@@ -463,10 +465,10 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'cafe_expreso_pequeno', 'No': cafe_expreso_pequeno, 'Costo': cafe_expreso_pequeno_costo },
                         {'tipo_pedido': 'cafe_expreso_grande', 'No': cafe_expreso_grande, 'Costo': cafe_expreso_grande_costo },
                         
-                        {'tipo_pedido': 'sopa_pollo', 'No': sopa_pollo, 'Costo': sopa_pollo_costo },
-                        {'tipo_pedido': 'sopa_tomate', 'No': sopa_tomate, 'Costo': sopa_tomate_costo },
-                        {'tipo_pedido': 'sopa_cebolla', 'No': sopa_cebolla, 'Costo': sopa_cebolla_costo },
-                        {'tipo_pedido': 'sopa_verduras', 'No': sopa_verduras, 'Costo': sopa_verduras_costo },
+                        {'tipo_pedido': 'pollo_sopa', 'No': sopa_pollo, 'Costo': sopa_pollo_costo },
+                        {'tipo_pedido': 'tomate_sopa', 'No': sopa_tomate, 'Costo': sopa_tomate_costo },
+                        {'tipo_pedido': 'cebolla_sopa', 'No': sopa_cebolla, 'Costo': sopa_cebolla_costo },
+                        {'tipo_pedido': 'verduras_sopa', 'No': sopa_verduras, 'Costo': sopa_verduras_costo },
                         
                         {'tipo_pedido': 'pan_ajo', 'No': pan_ajo, 'Costo': pan_ajo_costo}, 
                         {'tipo_pedido': 'pizza_festival', 'No': pizza_festival, 'Costo': costo_pizza_festival}, 
