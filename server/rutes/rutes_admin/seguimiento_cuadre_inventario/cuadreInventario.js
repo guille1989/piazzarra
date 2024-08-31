@@ -83,7 +83,6 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
     result_ventas_aux = await PedidoPizzarra.find({$and:[{"aux.fecha_pedido": fechaInventario}, {"aux.local": pedidos_id}]});
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
-    console.log("result_ventas: ", result_ventas)
 
     let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
@@ -153,8 +152,6 @@ function resumenVentas(result_ventas_auxn, insumos){
         result = {...result, [item_aux]: 0}
     })
 
-    console.log("Inicio: ", result)
-
     result_ventas_auxn.map((item, index) => {
 
         item.aux.map((item1,index) => {
@@ -174,6 +171,7 @@ function resumenVentas(result_ventas_auxn, insumos){
             item.pedido.map((item, index) => { 
 
                 //console.log(item.tipo)
+                
                 //console.log(index) 
 
                 if(item.tipo.includes("DESAYUNO AMERICANO")){
@@ -335,7 +333,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
-                if(item.tipo.includes("PIZZA PERSONAL COMPLETA")){                   
+                if(item.tipo.includes("PIZZA PERSONAL COMPLETA")){    
+                                
                     
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
@@ -705,8 +704,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                 // find PIZZA GRANDE in item
 
                 //PIZZA PERSONAL POR MITADES
-                if(item.tipo.includes("PIZZA PERSONAL MITAD")){
-
+                if(item.tipo.includes("PIZZA PERSONAL MITAD")){                          
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
                     }
@@ -1424,7 +1422,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                         }else if(Adicionesm2[i].includes("TomatesSecos")){
                             result.TOMATES_SECOS = result.TOMATES_SECOS - adicionGramos
                         }
-                    }
+                    }   
                 }
 
                 //PIZZA MEDIANA COMPLETA 
@@ -5534,6 +5532,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     let cantidad = item.tipo.replace( /^\D+/g, '').split(' X ')
                     result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - parseInt(cantidad[1]) * 472
                 }
+
+                //console.log(result.MASAS_PERSONALES) 
             })  
 
         })

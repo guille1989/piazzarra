@@ -62,7 +62,7 @@ const SAMPLE_CSS = `
 const GraficaBarrasInsumos = ({ insumos }) => {
   useEffect(() => {
     console.log("Componente de GraficaBarrasInsumos Listo");
-    console.log("Insumos: ", insumos?.inv?.[0].result);
+    //console.log("Insumos: ", insumos?.inv?.[0].result);
   }, [insumos]);
 
   const loaded = (args) => {

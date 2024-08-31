@@ -20,15 +20,24 @@ class adminReviewVentasPC extends Component {
   }
 
   componentDidMount() {
-    //Fecha
     var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    if (month < 10) month = "0" + month;
-    if (day < 10) day = "0" + day;
-    var today = year + "-" + month + "-" + day;
+    var options = { timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit' };
+
+    // Formatear la fecha de hoy
+    var formatter = new Intl.DateTimeFormat('en-US', options);
+    var [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
+    var today = `${year}-${month}-${day}`;
+
+    // Establecer la fecha de hoy en el elemento con id "fechaHoyRInventario"
     document.getElementById("fechaHoyRInventario").value = today;
+
+    // Obtener la fecha de ayer
+    date.setDate(date.getDate() - 1);
+    var [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
+    var today_ayer = `${year}-${month}-${day}`;
+
+    //console.log(today);
+    //console.log(today_ayer);
 
     const requestOptions = {
       method: "GET",
@@ -53,7 +62,7 @@ class adminReviewVentasPC extends Component {
             ventas_review: [],
           });
         } else {
-          console.log(data);
+          //console.log(data);
           //console.log(data.inv.result_sum_ventas)
           console.log("Si hay registro");
           this.setState({
@@ -67,6 +76,7 @@ class adminReviewVentasPC extends Component {
   }
 
   handleFechaHoy(e) {
+    // Cuadramos ayer
     //Revisar primero si hay inventario ya con la fecha !
     const requestOptions = {
       method: "GET",
@@ -91,7 +101,7 @@ class adminReviewVentasPC extends Component {
         } else {
           //console.log(data.inv.result[0].pedido)
           //console.log(data.inv.result_sum_ventas)
-          console.log(data);
+          //console.log(data);
           this.setState({
             ventas: data.inv.result,
             ventas_totales: data.inv.result_sum_ventas,
@@ -240,7 +250,10 @@ class adminReviewVentasPC extends Component {
                             padding: "8px",
                           }}
                         >
-                          {this.state.ventas[index].aux[0].domi_costo}
+                          {parseInt(this.state.ventas[index].aux[0].domi_costo).toLocaleString('es-CO', {
+                                      style: 'currency',
+                                      currency: 'COP',
+                                    })}
                         </td>
                       </tr>
                     </tbody>
@@ -350,8 +363,12 @@ class adminReviewVentasPC extends Component {
                           itemPedido = item.tipo + "_" + item.sabor_sopa;
                         }
 
+                        if (props.tipo_pedido.includes("masa_personal_cinco")) {
+                          tipoPedido = " MASAS PER.";
+
+                        }
+
                         if (tipoPedido && itemPedido.includes(tipoPedido)) {
-                            console.log(tipoPedido)
                           const matchingKeys = Object.keys(item).filter((key) =>
                             key.includes("costo")
                           );
@@ -436,7 +453,10 @@ class adminReviewVentasPC extends Component {
                                       padding: "8px",
                                     }}
                                   >
-                                    {totalCost}
+                                    {totalCost.toLocaleString('es-CO', {
+                                      style: 'currency',
+                                      currency: 'COP',
+                                    })}
                                   </td>
                                 </tr>
                               </tbody>
@@ -481,7 +501,7 @@ class adminReviewVentasPC extends Component {
 
         <h1>Ventas del dia: {this.state.ventas_totales}</h1>
 
-        
+        {/* Tabla de ventas 
         <table className="table">
           <tbody>
             <tr>
@@ -901,7 +921,7 @@ class adminReviewVentasPC extends Component {
             })}
           </tbody>
         </table>
-
+        */}
         <br></br>
 
         <h1>Resumen Ventas:</h1>

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { registerLicense } from '@syncfusion/ej2-base';
 import { BrowserRouter } from 'react-router-dom';
 
-registerLicense('ORg4AjUWIQA/Gnt2VVhkQlFadVdJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxQdkZiWn5ccXJWQmhdUEE=')
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NCaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXdcdnVXR2lcVUZ1X0U=')
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

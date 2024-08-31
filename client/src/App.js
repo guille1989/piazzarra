@@ -7,6 +7,8 @@ import Login from './components/login';
 
 import Admin from './components/admin/adminNavigationMenu';
 
+import { ToastComponent, MessageComponent } from '@syncfusion/ej2-react-notifications';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,7 @@ class App extends Component {
   }
 
   handleLogInCaliRefugio(usuario){
+    this.successClick() 
     if(usuario === 'Cali - Refugio'){
       this.setState({
         usuarioLogin: 'Cali - Refugio'
@@ -60,6 +63,40 @@ class App extends Component {
     })
   }
 
+  toastObj;
+  infoBtn;
+  warnBtn;
+  successBtn;
+  errorBtn;
+  hideTosat;
+  position = { X: 'Right' };
+  toasts = [
+      { title: 'Warning!', content: 'Por favor coloque los datos de usuario y contraseña.', cssClass: 'e-toast-warning', icon: 'e-warning toast-icons' },
+      { title: 'Hola', content: 'Bienvenido !', cssClass: 'e-toast-success', icon: 'e-success toast-icons' },
+      { title: 'Error!', content: 'Por favor coloque los datos de usuario y contraseña correctos.', cssClass: 'e-toast-danger', icon: 'e-error toast-icons' }
+  ];
+
+  infoClick() {
+      this.toastObj.show(this.toasts[3]);
+  }
+  warningClick() {
+      this.toastObj.show(this.toasts[0]);
+  }
+  successClick() {
+      this.toastObj.show(this.toasts[1]);
+  }
+  errorClick() {
+      this.toastObj.show(this.toasts[2]);
+  }
+  hideClick() {
+      this.toastObj.hide('All');
+  }
+  onclose(e) {
+      if (e.toastContainer.childElementCount === 0) {
+          this.hideTosat.element.style.display = 'none';
+      }
+  }
+
   render() {
     const opcionPantalla = () => {
       switch(this.state.usuarioLogin){
@@ -73,6 +110,7 @@ class App extends Component {
     } 
     return (
       <>
+        <ToastComponent ref={(toast) => { this.toastObj = toast; }} id='toast_type' position={this.position} close={this.onclose.bind(this)}></ToastComponent>
         { opcionPantalla() }
       </>
     );

@@ -229,17 +229,19 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     result.map((item, index) => {   
         item.pedido.map((item2, index2) => {
             //console.log(item2.tipo)            
-            if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION') ){
+            if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
                 pizza_personal = pizza_personal + 1
             }else if(item2.tipo.includes('PIZZA PERSONAL') && item2.tipo.includes('PROMOCION')){
+                pizza_personal = pizza_personal + 1
                 pizza_personal_promo = pizza_personal_promo + 1
                 pizza_costo_personal_promo = pizza_costo_personal_promo + item2.costo_personal + item2.costo_adiciones
-            }else if( item2.tipo.includes('PIZZA GRANDE') && !item2.tipo.includes('PROMOCION') ){
+            }else if( item2.tipo.includes('PIZZA GRANDE') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_grande = pizza_costo_grande + item2.costo_grande + item2.costo_adiciones_grande
                 pizza_grande = pizza_grande + 1
-            }else if( item2.tipo.includes('PIZZA GRANDE') && item2.tipo.includes('PROMOCION') ){
+            }else if( item2.tipo.includes('PIZZA GRANDE') && item2.tipo.includes('PROMOCION')){
                 pizza_grande_promo = pizza_grande_promo + 1
+                pizza_grande = pizza_grande + 1
                 pizza_costo_grande_promo = pizza_costo_grande_promo + item2.costo_grande + item2.costo_adiciones_grande
             }else if( item2.tipo.includes('PANTALON') ){
                 pizza_pantalon_costo = pizza_pantalon_costo + item2.costo_pantalon + item2.costo_adiciones_pantalon
@@ -264,7 +266,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 cerveza_club_costo = cerveza_club_costo + item2.costo_cerveza
                 cerveza_club = cerveza_club + + parseInt(cvz[1])     
             }else if(item2.tipo.includes("POKER")){
-                console.log(item2.tipo)
+                //console.log(item2.tipo)
                 let cvz = item2.tipo.split("X", 2)
                 cerveza_poker_costo = cerveza_poker_costo + item2.costo_cerveza
                 cerveza_poker = cerveza_poker + parseInt(cvz[1])
@@ -427,8 +429,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     result_sum_tipo.push({'tipo_pedido': 'pizza_personal', 'No': pizza_personal, 'Costo': pizza_costo_personal}, 
                         {'tipo_pedido': 'pizza_grande', 'No': pizza_grande, 'Costo': pizza_costo_grande }, 
-                        {'tipo_pedido': 'pizza_personal_promocion', 'No': pizza_personal_promo , 'Costo': pizza_costo_personal_promo },
-                        {'tipo_pedido': 'pizza_grande_promocion', 'No': pizza_grande_promo, 'Costo': pizza_costo_grande_promo },
+                        //{'tipo_pedido': 'pizza_personal_promocion', 'No': pizza_personal_promo , 'Costo': pizza_costo_personal_promo },
+                        //{'tipo_pedido': 'pizza_grande_promocion', 'No': pizza_grande_promo, 'Costo': pizza_costo_grande_promo },
                         {'tipo_pedido':'pizza_pantalon', 'No': pizza_pantalon,  'Costo': pizza_pantalon_costo }, 
                         {'tipo_pedido': 'pizza_pancook', 'No': pizza_pancook, 'Costo': pizza_pancook_costo },
                         {'tipo_pedido': 'pizza_lasagna', 'No': pizza_lasagna, 'Costo': pizza_lasagna_costo },
@@ -452,7 +454,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'jugo_mora', 'No': jugo_mora, 'Costo': jugo_mora_costo },
                         {'tipo_pedido': 'aromatica_mansanilla', 'No': aromatica_mansanilla, 'Costo': aromatica_mansanilla_costo },
                         {'tipo_pedido': 'aromatica_frutos_rojos', 'No': aromatica_frutos_rojos, 'Costo': aromatica_frutos_rojos_costo },
-                        {'tipo_pedido': 'aromatica_yerba_buena', 'No': aromatica_yerba_buena, 'Costo': aromatica_yerba_buena_costo },
+                        {'tipo_pedido': 'aromatica_yerbe_buena', 'No': aromatica_yerba_buena, 'Costo': aromatica_yerba_buena_costo },
                         
                         {'tipo_pedido': 'vino_botella_tinto', 'No': vino_botella_tinto, 'Costo': vino_botella_tinto_costo },
                         {'tipo_pedido': 'copa_vino_tinto', 'No': vino_copa_tinto, 'Costo': vino_copa_tinto_costo },
@@ -460,8 +462,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'cafe_tinto', 'No': cafe_bebida, 'Costo': cafe_bebida_costo },
                         {'tipo_pedido': 'cafe_americano_pequeno', 'No': cafe_americano_pequeno, 'Costo': cafe_americano_pequeno_costo },
                         {'tipo_pedido': 'cafe_americano_grande', 'No': cafe_americano_grande, 'Costo': cafe_americano_grande_costo },
-                        {'tipo_pedido': 'cafe_capuchino_pequeno', 'No': cafe_capuchino_pequeno, 'Costo': cafe_capuchino_pequeno_costo },
-                        {'tipo_pedido': 'cafe_capuchino_grande', 'No': cafe_capuchino_grande, 'Costo': cafe_capuchino_grande_costo },
+                        {'tipo_pedido': 'cafe_capuccino_pequeno', 'No': cafe_capuchino_pequeno, 'Costo': cafe_capuchino_pequeno_costo },
+                        {'tipo_pedido': 'cafe_capuccino_grande', 'No': cafe_capuchino_grande, 'Costo': cafe_capuchino_grande_costo },
                         {'tipo_pedido': 'cafe_expreso_pequeno', 'No': cafe_expreso_pequeno, 'Costo': cafe_expreso_pequeno_costo },
                         {'tipo_pedido': 'cafe_expreso_grande', 'No': cafe_expreso_grande, 'Costo': cafe_expreso_grande_costo },
                         
@@ -499,7 +501,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
         return prev + +current.Costo
     }, 0);
     
-    result_sum_tipo.push({'tipo_pedido': 'TOTAL', 'No': 'Total ventas', 'Costo': result_sum_ventas_aux})
+    //result_sum_tipo.push({'tipo_pedido': 'TOTAL', 'No': 'Total ventas', 'Costo': result_sum_ventas_aux})
 
     return {result, result_sum_ventas, result_sum_tipo}
 }

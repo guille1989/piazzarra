@@ -34,8 +34,8 @@ class adminInicio extends Component {
         var [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
         var today_ayer = `${year}-${month}-${day}`;
 
-        console.log(today);
-        console.log(today_ayer);
+        //console.log(today);
+        //console.log(today_ayer);
 
         const requestOptions ={
             method: 'GET',
@@ -98,8 +98,8 @@ class adminInicio extends Component {
         const [{ value: month },,{ value: day },,{ value: year }] = formatter.formatToParts(date);
         const today_ayer = `${year}-${month}-${day}`;
 
-        console.log(today_ayer)
-        console.log(e.target.value)
+        //console.log(today_ayer)
+        //console.log(e.target.value)
 
         //Revisar primero si hay inventario ya con la fecha !
         const requestOptions ={

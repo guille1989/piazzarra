@@ -33,9 +33,9 @@ class adminDashboardInsumos extends Component {
   }
 
   componentDidMount() {
-    console.log("Componente de adminDashboardInsumos Listo");
+    //console.log("Componente de adminDashboardInsumos Listo");
     const today = new Date().toISOString().split("T")[0];
-    console.log("Fecha de hoy: " + today);
+    //console.log("Fecha de hoy: " + today);
 
     const dayOne = new Date();
     const firstDayOfMonth = new Date(
@@ -43,9 +43,7 @@ class adminDashboardInsumos extends Component {
       dayOne.getMonth(),
       2
     );
-    console.log(
-      "Primer día del mes: " + firstDayOfMonth.toISOString().split("T")[0]
-    );
+    //console.log("Primer día del mes: " + firstDayOfMonth.toISOString().split("T")[0]);
 
     // Asignar valor a input con tipo fecha
     document.getElementById("fechaHoyRInventario").value = firstDayOfMonth
@@ -81,7 +79,7 @@ class adminDashboardInsumos extends Component {
     if (month < 10) month = "0" + month;
     if (day < 10) day = "0" + day;
 
-    console.log("Fecha inicio: " + e.target.value);
+    //console.log("Fecha inicio: " + e.target.value);
     this.setState({
       fecha_inicio_busqueda: e.target.value,
     });
@@ -89,7 +87,7 @@ class adminDashboardInsumos extends Component {
 
   handleFechaFinal(e) {
     //Configuramos hoy
-    console.log("Fecha final: " + e.target.value);
+    //console.log("Fecha final: " + e.target.value);
     this.setState({
       fecha_final_busqueda: e.target.value,
     });
@@ -104,8 +102,8 @@ class adminDashboardInsumos extends Component {
 
   handleGetInsumosReview() {
     this.contractBegin();
-    console.log("Fecha inicio: " + this.state.fecha_inicio_busqueda);
-    console.log("Fecha final: " + this.state.fecha_final_busqueda);
+    //console.log("Fecha inicio: " + this.state.fecha_inicio_busqueda);
+    //console.log("Fecha final: " + this.state.fecha_final_busqueda);
 
     const requestOptions = {
       method: "GET",
@@ -120,7 +118,7 @@ class adminDashboardInsumos extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         this.setState({
           arrayInsumos: data,
         });
