@@ -7,7 +7,8 @@ class opciones extends Component {
         this.state={
             insumosOpcion: [],
             modalInsumo: false,
-            NuevoInsumo: ''
+            NuevoInsumo: '',
+            NuevoInsumoTipo: '',
         }
     }
 
@@ -39,7 +40,7 @@ class opciones extends Component {
             const requestOptions ={
                 method: 'POST',
                 headers : {'Content-type':'application/json'},
-                body: JSON.stringify({NuevoInsumo: this.state.NuevoInsumo})    
+                body: JSON.stringify({NuevoInsumo: this.state.NuevoInsumo, NuevoInsumoTipo: this.state.NuevoInsumoTipo})    
             }   
             //Envio insumo   
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions)
@@ -166,17 +167,36 @@ class opciones extends Component {
                             <h3>Lista de insumos cocina activos: # {this.state.insumosOpcion.length}</h3>
                             </div>    
 
-                            <div className="col">
-                            <input 
-                                    id="insumoNuevo"
-                                    type="text" 
-                                    className="form-control" 
-                                    aria-label="Sizing example input" 
-                                    aria-describedby="inputGroup-sizing-sm"   
-                                    placeholder='Digite nuevo insumo'                                             
-                                    onChange={(e) => this.setState({NuevoInsumo: e.target.value})}
-                                    /> 
+                            <div className="col" style={{  }}>
+                                <input 
+                                        id="insumoNuevo"
+                                        type="text" 
+                                        className="form-control" 
+                                        aria-label="Sizing example input" 
+                                        aria-describedby="inputGroup-sizing-sm"   
+                                        placeholder='Digite nuevo insumo'                                             
+                                        onChange={(e) => this.setState({NuevoInsumo: e.target.value})}
+                                        /> 
+                                
+                                <select 
+                                    className="form-select" 
+                                    style={{ marginTop: '10px' }}
+                                    aria-label="Seleccionar tipo de insumo"
+                                    onChange={(e) => this.setState({ NuevoInsumoTipo: e.target.value })}
+                                >
+                                    <option value="">Seleccionar tipo de insumo</option>
+                                    <option value="MASAS">MASAS</option>
+                                    <option value="CARNES">CARNES</option>
+                                    <option value="BEBIDAS">BEBIDAS</option>
+                                    <option value="LACTEOS">LACTEOS</option>
+                                    <option value="VEGETALES-FRUTAS">VEGETALES-FRUTAS</option>
+                                    <option value="OTROS">OTROS</option>
+                                </select>
+
                             </div>    
+
+                           
+                           
 
                             <div className="col">
                                 <button type="button" className="btn btn-success btn-lg" onClick={this.handleNuevoInsumo.bind(this)}>Agregar-Insumo</button>
@@ -192,6 +212,7 @@ class opciones extends Component {
                                     <tr>
                                     <th scope="col" className="fs-3">No.</th>
                                     <th scope="col" className="fs-1">Insumo</th>
+                                    <th scope="col" className="fs-1">Insumo-Tipo</th>
                                     <th scope="col" className="fs-3"></th>
                                     </tr>
                                     {this.state.insumosOpcion.map((item, index) => {
@@ -200,6 +221,7 @@ class opciones extends Component {
                                                 <tr key={index}>
                                                             <td>{index + 1}</td>
                                                             <td><strong>{item.TIPO}</strong></td>
+                                                            <td><strong>{item.INSUMO_TIPO}</strong></td>
                                                             <td onClick={() => this.handleEliminarInsumo(item._id, item.TIPO)}>Eliminar</td>
                                                 </tr>
                                             </>

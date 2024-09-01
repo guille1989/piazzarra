@@ -227,21 +227,22 @@ async function leerPedidos(fecha_aux, pedidos_aux){
 
     //Suma por tipo
     result.map((item, index) => {   
-        item.pedido.map((item2, index2) => {
-            //console.log(item2.tipo)            
+        item.pedido.map((item2, index2) => {        
             if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
-                pizza_personal = pizza_personal + 1
+                pizza_personal = pizza_personal + 1   
             }else if(item2.tipo.includes('PIZZA PERSONAL') && item2.tipo.includes('PROMOCION')){
                 pizza_personal = pizza_personal + 1
                 pizza_personal_promo = pizza_personal_promo + 1
-                pizza_costo_personal_promo = pizza_costo_personal_promo + item2.costo_personal + item2.costo_adiciones
+                pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
+                pizza_costo_personal_promo = pizza_costo_personal_promo + item2.costo_personal + item2.costo_adiciones   
             }else if( item2.tipo.includes('PIZZA GRANDE') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_grande = pizza_costo_grande + item2.costo_grande + item2.costo_adiciones_grande
                 pizza_grande = pizza_grande + 1
             }else if( item2.tipo.includes('PIZZA GRANDE') && item2.tipo.includes('PROMOCION')){
                 pizza_grande_promo = pizza_grande_promo + 1
                 pizza_grande = pizza_grande + 1
+                pizza_costo_grande = pizza_costo_grande + item2.costo_grande + item2.costo_adiciones_grande
                 pizza_costo_grande_promo = pizza_costo_grande_promo + item2.costo_grande + item2.costo_adiciones_grande
             }else if( item2.tipo.includes('PANTALON') ){
                 pizza_pantalon_costo = pizza_pantalon_costo + item2.costo_pantalon + item2.costo_adiciones_pantalon
@@ -501,7 +502,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
         return prev + +current.Costo
     }, 0);
     
-    //result_sum_tipo.push({'tipo_pedido': 'TOTAL', 'No': 'Total ventas', 'Costo': result_sum_ventas_aux})
+    result_sum_tipo.push({'tipo_pedido': 'TOTAL', 'No': 'Total ventas', 'Costo': result_sum_ventas_aux})
 
     return {result, result_sum_ventas, result_sum_tipo}
 }

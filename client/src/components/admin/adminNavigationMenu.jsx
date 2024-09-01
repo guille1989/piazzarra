@@ -74,8 +74,7 @@ function PizzarraNavBarAdmin(props){
             text: 'Seguimiento Costos',
             iconCss: 'e-icons e-search',
             items: [
-                { text: 'Costos - Productos' },
-                { text: 'Ajuste - Costos - Productos'}
+                { text: 'Costos - Productos' }
             ]
         },
         {
@@ -84,14 +83,6 @@ function PizzarraNavBarAdmin(props){
             items: [
                 { text: 'Dashboard - Ventas' },
                 { text: 'Dashboard - Insumos' },
-                
-            ]
-        },
-        {
-            text: 'Resportes Operaciones',
-            iconCss: 'e-icons e-rename',
-            items: [
-                { text: 'Reporte Operacion - Popayan' },
                 
             ]
         },

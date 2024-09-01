@@ -558,7 +558,7 @@ class adminAjusteCostos extends Component {
 
     render() {
         return (
-            <>
+            <div style={{marginLeft:'15px'}}>
                 <br></br>
                 <br></br>
 
@@ -750,7 +750,7 @@ class adminAjusteCostos extends Component {
 
                 </div>
 
-            </>
+            </div>
         );
     }
 }

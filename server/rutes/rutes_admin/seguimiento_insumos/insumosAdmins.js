@@ -53,11 +53,13 @@ rute.post('/', (req, res) => {
 async function insertNuevoInsumo(body){
 
     let nuevo_insumo = body.NuevoInsumo.toUpperCase().replace(/[^a-zA-Z0-9 ]/g, '').replace(' ', '_')
+    let nuevo_insumo_tipo = body.NuevoInsumoTipo;
 
     let result = [];
 
     result = await Insumos({
-        TIPO: nuevo_insumo
+        TIPO: nuevo_insumo,
+        INSUMO_TIPO: nuevo_insumo_tipo
     })
 
     return result.save()
