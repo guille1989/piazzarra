@@ -19,6 +19,11 @@ import {
   ChipListComponent,
   ChipsDirective,
 } from "@syncfusion/ej2-react-buttons";
+import {
+  TabComponent,
+  TabItemDirective,
+  TabItemsDirective,
+} from "@syncfusion/ej2-react-navigations";
 
 class adminDashboardInsumos extends Component {
   constructor(props) {
@@ -26,10 +31,19 @@ class adminDashboardInsumos extends Component {
     this.state = {
       fecha_inicio_busqueda: "",
       fecha_final_busqueda: "",
+      indexSelectedTab: 0,
       arrayInsumos: [],
+      headertext: [
+        { text: "BEBIDAS" },
+        { text: "CARNES" },
+        { text: "LACTEOS" },
+        { text: "MASAS" },
+        { text: "OTROS" },
+        { text: "VEGETALES-FRUTA" },
+      ]
     };
 
-    this.toolbarOptions = ["Search"];
+    this.toolbarOptions = ['Search'];
   }
 
   componentDidMount() {
@@ -118,7 +132,7 @@ class adminDashboardInsumos extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        //console.log(data);
+        console.log(data);
         this.setState({
           arrayInsumos: data,
         });
@@ -127,9 +141,51 @@ class adminDashboardInsumos extends Component {
       .catch((err) => console.log(err));
   }
 
-  render() {
+  handleTabSelect(e) {
+    console.log("Tab seleccionado ", e.selectedIndex);
+    this.setState({
+      indexSelectedTab: e.selectedIndex,
+    });
+  }
+
+  graficaCostos() {
+    const tooltip = {
+      enable: true,
+      header: "Costo Producto",
+      shared: true,
+      format:
+        "Costo : <b>${point.y}</b><br/>% Costo Insumos : <b>${point.size}%</b>",
+    };
+    let dataSource = this.state.arrayInsumos.inv?.find((tipoInsumo => tipoInsumo.tipoInsumo === this.state.headertext[this.state.indexSelectedTab].text));
+    //console.log(this.state.arrayInsumos.inv?.find((tipoInsumo => tipoInsumo.tipoInsumo === this.state.headertext[this.state.indexSelectedTab].text)));
+    //let dataSource = this.state.arrayInsumos.inv?.[0].result;
     return (
-      <div style={{ height: "100vh" }}>
+      <div className='control-pane'>
+        <div className='control-section'>
+            <GridComponent 
+                dataSource={dataSource?.result} 
+                toolbar={this.toolbarOptions} 
+                allowSorting={true} 
+                allowPaging={true} 
+                height={650} 
+                pageSettings={{ pageCount: 4, pageSizes: true, pageSize: 20 }}           
+                >
+                <ColumnsDirective>
+                    <ColumnDirective field='TIPO' headerText='Tipo-Insumo' width='200'></ColumnDirective>
+                    <ColumnDirective field='INV_CUADRE' headerText='Insumos-Usados' width='130'></ColumnDirective>
+                    <ColumnDirective field='' headerText='Insumo-Flag' width='130'></ColumnDirective>
+                </ColumnsDirective>
+                <Inject services={[Freeze, Toolbar, Page, Sort, Edit]}/>
+            </GridComponent>
+        </div>
+    </div>
+    )};
+
+  render() {    
+    // Mapping Tab items Header property
+    
+    return (
+      <div className="contenedor" style={{ height: "100vh" }}>
         <br></br>
         <br></br>
 
@@ -194,12 +250,13 @@ class adminDashboardInsumos extends Component {
         <br></br>
 
         <hr className="border border-3 opacity-100"></hr>
+        {/* 
         <div style={{ display: "flex" }}>
           {this.state.arrayInsumos?.inv?.map((insumo, index) => {
             if (insumo.result?.length > 0) {
               return (
                 <div key={index} style={{ padding: "10px", height: "250px" }}>
-                  {insumo.result.map((item, index) => {
+                  {insumo.result.map((item, index2) => {
                     let cssClassStyleChipOnInCuadre = parseInt(item.INV_CUADRE) < 0 ? "e-danger" : (parseInt(item.INV_CUADRE) === 0 ? "e-success" : "e-warning");
                     let invCuadreParsed = parseInt(item.INV_CUADRE, 10);
                     let stringTorender = item.TIPO + ":  " + invCuadreParsed;
@@ -207,6 +264,7 @@ class adminDashboardInsumos extends Component {
                       <ChipListComponent
                           id="chip-default"
                           aria-labelledby="chips"
+                          key={index2}
                         >
                           <ChipsDirective>
                             <ChipDirective
@@ -221,6 +279,46 @@ class adminDashboardInsumos extends Component {
               );
             }
           })}
+        </div>
+        */}
+
+        <div className="control-pane">
+          <div className="control-section tab-control-section">
+            {/* Render the Tab Component */}
+            <TabComponent id="defaultTab" selected={this.handleTabSelect.bind(this)}>
+              <TabItemsDirective>
+                <TabItemDirective
+                  header={this.state.headertext[0]}
+                  content={this.graficaCostos.bind(this)}
+                />
+
+                <TabItemDirective
+                  header={this.state.headertext[1]}
+                  content={this.graficaCostos.bind(this)}
+                />
+
+                <TabItemDirective
+                  header={this.state.headertext[2]}
+                  content={this.graficaCostos.bind(this)}
+                />
+
+                <TabItemDirective
+                  header={this.state.headertext[3]}
+                  content={this.graficaCostos.bind(this)}
+                />
+
+                <TabItemDirective
+                  header={this.state.headertext[4]}
+                  content={this.graficaCostos.bind(this)}
+                />
+
+                <TabItemDirective
+                  header={this.state.headertext[5]}
+                  content={this.graficaCostos.bind(this)}
+                />
+              </TabItemsDirective>
+            </TabComponent>
+          </div>
         </div>
         <br></br>
       </div>

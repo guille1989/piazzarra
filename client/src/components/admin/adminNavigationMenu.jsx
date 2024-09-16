@@ -91,7 +91,6 @@ function PizzarraNavBarAdmin(props){
             iconCss: 'e-icons e-settings',
             items: [
                 { text: 'Configuracion - Globales' },
-                { text: 'Configuracion - Popayan - Centro' },
             ]
         }
     ];

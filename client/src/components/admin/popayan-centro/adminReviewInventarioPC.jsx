@@ -244,7 +244,7 @@ class adminReviewInventarioPC extends Component {
                                 <ColumnDirective field='INV_ESTADO' headerText='Estado Cuadre Insumo' template={this.statusTemplate} width='130'></ColumnDirective>
                                 <ColumnDirective field='INV_CUADRE' headerText='Cuadre Inventario' width='130'></ColumnDirective>
                             </ColumnsDirective>
-                            <Inject services={[Freeze, Toolbar, Page, Sort, Edit]}/>
+                            <Inject services={[Freeze, Toolbar, Page, Sort]}/>
                         </GridComponent>
                     </div>
                 </div>
