@@ -200,7 +200,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
-                    result.LECHE = result.LECHE - desAux * 50
+                    result.LECHE = result.LECHE - desAux * 70
                     result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
                     result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
@@ -258,7 +258,7 @@ function resumenVentas(result_ventas_auxn, insumos){
                     let huevosAux = 2
                     
                     result.HUEVOS = result.HUEVOS - desAux * 2
-                    result.LECHE = result.LECHE - desAux * 50
+                    result.LECHE = result.LECHE - desAux * 70
                     result.PAN_OREGANO = result.PAN_OREGANO - desAux * 1
                     result.PROMASA = result.PROMASA - desAux * 25 
                     result.MANTEQUILLA = result.MANTEQUILLA - desAux * 15 
