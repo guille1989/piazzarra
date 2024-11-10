@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import AdminSeguimientoRecetas from './adminSeguimientoRecetas';
 
 class opciones extends Component {
     constructor(props) {
@@ -411,12 +412,11 @@ class opciones extends Component {
 
                             <br></br>
                             <hr className="border border-3 opacity-100"></hr>
-
+                            <AdminSeguimientoRecetas />        
                             
                         </div>
                         </div>
                     </div>
-
                 </div>
             </div>      
         );

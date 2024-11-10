@@ -226,8 +226,9 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     result_sum_ventas = result_sum_ventas + result_sum_ventas_domis
 
     //Suma por tipo
-    result.map((item, index) => {   
-        item.pedido.map((item2, index2) => {        
+    result.map((item, index) => { 
+        item.pedido.map((item2, index2) => {   
+            productoConsoler(item2)
             if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
                 pizza_personal = pizza_personal + 1   
@@ -505,6 +506,57 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     result_sum_tipo.push({'tipo_pedido': 'TOTAL', 'No': 'Total ventas', 'Costo': result_sum_ventas_aux})
 
     return {result, result_sum_ventas, result_sum_tipo}
+}
+
+function productoConsoler(item2){
+    let keyProductos = item2.tipo;
+    if (keyProductos.includes("RAVIOLI") || keyProductos.includes("LASAGNA") || keyProductos.includes("PASTA")) {
+        keyProductos = item2.tipo.split(" ")[0];
+
+    }
+    switch (keyProductos) {
+        case 'PIZZA PERSONAL COMPLETA':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_personal);
+            break;
+        case 'PIZZA PERSONAL MITAD':
+            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+            break;
+        case 'PIZZA GRANDE COMPLETA':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
+            break;	
+        case 'PIZZA GRANDE MITAD':
+            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+            break;
+        case 'PIZZA GRANDE CUARTO':
+            console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
+            break;
+        case 'PIZZA GRANDE COMPLETA PROMOCION':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
+            break;
+        case 'PIZZA GRANDE MITAD PROMOCION':
+            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+            break;
+        case 'PIZZA GRANDE CUARTO PROMOCION':
+            console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
+            break;
+        case 'PIZZA PANCOOK':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pancook);
+            break;
+        case 'PIZZA PANTALON':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pantalon);
+            break;
+        case 'RAVIOLI':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_ravioli);
+            break;
+        case 'LASAGNA':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_lasagna);
+            break;
+        case 'PASTA':
+            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pasta);
+            break;
+        default:
+            break;
+    }
 }
 
 module.exports = rute;

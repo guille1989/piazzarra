@@ -29,6 +29,7 @@ const SeguimientoCostoInsumo = require('./rutes/rutes_admin/seguimiento_insumos/
 const LeerCostoProductos = require('./rutes/rutes_admin/seguimiento_costos_productos/costos_productos_crude');
 const ActualizarCostoProducto = require('./rutes/rutes_admin/seguimiento_costos_productos/costo_productos_pizzarra_crude');
 const ActualizarInventariosAdmin = require('./rutes/rutes_admin/actualizacion_inventario_final/actualizacionInvetarioFinalCompras');
+const RecetasPizzarra = require('./rutes/rutes_admin/seguimiento_recetas/recetasCrude');
 
 //
 const SeguimientoControlInsumos = require('./rutes/rutes_admin/seguimiento_control_admin_insumos/seguimientoInsumos');
@@ -82,6 +83,7 @@ app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
 
 app.use('/api/admin/seguimientocontrolinsumos', SeguimientoControlInsumos)
 
+app.use('/api/admin/seguimientorecetas', RecetasPizzarra)
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;

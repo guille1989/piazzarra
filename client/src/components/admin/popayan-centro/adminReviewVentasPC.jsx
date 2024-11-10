@@ -368,7 +368,12 @@ class adminReviewVentasPC extends Component {
 
                         }
 
+                        if (tipoPedido.includes("GRANDE") && itemPedido.includes("CAFÉ")) {
+                          tipoPedido = "CAFÉ";
+                        }
+
                         if (tipoPedido && itemPedido.includes(tipoPedido)) {
+                          console.log(tipoPedido, itemPedido)
                           const matchingKeys = Object.keys(item).filter((key) =>
                             key.includes("costo")
                           );
