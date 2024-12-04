@@ -4516,11 +4516,104 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
 
                     //Dos tipos de raviolis
-                    if(item.sabor_ravioli === "CARNE"){
+                    if(item.sabor_ravioli.includes("CARNE")){
                         result.RAVIOLIS_CARNE = result.RAVIOLIS_CARNE - 1
-                    }else if(item.sabor_ravioli === "ESPINACA"){
+                    }else if(item.sabor_ravioli.includes("ESPINACA")){
                         result.RAVIOLIS_ESPINACA = result.RAVIOLIS_ESPINACA - 1
                     }
+
+                    //Aqui decodificamos lo que llega cuando se pone sabor de pizza en el rabioli
+                    let dosIng = 50;
+                    let tresIng = 33;
+                    let queso = 0;
+        
+                    if(item.sabor_pasta === "MIXTA"){        
+                        result.JAMON = result.JAMON - tresIng
+                        result.CABANOS = result.CABANOS - tresIng
+                        result.SALAMI = result.SALAMI - tresIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "HAWAIANA"){
+        
+                        result.JAMON = result.JAMON - dosIng
+                        result.PINIA_CALADA = result.PINIA_CALADA - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "HIGOSTOCINETA"){
+        
+                        result.HIGOS = result.HIGOS - dosIng
+                        result.TOCINETA = result.TOCINETA - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "POLLOCHAMPI"){
+        
+                        result.POLLO = result.POLLO - dosIng
+                        result.CHAMPINIONES = result.CHAMPINIONES - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "JAMONCHAMPI"){
+        
+                        result.JAMON = result.JAMON - dosIng
+                        result.CHAMPINIONES = result.CHAMPINIONES - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "SAMBA"){
+        
+                        result.MADURO = result.MADURO - dosIng
+                        result.TOCINETA = result.TOCINETA - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "PETETE"){
+        
+                        result.POLLO = result.POLLO - tresIng
+                        result.TOCINETA = result.TOCINETA - tresIng
+                        result.TOMATE = result.TOMATE - tresIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "CAMPESINA"){
+        
+                        result.MAIZ = result.MAIZ - dosIng
+                        result.CABANOS = result.CABANOS - dosIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "NAPOLITANA"){
+        
+                        result.QUESO = result.QUESO - queso * 2 + 75
+                    }else if(item.sabor_pasta === "MARGARITA"){
+        
+                        result.TOMATE = result.TOMATE - dosIng
+                        result.QUESO = result.QUESO - queso * 2 + 75
+                    }else if(item.sabor_pasta === "GOURMET"){
+        
+                        result.POLLO = result.POLLO - tresIng
+                        result.ACEITUNAS = result.ACEITUNAS - tresIng
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "PADRISIMA"){
+        
+                        result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3
+                        result.JALAPENIOS = result.JALAPENIOS - 20
+                        result.LECHUGA = result.LECHUGA - 20
+                        result.TOMATE = result.TOMATE - 20
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "VEGETARIANA"){ 
+        
+                        result.ACEITUNAS = result.ACEITUNAS - tresIng
+                        result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng
+                        result.CEBOLLA = result.CEBOLLA - tresIng
+                        result.PIMENTON = result.PIMENTON - tresIng
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "FESTIVAL"){
+ 
+                        result.CHAMPINIONES = result.CHAMPINIONES - tresIng 
+                        result.JAMON = result.JAMON - tresIng
+                        result.SALAMI = result.SALAMI - tresIng   
+                        result.QUESO = result.QUESO - queso
+
+                    }else if(item.sabor_pasta === "BOLOGNESA"){ 
+        
+                        result.CARNE_MOLIDA = result.CARNE_MOLIDA - 150
+                        result.QUESO = result.QUESO - queso
+                    }else if(item.sabor_pasta === "CARBONARA"){ 
+                        result.TOCINETA = result.TOCINETA - 100
+                        result.HUEVOS = result.HUEVOS - 1
+                        result.CREMA_LECHE = result.CREMA_LECHE - 95                    
+                        
+                    }
+
 
                     //Ingrediente adicional
                     let adicionGramos = 30
