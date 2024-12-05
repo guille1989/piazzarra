@@ -10,16 +10,16 @@ const filterArray = require("../../../utils/functionsUtils");
 const getArrayRangeDates = require("../../../utils/functionReturnRangeArraydates");
 
 //GET traemos informacion del inventario
-rute.get("/:fechaInicial/:fechaFinal", (req, res) => {
+rute.get("/:fechaInicial/:fechaFinal/:local", (req, res) => {
   const resultSeguimientoInsumos = [];
 
   let fechaInicial = req.params.fechaInicial;
   let fechaFinal = req.params.fechaFinal;
+  let local = req.params.local;
 
-  let inv_id = "Pizzarra-Popayan-Centro";
-  let pedidos_id = "Popayan-Centro";
+  let inv_id = "Pizzarra-" + local;
 
-  let result = seguimientoInsumos(fechaInicial, fechaFinal, inv_id, pedidos_id, resultSeguimientoInsumos);
+  let result = seguimientoInsumos(fechaInicial, fechaFinal, inv_id, local, resultSeguimientoInsumos);
 
   result
     .then((msj) => {
@@ -38,7 +38,7 @@ async function seguimientoInsumos(
   fechaInicial,
   fechaFinal,
   inv_id,
-  pedidos_id,
+  local,
   resultSeguimientoInsumos
 ) {
   try {
@@ -58,7 +58,7 @@ async function seguimientoInsumos(
         const result = await procesarFechas(
           arrayFechas,
           inv_id,
-          pedidos_id,
+          local,
           insumos,
           insumosTiposArray
         );   
@@ -76,7 +76,7 @@ async function seguimientoInsumos(
 async function procesarFechas(
   arrayFechas,
   inv_id,
-  pedidos_id,
+  local,
   result_insumo_tipos,
   result_insumos_tipos_array
 ) {
@@ -116,7 +116,7 @@ async function procesarFechas(
       ],
     });
     result_ventas_aux = await PedidoPizzarra.find({
-      $and: [{ "aux.fecha_pedido": fecha }, { "aux.local": pedidos_id }],
+      $and: [{ "aux.fecha_pedido": fecha }, { "aux.local": local }],
     });
 
     //FILTROS DINAMICOS
@@ -169,6 +169,10 @@ async function procesarFechas(
     });
   });
 
+  //Ordenar el array de resultadosTotales por INV_CUADRE de menor a mayor
+  resultadosTotales.sort((a, b) => {
+    return a.INV_CUADRE - b.INV_CUADRE;
+  });
   return resultadosTotales;
 }
 
