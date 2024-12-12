@@ -63,7 +63,8 @@ async function insertNuevoInsumo(body){
         }, 
         {
             $set: {
-                INSUMO_LIMITE: body.INSUMO_LIMITE
+                INSUMO_LIMITE: body.INSUMO_LIMITE,
+                INSUMO_CUADRE: body.INSUMO_CUADRE
             }
             
         }, { upsert: true });

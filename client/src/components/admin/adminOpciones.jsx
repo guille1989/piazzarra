@@ -10,6 +10,7 @@ class opciones extends Component {
             modalInsumo: false,
             NuevoInsumo: '',
             NuevoInsumoTipo: '',
+            NuevoInsumoTipoMedida: ''
         }
     }
 
@@ -41,7 +42,7 @@ class opciones extends Component {
             const requestOptions ={
                 method: 'POST',
                 headers : {'Content-type':'application/json'},
-                body: JSON.stringify({NuevoInsumo: this.state.NuevoInsumo, NuevoInsumoTipo: this.state.NuevoInsumoTipo})    
+                body: JSON.stringify({NuevoInsumo: this.state.NuevoInsumo, NuevoInsumoTipo: this.state.NuevoInsumoTipo, NuevoInsumoTipoMedida: this.state.NuevoInsumoTipoMedida})    
             }   
             //Envio insumo   
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/insumos`, requestOptions)
@@ -77,15 +78,16 @@ class opciones extends Component {
         }
     }
 
-    handleActualizarLimite(id, insumo){
-        //console.log(insumo)
-        //console.log(this.state[insumo])
+    handleActualizarLimite(id, insumo, insumo_cuadre){
+        //console.log('id', id)
+        //console.log('insumo', insumo)
+        //console.log('insumo_cuadrer', insumo_cuadre, this.state[insumo_cuadre])
 
         if(window.confirm("Seguro desea agregar/actualizar valor limite del insumo: " + insumo)){
             const requestOptions ={
                 method: 'POST',
                 headers : {'Content-type':'application/json'},
-                body: JSON.stringify({INSUMO_LIMITE: this.state[insumo], TIPO: insumo})    
+                body: JSON.stringify({INSUMO_LIMITE: this.state[insumo], TIPO: insumo, INSUMO_CUADRE: this.state[insumo_cuadre]})    
             }   
             //Envio insumo   
             fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/actualizacionlimites`, requestOptions)
@@ -194,6 +196,17 @@ class opciones extends Component {
                                     <option value="OTROS">OTROS</option>
                                 </select>
 
+                                <select 
+                                    className="form-select" 
+                                    style={{ marginTop: '10px' }}
+                                    aria-label="Seleccionar tipo de insumo medida"
+                                    onChange={(e) => this.setState({ NuevoInsumoTipoMedida: e.target.value })}
+                                >
+                                    <option value="">Seleccionar tipo de insumo</option>
+                                    <option value="UNIDAD">UNIDAD</option>
+                                    <option value="GRAMOS">GRAMOS</option>
+                                </select>
+
                             </div>    
 
                            
@@ -214,6 +227,7 @@ class opciones extends Component {
                                     <th scope="col" className="fs-3">No.</th>
                                     <th scope="col" className="fs-1">Insumo</th>
                                     <th scope="col" className="fs-1">Insumo-Tipo</th>
+                                    <th scope="col" className="fs-1">Insumo-Medida</th>
                                     <th scope="col" className="fs-3"></th>
                                     </tr>
                                     {this.state.insumosOpcion.map((item, index) => {
@@ -223,6 +237,7 @@ class opciones extends Component {
                                                             <td>{index + 1}</td>
                                                             <td><strong>{item.TIPO}</strong></td>
                                                             <td><strong>{item.INSUMO_TIPO}</strong></td>
+                                                            <td><strong>{item.INSUMO_MEDIDA}</strong></td>
                                                             <td onClick={() => this.handleEliminarInsumo(item._id, item.TIPO)}>Eliminar</td>
                                                 </tr>
                                             </>
@@ -281,17 +296,21 @@ class opciones extends Component {
                                     <tr>
                                     <th scope="col" className="fs-3">No.</th>
                                     <th scope="col" className="fs-1">Insumo</th>
-                                    <th scope="col" className="fs-1">Limite</th>
-                                    <th scope="col" className="fs-1">Nuevo Limite</th>
+                                    <th scope="col" className="fs-1">Limite - Inventario</th>
+                                    <th scope="col" className="fs-1">Limite - Cuadres</th>
+                                    <th scope="col" className="fs-1">Nuevo Limite - Inventario</th>
+                                    <th scope="col" className="fs-1">Nuevo Limite - Cuadres</th>
                                     <th scope="col" className="fs-3"></th>
                                     </tr>
                                     {this.state.insumosOpcion.map((item, index) => {
+                                        //console.log('item', item);
                                         return(
                                             <>
                                                 <tr key={index}>
                                                             <td>{index + 1}</td>
                                                             <td><strong>{item.TIPO}</strong></td>
                                                             <td><strong>{item.INSUMO_LIMITE}</strong></td>
+                                                            <td><strong>{item.INSUMO_CUADRE}</strong></td>
                                                             <td>
                                                             <input 
                                                                 type="number" 
@@ -299,7 +318,7 @@ class opciones extends Component {
                                                                 className="form-control" 
                                                                 aria-label="Sizing example input" 
                                                                 aria-describedby="inputGroup-sizing-sm" 
-                                                                placeholder='Insumo Entrada'
+                                                                placeholder='Insumo Limite Inventario'
                                                                 onChange={(e) => this.setState({[item.TIPO]: e.target.value})}
                                                                 onWheel={(e) => {
                                                                     // Prevent the input value change
@@ -315,7 +334,30 @@ class opciones extends Component {
                                                                 }}
                                                                 />
                                                             </td>
-                                                            <td onClick={() => this.handleActualizarLimite(item._id, item.TIPO)}>Actualizar</td>
+                                                            <td>
+                                                            <input 
+                                                                type="number" 
+                                                                id="inputEntrada"
+                                                                className="form-control" 
+                                                                aria-label="Sizing example input" 
+                                                                aria-describedby="inputGroup-sizing-sm" 
+                                                                placeholder='Insumo Limite Cuadre'
+                                                                onChange={(e) => this.setState({[item.INSUMO_CUADRE]: e.target.value})}
+                                                                onWheel={(e) => {
+                                                                    // Prevent the input value change
+                                                                    e.target.blur()
+                                                                
+                                                                    // Prevent the page/container scrolling
+                                                                    e.stopPropagation()
+                                                                
+                                                                    // Refocus immediately, on the next tick (after the current function is done)
+                                                                    setTimeout(() => {
+                                                                        e.target.focus()
+                                                                    }, 0)
+                                                                }}
+                                                                />
+                                                            </td>
+                                                            <td onClick={() => this.handleActualizarLimite(item._id, item.TIPO, item.INSUMO_CUADRE)}>Actualizar</td>
                                                 </tr>
                                             </>
                                         )

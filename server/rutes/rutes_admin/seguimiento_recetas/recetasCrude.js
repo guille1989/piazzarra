@@ -10,18 +10,20 @@ rute.get('/', async (req, res) => {
 
 //post with two inputs parameters
 rute.post('/', async (req, res) => {
-    const { id, tipo_producto, tipo_insumo, value } = req.body;
-    let recetasResul = [];
-    // Convertir value a entero
-    const valueInt = parseInt(value, 10);
-
+    const { id, datos_actualizar } = req.body;
     
     try {
-        const queryActualizacionInsumo = `DATOS.$.${tipo_insumo}`;
+        const updateFields = {};
+        for (const key in datos_actualizar) {
+            if (key !== 'tipo_producto') {
+                updateFields[`DATOS.$.${key}`] = datos_actualizar[key];
+            }
+        }
 
+        // Ejecutar la consulta de actualización
         const recetasResul = await RecetasPizzarra.updateOne(
-            { _id: id, "DATOS.tipo_producto": tipo_producto },
-            { $set: { [queryActualizacionInsumo]: valueInt } }, // Usar valueInt en lugar de value
+            { _id: id, "DATOS.tipo_producto": datos_actualizar.tipo_producto },
+            { $set: updateFields },
             { upsert: false }
         );
 
@@ -30,6 +32,7 @@ rute.post('/', async (req, res) => {
         console.error(error);
         res.status(500).send('Error al actualizar el insumo');
     }
+        
 });
 
 module.exports = rute;

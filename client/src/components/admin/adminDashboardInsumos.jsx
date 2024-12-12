@@ -25,6 +25,11 @@ import {
   PolarSeries,
   RadarSeries,
   Highlight,
+  MultiColoredLineSeries,
+  ChartAnnotation,
+  SegmentsDirective,
+  SegmentDirective,
+  ScatterSeries
 } from "@syncfusion/ej2-react-charts";
 import { Browser } from "@syncfusion/ej2-base";
 import {
@@ -37,35 +42,6 @@ import {
   TabItemDirective,
   TabItemsDirective,
 } from "@syncfusion/ej2-react-navigations";
-
-export let data1 = [
-  { x: "Jan", y: -7.1 },
-  { x: "Feb", y: -3.7 },
-  { x: "Mar", y: 0.8 },
-  { x: "Apr", y: 6.3 },
-  { x: "May", y: 13.3 },
-  { x: "Jun", y: 18.0 },
-  { x: "Jul", y: 19.8 },
-  { x: "Aug", y: 18.1 },
-  { x: "Sep", y: 13.1 },
-  { x: "Oct", y: 4.1 },
-  { x: "Nov", y: -3.8 },
-  { x: "Dec", y: -6.8 },
-];
-export let data2 = [
-  { x: "Jan", y: -17.4 },
-  { x: "Feb", y: -15.6 },
-  { x: "Mar", y: -12.3 },
-  { x: "Apr", y: -5.3 },
-  { x: "May", y: 1.0 },
-  { x: "Jun", y: 6.9 },
-  { x: "Jul", y: 9.4 },
-  { x: "Aug", y: 7.6 },
-  { x: "Sep", y: 2.6 },
-  { x: "Oct", y: -4.9 },
-  { x: "Nov", y: -13.4 },
-  { x: "Dec", y: -16.4 },
-];
 
 class adminDashboardInsumos extends Component {
   constructor(props) {
@@ -189,15 +165,12 @@ class adminDashboardInsumos extends Component {
   }
 
   handleTabSelect(e) {
-    console.log("Tab seleccionado ", e.selectedIndex);
     this.setState({
       indexSelectedTab: e.selectedIndex,
     });
   }
 
   polarLine() {
-    console.log("polarLine: ", this.state.arrayInsumos.inv);
-
     let dataSource = this.state.arrayInsumos.inv?.find(
       (tipoInsumo) =>
         tipoInsumo.tipoInsumo ===
@@ -211,13 +184,36 @@ class adminDashboardInsumos extends Component {
       return null;
     }
 
-    const max = Math.max(...dataSource.result.map(item => item.INV_CUADRE));
-    const min = Math.min(...dataSource.result.map(item => item.INV_CUADRE));
+    let maxAbs = Math.max(...dataSource.result.map(item => Math.abs(item.INV_CUADRE)));
+
+    // Ajustar los límites para la simetría
+    let max = maxAbs;
+    let min = -maxAbs;
 
     const onChartLoad = (args) => {
       document.getElementById("charts").setAttribute("title", "");
     };
     const load = (args) => {};
+
+
+    const pointRender = (args) => {
+      console.log("pointRender: ", args);
+
+      if (args.point.text === "UNIDAD") {
+        if (args.point.y === 0) {
+          args.fill = 'green';
+        } else {
+              args.fill = 'red';
+        }
+      } else {
+        if (Math.abs(args.point.y) < 100) {
+          args.fill = 'green';
+        } else {
+          args.fill = 'red';
+        }
+      }
+   };
+
 
     return (
       <ChartComponent
@@ -230,9 +226,9 @@ class adminDashboardInsumos extends Component {
           coefficient: Browser.isDevice ? 100 : 100,
         }}
         primaryYAxis={{
-          title: "Temperature (Celsius)",
-          minimum: min,
-          maximum: max,
+          title: "Medida del Insumo",
+          minimum: min * 1,
+          maximum: max * 1,
           interval: (max - min) / 10,
           edgeLabelPlacement: "Shift",
           labelFormat: "{value}",
@@ -242,6 +238,7 @@ class adminDashboardInsumos extends Component {
         load={load.bind(this)}
         legendSettings={{ enableHighlight: true }}
         tooltip={{ enable: true }}
+        pointRender={pointRender.bind(this)}
       >
         <Inject
           services={[
@@ -253,6 +250,7 @@ class adminDashboardInsumos extends Component {
             RadarSeries,
             Tooltip,
             Highlight,
+            ScatterSeries
           ]}
         />
         <SeriesCollectionDirective>
@@ -261,20 +259,40 @@ class adminDashboardInsumos extends Component {
             xName="TIPO"
             yName="INV_CUADRE"
             name={dataSource.tipoInsumo}
-            type="Polar"
+            text="INV_MEDIDA"
+            type="Scatter"
             marker={{
               visible: true,
               height: 7,
               width: 7,
-              shape: "Pentagon",
+              shape: "Circle",
               isFilled: false,
+              dataLabel: { visible: false, name: 'INV_MEDIDA' }
             }}
             width={2}
-          ></SeriesDirective>
+          >
+          </SeriesDirective>
         </SeriesCollectionDirective>
       </ChartComponent>
     );
   }
+
+  statusTemplate(props) {
+    if(props.INV_FLAG){
+        return(
+            <div id="status" className="statustemp e-activecolor">
+            <span className="statustxt e-activecolor">Cumple</span>
+            </div>
+        )
+    }else{
+        return (
+            <div id="status" className="statustemp e-inactivecolor">
+            <span className="statustxt e-inactivecolor">No Cumple</span>
+            </div>
+        )
+    }
+   
+}
 
   graficaCostos() {
     let dataSource = this.state.arrayInsumos.inv?.find(
@@ -311,9 +329,15 @@ class adminDashboardInsumos extends Component {
                 headerText="Insumos-Resultado"
                 width="130"
               ></ColumnDirective>
+               <ColumnDirective
+                field="INV_GASTO"
+                headerText="Insumo-Usado-Teorico"
+                width="130"
+              ></ColumnDirective>
               <ColumnDirective
-                field=""
+                field="INV_FLAG"
                 headerText="Insumo-Flag"
+                template={this.statusTemplate}
                 width="130"
               ></ColumnDirective>
             </ColumnsDirective>
@@ -416,7 +440,7 @@ class adminDashboardInsumos extends Component {
             justifyContent: "center",
           }}
         >
-          <div style={{ width: "50%" }}>
+          <div style={{ width: "100%" }}>
             {/* Render the Tab Component */}
             <TabComponent
               id="defaultTab"
@@ -455,18 +479,11 @@ class adminDashboardInsumos extends Component {
               </TabItemsDirective>
             </TabComponent>
           </div>
-
-          <br></br>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "50%",
-            }}
-          >
-            {this.polarLine()}
-          </div>
+          <div style={{ marginLeft: '10px' }}>
+            {
+              this.polarLine()
+            }
+        </div>
         </div>
       </div>
     );

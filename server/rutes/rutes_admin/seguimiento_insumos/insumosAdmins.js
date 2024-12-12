@@ -54,12 +54,14 @@ async function insertNuevoInsumo(body){
 
     let nuevo_insumo = body.NuevoInsumo.toUpperCase().replace(/[^a-zA-Z0-9 ]/g, '').replace(' ', '_')
     let nuevo_insumo_tipo = body.NuevoInsumoTipo;
+    let nuevo_insumo_tipo_medida = body.NuevoInsumoTipoMedida;
 
     let result = [];
 
     result = await Insumos({
         TIPO: nuevo_insumo,
-        INSUMO_TIPO: nuevo_insumo_tipo
+        INSUMO_TIPO: nuevo_insumo_tipo,
+        INSUMO_MEDIDA: nuevo_insumo_tipo_medida
     })
 
     return result.save()

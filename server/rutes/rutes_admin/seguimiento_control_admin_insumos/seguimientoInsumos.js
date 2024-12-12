@@ -81,6 +81,7 @@ async function procesarFechas(
   result_insumos_tipos_array
 ) {
   let resultadosTotales = [];
+  let result_ventas_filter_aux = [];
   let acumuladorCuadreArray = Array(result_insumo_tipos.length).fill(0);
 
   let promesas = arrayFechas.map(async (fecha) => {
@@ -137,11 +138,13 @@ async function procesarFechas(
       let item_aux = item.TIPO;
       inv_ceros_aux = { ...inv_ceros_aux, [item_aux]: 0 };
     });
-    let result_ventas_filter_aux = resultVentasPeriodo(
+    result_ventas_filter_aux = resultVentasPeriodo(
       result_ventas_aux,
       result_insumo_tipos,
       result_insumos_tipos_array
     );
+
+    //console.log(result_ventas_filter_aux);
 
     result_insumo_tipos.map((item, index) => {
       cuadreInventario =
@@ -162,10 +165,15 @@ async function procesarFechas(
 
   await Promise.all(promesas);
 
+  console.log("result_insumo_tipos", result_insumo_tipos);  
+
   result_insumo_tipos.map((item, index) => {
     resultadosTotales.push({
       TIPO: item.TIPO,
       INV_CUADRE: acumuladorCuadreArray[index],
+      INV_GASTO: 0,
+      INV_FLAG: obtenerFlagDeCuadreDeInventario(acumuladorCuadreArray[index], item.INSUMO_MEDIDA),
+      INV_MEDIDA: item.INSUMO_MEDIDA  
     });
   });
 
@@ -173,7 +181,27 @@ async function procesarFechas(
   resultadosTotales.sort((a, b) => {
     return a.INV_CUADRE - b.INV_CUADRE;
   });
+
+  resultadosTotales.map((item, index) => {
+    let resultGastoInsumo = result_ventas_filter_aux.map((itemInsumo) => {
+      return obtenerValorPorClave(itemInsumo, item.TIPO);
+    });
+    resultadosTotales[index].INV_GASTO = parseFloat(resultGastoInsumo[0]);
+  });
+
   return resultadosTotales;
+}
+
+function obtenerFlagDeCuadreDeInventario(acumulador, tipo_medida){
+  if (tipo_medida === "GRAMOS"){
+    return Math.abs(acumulador) > 100 ? false : true;
+  }else{
+    return Math.abs(acumulador) != 0 ? false : true;
+  }
+}
+
+function obtenerValorPorClave(obj, clave) {
+  return obj[clave];
 }
 
 module.exports = rute;
