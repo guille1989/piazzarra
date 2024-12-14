@@ -4356,7 +4356,8 @@ function resultVentasPeriodo(result_ventas_auxn, insumos, insumos_tipo){
                 if(item.tipo.includes("RAVIOLI SALSA")){
                     
                     if(cajasPizzaPersonales === 1){
-                        //Empaque raviolis en caso de ser domicilios
+                        result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
+                        result.MOLDES_LASAGNIA = result.MOLDES_LASAGNIA - 1
                     }
 
                     result.PAN_OREGANO = result.PAN_OREGANO - 2

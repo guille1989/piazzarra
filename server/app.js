@@ -57,8 +57,7 @@ mongose.set('strictQuery', true);
 //Manejador de rutas
 app.use('/api/inicio', Autenticacion)
 app.use('/api/inventarioactual', InventarioActual);                 //Inventario Final
-app.use('/api/insumos', Insumos);                                   //Insumos que se manejan en el negocio
-console.log("Insumos cargados");
+app.use('/api/insumos', Insumos);     
 app.use('/api/entradasinventario', IngresarEntradaInventario);      //Inventario de entrada de insumos
 app.use('/api/insumocostos', IngresarEntradaInventarioCosto);       //Costo de los insumos de entradas
 app.use('/api/revisioninventariofecha', ValidacionInventarioExistente);  //Revision si existe inventario ya registrado
@@ -80,9 +79,7 @@ app.use('/api/admin/seguimienticostos', SeguimientoCostoInsumo)
 app.use('/api/admin/costoproductos', LeerCostoProductos)
 app.use('/api/admin/actualizarcostoproductos', ActualizarCostoProducto)
 app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
-
 app.use('/api/admin/seguimientocontrolinsumos', SeguimientoControlInsumos)
-
 app.use('/api/admin/seguimientorecetas', RecetasPizzarra)
 
 //Iniciamos Server

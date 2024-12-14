@@ -154,10 +154,8 @@ function resumenVentas(result_ventas_auxn, insumos){
 
     result_ventas_auxn.map((item, index) => {
 
-        item.aux.map((item1,index) => {
-            
+        item.aux.map((item1,index) => {      
 
-            //console.log(item1)
             if(item1.tipo_pedido === "DOMICILIO"){
                 cajasPizzaPersonales = 1;
                 cajasPizzaGrandes = 1;
@@ -333,9 +331,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                     }
                 }
 
-                if(item.tipo.includes("PIZZA PERSONAL COMPLETA")){    
+                if(item.tipo.includes("PIZZA PERSONAL COMPLETA")){   
                                 
-                    
                     if(cajasPizzaPersonales === 1){
                         result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
                     }
@@ -4498,7 +4495,8 @@ function resumenVentas(result_ventas_auxn, insumos){
                 if(item.tipo.includes("RAVIOLI SALSA")){
                     
                     if(cajasPizzaPersonales === 1){
-                        //Empaque raviolis en caso de ser domicilios
+                        result.CAJAS_PERSONALES = result.CAJAS_PERSONALES - 1
+                        result.MOLDES_LASAGNIA = result.MOLDES_LASAGNIA - 1
                     }
 
                     result.PAN_OREGANO = result.PAN_OREGANO - 2

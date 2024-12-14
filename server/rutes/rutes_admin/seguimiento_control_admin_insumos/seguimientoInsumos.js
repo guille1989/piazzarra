@@ -165,8 +165,6 @@ async function procesarFechas(
 
   await Promise.all(promesas);
 
-  console.log("result_insumo_tipos", result_insumo_tipos);  
-
   result_insumo_tipos.map((item, index) => {
     resultadosTotales.push({
       TIPO: item.TIPO,
