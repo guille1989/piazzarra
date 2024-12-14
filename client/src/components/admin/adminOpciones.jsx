@@ -187,7 +187,7 @@ class opciones extends Component {
                                     aria-label="Seleccionar tipo de insumo"
                                     onChange={(e) => this.setState({ NuevoInsumoTipo: e.target.value })}
                                 >
-                                    <option value="">Seleccionar tipo de insumo</option>
+                                    <option value="" selected>Seleccionar tipo de insumo</option>
                                     <option value="MASAS">MASAS</option>
                                     <option value="CARNES">CARNES</option>
                                     <option value="BEBIDAS">BEBIDAS</option>
@@ -202,7 +202,7 @@ class opciones extends Component {
                                     aria-label="Seleccionar tipo de insumo medida"
                                     onChange={(e) => this.setState({ NuevoInsumoTipoMedida: e.target.value })}
                                 >
-                                    <option value="">Seleccionar tipo de insumo</option>
+                                    <option value="" selected>Seleccionar tipo de insumo</option>
                                     <option value="UNIDAD">UNIDAD</option>
                                     <option value="GRAMOS">GRAMOS</option>
                                 </select>
