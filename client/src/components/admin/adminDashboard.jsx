@@ -66,12 +66,23 @@ class adminDashboard extends Component {
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
         var today = year + "-" + month + "-" + day;
-        document.getElementById("fechaHoyRInventario").value = today        
+        //document.getElementById("fechaHoyRInventario").value = today        
         document.getElementById("fechaHoyRInventarioFinal").value = today
+
+        // Asignar valor a input con tipo fecha
+        const dayOne = new Date();
+        const firstDayOfMonth = new Date(
+            dayOne.getFullYear(),
+            dayOne.getMonth(),
+            2
+          );
+        document.getElementById("fechaHoyRInventario").value = firstDayOfMonth
+        .toISOString()
+        .split("T")[0];
 
         this.setState({
             fecha_final_busqueda: today,
-            fecha_inicio_busqueda: today
+            fecha_inicio_busqueda: firstDayOfMonth.toISOString().split("T")[0]
         })
 
         /*

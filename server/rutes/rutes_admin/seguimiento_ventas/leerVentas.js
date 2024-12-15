@@ -228,7 +228,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     //Suma por tipo
     result.map((item, index) => { 
         item.pedido.map((item2, index2) => {   
-            productoConsoler(item2)
+            //productoConsoler(item2)
             if( item2.tipo.includes('PIZZA PERSONAL') && !item2.tipo.includes('PROMOCION')){
                 pizza_costo_personal = pizza_costo_personal + item2.costo_personal + item2.costo_adiciones
                 pizza_personal = pizza_personal + 1   

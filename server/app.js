@@ -30,18 +30,15 @@ const LeerCostoProductos = require('./rutes/rutes_admin/seguimiento_costos_produ
 const ActualizarCostoProducto = require('./rutes/rutes_admin/seguimiento_costos_productos/costo_productos_pizzarra_crude');
 const ActualizarInventariosAdmin = require('./rutes/rutes_admin/actualizacion_inventario_final/actualizacionInvetarioFinalCompras');
 const RecetasPizzarra = require('./rutes/rutes_admin/seguimiento_recetas/recetasCrude');
-
-//
 const SeguimientoControlInsumos = require('./rutes/rutes_admin/seguimiento_control_admin_insumos/seguimientoInsumos');
 
-//Middlewares*****
+//Middlewares
 app.use(express.json());
 app.use(corse());
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());
-//*****************
 
-//Conexion con DB MONGOATLAS
+// //Conexion con DB MONGOATLAS
 
 //Conectamos con Data Base
 mongose.connect('mongodb+srv://root:123@cluster0.jwxt0.mongodb.net/inventarios_prod?retryWrites=true&w=majority', {
@@ -62,7 +59,6 @@ app.use('/api/entradasinventario', IngresarEntradaInventario);      //Inventario
 app.use('/api/insumocostos', IngresarEntradaInventarioCosto);       //Costo de los insumos de entradas
 app.use('/api/revisioninventariofecha', ValidacionInventarioExistente);  //Revision si existe inventario ya registrado
 app.use('/api/leerinventarios', LeerInventarios);                   //Leemos todos los inventarios de la DB.
-
 //Rutas Admin
 app.use('/api/admin/inventarioactual', InventarioActualAdmin);      //Leemos inventario final
 app.use('/api/admin/inventarioentradas', InventarioEntradaAdmin);   //Leemos entradas de inventario

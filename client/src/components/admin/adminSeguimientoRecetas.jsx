@@ -212,7 +212,7 @@ class AdminSeguimientoRecetas extends Component {
       this.state.recetas,
       event.target.value
     );
-    document.getElementById("tipoSaborSelect").value = "";
+    document.getElementById("tipoSaborSelect").selectedIndex = 0;
     this.setState({
       tiposSaborProductos: tiposSaborFiltrados,
       tipoProductoSeleccionado: event.target.value,

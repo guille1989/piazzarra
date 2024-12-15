@@ -5,6 +5,7 @@ const InventarioActual = require('../../../models/inventarios_insumos_actuales')
 const InventarioEntradas = require('../../../models/inventario_insumos_entrantes');
 const InventarioVentas = require('../../../models/pizzarra_ventas');
 const PedidoPizzarra = require('../../../models/pizzarra_ventas');
+const returnTipoProducto = require('../../../utils/functionReturnTipoProducto');
 
 //GET traemos informacion del inventario
 rute.get('/:fecha/:fechaayer/:inv_id/:pedidos_id', (req, res) => {
@@ -83,7 +84,7 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
     result_ventas_aux = await PedidoPizzarra.find({$and:[{"aux.fecha_pedido": fechaInventario}, {"aux.local": pedidos_id}]});
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
-
+    //returnTipoProducto(result_ventas_aux);
     let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
     let invVentasAux = 0
@@ -167,10 +168,6 @@ function resumenVentas(result_ventas_auxn, insumos){
             }
 
             item.pedido.map((item, index) => { 
-
-                //console.log(item.tipo)
-                
-                //console.log(index) 
 
                 if(item.tipo.includes("DESAYUNO AMERICANO")){
                     let desAux = item.tipo.split("X")[1]
