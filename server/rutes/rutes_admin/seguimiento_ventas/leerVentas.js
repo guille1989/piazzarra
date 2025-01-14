@@ -516,43 +516,43 @@ function productoConsoler(item2){
     }
     switch (keyProductos) {
         case 'PIZZA PERSONAL COMPLETA':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_personal);
+            //console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_personal);
             break;
         case 'PIZZA PERSONAL MITAD':
-            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+            //console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
             break;
         case 'PIZZA GRANDE COMPLETA':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
+            //console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
             break;	
         case 'PIZZA GRANDE MITAD':
-            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+           // console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
             break;
         case 'PIZZA GRANDE CUARTO':
-            console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
+           // console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
             break;
         case 'PIZZA GRANDE COMPLETA PROMOCION':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_grande);
             break;
         case 'PIZZA GRANDE MITAD PROMOCION':
-            console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
+           // console.log("Producto: ", item2.tipo, "Sabor mitad uno/dos: ", item2.mitad_uno, "/", item2.mitad_dos);  
             break;
         case 'PIZZA GRANDE CUARTO PROMOCION':
-            console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
+           // console.log("Producto: ", item2.tipo, "Sabor cuarto uno/dos/tres/cuatro: ", item2.cuarto_uno, "/", item2.cuarto_dos, "/", item2.cuarto_tres, "/", item2.cuarto_cuatro);  
             break;
         case 'PIZZA PANCOOK':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pancook);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pancook);
             break;
         case 'PIZZA PANTALON':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pantalon);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pantalon);
             break;
         case 'RAVIOLI':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_ravioli);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_ravioli);
             break;
         case 'LASAGNA':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_lasagna);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_lasagna);
             break;
         case 'PASTA':
-            console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pasta);
+           // console.log("Producto: ", item2.tipo, "Sabor: ",item2.sabor_pasta);
             break;
         default:
             break;
