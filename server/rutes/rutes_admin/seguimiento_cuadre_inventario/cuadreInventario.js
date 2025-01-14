@@ -84,7 +84,8 @@ async function cuadreInventario(fechaInventario, fechaInventarioAyer, inv_id, pe
     result_ventas_aux = await PedidoPizzarra.find({$and:[{"aux.fecha_pedido": fechaInventario}, {"aux.local": pedidos_id}]});
 
     let result_ventas = resumenVentas(result_ventas_aux, result_insumos) 
-    //returnTipoProducto(result_ventas_aux);
+    returnTipoProducto(result_ventas_aux);
+
     let inv_alarma_stock = "Suficiente"
     let invEntradaAux = 0
     let invVentasAux = 0

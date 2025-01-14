@@ -153,7 +153,7 @@ class adminDashboardProduccion extends Component {
             <div style={{ height: "100%", width: "100%" }}>
                     <AccumulationChartComponent 
                         id="pie-chart" 
-                        title='Tipo pedidos Pizzarra Cali' 
+                        title='Tipo pedidos Pizzarra' 
                         enableSmartLabels={true} 
                         load={this.loadPie.bind(this)} 
                         tooltip={{ enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>' }} 
@@ -421,7 +421,7 @@ class adminDashboardProduccion extends Component {
                             col={0}
                             ></PanelDirective>
                             <PanelDirective
-                            header="Tipo pedidos Pizzarra Cali"
+                            header="Tipo pedidos Pizzarra"
                             content="Dos"
                             sizeX={2}
                             sizeY={2}
@@ -429,7 +429,7 @@ class adminDashboardProduccion extends Component {
                             col={2}
                             ></PanelDirective>
                             <PanelDirective
-                            header="Tipo pedidos Pizzarra Popayan"
+                            header="Tipo pedidos Pizzarra"
                             content="tres"
                             sizeX={2}
                             sizeY={2}

@@ -156,7 +156,6 @@ class AdminSeguimientoRecetas extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data === "Ok") {
           alert("Receta actualizada");
         }

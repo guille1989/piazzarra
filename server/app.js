@@ -32,6 +32,9 @@ const ActualizarInventariosAdmin = require('./rutes/rutes_admin/actualizacion_in
 const RecetasPizzarra = require('./rutes/rutes_admin/seguimiento_recetas/recetasCrude');
 const SeguimientoControlInsumos = require('./rutes/rutes_admin/seguimiento_control_admin_insumos/seguimientoInsumos');
 
+//
+const LeerVentasTiquetMedio = require('./rutes/rutes_admin/seguimiento_graficas/graficasTiquetMedio');
+
 //Middlewares
 app.use(express.json());
 app.use(corse());
@@ -77,6 +80,7 @@ app.use('/api/admin/actualizarcostoproductos', ActualizarCostoProducto)
 app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
 app.use('/api/admin/seguimientocontrolinsumos', SeguimientoControlInsumos)
 app.use('/api/admin/seguimientorecetas', RecetasPizzarra)
+app.use('/api/admin/graficatiquetmedio', LeerVentasTiquetMedio)	
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;

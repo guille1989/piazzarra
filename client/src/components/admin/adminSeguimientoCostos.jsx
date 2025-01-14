@@ -83,7 +83,6 @@ class adminSeguimientoCostos extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           costo_pizza_personal: data.info.resultCostoProductos[0].COSTO,
           costo_pizza_grande: data.info.resultCostoProductos[1].COSTO,

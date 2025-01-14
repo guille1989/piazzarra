@@ -19,10 +19,13 @@ function returnTipoProducto(result_ventas_auxn) {
       } else if (saborKey?.includes("cuarto")) {
         objetoPedidoDelDia.push({"tipo": item2.tipo, "sabor_uno": item2.cuarto_uno, "sabor_dos": item2.cuarto_dos, "sabor_tres": item2.cuarto_tres, "sabor_cuatro": item2.cuarto_cuatro});
       } else {
-        objetoPedidoDelDia.push({"tipo": item2.tipo});
+        let cantidadProductoInsumo = item2.tipo.split("X");
+        objetoPedidoDelDia.push({"tipo": cantidadProductoInsumo[0].trim(), "cantidad": parseInt(cantidadProductoInsumo[1].trim())});  
       }
     });
   });
+
+  //console.log(objetoPedidoDelDia);
 }
 
 module.exports = returnTipoProducto;

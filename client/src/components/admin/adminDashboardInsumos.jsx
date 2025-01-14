@@ -154,7 +154,6 @@ class adminDashboardInsumos extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           arrayInsumos: data,
           dataLoaded: true,
@@ -177,10 +176,7 @@ class adminDashboardInsumos extends Component {
         this.state.headertext[this.state.indexSelectedTab].text
     );
 
-    console.log("dataSource: ", dataSource);
-
     if (dataSource === undefined || dataSource.result === undefined || dataSource.result.length === 0) {
-      console.log("null");
       return null;
     }
 
@@ -197,7 +193,6 @@ class adminDashboardInsumos extends Component {
 
 
     const pointRender = (args) => {
-      console.log("pointRender: ", args);
 
       if (args.point.text === "UNIDAD") {
         if (args.point.y === 0) {
