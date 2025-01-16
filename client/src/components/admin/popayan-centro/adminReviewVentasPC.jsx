@@ -161,6 +161,15 @@ class adminReviewVentasPC extends Component {
                     textAlign: "center",
                   }}
                 >
+                  HORA DOMICILIO
+                </th>
+                <th
+                  style={{
+                    border: "1px solid #ddd",
+                    padding: "8px",
+                    textAlign: "center",
+                  }}
+                >
                   DIRECCIÓN DOMICILIO
                 </th>
                 <th
@@ -242,6 +251,14 @@ class adminReviewVentasPC extends Component {
                             padding: "8px",
                           }}
                         >
+                          {this.state.ventas[index].aux[0].hora_pedido}
+                        </td>
+                        <td
+                          style={{
+                            border: "1px solid #ddd",
+                            padding: "8px",
+                          }}
+                        >
                           {this.state.ventas[index].aux[0].domi_direccion}
                         </td>
                         <td
@@ -306,6 +323,15 @@ class adminReviewVentasPC extends Component {
                 }}
               >
                 TIPO PEDIDO
+              </th>
+              <th
+                style={{
+                  border: "1px solid #ddd",
+                  padding: "8px",
+                  textAlign: "center",
+                }}
+              >
+                HORA PEDIDO
               </th>
               <th
                 style={{
@@ -432,6 +458,17 @@ class adminReviewVentasPC extends Component {
                                     {
                                       this.state.ventas[index].aux[0]
                                         .tipo_pedido
+                                    }
+                                  </td>
+                                  <td
+                                    style={{
+                                      border: "1px solid #ddd",
+                                      padding: "8px",
+                                    }}
+                                  >
+                                    {
+                                      this.state.ventas[index].aux[0]
+                                        .hora_pedido
                                     }
                                   </td>
                                   <td
