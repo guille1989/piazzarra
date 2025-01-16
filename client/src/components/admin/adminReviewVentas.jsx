@@ -538,13 +538,13 @@ class adminReviewVentasPC extends Component {
 
         <h1>Ventas del dia: {this.state.ventas_totales}</h1>
 
-        {/* Tabla de ventas 
         <table className="table">
           <tbody>
             <tr>
               <th>#</th>
               <th>ITEM</th>
               <th>TIPO PEDIDO</th>
+              <th>HORA PEDIDO</th>
               <th>SABORES</th>
               <th>COSTO</th>
             </tr>
@@ -568,6 +568,7 @@ class adminReviewVentasPC extends Component {
                               <>{this.state.ventas[index].aux[0].tipo_pedido}</>
                             )}
                           </th>
+                          <th>{this.state.ventas[index].aux[0].hora_pedido}</th>
                           {(() => {
                             if (item.tipo === "PIZZA GRANDE COMPLETA") {
                               return (
@@ -819,6 +820,13 @@ class adminReviewVentasPC extends Component {
                                   <td>{item.costo_panaderia}</td>
                                 </>
                               );
+                            } else if (item.tipo.includes("PAN COOK UNIDAD")) {
+                              return (
+                                <>
+                                  <td>{item.tipo}</td>
+                                  <td>{item.costo_panaderia}</td>
+                                </>
+                              );
                             } else if (item.tipo.includes("PAN UNIDAD")) {
                               return (
                                 <>
@@ -958,7 +966,7 @@ class adminReviewVentasPC extends Component {
             })}
           </tbody>
         </table>
-        */}
+
         <br></br>
 
         <h1>Resumen Ventas:</h1>
