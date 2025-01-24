@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import InventarioPopayanRefugioNuevo from './inventarioPopayanCentro';
 import InventarioPopayanRefugioReview from './inventarioPopayanReview';
 
+import GastosFijosPopayan from './gastisFijosPopayan';
+
 import '../../App.css'
 
 function PizzarraNavBarUserP(props){   
@@ -34,6 +36,11 @@ function PizzarraNavBarUserP(props){
         {
             text: 'Ingresar datos Inventario',
             iconCss: 'e-icons e-changes-previous',
+           
+        },
+        {
+            text: 'Ingresar gastos fijos',
+            iconCss: 'e-icons e-number-formatting',
            
         },
        
@@ -57,6 +64,8 @@ function PizzarraNavBarUserP(props){
             navigate("/");
         }else if(e.item.text === 'Ingresar datos Inventario'){
             navigate("/NuevoResumen");
+        }else if(e.item.text === 'Ingresar gastos fijos'){
+            navigate("/GastosFijos");
         }
    }
 
@@ -85,6 +94,7 @@ function PizzarraNavBarUserP(props){
                             <Routes>
                                 <Route path="/" element={<InventarioPopayanRefugioReview></InventarioPopayanRefugioReview>} />
                                 <Route path="/NuevoResumen" element={<InventarioPopayanRefugioNuevo></InventarioPopayanRefugioNuevo>} />
+                                <Route path="/GastosFijos" element={<GastosFijosPopayan></GastosFijosPopayan>} />
                             </Routes>
 
                             </div>

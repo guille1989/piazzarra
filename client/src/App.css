@@ -104,7 +104,6 @@ color: greenyellow;
 
 #maintext.main-menu-content {
   height: 100vh;
-  position: absolute;
 }
 
 #menu-wrapper .sidebar-menu .e-menu-wrapper {
@@ -795,6 +794,31 @@ margin-left: -4px;
   opacity: 0.7;
 }
 
+.uppercase-input {
+  text-transform: uppercase;
+}
+
+.table-row {
+  min-height: 50px; /* Ajusta este valor según sea necesario */
+  height: auto;
+  vertical-align: middle;
+}
+
+.form-control {
+  white-space: normal; /* Permite que el texto se ajuste a múltiples líneas */
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-cell {
+  min-height: fit-content;
+  word-wrap: break-word; /* Permite que el texto se ajuste dentro de la celda */
+  overflow-wrap: break-word; /* Permite que el texto se ajuste dentro de la celda */
+  max-width: fit-content; /* Ajusta este valor según sea necesario */
+}
 
 @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-react-inputs/styles/material.css";

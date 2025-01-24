@@ -13,6 +13,9 @@ const IngresarEntradaInventarioCosto = require('./rutes/rutes_user/inventario_en
 const ValidacionInventarioExistente = require('./rutes/rutes_user/validaciones/revisionInventarioExiste');
 const LeerInventarios = require('./rutes/rutes_user/resumen/leerinventarios');
 
+const leerCategoriaGastosFijos = require('./rutes/rutes_user/gastos_fijos/gastos_fijos_crude');
+const leerGastosFijos = require('./rutes/rutes_user/gastos_fijos/gastos_fijos_resumen_crude');
+
 //Rutas Administrdaod
 const InventarioActualAdmin = require('./rutes/rutes_admin/seguimiento_inentarios/inventario_final/inventarioFinal');
 const InventarioEntradaAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
@@ -62,6 +65,9 @@ app.use('/api/entradasinventario', IngresarEntradaInventario);      //Inventario
 app.use('/api/insumocostos', IngresarEntradaInventarioCosto);       //Costo de los insumos de entradas
 app.use('/api/revisioninventariofecha', ValidacionInventarioExistente);  //Revision si existe inventario ya registrado
 app.use('/api/leerinventarios', LeerInventarios);                   //Leemos todos los inventarios de la DB.
+
+app.use('/api/gastosfijoscategorias', leerCategoriaGastosFijos);              //Leemos gastos fijos
+app.use('/api/gastosfijosresumen', leerGastosFijos);                         //Leemos gastos fijos por periodo
 //Rutas Admin
 app.use('/api/admin/inventarioactual', InventarioActualAdmin);      //Leemos inventario final
 app.use('/api/admin/inventarioentradas', InventarioEntradaAdmin);   //Leemos entradas de inventario

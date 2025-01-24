@@ -13,6 +13,7 @@ import { MenuComponent } from '@syncfusion/ej2-react-navigations';
 import { useNavigate } from "react-router-dom";
 import InventarioCaliRefugioNuevo from './inventarioCaliRefugio';
 import InventarioCaliRefugioReview from './inventarioCaliReview';
+import GastosFijosCali from './gastosFijosCali';
 
 import '../../App.css'
 
@@ -36,6 +37,11 @@ function PizzarraNavBarUser(props){
             iconCss: 'e-icons e-changes-previous',
            
         },
+        {
+            text: 'Ingresar gastos fijos',
+            iconCss: 'e-icons e-number-formatting',
+           
+        },
        
     ];
     let enableDock = true;
@@ -57,6 +63,8 @@ function PizzarraNavBarUser(props){
             navigate("/");
         }else if(e.item.text === 'Ingresar datos Inventario'){
             navigate("/NuevoResumen");
+        }else if(e.item.text === 'Ingresar gastos fijos'){
+            navigate("/GastosFijos");
         }
    }
 
@@ -85,6 +93,7 @@ function PizzarraNavBarUser(props){
                             <Routes>
                                 <Route path="/" element={<InventarioCaliRefugioReview></InventarioCaliRefugioReview>} />
                                 <Route path="/NuevoResumen" element={<InventarioCaliRefugioNuevo></InventarioCaliRefugioNuevo>} />
+                                <Route path="/GastosFijos" element={<GastosFijosCali></GastosFijosCali>} />
                             </Routes>
 
                             </div>
