@@ -4517,6 +4517,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         result.JUGOS_NATURALES_LULO = result.JUGOS_NATURALES_LULO - item.tipo.replace( /^\D+/g, '')
                     }else if(item.tipo.includes("MORA")){
                         result.JUGOS_NATURALES_MORA = result.JUGOS_NATURALES_MORA - item.tipo.replace( /^\D+/g, '')
+                    }else if(item.tipo.includes("GUANABANA")){
+                        result.JUGOS_NATURALES_GUANABANA = result.JUGOS_NATURALES_GUANABANA - item.tipo.replace( /^\D+/g, '')
                     }
                 }  
             }

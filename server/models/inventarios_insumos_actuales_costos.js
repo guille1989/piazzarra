@@ -14,6 +14,7 @@ const inventarioShcema = new mongose.Schema({
     JUGOS_NATURALES_MANGO:  {type: Number},
     JUGOS_NATURALES_LULO:   {type: Number},
     JUGOS_NATURALES_MORA:   {type: Number},
+    JUGOS_NATURALES_GUANABANA: {type: Number},
     CERVEZA_CULB:           {type: Number},
     CERVEZA_POKER:          {type: Number},
     CERVEZA_AGUILA:         {type: Number},
