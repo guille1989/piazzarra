@@ -287,6 +287,10 @@ class gastosFijosCali extends Component {
         <br></br>
         <hr className="border border-3 opacity-100"></hr>
 
+        <h4>
+          Seleccion del periodo para el registro de gastos fijos{" "}
+        </h4>
+
         <input
           type="month"
           id="fechaHoyRInventario"
@@ -297,6 +301,12 @@ class gastosFijosCali extends Component {
         />
 
         <br></br>
+        <hr className="border border-1 opacity-100"></hr>
+        <br></br>
+
+        <h4>
+          Ingresar un nuevo registro de gastos fijos{" "}
+        </h4>
 
         <div style={{ display: "flex" }}>
           <input

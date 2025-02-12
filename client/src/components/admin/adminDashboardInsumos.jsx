@@ -324,11 +324,13 @@ class adminDashboardInsumos extends Component {
                 headerText="Insumos-Resultado"
                 width="130"
               ></ColumnDirective>
+              {/* 
                <ColumnDirective
                 field="INV_GASTO"
                 headerText="Insumo-Usado-Teorico"
                 width="130"
               ></ColumnDirective>
+              */}
               <ColumnDirective
                 field="INV_FLAG"
                 headerText="Insumo-Flag"

@@ -81,7 +81,7 @@ function PizzarraNavBarAdmin(props){
             text: 'Tablero de datos',
             iconCss: 'e-icons e-chart',
             items: [
-                { text: 'Dashboard - Ventas' },
+                { text: 'Dashboard - General' },
                 { text: 'Dashboard - Insumos' },
                 
             ]
@@ -120,7 +120,7 @@ function PizzarraNavBarAdmin(props){
             case 'Ventas - Cali - Refugio':
                 navigate("/VentasResumen");
                 break;
-            case 'Dashboard - Ventas':
+            case 'Dashboard - General':
                 navigate("/Dashboard");
                 break;
             case 'Configuracion - Globales':

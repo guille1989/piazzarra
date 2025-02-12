@@ -2,25 +2,27 @@ const Express = require("express");
 const rute = Express();
 const PedidoPizzarra = require("../../../models/pizzarra_ventas");
 
-rute.get('/:fechaUno/:fechaDos/:local', async (req, res) => {
+rute.get("/:fechaUno/:fechaDos/:local", async (req, res) => {
   let fechaInicio = req.params.fechaUno;
   let fechaFin = req.params.fechaDos;
-  let local = req.params.local; 
+  let local = req.params.local;
   //Query que retorna tiquet medio y cantidad de ventas
+  let matchQuery = {
+    "aux.fecha_pedido": {
+      $gte: fechaInicio,
+      $lte: fechaFin,
+    },
+  };
+  if (local !== "todos") {
+    matchQuery["aux.local"] = local;
+  }
   try {
     const result_ventas_aux = await PedidoPizzarra.aggregate([
       {
         $unwind: "$aux",
       },
       {
-        $match: {
-          "aux.fecha_pedido": {
-            $gte: fechaInicio,
-            $lt: fechaFin,
-          },
-          "aux.tipo_pedido": { $in: ["MESA", "DOMICILIO", "RECOGEN"] },
-          "aux.local": local,
-        },
+        $match: matchQuery
       },
       {
         $group: {
@@ -44,7 +46,6 @@ rute.get('/:fechaUno/:fechaDos/:local', async (req, res) => {
         },
       },
     ]);
-
 
     res.status(200).json({
       tiquet_medio: result_ventas_aux,

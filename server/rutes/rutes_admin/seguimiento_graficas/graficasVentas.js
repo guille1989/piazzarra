@@ -70,7 +70,7 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
 
   let resut_ventas_totales01 = await PedidoPizzarra.aggregate([
     {
-      $match: matchQuery
+      $match: matchQuery,
     },
     {
       $unwind: "$aux",
@@ -87,7 +87,7 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
 
   let result04 = await PedidoPizzarra.aggregate([
     {
-      $match: matchQuery
+      $match: matchQuery,
     },
     {
       $unwind: "$aux",
@@ -114,12 +114,63 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
     { $sort: { _id: 1 } },
   ]);
 
-  let result06_tipo = await PedidoPizzarra.aggregate([
+  let resultVentasMes = await PedidoPizzarra.aggregate([
     {
-      $match: matchMesaQuery
+      $match: matchQuery,
     },
     {
-      $unwind: "$aux"
+      $unwind: "$aux",
+    },
+    {
+      $group: {
+        _id: {
+          $substr: ["$aux.fecha_pedido", 0, 7],
+        },
+        totalVentas: {
+          $sum: "$aux.costo_pedido",
+        },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
+
+  let resultHorasPedidos = await PedidoPizzarra.aggregate([
+    {
+      $match: matchQuery,
+    },
+    {
+      $unwind: "$aux",
+    },
+    {
+      $group: {
+        _id: null,
+        horas_pedido: {
+          $addToSet: "$aux.hora_pedido",
+        },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        horas_pedido: 1,
+      },
+    },
+  ]);
+
+  // Extraer y redondear a la hora
+  const horasChartData = [];
+  resultHorasPedidos[0].horas_pedido.map((hora) => {
+    horasChartData.push({
+      y: parseInt(hora.split(":")[0], 10),
+    });
+  });
+
+  let result06_tipo = await PedidoPizzarra.aggregate([
+    {
+      $match: matchMesaQuery,
+    },
+    {
+      $unwind: "$aux",
     },
     {
       $group: {
@@ -136,10 +187,10 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
 
   let result07_tipo = await PedidoPizzarra.aggregate([
     {
-      $match: matchDomicilioQuery
+      $match: matchDomicilioQuery,
     },
     {
-      $unwind: "$aux"
+      $unwind: "$aux",
     },
     {
       $group: {
@@ -156,10 +207,10 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
 
   let result08_tipo = await PedidoPizzarra.aggregate([
     {
-      $match: matchRecogenQuery
+      $match: matchRecogenQuery,
     },
     {
-      $unwind: "$aux"
+      $unwind: "$aux",
     },
     {
       $group: {
@@ -176,27 +227,26 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
 
   let result09_ventas_tipo = await PedidoPizzarra.aggregate([
     {
-      $match: matchQuery
+      $match: matchQuery,
     },
     {
-      $unwind: "$aux"
+      $unwind: "$aux",
     },
     {
       $group: {
         _id: "$aux.tipo_pedido",
         numero_de_ventas: {
-          $sum: 1
+          $sum: 1,
         },
         valor_total: {
-          $sum: "$aux.costo_pedido"
-        }
-      }
+          $sum: "$aux.costo_pedido",
+        },
+      },
     },
     {
-      $sort: { valor_total: -1 } // Ordenar por valor_total en orden descendente
-    }
+      $sort: { valor_total: -1 }, // Ordenar por valor_total en orden descendente
+    },
   ]);
-  console.log(result09_ventas_tipo);
 
   let tipo_pedido = [];
 
@@ -237,7 +287,17 @@ async function leerVentasSemana(fecha_uno_aux, fecha_dos_aux, local) {
     resut_ventas_totales01 = [{ _id: local, suma_ventas_totales: 0 }];
   }
 
-  return { result04, resut_ventas_totales01, tipo_pedido, result09_ventas_tipo };
+  return {
+    result04,
+    resut_ventas_totales01,
+    tipo_pedido,
+    result09_ventas_tipo,
+    resultVentasMes,
+    horasChartData,
+    result06_tipo,
+    result07_tipo,
+    result08_tipo,
+  };
 }
 
 module.exports = rute;

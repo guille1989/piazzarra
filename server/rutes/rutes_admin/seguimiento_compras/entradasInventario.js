@@ -68,17 +68,12 @@ async function LeerEntradasLeerCostos(fechaInventario, inv_id){
 
         }else{
             if(Object.values(result_costos[0]._doc.INVENTARIO_AUX[0])[i] === null){
-                // Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc)[i], 'Valor': 0 }])
+                //Array.prototype.push.apply(result_aux, [{'Item': Object.keys(result[0]._doc)[i], 'Valor': 0 }])
             }else{
                 Array.prototype.push.apply(result_costos_aux, [{'Item': Object.keys(result_costos[0]._doc.INVENTARIO_AUX[0])[i], 'Valor': Object.values(result_costos[0]._doc.INVENTARIO_AUX[0])[i] }])
             }
         }        
     }
-
-    //console.log(result_costos_aux)
-
-    //console.log(result_aux)
-    //console.log(result_costos_aux)
 
     return {result, result_costos, result_aux, result_costos_aux}
 

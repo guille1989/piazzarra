@@ -287,6 +287,10 @@ class gastosFijosPopayan extends Component {
         <br></br>
         <hr className="border border-3 opacity-100"></hr>
 
+        <h4>
+          Seleccion del periodo para el registro de gastos fijos{" "}
+        </h4>
+
         <input
           type="month"
           id="fechaHoyRInventario"
@@ -297,6 +301,12 @@ class gastosFijosPopayan extends Component {
         />
 
         <br></br>
+        <hr className="border border-1 opacity-100"></hr>
+        <br></br>
+
+        <h4>
+          Ingresar un nuevo registro de gastos fijos{" "}
+        </h4>
 
         <div style={{ display: "flex" }}>
           <input
@@ -305,7 +315,7 @@ class gastosFijosPopayan extends Component {
             className="form-control w-50 mr-2"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="Digite nuevo gasto fijo"
+            placeholder="Digite nueva descripcion fijo"
             onChange={(e) =>
               this.setState({ NuevoGasto: e.target.value.toUpperCase() })
             }

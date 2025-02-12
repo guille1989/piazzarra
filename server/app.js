@@ -15,7 +15,6 @@ const LeerInventarios = require('./rutes/rutes_user/resumen/leerinventarios');
 
 const leerCategoriaGastosFijos = require('./rutes/rutes_user/gastos_fijos/gastos_fijos_crude');
 const leerGastosFijos = require('./rutes/rutes_user/gastos_fijos/gastos_fijos_resumen_crude');
-
 //Rutas Administrdaod
 const InventarioActualAdmin = require('./rutes/rutes_admin/seguimiento_inentarios/inventario_final/inventarioFinal');
 const InventarioEntradaAdmin = require('./rutes/rutes_admin/seguimiento_compras/entradasInventario');
@@ -37,6 +36,8 @@ const SeguimientoControlInsumos = require('./rutes/rutes_admin/seguimiento_contr
 
 //
 const LeerVentasTiquetMedio = require('./rutes/rutes_admin/seguimiento_graficas/graficasTiquetMedio');
+const leerVentasPorTipo = require('./rutes/rutes_admin/seguimiento_ventas/leerTipoVentas');
+
 
 //Middlewares
 app.use(express.json());
@@ -87,6 +88,7 @@ app.use('/api/admin/actualizarinventarios', ActualizarInventariosAdmin)
 app.use('/api/admin/seguimientocontrolinsumos', SeguimientoControlInsumos)
 app.use('/api/admin/seguimientorecetas', RecetasPizzarra)
 app.use('/api/admin/graficatiquetmedio', LeerVentasTiquetMedio)	
+app.use('/api/admin/ventasportipo', leerVentasPorTipo)
 
 //Iniciamos Server
 const port = process.env.PORT || 3001;

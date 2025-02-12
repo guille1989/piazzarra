@@ -14,7 +14,10 @@ import {
   TrendlineDirective,
   TrendlinesDirective,
   Trendlines,
+  HistogramSeries,
 } from "@syncfusion/ej2-react-charts";
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+
 import {
   AccumulationChartComponent,
   AccumulationSeriesCollectionDirective,
@@ -46,10 +49,13 @@ class adminDashboard extends Component {
     this.state = {
       filtro_seleccion: "semana",
       filter_ventas: [],
+      filter_ventas_mes: [],
       filter_ventas_popayan: [],
       filet_limits: [],
       filter_ventas_tipo: [],
       filter_ventas_tipo_popayan: [],
+      filter_ventas_tipo_pizzas: [],
+      filter_ventas_tipo_sabores: [],
       ventas_promedio_cali: 0,
       ventas_promedio_popayan: "",
       ventas_totales_cali: 0,
@@ -57,13 +63,16 @@ class adminDashboard extends Component {
       tiquet_medio_cali: 0,
       tiquet_medio_popayan: "",
       local: "",
-
+      ventas_dia: true,
       filter_ventas_por_tipo: [],
-
+      filter_horas_pedidos: [],
       ventas_totales: 0,
       ventas_promedio: 0,
       tiquet_medio: 0,
       tipo_grafica_indicador: "suma_ventas",
+      filter_ventas_por_tipo_mesa: [],
+      filter_ventas_por_tipo_domicilio: [],
+      filter_ventas_por_tipo_recogen: [],
     };
   }
 
@@ -160,7 +169,9 @@ class adminDashboard extends Component {
           enableBorderOnMouseMove={true}
           legendSettings={{ visible: false }}
         >
-          <Inject services={[PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
+          <Inject
+            services={[PieSeries, AccumulationDataLabel, AccumulationTooltip]}
+          />
           <AccumulationSeriesCollectionDirective>
             <AccumulationSeriesDirective
               dataSource={this.state.filter_ventas_por_tipo}
@@ -174,7 +185,8 @@ class adminDashboard extends Component {
               explodeOffset="10%"
               explodeIndex={0}
               dataLabel={{
-                visible: true, position: 'Outside',
+                visible: true,
+                position: "Outside",
                 name: "_id",
                 font: {
                   fontWeight: "600",
@@ -187,11 +199,218 @@ class adminDashboard extends Component {
     );
   }
 
+  barrasPizzasVentas() {
+    let maxValue = Math.max(
+      ...this.state.filter_ventas_tipo_pizzas.map((item) => item.Y)
+    );
+    let ylabel = "Numero de productos vendidos";
+    let ylabelformat = "{value}";
+
+    const tooltip = {
+      enable: true,
+      header: "Informacion General",
+      format: "<b>${point.x} : ${point.y}</b>",
+    };
+
+    return (
+      <div style={{ height: "100%", width: "100%" }}>
+        <ChartComponent
+          id="chart-pizzas"
+          style={{ textAlign: "center" }}
+          legendSettings={{ enableHighlight: true }}
+          primaryXAxis={{
+            valueType: "Category",
+            interval: 1,
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+          }}
+          primaryYAxis={{
+            title: ylabel,
+            majorTickLines: { width: 0 },
+            lineStyle: { width: 0 },
+            maximum: maxValue * 1.2,
+            interval: maxValue / 5,
+            labelFormat: ylabelformat,
+          }}
+          useGroupingSeparator={true}
+          chartArea={{ border: { width: 0 } }}
+          load={this.loadVentasPizzas.bind(this)}
+          tooltip={tooltip}
+          width={Browser.isDevice ? "100%" : "100%"}
+          loaded={this.onChartLoadVentasPizzas.bind(this)}
+        >
+          <Inject
+            services={[
+              ColumnSeries,
+              LineSeries,
+              Legend,
+              Tooltip,
+              Category,
+              DataLabel,
+              Highlight,
+              Trendlines,
+            ]}
+          />
+          <SeriesCollectionDirective>
+            <SeriesDirective
+              dataSource={this.state.filter_ventas_tipo_pizzas}
+              tooltip={tooltip}
+              xName="X"
+              columnSpacing={0.1}
+              yName="Y"
+              name={ylabel}
+              type="Column"
+              marker={{
+                dataLabel: {
+                  visible: true,
+                  position: "Middle",
+                  font: { fontWeight: "2W00", color: "#000000" },
+                },
+              }}
+            ></SeriesDirective>
+          </SeriesCollectionDirective>
+        </ChartComponent>
+      </div>
+    );
+  }
+
+  barrasPizzasVentasSabores() {
+    let maxValue = Math.max(
+      ...this.state.filter_ventas_tipo_sabores.map((item) => item.Y)
+    );
+    let ylabel = "Numero de sabores mas vendidos";
+    let ylabelformat = "{value}";
+
+    const tooltip = {
+      enable: true,
+      header: "Informacion General",
+      format: "<b>${point.x} : ${point.y}</b>",
+    };
+
+    return (
+      <div style={{ height: "100%", width: "100%" }}>
+        <ChartComponent
+          id="chart-pizzas-sabores"
+          style={{ textAlign: "center" }}
+          legendSettings={{ enableHighlight: true }}
+          primaryXAxis={{
+            valueType: "Category",
+            interval: 1,
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+          }}
+          primaryYAxis={{
+            title: ylabel,
+            majorTickLines: { width: 0 },
+            lineStyle: { width: 0 },
+            maximum: maxValue * 1.2,
+            interval: maxValue / 5,
+            labelFormat: ylabelformat,
+          }}
+          useGroupingSeparator={true}
+          chartArea={{ border: { width: 0 } }}
+          load={this.loadVentasPizzasSabores.bind(this)}
+          tooltip={tooltip}
+          width={Browser.isDevice ? "100%" : "100%"}
+          loaded={this.onChartLoadVentasPizzasSabores.bind(this)}
+        >
+          <Inject
+            services={[
+              ColumnSeries,
+              LineSeries,
+              Legend,
+              Tooltip,
+              Category,
+              DataLabel,
+              Highlight,
+              Trendlines,
+            ]}
+          />
+          <SeriesCollectionDirective>
+            <SeriesDirective
+              dataSource={this.state.filter_ventas_tipo_sabores}
+              tooltip={tooltip}
+              xName="X"
+              columnSpacing={0.1}
+              yName="Y"
+              name={ylabel}
+              type="Column"
+              marker={{
+                dataLabel: {
+                  visible: true,
+                  position: "Middle",
+                  font: { fontWeight: "2W00", color: "#000000" },
+                },
+              }}
+            ></SeriesDirective>
+          </SeriesCollectionDirective>
+        </ChartComponent>
+      </div>
+    );
+  }
+
+  histograma() {
+    return (
+      <div style={{ height: "100%", width: "100%" }}>
+        <ChartComponent
+          id="chartsHistograma"
+          style={{ textAlign: "center" }}
+          load={this.loadHistograma.bind(this)}
+          primaryXAxis={{
+            majorGridLines: { width: 0 },
+            title: "Horas del dia",
+            minimum: 6,
+            maximum: 24,
+            edgeLabelPlacement: "Shift",
+          }}
+          primaryYAxis={{
+            title: "Numero de pedidos",
+            minimum: 0,
+            maximum: this.state.filter_horas_pedidos.length / 2,
+            interval: this.state.filter_horas_pedidos.length / 10,
+            majorTickLines: { width: 0 },
+            lineStyle: { width: 0 },
+          }}
+          chartArea={{ border: { width: 0 } }}
+          tooltip={{ enable: true, header: " " }}
+          width={Browser.isDevice ? "100%" : "100%"}
+          legendSettings={{ visible: false }}
+          loaded={this.onChartLoadHistograma.bind(this)}
+        >
+          <Inject
+            services={[HistogramSeries, Legend, Tooltip, Category, DataLabel]}
+          />
+          <SeriesCollectionDirective>
+            <SeriesDirective
+              dataSource={this.state.filter_horas_pedidos}
+              yName="y"
+              name="Score"
+              type="Histogram"
+              marker={{
+                visible: true,
+                height: 7,
+                width: 7,
+                dataLabel: {
+                  visible: true,
+                  position: "Top",
+                  font: { color: "#ffffff", fontWeight: "600" },
+                },
+              }}
+              showNormalDistribution={true}
+              columnWidth={1}
+              binInterval={1}
+            />
+          </SeriesCollectionDirective>
+        </ChartComponent>
+      </div>
+    );
+  }
+
   graficaVentas() {
     let maxValue = Math.max(
       ...this.state.filter_ventas.map((item) => item.suma_ventas)
     );
-    let ylabel = "Ventas totales";
+    let ylabel = "Ventas totales - dia";
     let ylabelformat = "${value}";
 
     if (this.state.tipo_grafica_indicador === "total_pedidos") {
@@ -213,6 +432,7 @@ class adminDashboard extends Component {
       format: "<b>${point.x} : ${point.y}</b>",
     };
 
+    let isVentasDia = false;
     return (
       <div style={{ height: "90%", width: "100%" }}>
         <select
@@ -226,17 +446,111 @@ class adminDashboard extends Component {
           }}
           onChange={(e) => {
             e.preventDefault();
+            let selection = e.target.value;
+            if (selection === "totalVentas")
+              this.setState({ ventas_dia: false });
+            else this.setState({ ventas_dia: true });
+
             this.setState({ tipo_grafica_indicador: e.target.value });
           }}
           value={this.state.tipo_grafica_indicador}
         >
-          <option value="suma_ventas">Ventas</option>
+          <option value="suma_ventas">Ventas totales - dias</option>
+          <option value="totalVentas">Ventas totales - mes</option>
           <option value="total_pedidos">Numero Pedidos</option>
           <option value="tiquet_medio">Tiquet Medio</option>
         </select>
         <br></br>
+        {this.state.ventas_dia ? (
+          <ChartComponent
+            id="charts"
+            style={{ textAlign: "center" }}
+            legendSettings={{ enableHighlight: true }}
+            primaryXAxis={{
+              valueType: "Category",
+              interval: 1,
+              majorGridLines: { width: 0 },
+              majorTickLines: { width: 0 },
+            }}
+            primaryYAxis={{
+              title: ylabel,
+              majorTickLines: { width: 0 },
+              lineStyle: { width: 0 },
+              maximum: maxValue * 1.2,
+              interval: maxValue / 5,
+              labelFormat: ylabelformat,
+            }}
+            useGroupingSeparator={true}
+            chartArea={{ border: { width: 0 } }}
+            load={this.load.bind(this)}
+            tooltip={tooltip}
+            width={Browser.isDevice ? "100%" : "100%"}
+            loaded={this.onChartLoad.bind(this)}
+          >
+            <Inject
+              services={[
+                ColumnSeries,
+                LineSeries,
+                Legend,
+                Tooltip,
+                Category,
+                DataLabel,
+                Highlight,
+                Trendlines,
+              ]}
+            />
+            <SeriesCollectionDirective>
+              <SeriesDirective
+                dataSource={this.state.filter_ventas}
+                tooltip={tooltip}
+                xName="_id"
+                columnSpacing={0.1}
+                yName={this.state.tipo_grafica_indicador}
+                name={ylabel}
+                type="Column"
+                marker={{
+                  dataLabel: {
+                    visible: true,
+                    position: "Middle",
+                    font: { fontWeight: "2W00", color: "#000000" },
+                  },
+                }}
+              >
+                <TrendlinesDirective>
+                  <TrendlineDirective
+                    type="Linear"
+                    width={3}
+                    marker={{ visible: false }}
+                    name="Tendencia"
+                    fill="#C64A75"
+                  ></TrendlineDirective>
+                </TrendlinesDirective>
+              </SeriesDirective>
+            </SeriesCollectionDirective>
+          </ChartComponent>
+        ) : (
+          this.graficaVentasMes()
+        )}
+      </div>
+    );
+  }
+
+  graficaVentasMes() {
+    let maxValue = Math.max(
+      ...this.state.filter_ventas_mes.map((item) => item.totalVentas)
+    );
+    let ylabel = "Ventas totales - mes";
+    let ylabelformat = "${value}";
+
+    const tooltip = {
+      enable: true,
+      header: "Informacion General",
+      format: "<b>${point.x} : ${point.y}</b>",
+    };
+    return (
+      <>
         <ChartComponent
-          id="charts"
+          id="chartsVentas"
           style={{ textAlign: "center" }}
           legendSettings={{ enableHighlight: true }}
           primaryXAxis={{
@@ -255,10 +569,10 @@ class adminDashboard extends Component {
           }}
           useGroupingSeparator={true}
           chartArea={{ border: { width: 0 } }}
-          load={this.load.bind(this)}
+          load={this.loadVentas.bind(this)}
           tooltip={tooltip}
           width={Browser.isDevice ? "100%" : "100%"}
-          loaded={this.onChartLoad.bind(this)}
+          loaded={this.onChartLoadVentas.bind(this)}
         >
           <Inject
             services={[
@@ -274,11 +588,11 @@ class adminDashboard extends Component {
           />
           <SeriesCollectionDirective>
             <SeriesDirective
-              dataSource={this.state.filter_ventas}
+              dataSource={this.state.filter_ventas_mes}
               tooltip={tooltip}
               xName="_id"
               columnSpacing={0.1}
-              yName={this.state.tipo_grafica_indicador}
+              yName="totalVentas"
               name={ylabel}
               type="Column"
               marker={{
@@ -288,20 +602,10 @@ class adminDashboard extends Component {
                   font: { fontWeight: "2W00", color: "#000000" },
                 },
               }}
-            >
-              <TrendlinesDirective>
-                <TrendlineDirective
-                  type="Linear"
-                  width={3}
-                  marker={{ visible: false }}
-                  name="Tendencia"
-                  fill="#C64A75"
-                ></TrendlineDirective>
-              </TrendlinesDirective>
-            </SeriesDirective>
+            ></SeriesDirective>
           </SeriesCollectionDirective>
         </ChartComponent>
-      </div>
+      </>
     );
   }
 
@@ -440,6 +744,7 @@ class adminDashboard extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log("Data: ", data);
         this.setState({
           ventas_totales:
             data.inv.resut_ventas_totales01[0].suma_ventas_totales,
@@ -449,6 +754,11 @@ class adminDashboard extends Component {
           filter_ventas_tipo: data.inv.tipo_pedido,
           filter_ventas: data.inv.result04,
           filter_ventas_por_tipo: data.inv.result09_ventas_tipo,
+          filter_ventas_mes: data.inv.resultVentasMes,
+          filter_horas_pedidos: data.inv.horasChartData,
+          filter_ventas_por_tipo_mesa: data.inv.result06_tipo[0],
+          filter_ventas_por_tipo_domicilio: data.inv.result07_tipo[0],
+          filter_ventas_por_tipo_recogen: data.inv.result08_tipo[0],
         });
         this.contractEnd();
       });
@@ -469,9 +779,37 @@ class adminDashboard extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log("Tiquet medio: ", data);
         this.setState({
           tiquet_medio: data.tiquet_medio[0].ticketMedio,
         });
+      });
+
+    //fetch tipo ventas
+    const requestOptionsTipoVentas = {
+      method: "GET",
+      headers: { "Content-type": "application/json" },
+    };
+    fetch(
+      `http://${process.env.REACT_APP_URL_PRODUCCION}/api/admin/ventasportipo/` +
+        this.state.fecha_inicio_busqueda +
+        `/` +
+        this.state.fecha_final_busqueda +
+        `/` +
+        local,
+      requestOptionsTipoVentas
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Ventas tipo: ", data);
+        
+        this.setState({
+          filter_ventas_tipo_pizzas:
+            data.ventas_tipo.combinedUnicoAgrupadoArraySorted,
+          filter_ventas_tipo_sabores:
+            data.ventas_tipo.top10ConteoUnicoPizzaPastaLasagnaSaboresArray,
+        });
+        
       });
   }
 
@@ -484,7 +822,6 @@ class adminDashboard extends Component {
         <h1>Grafica Ventas: </h1>
 
         <hr className="border border-3 opacity-100"></hr>
-
         <h3>Filtros: </h3>
         <h4>1. Seleccione Periodos Inicial: </h4>
         <input
@@ -539,7 +876,7 @@ class adminDashboard extends Component {
               style={{ display: "flex", flexDirection: "row" }}
               className="kpiIndicatorVentasEspecial"
             >
-              <div style={{ width: "35%", marginRight: "40px" }}>
+              <div style={{ width: "auto", marginRight: "0px" }}>
                 <div className="indicadorKPIVentas">Ventas Totales:</div>
                 <div className="valorKPIventas">
                   {parseInt(this.state.ventas_totales).toLocaleString("en-US", {
@@ -557,7 +894,13 @@ class adminDashboard extends Component {
                 return (
                   <div key={index} style={{ width: "15%", marginRight: "0px" }}>
                     <div className="indicadorKPIVentasAux">{item._id}:</div>
-                    <div className="indicadorKPIVentasAux">% {(parseInt(item.valor_total) * 100 / parseInt(this.state.ventas_totales)).toFixed(1)}</div>
+                    <div className="indicadorKPIVentasAux">
+                      %{" "}
+                      {(
+                        (parseInt(item.valor_total) * 100) /
+                        parseInt(this.state.ventas_totales)
+                      ).toFixed(1)}
+                    </div>
                     <div className="indicadorKPIVentasAux">
                       {parseInt(item.valor_total).toLocaleString("en-US", {
                         style: "currency",
@@ -567,8 +910,8 @@ class adminDashboard extends Component {
                       })}
                     </div>
                   </div>
-                );}
-              )}
+                );
+              })}
             </div>
 
             <div className="kpiIndicatorVentas">
@@ -613,19 +956,46 @@ class adminDashboard extends Component {
                     header="Tipo pedidos Pizzarra"
                     content={this.pieUno.bind(this)}
                     sizeX={2}
-                    sizeY={2}
+                    sizeY={3}
                     row={0}
                     col={2}
                   ></PanelDirective>
 
                   <PanelDirective
-                    header="Ventas vs Target - Periodos"
+                    header="Ventas totales"
                     content={this.graficaVentas.bind(this)}
                     sizeX={4}
-                    sizeY={2}
+                    sizeY={3}
                     row={0}
                     col={0}
                   ></PanelDirective>
+                  <PanelDirective
+                    header="Histograma horas"
+                    content={this.histograma.bind(this)}
+                    sizeX={6}
+                    sizeY={2}
+                    row={3}
+                    col={0}
+                  ></PanelDirective>
+                  
+                  <PanelDirective
+                    header="Ventas tipos"
+                    content={this.barrasPizzasVentas.bind(this)}
+                    sizeX={3}
+                    sizeY={3}
+                    row={5}
+                    col={0}
+                  ></PanelDirective>
+                 
+                  <PanelDirective
+                    header="Ventas sabores - TOP 10"
+                    content={this.barrasPizzasVentasSabores.bind(this)}
+                    sizeX={3}
+                    sizeY={3}
+                    row={5}
+                    col={4}
+                  ></PanelDirective>
+                
                 </PanelsDirective>
               </DashboardLayoutComponent>
             </div>
@@ -640,8 +1010,26 @@ class adminDashboard extends Component {
     chart.setAttribute("title", "");
   }
 
+  onChartLoadVentas() {
+    let chart = document.getElementById("chartsVentas");
+    chart.setAttribute("title", "");
+  }
+
+  onChartLoadHistograma() {
+    let chart = document.getElementById("chartsHistograma");
+    chart.setAttribute("title", "");
+  }
+
   onChartLoadPie() {
     document.getElementById("pie-chart").setAttribute("title", "");
+  }
+
+  onChartLoadVentasPizzas() {
+    document.getElementById("chart-pizzas").setAttribute("title", "");
+  }
+
+  onChartLoadVentasPizzasSabores() {
+    document.getElementById("chart-pizzas-sabores").setAttribute("title", "");
   }
 
   onChartLoadPie2() {
@@ -649,6 +1037,10 @@ class adminDashboard extends Component {
   }
 
   load() {}
+  loadVentasPizzas() {}
+  loadVentasPizzasSabores() {}
+  loadHistograma() {}
+  loadVentas() {}
 
   loadPie() {
     //let selectedTheme = location.hash.split('/')[1];

@@ -184,6 +184,7 @@ async function procesarFechas(
     let resultGastoInsumo = result_ventas_filter_aux.map((itemInsumo) => {
       return obtenerValorPorClave(itemInsumo, item.TIPO);
     });
+    //console.log(resultGastoInsumo);
     resultadosTotales[index].INV_GASTO = parseFloat(resultGastoInsumo[0]);
   });
 
