@@ -158,7 +158,7 @@ function resumenVentas(result_ventas_auxn, insumos){
 
         item.aux.map((item1,index) => {      
 
-            if(item1.tipo_pedido === "DOMICILIO"){
+            if(item1.tipo_pedido === "DOMICILIO" || item1.tipo_pedido === "RECOGEN"){
                 cajasPizzaPersonales = 1;
                 cajasPizzaGrandes = 1;
                 moldesLasagna = 1;

@@ -17,7 +17,7 @@ function resultVentasPeriodo(result_ventas_auxn, insumos, insumos_tipo){
             
 
             //console.log(item1)
-            if(item1.tipo_pedido === "DOMICILIO"){
+            if(item1.tipo_pedido === "DOMICILIO" || item1.tipo_pedido === "RECOGEN"){
                 cajasPizzaPersonales = 1;
                 cajasPizzaGrandes = 1;
                 moldesLasagna = 1;

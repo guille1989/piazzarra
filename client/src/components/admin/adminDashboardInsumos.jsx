@@ -136,9 +136,6 @@ class adminDashboardInsumos extends Component {
 
   handleGetInsumosReview() {
     this.contractBegin();
-    //console.log("Fecha inicio: " + this.state.fecha_inicio_busqueda);
-    //console.log("Fecha final: " + this.state.fecha_final_busqueda);
-
     const requestOptions = {
       method: "GET",
       headers: { "Content-type": "application/json" },
