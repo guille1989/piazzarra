@@ -42,6 +42,7 @@ class gastosFijosPopayan extends Component {
       fechaRegistroInventario: today,
       hayFecha: true,
     });
+    console.log("Inicio: ",today);
 
     //Treamos categorias de gastos fijos
     const requestOptions = {
@@ -82,6 +83,8 @@ class gastosFijosPopayan extends Component {
       fechaRegistroInventario: e.target.value,
       hayFecha: true,
     });
+
+    console.log(e.target.value)
 
     //Traemos gastos fijos para el periodo seleccionado
     const requestOptions = {
@@ -506,7 +509,8 @@ class gastosFijosPopayan extends Component {
 }
 
 function getMonthName(dateString) {
-  const date = new Date(dateString);
+  const [year, month] = dateString.split("-");
+  const monthIndex = parseInt(month, 10) - 1;
   const monthNames = [
     "Enero",
     "Febrero",
@@ -521,12 +525,13 @@ function getMonthName(dateString) {
     "Noviembre",
     "Diciembre",
   ];
-  return monthNames[date.getMonth()];
+  //console.log("getMonthName: ",dateString, month, monthIndex, monthNames[monthIndex])
+  return monthNames[monthIndex];
 }
 
 function getYear(dateString) {
-  const date = new Date(dateString);
-  return date.getFullYear();
+  const [year] = dateString.split("-");
+  return parseInt(year, 10);
 }
 
 export default gastosFijosPopayan;
