@@ -119,19 +119,16 @@ class adminReviewInventarioPC extends Component {
 
     trustTemplate(props) {
         let loc = { width: '31px', height: '24px' };
-        let flagAux = '';
+        let flagAux = ''
         if(props.ALARMA_INVENTARIO === 'Suficiente'){
             flagAux = FlagGreen;
         }else if(props.ALARMA_INVENTARIO === 'Insuficiente'){
             flagAux = FlagRed;
         }
 
-        return (
-            <div>
-                {flagAux && <img style={loc} src={flagAux} alt={props.ALARMA_INVENTARIO} />}
-                <span id="Trusttext">{props.ALARMA_INVENTARIO}</span>
-            </div>
-        );
+        //let Trustworthiness = props.ALARMA_INVENTARIO == "Suficiente" ? 'src/images/flagGreen.png' : props.ALARMA_INVENTARIO == "Insufficient" ? 'src/images/flagRed.png' : 'src/grid/images/Perfect.png';
+        return (<div> <img style={loc} src={flagAux}/>
+      <span id="Trusttext">{props.ALARMA_INVENTARIO}</span></div>);
     }
 
     //
