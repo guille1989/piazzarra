@@ -470,7 +470,12 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                         {'tipo_pedido': 'cerveza_club', 'No': cerveza_club, 'Costo': cerveza_club_costo },
                         {'tipo_pedido': 'cerveza_aguila', 'No': cerveza_aguila, 'Costo': cerveza_aguila_costo },
                         {'tipo_pedido': 'cerveza_poker', 'No': cerveza_poker, 'Costo': cerveza_poker_costo },
+                        {'tipo_pedido': 'cerveza_ipa', 'No': cerveza_ipa, 'Costo': cerveza_ipa_costo },
+                        {'tipo_pedido': 'cerveza_trigo', 'No': cerveza_trigo, 'Costo': cerveza_trigo_costo },
+                        {'tipo_pedido': 'cerveza_cannabis', 'No': cerveza_cannabis, 'Costo': cerveza_cannabis_costo },
+                        {'tipo_pedido': 'cerveza_imperial', 'No': cerveza_imperial, 'Costo': cerveza_imperial_costo },
                         
+
                         {'tipo_pedido': 'cocacola_litro4', 'No': glitrocuarto, 'Costo': glitrocuarto_costo },
                         {'tipo_pedido': 'cocacola_350_zero', 'No': gcocacolazero, 'Costo': gcocacolazero_costo },
                         {'tipo_pedido': 'cocacola_350_normal', 'No': gcocacolanormal, 'Costo': gcocacolanormal_costo },
