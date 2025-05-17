@@ -68,6 +68,18 @@ async function leerPedidos(fecha_aux, pedidos_aux){
     let cerveza_poker = 0
     let cerveza_poker_costo = 0
 
+    let cerveza_ipa = 0
+    let cerveza_ipa_costo = 0
+
+    let cerveza_trigo = 0
+    let cerveza_trigo_costo = 0
+
+    let cerveza_cannabis = 0
+    let cerveza_cannabis_costo = 0
+
+    let cerveza_imperial = 0
+    let cerveza_imperial_costo = 0
+
     let cerveza_club = 0
     let cerveza_club_costo = 0
 
@@ -268,7 +280,6 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 cerveza_club_costo = cerveza_club_costo + item2.costo_cerveza
                 cerveza_club = cerveza_club + + parseInt(cvz[1])     
             }else if(item2.tipo.includes("POKER")){
-                //console.log(item2.tipo)
                 let cvz = item2.tipo.split("X", 2)
                 cerveza_poker_costo = cerveza_poker_costo + item2.costo_cerveza
                 cerveza_poker = cerveza_poker + parseInt(cvz[1])
@@ -276,6 +287,22 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                 let cvz = item2.tipo.split("X", 2)
                 cerveza_aguila_costo = cerveza_aguila_costo + item2.costo_cerveza
                 cerveza_aguila = cerveza_aguila + parseInt(cvz[1])        
+            }else if(item2.tipo.includes("IPA")){
+                let cvz = item2.tipo.split("X", 2)
+                cerveza_ipa_costo = cerveza_ipa_costo + item2.costo_cerveza
+                cerveza_ipa = cerveza_ipa + parseInt(cvz[1])        
+            }else if(item2.tipo.includes("TRIGO")){
+                let cvz = item2.tipo.split("X", 2)
+                cerveza_trigo_costo = cerveza_trigo_costo + item2.costo_cerveza
+                cerveza_trigo = cerveza_trigo + parseInt(cvz[1])
+            }else if(item2.tipo.includes("CANNABIS")){
+                let cvz = item2.tipo.split("X", 2)
+                cerveza_cannabis_costo = cerveza_cannabis_costo + item2.costo_cerveza
+                cerveza_cannabis = cerveza_cannabis + parseInt(cvz[1])
+            }else if(item2.tipo.includes("IMPERIAL")){
+                let cvz = item2.tipo.split("X", 2)
+                cerveza_imperial_costo = cerveza_imperial_costo + item2.costo_cerveza
+                cerveza_imperial = cerveza_imperial + parseInt(cvz[1])
             }else if(item2.tipo.includes("LITRO/4")){
                 //console.log(item2)
                 glitrocuarto_costo = glitrocuarto_costo + item2.costo_gaseosa
