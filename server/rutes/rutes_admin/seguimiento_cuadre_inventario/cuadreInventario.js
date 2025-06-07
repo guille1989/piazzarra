@@ -5315,6 +5315,12 @@ function resumenVentas(result_ventas_auxn, insumos) {
           result.QUESO = result.QUESO - 75;
         }
 
+        if (item.tipo.includes("PAN MANTEQUILLA Y MERMELADA")) {
+          let countAux = item.tipo.replace(/^\D+/g, "");
+          result.PAN_OREGANO = result.PAN_OREGANO - 2 * parseInt(countAux);
+          result.MANTEQUILLA = result.MANTEQUILLA - parseInt(countAux) * 20;
+        }
+
         //PAN AJO
         if (item.tipo.includes("PAN AJO")) {
           let countAux = item.tipo.replace(/^\D+/g, "");
