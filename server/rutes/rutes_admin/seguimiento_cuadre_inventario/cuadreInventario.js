@@ -4470,72 +4470,72 @@ function resumenVentas(result_ventas_auxn, insumos) {
           let tresIng = 33;
           let queso = 0;
 
-          if (item.sabor_pasta === "MIXTA") {
+          if (item.sabor_ravioli === "MIXTA") {
             result.JAMON = result.JAMON - tresIng;
             result.CABANOS = result.CABANOS - tresIng;
             result.SALAMI = result.SALAMI - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "HAWAIANA") {
+          } else if (item.sabor_ravioli === "HAWAIANA") {
             result.JAMON = result.JAMON - dosIng;
             result.PINIA_CALADA = result.PINIA_CALADA - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "HIGOSTOCINETA") {
+          } else if (item.sabor_ravioli === "HIGOSTOCINETA") {
             result.HIGOS = result.HIGOS - dosIng;
             result.TOCINETA = result.TOCINETA - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "POLLOCHAMPI") {
+          } else if (item.sabor_ravioli === "POLLOCHAMPI") {
             result.POLLO = result.POLLO - dosIng;
             result.CHAMPINIONES = result.CHAMPINIONES - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "JAMONCHAMPI") {
+          } else if (item.sabor_ravioli === "JAMONCHAMPI") {
             result.JAMON = result.JAMON - dosIng;
             result.CHAMPINIONES = result.CHAMPINIONES - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "SAMBA") {
+          } else if (item.sabor_ravioli === "SAMBA") {
             result.MADURO = result.MADURO - dosIng;
             result.TOCINETA = result.TOCINETA - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "PETETE") {
+          } else if (item.sabor_ravioli === "PETETE") {
             result.POLLO = result.POLLO - tresIng;
             result.TOCINETA = result.TOCINETA - tresIng;
             result.TOMATE = result.TOMATE - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "CAMPESINA") {
+          } else if (item.sabor_ravioli === "CAMPESINA") {
             result.MAIZ = result.MAIZ - dosIng;
             result.CABANOS = result.CABANOS - dosIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "NAPOLITANA") {
+          } else if (item.sabor_ravioli === "NAPOLITANA") {
             result.QUESO = result.QUESO - queso * 2 + 75;
-          } else if (item.sabor_pasta === "MARGARITA") {
+          } else if (item.sabor_ravioli === "MARGARITA") {
             result.TOMATE = result.TOMATE - dosIng;
             result.QUESO = result.QUESO - queso * 2 + 75;
-          } else if (item.sabor_pasta === "GOURMET") {
+          } else if (item.sabor_ravioli === "GOURMET") {
             result.POLLO = result.POLLO - tresIng;
             result.ACEITUNAS = result.ACEITUNAS - tresIng;
             result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "PADRISIMA") {
+          } else if (item.sabor_ravioli === "PADRISIMA") {
             result.CARNE_MOLIDA = result.CARNE_MOLIDA - tresIng * 3;
             result.JALAPENIOS = result.JALAPENIOS - 20;
             result.LECHUGA = result.LECHUGA - 20;
             result.TOMATE = result.TOMATE - 20;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "VEGETARIANA") {
+          } else if (item.sabor_ravioli === "VEGETARIANA") {
             result.ACEITUNAS = result.ACEITUNAS - tresIng;
             result.TOMATES_SECOS = result.TOMATES_SECOS - tresIng;
             result.CHAMPINIONES = result.CHAMPINIONES - tresIng;
             result.CEBOLLA = result.CEBOLLA - tresIng;
             result.PIMENTON = result.PIMENTON - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "FESTIVAL") {
+          } else if (item.sabor_ravioli === "FESTIVAL") {
             result.CHAMPINIONES = result.CHAMPINIONES - tresIng;
             result.JAMON = result.JAMON - tresIng;
             result.SALAMI = result.SALAMI - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "BOLOGNESA") {
+          } else if (item.sabor_ravioli === "BOLOGNESA") {
             result.CARNE_MOLIDA = result.CARNE_MOLIDA - 150;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_pasta === "CARBONARA") {
+          } else if (item.sabor_ravioli === "CARBONARA") {
             result.TOCINETA = result.TOCINETA - 100;
             result.HUEVOS = result.HUEVOS - 1;
             result.CREMA_LECHE = result.CREMA_LECHE - 95;
