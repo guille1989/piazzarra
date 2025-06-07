@@ -4446,7 +4446,7 @@ function resumenVentas(result_ventas_auxn, insumos) {
           }
 
           result.PAN_OREGANO = result.PAN_OREGANO - 2;
-          result.QUESO_PARMESANO = result.QUESO_PARMESANO - 10;
+          result.QUESO_PARMESANO = result.QUESO_PARMESANO - 20;
 
           //Restamos al tipo de salsa
           if (item.tipo.includes("NAPOLITANA")) {
@@ -4941,7 +4941,7 @@ function resumenVentas(result_ventas_auxn, insumos) {
 
         //PASTA
         if (item.tipo.includes("PASTA TIPO")) {
-          result.QUESO_PARMESANO = result.QUESO_PARMESANO - 10;
+          result.QUESO_PARMESANO = result.QUESO_PARMESANO - 20;
           result.PAN_OREGANO = result.PAN_OREGANO - 2;
 
           if (cajasPizzaPersonales === 1) {
