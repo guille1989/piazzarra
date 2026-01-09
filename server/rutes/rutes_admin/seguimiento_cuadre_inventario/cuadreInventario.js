@@ -470,7 +470,12 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - 75;
             result.SALAMI = result.SALAMI - 75;
             result.QUESO = result.QUESO - 75;
-          } else if (item.sabor_personal.includes("Combinada 2 Ingredientes")) {
+          } else if (item.sabor_personal === "ANCHOAS") {
+            result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1;
+
+            result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60;
+            result.QUESO = result.QUESO - 100;
+          }else if (item.sabor_personal.includes("Combinada 2 Ingredientes")) {
             result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1;
             result.QUESO = result.QUESO - queso;
 
@@ -840,7 +845,12 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - 75 / 2;
             result.SALAMI = result.SALAMI - 75 / 2;
             result.QUESO = result.QUESO - 75 / 2;
-          } else if (item.mitad_uno.includes("Combinada 2 Ingredientes")) {
+          } else if (item.mitad_uno === "ANCHOAS") {
+            result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1;
+
+            result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60;
+            result.QUESO = result.QUESO - 100;
+          }else if (item.mitad_uno.includes("Combinada 2 Ingredientes")) {
             result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 / 2;
             result.QUESO = result.QUESO - quesoM;
 
@@ -1145,7 +1155,12 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - 75 / 2;
             result.SALAMI = result.SALAMI - 75 / 2;
             result.QUESO = result.QUESO - 75 / 2;
-          } else if (item.mitad_dos.includes("Combinada 2 Ingredientes")) {
+          } else if (item.mitad_dos === "ANCHOAS") {
+            result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1;
+
+            result.SALSA_NAPOLITANA_GALON = result.SALSA_NAPOLITANA_GALON - 60;
+            result.QUESO = result.QUESO - 100;
+          }else if (item.mitad_dos.includes("Combinada 2 Ingredientes")) {
             result.MASAS_PERSONALES = result.MASAS_PERSONALES - 1 / 2;
             result.QUESO = result.QUESO - quesoM;
 
@@ -1532,7 +1547,9 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - tresIng;
             result.SALAMI = result.SALAMI - tresIng;
             result.QUESO = result.QUESO - queso;
-          } else if (item.sabor_grande.includes("Combinada 2 Ingredientes")) {
+          } else if (item.sabor_grande === "ANCHOAS") {
+            result.QUESO = result.QUESO - 220;
+          }else if (item.sabor_grande.includes("Combinada 2 Ingredientes")) {
             result.MASAS_MEDIANAS = result.MASAS_MEDIANAS - 1;
             result.QUESO = result.QUESO - queso;
 
@@ -1871,7 +1888,9 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - tresIng;
             result.SALAMI = result.SALAMI - tresIng;
             result.QUESO = result.QUESO - quesoM;
-          } else if (item.mitad_uno.includes("Combinada 2 Ingredientes")) {
+          } else if (item.sabor_grande === "ANCHOAS") {
+            result.QUESO = result.QUESO - 110;
+          }else if (item.mitad_uno.includes("Combinada 2 Ingredientes")) {
             result.QUESO = result.QUESO - quesoM;
 
             let ing01 = item.mitad_uno.split("+", 3)[1].replace(" ", "");
@@ -2532,7 +2551,9 @@ function resumenVentas(result_ventas_auxn, insumos) {
             result.JAMON = result.JAMON - tresIng;
             result.SALAMI = result.SALAMI - tresIng;
             result.QUESO = result.QUESO - quesoM;
-          } else if (item.cuarto_uno.includes("Combinada 2 Ingredientes")) {
+          } else if (item.sabor_grande === "ANCHOAS") {
+            result.QUESO = result.QUESO - 55;
+          }else if (item.cuarto_uno.includes("Combinada 2 Ingredientes")) {
             result.QUESO = result.QUESO - quesoM;
 
             let ing01 = item.cuarto_uno.split("+", 3)[1].replace(" ", "");

@@ -219,6 +219,8 @@ async function leerPedidos(fecha_aux, pedidos_aux){
         item.aux.map((item2, index2) => {
             //console.log(item2)
             if(item2.costo_pedido === 1){
+            }
+            else if(item2.costo_pedido === 0){
             }else{
                 //find if key exists
                 if(item2.hasOwnProperty('domi_costo')){
@@ -230,7 +232,7 @@ async function leerPedidos(fecha_aux, pedidos_aux){
                     result_sum_room_service = result_sum_room_service + 10000
                     count_room_service = count_room_service + 1
                 }
-                result_sum_ventas = result_sum_ventas + item2.costo_pedido
+                result_sum_ventas = result_sum_ventas + parseInt(item2.costo_pedido)
             }            
         })
     })
